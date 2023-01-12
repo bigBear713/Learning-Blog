@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "start": "docgeni serve --port 4600",
-    "build": "docgeni build"
+    "build": "docgeni build",
+    "deploy":"npm run build && cp docs/index.html docs/404.html"
   },
   "private": true,
   "dependencies": {
