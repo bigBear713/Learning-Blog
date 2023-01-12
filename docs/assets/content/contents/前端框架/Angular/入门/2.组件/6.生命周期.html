@@ -1,0 +1,57 @@
+
+        <h2 id="%E5%9C%BA%E6%99%AF" class="docs-header-link">
+          <span header-link="%E5%9C%BA%E6%99%AF"></span>
+          场景
+        </h2>
+      <ul>
+<li>一些逻辑需要借助组件的初始化、销毁等特殊时间点来完成。</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div>@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">XXXComponent</span> <span class="token punctuation">{</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+  <span class="token function">ngOnChanges</span><span class="token punctuation">(</span>changes<span class="token punctuation">:</span> SimpleChanges<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+  <span class="token function">ngOnInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+  <span class="token function">ngDoCheck</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+  <span class="token function">ngAfterViewInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+  <span class="token function">ngAfterViewChecked</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+  <span class="token function">ngAfterContentInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+  <span class="token function">ngAfterContentChecked</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+  <span class="token function">ngOnDestroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></div></code></pre>
+<ul>
+<li>入门时只需知晓组件的创建、初始化和被销毁3个周期就行，其他生命周期将在<a href="">提升</a>中进一步说明。</li>
+</ul>
+
+        <h2 id="constructor()-%7B-%7D" class="docs-header-link">
+          <span header-link="constructor()-%7B-%7D"></span>
+          constructor() { }
+        </h2>
+      <ul>
+<li>组件实例创建。此时组件内的属性等刚被创建，值还未被初始化。</li>
+</ul>
+
+        <h2 id="ngoninit():-void-%7B-%7D" class="docs-header-link">
+          <span header-link="ngoninit():-void-%7B-%7D"></span>
+          ngOnInit(): void { }
+        </h2>
+      <ul>
+<li>组件初始化。此时组件属性已经被初始化，组件实例已经被挂载到dom节点上。</li>
+<li>此时可做一些初始化行为，比如获取数据、订阅事件等。</li>
+</ul>
+
+        <h2 id="ngondestroy():-void-%7B-%7D" class="docs-header-link">
+          <span header-link="ngondestroy():-void-%7B-%7D"></span>
+          ngOnDestroy(): void { }
+        </h2>
+      <ul>
+<li>组件被销毁。此时组件即将被销毁，从dom上移除。</li>
+<li>此时可做一些清除操作，比如取消事件订阅等。</li>
+</ul>

@@ -1,0 +1,692 @@
+{
+  "navs": [
+    {
+      "id": "前端框架",
+      "path": "前端框架",
+      "channelPath": "前端框架",
+      "title": "前端框架",
+      "items": [
+        {
+          "id": "前端框架/angular",
+          "path": "前端框架/angular",
+          "channelPath": "前端框架",
+          "title": "Angular",
+          "items": [
+            {
+              "id": "前端框架/angular/入门",
+              "path": "前端框架/angular/入门",
+              "channelPath": "前端框架",
+              "title": "入门",
+              "items": [
+                {
+                  "id": "1.关于项目",
+                  "path": "前端框架/angular/入门/1",
+                  "channelPath": "前端框架",
+                  "title": "1.关于项目",
+                  "order": 9007199254740991,
+                  "toc": "content",
+                  "headings": [
+                    {
+                      "id": "%E7%8E%AF%E5%A2%83",
+                      "name": "环境",
+                      "level": 2,
+                      "type": "h2"
+                    },
+                    {
+                      "id": "nodejs",
+                      "name": "nodejs",
+                      "level": 3,
+                      "type": "h3"
+                    },
+                    {
+                      "id": "%3Ccode%3E@angular/cli%3C/code%3E",
+                      "name": "<code>@angular/cli</code>",
+                      "level": 3,
+                      "type": "h3"
+                    },
+                    {
+                      "id": "%E9%A1%B9%E7%9B%AE",
+                      "name": "项目",
+                      "level": 2,
+                      "type": "h2"
+                    },
+                    {
+                      "id": "%E5%88%9B%E5%BB%BA",
+                      "name": "创建",
+                      "level": 3,
+                      "type": "h3"
+                    },
+                    {
+                      "id": "%E5%90%AF%E5%8A%A8",
+                      "name": "启动",
+                      "level": 3,
+                      "type": "h3"
+                    },
+                    {
+                      "id": "%E6%89%93%E5%8C%85%E7%BC%96%E8%AF%91",
+                      "name": "打包编译",
+                      "level": 3,
+                      "type": "h3"
+                    },
+                    {
+                      "id": "angular%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7",
+                      "name": "angular版本升级",
+                      "level": 2,
+                      "type": "h2"
+                    }
+                  ],
+                  "contentPath": "contents/前端框架/Angular/入门/1.关于项目.html",
+                  "originPath": "contents/前端框架/Angular/入门/1.关于项目.md"
+                },
+                {
+                  "id": "前端框架/angular/入门/2.组件",
+                  "path": "前端框架/angular/入门/2.组件",
+                  "channelPath": "前端框架",
+                  "title": "2.组件",
+                  "items": [
+                    {
+                      "id": "1.概述",
+                      "path": "前端框架/angular/入门/2.组件/1",
+                      "channelPath": "前端框架",
+                      "title": "1.概述",
+                      "order": 9007199254740991,
+                      "toc": "content",
+                      "headings": [
+                        {
+                          "id": "%E6%A0%BC%E5%BC%8F",
+                          "name": "格式",
+                          "level": 2,
+                          "type": "h2"
+                        },
+                        {
+                          "id": "%E4%BD%BF%E7%94%A8",
+                          "name": "使用",
+                          "level": 2,
+                          "type": "h2"
+                        },
+                        {
+                          "id": "%E5%9C%A8%E5%BD%93%E5%89%8D%E6%A8%A1%E5%9D%97%E4%B8%AD%E4%BD%BF%E7%94%A8",
+                          "name": "在当前模块中使用",
+                          "level": 3,
+                          "type": "h3"
+                        },
+                        {
+                          "id": "%E5%9C%A8%E5%85%B6%E4%BB%96%E6%A8%A1%E5%9D%97%E4%B8%AD%E5%A4%8D%E7%94%A8",
+                          "name": "在其他模块中复用",
+                          "level": 3,
+                          "type": "h3"
+                        }
+                      ],
+                      "contentPath": "contents/前端框架/Angular/入门/2.组件/1.概述.html",
+                      "originPath": "contents/前端框架/Angular/入门/2.组件/1.概述.md"
+                    },
+                    {
+                      "id": "前端框架/angular/入门/2.组件/2.模板",
+                      "path": "前端框架/angular/入门/2.组件/2.模板",
+                      "channelPath": "前端框架",
+                      "title": "2.模板",
+                      "items": [
+                        {
+                          "id": "1.概述",
+                          "path": "前端框架/angular/入门/2.组件/2.模板/1",
+                          "channelPath": "前端框架",
+                          "title": "1.概述",
+                          "order": 9007199254740991,
+                          "toc": "content",
+                          "headings": [
+                            {
+                              "id": "%E5%86%85%E5%AE%B9",
+                              "name": "内容",
+                              "level": 2,
+                              "type": "h2"
+                            },
+                            {
+                              "id": "%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE",
+                              "name": "动态数据",
+                              "level": 2,
+                              "type": "h2"
+                            },
+                            {
+                              "id": "%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A",
+                              "name": "事件绑定",
+                              "level": 2,
+                              "type": "h2"
+                            }
+                          ],
+                          "contentPath": "contents/前端框架/Angular/入门/2.组件/2.模板/1.概述.html",
+                          "originPath": "contents/前端框架/Angular/入门/2.组件/2.模板/1.概述.md"
+                        },
+                        {
+                          "id": "2.插值表达式",
+                          "path": "前端框架/angular/入门/2.组件/2.模板/2",
+                          "channelPath": "前端框架",
+                          "title": "2.插值表达式",
+                          "order": 9007199254740991,
+                          "toc": "content",
+                          "headings": [
+                            {
+                              "id": "%E5%9C%BA%E6%99%AF",
+                              "name": "场景",
+                              "level": 2,
+                              "type": "h2"
+                            },
+                            {
+                              "id": "%E8%AF%AD%E6%B3%95",
+                              "name": "语法",
+                              "level": 2,
+                              "type": "h2"
+                            }
+                          ],
+                          "contentPath": "contents/前端框架/Angular/入门/2.组件/2.模板/2.插值表达式.html",
+                          "originPath": "contents/前端框架/Angular/入门/2.组件/2.模板/2.插值表达式.md"
+                        },
+                        {
+                          "id": "3.属性表达式",
+                          "path": "前端框架/angular/入门/2.组件/2.模板/3",
+                          "channelPath": "前端框架",
+                          "title": "3.属性表达式",
+                          "order": 9007199254740991,
+                          "toc": "content",
+                          "headings": [
+                            {
+                              "id": "%E5%9C%BA%E6%99%AF",
+                              "name": "场景",
+                              "level": 2,
+                              "type": "h2"
+                            },
+                            {
+                              "id": "%E8%AF%AD%E6%B3%95",
+                              "name": "语法",
+                              "level": 2,
+                              "type": "h2"
+                            }
+                          ],
+                          "contentPath": "contents/前端框架/Angular/入门/2.组件/2.模板/3.属性表达式.html",
+                          "originPath": "contents/前端框架/Angular/入门/2.组件/2.模板/3.属性表达式.md"
+                        }
+                      ],
+                      "order": 9007199254740991
+                    },
+                    {
+                      "id": "3.样式",
+                      "path": "前端框架/angular/入门/2.组件/3",
+                      "channelPath": "前端框架",
+                      "title": "3.样式",
+                      "order": 9007199254740991,
+                      "toc": "content",
+                      "headings": [
+                        {
+                          "id": "%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4",
+                          "name": "作用范围",
+                          "level": 2,
+                          "type": "h2"
+                        },
+                        {
+                          "id": "%E5%AF%B9%E7%BB%84%E4%BB%B6%E6%89%80%E6%8C%82%E9%9D%A0%E7%9A%84%E6%A0%87%E7%AD%BE%E5%85%83%E7%B4%A0%E8%BF%9B%E8%A1%8C%E6%A0%B7%E5%BC%8F%E8%AE%BE%E7%BD%AE",
+                          "name": "对组件所挂靠的标签元素进行样式设置",
+                          "level": 2,
+                          "type": "h2"
+                        }
+                      ],
+                      "contentPath": "contents/前端框架/Angular/入门/2.组件/3.样式.html",
+                      "originPath": "contents/前端框架/Angular/入门/2.组件/3.样式.md"
+                    },
+                    {
+                      "id": "4.输入属性",
+                      "path": "前端框架/angular/入门/2.组件/4",
+                      "channelPath": "前端框架",
+                      "title": "4.输入属性",
+                      "order": 9007199254740991,
+                      "toc": "content",
+                      "headings": [
+                        {
+                          "id": "%E5%9C%BA%E6%99%AF",
+                          "name": "场景",
+                          "level": 2,
+                          "type": "h2"
+                        },
+                        {
+                          "id": "%E8%AF%AD%E6%B3%95",
+                          "name": "语法",
+                          "level": 2,
+                          "type": "h2"
+                        }
+                      ],
+                      "contentPath": "contents/前端框架/Angular/入门/2.组件/4.输入属性.html",
+                      "originPath": "contents/前端框架/Angular/入门/2.组件/4.输入属性.md"
+                    },
+                    {
+                      "id": "5.输出属性",
+                      "path": "前端框架/angular/入门/2.组件/5",
+                      "channelPath": "前端框架",
+                      "title": "5.输出属性",
+                      "order": 9007199254740991,
+                      "toc": "content",
+                      "headings": [
+                        {
+                          "id": "%E5%9C%BA%E6%99%AF",
+                          "name": "场景",
+                          "level": 2,
+                          "type": "h2"
+                        },
+                        {
+                          "id": "%E8%AF%AD%E6%B3%95",
+                          "name": "语法",
+                          "level": 2,
+                          "type": "h2"
+                        }
+                      ],
+                      "contentPath": "contents/前端框架/Angular/入门/2.组件/5.输出属性.html",
+                      "originPath": "contents/前端框架/Angular/入门/2.组件/5.输出属性.md"
+                    },
+                    {
+                      "id": "6.生命周期",
+                      "path": "前端框架/angular/入门/2.组件/6",
+                      "channelPath": "前端框架",
+                      "title": "6.生命周期",
+                      "order": 9007199254740991,
+                      "toc": "content",
+                      "headings": [
+                        {
+                          "id": "%E5%9C%BA%E6%99%AF",
+                          "name": "场景",
+                          "level": 2,
+                          "type": "h2"
+                        },
+                        {
+                          "id": "constructor()-%7B-%7D",
+                          "name": "constructor() { }",
+                          "level": 2,
+                          "type": "h2"
+                        },
+                        {
+                          "id": "ngoninit():-void-%7B-%7D",
+                          "name": "ngOnInit(): void { }",
+                          "level": 2,
+                          "type": "h2"
+                        },
+                        {
+                          "id": "ngondestroy():-void-%7B-%7D",
+                          "name": "ngOnDestroy(): void { }",
+                          "level": 2,
+                          "type": "h2"
+                        }
+                      ],
+                      "contentPath": "contents/前端框架/Angular/入门/2.组件/6.生命周期.html",
+                      "originPath": "contents/前端框架/Angular/入门/2.组件/6.生命周期.md"
+                    }
+                  ],
+                  "order": 9007199254740991
+                },
+                {
+                  "id": "前端框架/angular/入门/3.指令",
+                  "path": "前端框架/angular/入门/3.指令",
+                  "channelPath": "前端框架",
+                  "title": "3.指令",
+                  "items": [],
+                  "order": 9007199254740991
+                },
+                {
+                  "id": "前端框架/angular/入门/4.管道",
+                  "path": "前端框架/angular/入门/4.管道",
+                  "channelPath": "前端框架",
+                  "title": "4.管道",
+                  "items": [],
+                  "order": 9007199254740991
+                },
+                {
+                  "id": "前端框架/angular/入门/5.服务",
+                  "path": "前端框架/angular/入门/5.服务",
+                  "channelPath": "前端框架",
+                  "title": "5.服务",
+                  "items": [],
+                  "order": 9007199254740991
+                },
+                {
+                  "id": "前端框架/angular/入门/6.路由",
+                  "path": "前端框架/angular/入门/6.路由",
+                  "channelPath": "前端框架",
+                  "title": "6.路由",
+                  "items": [],
+                  "order": 9007199254740991
+                },
+                {
+                  "id": "前端框架/angular/入门/7.依赖注入",
+                  "path": "前端框架/angular/入门/7.依赖注入",
+                  "channelPath": "前端框架",
+                  "title": "7.依赖注入",
+                  "items": [],
+                  "order": 9007199254740991
+                }
+              ],
+              "order": 9007199254740991
+            },
+            {
+              "id": "前端框架/angular/提升",
+              "path": "前端框架/angular/提升",
+              "channelPath": "前端框架",
+              "title": "提升",
+              "items": [],
+              "order": 9007199254740991
+            },
+            {
+              "id": "前端框架/angular/精通",
+              "path": "前端框架/angular/精通",
+              "channelPath": "前端框架",
+              "title": "精通",
+              "items": [],
+              "order": 9007199254740991
+            }
+          ],
+          "order": 9007199254740991
+        },
+        {
+          "id": "前端框架/react",
+          "path": "前端框架/react",
+          "channelPath": "前端框架",
+          "title": "React",
+          "items": [],
+          "order": 9007199254740991
+        },
+        {
+          "id": "前端框架/vue",
+          "path": "前端框架/vue",
+          "channelPath": "前端框架",
+          "title": "Vue",
+          "items": [],
+          "order": 9007199254740991
+        }
+      ],
+      "order": 9007199254740991
+    },
+    {
+      "title": "GitHub",
+      "path": "https://github.com/bigBear713",
+      "isExternal": true
+    }
+  ],
+  "docs": [
+    {
+      "id": "1.关于项目",
+      "path": "前端框架/angular/入门/1",
+      "channelPath": "前端框架",
+      "title": "1.关于项目",
+      "order": 9007199254740991,
+      "toc": "content",
+      "headings": [
+        {
+          "id": "%E7%8E%AF%E5%A2%83",
+          "name": "环境",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "nodejs",
+          "name": "nodejs",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%3Ccode%3E@angular/cli%3C/code%3E",
+          "name": "<code>@angular/cli</code>",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E9%A1%B9%E7%9B%AE",
+          "name": "项目",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E5%88%9B%E5%BB%BA",
+          "name": "创建",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E5%90%AF%E5%8A%A8",
+          "name": "启动",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E6%89%93%E5%8C%85%E7%BC%96%E8%AF%91",
+          "name": "打包编译",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "angular%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7",
+          "name": "angular版本升级",
+          "level": 2,
+          "type": "h2"
+        }
+      ],
+      "contentPath": "contents/前端框架/Angular/入门/1.关于项目.html",
+      "originPath": "contents/前端框架/Angular/入门/1.关于项目.md"
+    },
+    {
+      "id": "1.概述",
+      "path": "前端框架/angular/入门/2.组件/1",
+      "channelPath": "前端框架",
+      "title": "1.概述",
+      "order": 9007199254740991,
+      "toc": "content",
+      "headings": [
+        {
+          "id": "%E6%A0%BC%E5%BC%8F",
+          "name": "格式",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E4%BD%BF%E7%94%A8",
+          "name": "使用",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E5%9C%A8%E5%BD%93%E5%89%8D%E6%A8%A1%E5%9D%97%E4%B8%AD%E4%BD%BF%E7%94%A8",
+          "name": "在当前模块中使用",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E5%9C%A8%E5%85%B6%E4%BB%96%E6%A8%A1%E5%9D%97%E4%B8%AD%E5%A4%8D%E7%94%A8",
+          "name": "在其他模块中复用",
+          "level": 3,
+          "type": "h3"
+        }
+      ],
+      "contentPath": "contents/前端框架/Angular/入门/2.组件/1.概述.html",
+      "originPath": "contents/前端框架/Angular/入门/2.组件/1.概述.md"
+    },
+    {
+      "id": "1.概述",
+      "path": "前端框架/angular/入门/2.组件/2.模板/1",
+      "channelPath": "前端框架",
+      "title": "1.概述",
+      "order": 9007199254740991,
+      "toc": "content",
+      "headings": [
+        {
+          "id": "%E5%86%85%E5%AE%B9",
+          "name": "内容",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE",
+          "name": "动态数据",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A",
+          "name": "事件绑定",
+          "level": 2,
+          "type": "h2"
+        }
+      ],
+      "contentPath": "contents/前端框架/Angular/入门/2.组件/2.模板/1.概述.html",
+      "originPath": "contents/前端框架/Angular/入门/2.组件/2.模板/1.概述.md"
+    },
+    {
+      "id": "2.插值表达式",
+      "path": "前端框架/angular/入门/2.组件/2.模板/2",
+      "channelPath": "前端框架",
+      "title": "2.插值表达式",
+      "order": 9007199254740991,
+      "toc": "content",
+      "headings": [
+        {
+          "id": "%E5%9C%BA%E6%99%AF",
+          "name": "场景",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E8%AF%AD%E6%B3%95",
+          "name": "语法",
+          "level": 2,
+          "type": "h2"
+        }
+      ],
+      "contentPath": "contents/前端框架/Angular/入门/2.组件/2.模板/2.插值表达式.html",
+      "originPath": "contents/前端框架/Angular/入门/2.组件/2.模板/2.插值表达式.md"
+    },
+    {
+      "id": "3.属性表达式",
+      "path": "前端框架/angular/入门/2.组件/2.模板/3",
+      "channelPath": "前端框架",
+      "title": "3.属性表达式",
+      "order": 9007199254740991,
+      "toc": "content",
+      "headings": [
+        {
+          "id": "%E5%9C%BA%E6%99%AF",
+          "name": "场景",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E8%AF%AD%E6%B3%95",
+          "name": "语法",
+          "level": 2,
+          "type": "h2"
+        }
+      ],
+      "contentPath": "contents/前端框架/Angular/入门/2.组件/2.模板/3.属性表达式.html",
+      "originPath": "contents/前端框架/Angular/入门/2.组件/2.模板/3.属性表达式.md"
+    },
+    {
+      "id": "3.样式",
+      "path": "前端框架/angular/入门/2.组件/3",
+      "channelPath": "前端框架",
+      "title": "3.样式",
+      "order": 9007199254740991,
+      "toc": "content",
+      "headings": [
+        {
+          "id": "%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4",
+          "name": "作用范围",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E5%AF%B9%E7%BB%84%E4%BB%B6%E6%89%80%E6%8C%82%E9%9D%A0%E7%9A%84%E6%A0%87%E7%AD%BE%E5%85%83%E7%B4%A0%E8%BF%9B%E8%A1%8C%E6%A0%B7%E5%BC%8F%E8%AE%BE%E7%BD%AE",
+          "name": "对组件所挂靠的标签元素进行样式设置",
+          "level": 2,
+          "type": "h2"
+        }
+      ],
+      "contentPath": "contents/前端框架/Angular/入门/2.组件/3.样式.html",
+      "originPath": "contents/前端框架/Angular/入门/2.组件/3.样式.md"
+    },
+    {
+      "id": "4.输入属性",
+      "path": "前端框架/angular/入门/2.组件/4",
+      "channelPath": "前端框架",
+      "title": "4.输入属性",
+      "order": 9007199254740991,
+      "toc": "content",
+      "headings": [
+        {
+          "id": "%E5%9C%BA%E6%99%AF",
+          "name": "场景",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E8%AF%AD%E6%B3%95",
+          "name": "语法",
+          "level": 2,
+          "type": "h2"
+        }
+      ],
+      "contentPath": "contents/前端框架/Angular/入门/2.组件/4.输入属性.html",
+      "originPath": "contents/前端框架/Angular/入门/2.组件/4.输入属性.md"
+    },
+    {
+      "id": "5.输出属性",
+      "path": "前端框架/angular/入门/2.组件/5",
+      "channelPath": "前端框架",
+      "title": "5.输出属性",
+      "order": 9007199254740991,
+      "toc": "content",
+      "headings": [
+        {
+          "id": "%E5%9C%BA%E6%99%AF",
+          "name": "场景",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E8%AF%AD%E6%B3%95",
+          "name": "语法",
+          "level": 2,
+          "type": "h2"
+        }
+      ],
+      "contentPath": "contents/前端框架/Angular/入门/2.组件/5.输出属性.html",
+      "originPath": "contents/前端框架/Angular/入门/2.组件/5.输出属性.md"
+    },
+    {
+      "id": "6.生命周期",
+      "path": "前端框架/angular/入门/2.组件/6",
+      "channelPath": "前端框架",
+      "title": "6.生命周期",
+      "order": 9007199254740991,
+      "toc": "content",
+      "headings": [
+        {
+          "id": "%E5%9C%BA%E6%99%AF",
+          "name": "场景",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "constructor()-%7B-%7D",
+          "name": "constructor() { }",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "ngoninit():-void-%7B-%7D",
+          "name": "ngOnInit(): void { }",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "ngondestroy():-void-%7B-%7D",
+          "name": "ngOnDestroy(): void { }",
+          "level": 2,
+          "type": "h2"
+        }
+      ],
+      "contentPath": "contents/前端框架/Angular/入门/2.组件/6.生命周期.html",
+      "originPath": "contents/前端框架/Angular/入门/2.组件/6.生命周期.md"
+    }
+  ]
+}
