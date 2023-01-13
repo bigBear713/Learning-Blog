@@ -5,7 +5,7 @@ module.exports = {
     mode: 'lite',
     title: '学习博客',
     repoUrl: 'https://github.com/bigBear713/learning-blog',
-    logoUrl: "/assets/angular.svg",
+    logoUrl: "./assets/angular.svg",
     docsDir: "contents",
     publicDir: "public",
     outputDir: "docs",
