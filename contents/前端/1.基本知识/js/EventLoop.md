@@ -13,3 +13,6 @@
 - 宏任务，macrotask，又称task，由宿主（浏览器、Node）发起。
 - 常见的宏任务：setTimeout, setInterval, script, I/O, UI rendering等。
 - 宏任务中没有能执行的后，会开启下一个事件循环。
+  
+## requestAnimationFrame
+- 既不是宏任务也不是微任务，它是跟渲染相关，所以有时执行得像微任务，有时执行得像宏任务
