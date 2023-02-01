@@ -16,18 +16,100 @@
 
 ## 深拷贝递归实现
 ```js
-function clone(target, map = new Map()){
-  if(typeof target!=='object'){
+function clone(target, map = new WeakMap()){
+  if(!isObject(target)){
     return target;
   }
-  let cloneTarget = Array.isArray(target)?[]:{};
+
+  const type = getType(target);
+  let cloneTarget;
+  const cloneValue = cloneByType(target,type);
+  if(cloneValue){
+    cloneTarget = cloneValue;
+  }
+
   if(map.get(target)){
     return map.get(target);
   }
   map.set(target,cloneTarget);
-  for(const key in target){
-    cloneTarget = clone(target[key],map);
+
+  // clone set
+  if(type==='Set'){
+    target.forEach((value)=>{
+      cloneTarget.add(
+        clone(value, map)
+      );
+    });
+    return cloneTarget;
+  }
+
+  // clone map
+  if(type==='Map'){
+    target.forEach((value,key)=>{
+      cloneTarget.set(key,clone(value,map));
+    });
+    return cloneTarget;
+  }
+
+  const isArray = Array.isArray(target);
+  if(type==='Array'){
+    target.forEach((value,index)=>{
+      cloneTarget[index]=value;
+    });
+    return cloneTarget;
+  if(type==='Object'){
+    Object.keys(target).forEach((key)=>{
+      cloneTarget[key]=target[key];
+    });
+    return cloneTarget;
   }
   return cloneTarget;
+}
+
+function isObject(target){
+  const type = typeof target;
+  return target!==null && (type==='object'||type==='function');
+}
+
+function getType(target){
+  return Object.prototype.toString.call(target).slice(8,-1);
+}
+
+function getInit(target){
+  const Constructor = target.constructor;
+  return new Constructor();
+}
+
+function cloneByType(targe, type) {
+    const Ctor = targe.constructor;
+    switch (type) {
+        case 'Object':
+        case 'Array':
+        case 'Map':
+        case 'Set':
+          return getInit(target);
+        case 'Boolean':
+        case 'Number':
+        case 'String':
+        case 'Error':
+        case 'Date':
+            return new Ctor(targe);
+        case 'RegExp':
+            return cloneReg(targe);
+        case 'Symbol':
+            return cloneSymbol(targe);
+        default:
+            return null;
+    }
+}
+function cloneSymbol(targe) {
+    return Object(Symbol.prototype.valueOf.call(targe));
+}
+
+function cloneReg(targe) {
+    const reFlags = /\w*$/;
+    const result = new targe.constructor(targe.source, reFlags.exec(targe));
+    result.lastIndex = targe.lastIndex;
+    return result;
 }
 ```
