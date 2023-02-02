@@ -33,31 +33,22 @@ function clone(target, map = new WeakMap()){
   }
   map.set(target,cloneTarget);
 
-  // clone set
-  if(type==='Set'){
+ 
+  if(type==='Set'){ // clone set
     target.forEach((value)=>{
       cloneTarget.add(
         clone(value, map)
       );
     });
-    return cloneTarget;
-  }
-
-  // clone map
-  if(type==='Map'){
+  } else if(type==='Map'){ // clone map
     target.forEach((value,key)=>{
       cloneTarget.set(key,clone(value,map));
     });
-    return cloneTarget;
-  }
-
-  const isArray = Array.isArray(target);
-  if(type==='Array'){
+  } else if(type==='Array'){
     target.forEach((value,index)=>{
       cloneTarget[index]=value;
     });
-    return cloneTarget;
-  if(type==='Object'){
+  } else if(type==='Object'){
     Object.keys(target).forEach((key)=>{
       cloneTarget[key]=target[key];
     });
