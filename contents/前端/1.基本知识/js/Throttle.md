@@ -25,11 +25,11 @@ function throttle(fn, internalTime=0, immediate=false){
     }
 }
 
-function changeValue(){
+function logStr(){
     // ...
 }
 
-throttle(changeValue(),1000);
+window.addEventListener('click',throttle(logStr,1000));
 ```
 - 如果需要获取返回结果，可以增加回调函数参数。
 
