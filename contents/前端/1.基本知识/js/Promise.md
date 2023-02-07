@@ -146,3 +146,6 @@ function resolvePromise(promise2, x, resolve, reject){
 }
 
 ```
+
+## 参考
+- https://juejin.cn/post/7043758954496655397
