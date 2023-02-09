@@ -11,7 +11,7 @@
 - 归属于常规文档流
 
 ## absolute绝对定位
-- 相对于某一级的position为非`static`的父元素为参照，通过设置`top`，`bottom`，`left`，`right`，`z-index`等进行元素位置的移动
+- 相对于某一级的position为非`static`(relative, absolute, fixed)的父元素为参照，通过设置`top`，`bottom`，`left`，`right`，`z-index`等进行元素位置的移动
 - 如果往上一直没有position为非`static`的父元素，则追溯到`body`为止
 - 脱离文档流
 - 不再保留在常规文档中的位置
