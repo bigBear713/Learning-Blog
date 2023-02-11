@@ -32,6 +32,43 @@
   1. strict: 严格模式，cookie不能被第三方网站获取
   2. lax：宽松模式，可以被第三方网站获取
   3. none：完全敞开式
+  
+### 预防存储型和反射型xss攻击
+- 这两种攻击都是在服务器取到恶意代码后，插入到响应的HTML里面。
+- 预防这两种漏洞主要有两种方式:
+  1. 改成纯前端渲染，把代码和数据分隔开
+  2. 对HTML做充分转义
+#### 纯前端渲染
+- 过程: 类似于SAP
+  1. 浏览器先加载一个静态的HTML。HTML中不包含任何跟业务相关的数据 
+  2. 浏览器执行HTML中的js
+  3. js通过AJAX加载业务数据，调用DOM api更新到页面上
+- 在纯前端渲染中，我们会明确告诉浏览器，接下来要设置的内容是文本(`.innerText`)，还是属性(`.setAttribute`)，还是样式(`.style`)。这样浏览器就不会轻易被欺骗，执行预期外的代码
+- 纯前端渲染还需要注意`DOM`型的xss攻击，如`onload`事件和`href`中的`javascript:xxx`等
+### 预防DOM型xss攻击
+- dom型xss攻击，其实就是前端js本身不够严谨，把不可信的数据当作代码执行
+- 使用`.innerHTML`，`.outerHTML`，`document.write()`时要尽量小心，避免将不可信任的数据作为HTML插入到页面中。尽量使用`.textContent`,`.setAttribute()`等
+- 如果使用angular/react/vue等技术栈，并且不使用官方提供的功能时，就在前端代码阶段对数据进行处理，以避免`innerHTML`,`outerHTML`等的隐患
+- DOM的内联事件监听器，如`location`，`onclick`，`onerror`，`onload`，`onmouseover`等，`a`标签的`href`属性，js的`eval()`，`setTimeout()`，`setInterval()`等，都能将字符串作为代码运行。如果不可信的数据拼接到字符串中，传递给这些API，很容易产生安全隐患
+```html
+<!-- 内联事件监听器中包含恶意代码 -->
+<img onclick="UNTRUSTED" onerror="UNTRUSTED" src="data:image/png,">
+
+<!-- 链接内包含恶意代码 -->
+<a href="UNTRUSTED">1</a>
+<script>
+// setTimeout()/setInterval() 中调用恶意代码
+setTimeout("UNTRUSTED")
+setInterval("UNTRUSTED")
+
+// location 调用恶意代码
+location.href = 'UNTRUSTED'
+
+// eval() 中调用恶意代码
+eval("UNTRUSTED")
+</script>
+```
 
 ## 参考
 - https://juejin.cn/post/7175919622179749947
+- https://juejin.cn/post/6844903781704925191
