@@ -122,6 +122,7 @@ xhr.onreadystatechange = function(){
 
 ### subresource
 - `subresource`用于指定资源是当前页面的**最高**优先级。如果资源马上会被用到，推荐使用`subresource`
+```html
 <head>
    <link rel="subresource" href="xxx.js"/>
 </head>
