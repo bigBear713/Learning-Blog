@@ -7,6 +7,22 @@
 - plugin必须是一个函数，或者是一个包含`apply`方法的对象。这样才能访问`compiler`实例
 - 传递给每个插件的`compiler`和`compilation`都是同一个引用。若在插件上改变它们的属性或方法，会影响后面的插件。
 - 异步事件需要在插件处理完任务时，调用回调函数通知webpack进入下一流程，不然会卡住
+```js
+class MyPlugin {
+  apply (compiler) {
+    // 找到合适的事件钩子，实现自己的插件功能
+    compiler.hooks.emit.tap('MyPlugin', compilation => {
+        // compilation: 当前打包构建流程的上下文
+        console.log(compilation);
+        
+        // do something...
+    })
+  }
+}
+```
+- 找出合适的事件点去完成预期的功能
+  1. emit事件发生时，可以读取到最终输出的资源、代码块、模块以及其依赖，并进行修改。emit是修改webpack输出资源的最后时机
+  2. watch-run当依赖的文件发生变化时会触发
 
 ## 常见Plugin
 - `define-plugin`：定义环境变量 (Webpack4 之后指定 mode 会自动配置)
@@ -22,6 +38,8 @@
 - `ModuleConcatenationPlugin`: 开启 Scope Hoisting
 - `speed-measure-webpack-plugin`: 可以看到每个 Loader 和 Plugin 执行耗时 (整个打包耗时、每个 Plugin 和 Loader 耗时)
 - `webpack-bundle-analyzer`: 可视化 Webpack 输出文件的体积 (业务组件、依赖第三方模块)
+- `size-plugin`：监控资源体积变化，尽早发现问题
+- `HotModuleReplacementPlugin`: HotModuleReplacementPlugin
 
 
 ## 参考

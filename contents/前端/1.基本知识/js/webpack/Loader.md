@@ -2,8 +2,36 @@
 - 负责对文件的转换
 - webpack内部默认只能解析js模块代码，因此在打包过程中，会默认将遇到的所有文件都当作js代码进行解析。
 - 因此当项目中存在非js类型文件时，就需要先对其进行必要的转换，才能继续执行打包任务。这也是Loader机制存在的意义
+
+## 编写loader
 - loader函数中的this由webpack提供，可以通过this对象提供相关属性，获取当前loader需要的各种信息。
 - loader函数中的this指向一个叫`loaderContext`的loader-runner特有对象
+- loader运行在Nodejs中，loader函数中可任意调用nodejs的API或者安装第三方模块进行调用
+- webpack提供给loader的原内容都是UTF-8格式编码的字符串。当某些场景下Loader需要处理二进制文件时，需通过`exports.raw = true`告诉 Webpack 该 Loader 是否需要二进制数据
+- 尽可能异步化loader，如果计算量很小，同步也可以
+- loader是无状态的，不应在loader中保留状态
+- 使用 loader-utils 和 schema-utils 为我们提供的实用工具
+```js
+module.exports = function(source) {
+    const content = doSomeThing2JsString(source);
+    
+    // 如果 loader 配置了 options 对象，那么this.query将指向 options
+    const options = this.query;
+    
+    // 可以用作解析其他模块路径的上下文
+    console.log('this.context');
+    
+    /*
+     * this.callback 参数：
+     * error：Error | null，当 loader 出错时向外抛出一个 error
+     * content：String | Buffer，经过 loader 编译后需要导出的内容
+     * sourceMap：为方便调试生成的编译后内容的 source map
+     * ast：本次编译生成的 AST 静态语法树，之后执行的 loader 可以直接使用这个 AST，进而省去重复生成 AST 的过程
+     */
+    this.callback(null, content);
+    // or return content;
+}
+```
 
 ## 常见loader
 - `babel-loader`：把 ES6 转换成 ES5
