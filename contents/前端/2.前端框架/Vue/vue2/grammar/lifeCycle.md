@@ -1,0 +1,9 @@
+## lifeCycle声明周期
+- beforeCreate。
+- created
+- beforeMount
+- mounted
+- beforeUpdate
+- updated
+- beforeDestroy
+- destroyed
