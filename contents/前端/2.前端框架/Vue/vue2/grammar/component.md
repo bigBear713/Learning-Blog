@@ -4,42 +4,75 @@
 - `data`必须是一个**函数**，因此每个实例可以维护一份被返回对象的独立的拷贝。如果 Vue 没有这条规则，调整某个组件的某个属性，就会影响到其它同类型的组件的实例上的同个属性
 
 ## 结构
-```js
-import AAAComponent from './aaa.component.vue';
-export default {
-    components:{
-        'comp-a':AAAComponent,
-        'comp-b':BBBComponent
-    },
-    // inheritAttrs: false,
-    props:['prop1','prop2'],
-    model: {
-        prop: 'prop2',
-        event: 'change'
-    },
-    data:()=>{
-        return {
-            data1:'value',
-        };
-    },
-    watch:{
-        //  如果prop1的值发生改变，这个函数会执行
-        prop1:function(newVal, oldVal){}
-    },
-    created:function(){},
-    methods:{
-        fetchList:function(){}
-    },
-    computed:{
-        fullName:{
-            get:function(){},
-            set:function(){}
-        },
-        firstName:function{
-            return '';
+```html
+<template>
+  <!-- template content -->
+</template>
+<script>
+  import AAAComponent from './aaa.component.vue';
+  export default {
+      name:'DemoComp',
+      components:{
+          'comp-a':AAAComponent,
+          'comp-b':BBBComponent
+      },
+      directives: {
+        focus: {
+          // 指令的定义
+          inserted: function (el) {
+            el.focus()
+          }
         }
-    },
-}
+      },
+      // inheritAttrs: false,
+      props:['prop1','prop2'],
+      model: {
+          prop: 'prop2',
+          event: 'change'
+      },
+      data:()=>{
+          return {
+              data1:'value',
+          };
+      },
+      watch:{
+          //  如果prop1的值发生改变，这个函数会执行
+          prop1:function(newVal, oldVal){}
+          prop2:{
+            immediate: true,
+            deep: true,
+            handler(to, from) {
+              // ...
+            }
+          }
+      },
+      created:function(){},
+      methods:{
+          fetchList:function(){}
+      },
+      computed:{
+          fullName:{
+              get:function(){},
+              set:function(){}
+          },
+          firstName:function{
+              return '';
+          }
+      },
+  }
+</script>
+<style lang="scss">
+  /* style content for global */
+</style>
+<style lang="scss" scoped>
+  .demo{
+    /* style content for the current component */
+  }
+  
+  .demo ::v-deep {
+    /* set style fo children comp */
+  }
+</style>
 ```
 - components: 局部注册组件的对象，以便组件在当前组件使用。其 property 名就是自定义元素的名字，其 property 值就是这个组件的选项对象。
 - props：在组件上注册的一些自定义 `attribute`。
@@ -549,3 +582,9 @@ Vue.component('hello-world', {
 ### 控制更新
 - 强制更新：如果发现在极少数的情况下需要手动强制更新，那么可以通过 `$forceUpdate` 来做这件事
 - 通过 `v-once` 创建低开销的静态组件：当组件包含了大量静态内容，可在根元素上添加 `v-once` attribute 以确保这些内容只计算一次然后缓存起来
+
+## 样式
+- 样式的作用范围默认是全局，即会影响其它组件的样式
+- 在`style`上设置`lang`属性，可用`scss`等进行编写
+- 在`style`标签上使用`scoped`限制组件的样式作用范围，使其只能在当前组件起作用
+- 使用`::v-deep`实现样式穿透，让样式对组件的子组件起作用
