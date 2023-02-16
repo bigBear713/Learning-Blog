@@ -512,9 +512,12 @@ Vue.component('base-input', {
 - 访问根实例：通过 `$root` property 进行访问
 - 访问父级组件实例：`$parent` property 可以用来从一个子组件访问父组件的实例。可以在后期随时触达父级组件，以替代将数据以 prop 的方式传入子组件的方式
 - 访问子组件实例或子元素：通过 `ref` 这个 attribute 为子组件赋予一个 ID 引用。当 `ref` 和 `v-for` 一起使用的时候，你得到的 ref 将会是一个包含了对应数据源的这些子组件的数组。$refs 只会在组件渲染完成之后生效，并且它们不是响应式的
+- 除了使用字符串值作名字，`ref` attribute 还可以绑定为一个函数，会在每次组件更新时都被调用。当绑定的元素被卸载时，函数也会被调用一次，此时的 el 参数会是 null
 ```html
 <base-input ref="usernameInput"></base-input>
 <!-- js中使用 this.$refs.usernameInput -->
+
+<input :ref="(el) => { /* 将 el 赋值给一个数据属性或 ref 变量 */ }">
 ```
 
 ### 依赖注入
@@ -588,3 +591,31 @@ Vue.component('hello-world', {
 - 在`style`上设置`lang`属性，可用`scss`等进行编写
 - 在`style`标签上使用`scoped`限制组件的样式作用范围，使其只能在当前组件起作用
 - 使用`::v-deep`实现样式穿透，让样式对组件的子组件起作用
+
+## computed计算属性
+- 对于任何复杂逻辑，都应使用computed
+- 有利于性能的优化
+- 计算属性默认只有一个`getter`，如果有需要，也可提供一个`setter`
+```js
+computed: {
+  fullName: {
+    // getter
+    get: function () {
+      return this.firstName + ' ' + this.lastName
+    },
+    // setter
+    set: function (newValue) {
+      var names = newValue.split(' ')
+      this.firstName = names[0]
+      this.lastName = names[names.length - 1]
+    }
+  }
+}
+```
+
+### 计算属性VS方法
+- 计算属性会根据响应式依赖缓存函数的返回值。它能分析函数中的依赖属性。只有当依赖属性的值发生改变时，才会重新计算更新函数的返回值
+- 方法则在每次触发重新渲染时，总会重新执行
+
+### 计算属性VS侦听属性
+- 大部分清空下，使用计算属性computed比使用侦听属性watch好，优先使用computed
