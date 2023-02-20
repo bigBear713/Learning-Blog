@@ -9,15 +9,15 @@ function debounce(fn, delay=0, immediate=false){
     let timer;
     let isFirstTime = true;
 
-    const callFn = ()=>{
-        fn.apply(this,args);
-        isFirstTime = false;
-    };
-
     return function(...args){
         if(timer){
             clearTimeout(timer);
         }
+
+        const callFn = ()=>{
+            fn.apply(this,args);
+            isFirstTime = false;
+        };
         
         // 首次立即执行
         if(isFirstTime && immediate){
