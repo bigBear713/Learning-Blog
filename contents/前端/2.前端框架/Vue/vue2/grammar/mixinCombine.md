@@ -32,6 +32,11 @@ var component = new Component() // => "hello from mixin!"
 - 值为对象的选项，例如 methods、components 和 directives，将被合并为同一个对象。
 - 两个对象键名冲突时，取组件对象的键值对。
 - `Vue.extend()` 也使用同样的策略进行合并。
+- 合并策略
+  1. 替换：`props`, `methods`, `inject`, `computed`
+  2. 合并：`data`。将所有data中的属性合并。根据情况分为两种情况：属性之前不存在时，调用`set`进行合并；如果属性之前存在且为纯对象，则递归合并，以处理新增的属性
+  3. 队列：`watch`, `lifeCycle`。合并成一个数组，正序遍历执行
+  4. 堆叠：`filters`, `directives`, `components`。通过原型链，层层叠加
 
 ### 全局混入
 - 混入也可以进行全局注册。使用时格外小心！
