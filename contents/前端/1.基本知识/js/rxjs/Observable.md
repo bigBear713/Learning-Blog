@@ -57,7 +57,7 @@ sub.unsubscribe();
 
 ## Cold-Observables与Hot-Observables
 ### Cold Observables
-- 只有被 observers 订阅的时候，才会开始产生值
+- 只有被 `observers` 订阅的时候，才会开始产生值
 - 是单播的，有多少个订阅就会生成多少个订阅实例。每个订阅都是从第一个产生的值开始接收值，所以每个订阅接收到的值都是一样的。
 ### Hot-Observables
 - 不管有没有被订阅都会产生值
