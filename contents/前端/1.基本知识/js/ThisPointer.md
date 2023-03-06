@@ -58,6 +58,8 @@ a.fn(); // setTimeout是在windows下，所以此时this指向的是windows
 ```
 - 箭头函数比较特殊，在定义时就已经确定this指向谁。
 
+---
+
 ## call, apply, bind
 - 这3个都可以改变方法函数内的this指针指向。
 - bind是返回一个改变后的新方法函数；call，apply则是直接调用执行。
@@ -76,3 +78,31 @@ obj1GetName('obj1-arg1','obj1-arg2'); // this name is obj1, arg1 is obj1-arg1, a
 obj.getName.call(obj2,'obj2-arg1','obj2-arg2'); // this name is obj2, arg1 is obj2-arg1, arg2 is obj2-arg2
 obj.getName.apply(obj3,['obj3-arg1','obj3-arg2']); // this name is obj3, arg1 is obj3-arg1, arg2 is obj3-arg2
 ```
+
+---
+
+## new
+- 通过 `new` 关键字创建的实例，`this` 总是指向它本身
+```js
+function newFn(...args) {
+  const constructor = args.shift();
+  const obj = Object.create(constructor.prototype);
+  const result = constructor.apply(obj, args);
+  return typeof result === "object" && result !== null ? result : obj;
+}
+
+function Person(name) {
+  this.name = name;
+}
+
+const p = newFn(Person, "person");
+
+console.log("p.name : ", p.name); // p.name :  person
+```
+
+---
+
+## 箭头函数
+- 箭头函数自身不会创建`this`，只会从上一级继承`this`。
+- 箭头函数的`this`在定义的时候就已经确定，之后不会再改变。
+- 箭头函数不能作为构造函数使用，没有自身的`prototype`，也没有`arguments`
