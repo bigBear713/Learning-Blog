@@ -1,5 +1,5 @@
 ## Omit 
-- 从原始类型中，移除某些属性，得到一个新的类型
+- 从源类型中，移除某些属性，得到一个新的类型
 ```ts
 interface FilterDropdownProps {
     prefixCls: string;
