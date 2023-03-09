@@ -1,0 +1,13 @@
+
+        <h2 id="extract" class="docs-header-link">
+          <span header-link="extract"></span>
+          Extract
+        </h2>
+      <ul>
+<li>交集，即取两个类型共有的属性</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div>type A <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">|</span><span class="token number">2</span><span class="token operator">|</span><span class="token number">3</span><span class="token punctuation">;</span>
+type B <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">|</span><span class="token number">3</span><span class="token operator">|</span><span class="token number">4</span><span class="token operator">|</span><span class="token number">5</span><span class="token punctuation">;</span>
+type AExtractB <span class="token operator">=</span> Extract<span class="token operator">&lt;</span>A<span class="token punctuation">,</span>B<span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 等价于</span>
+type AExtractB <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">|</span><span class="token number">3</span><span class="token punctuation">;</span></div></code></pre>

@@ -1,0 +1,124 @@
+
+        <h2 id="%E6%B7%B1%E6%8B%B7%E8%B4%9D" class="docs-header-link">
+          <span header-link="%E6%B7%B1%E6%8B%B7%E8%B4%9D"></span>
+          深拷贝
+        </h2>
+      <ul>
+<li>深拷贝常见的就是用JSON.parse(JSON.stringify(value))。但是这个方法有一些缺点。</li>
+</ul>
+
+        <h2 id="json-parse(json-stringify(value))" class="docs-header-link">
+          <span header-link="json-parse(json-stringify(value))"></span>
+          JSON.parse(JSON.stringify(value))
+        </h2>
+      <ul>
+<li>常用的深拷贝方式，但是有一些缺点。</li>
+</ul>
+<ol>
+<li>但数据存在循环引用时会报错</li>
+<li>funtion的数据会丢失</li>
+<li>Date的数据会自动转成字符串</li>
+<li>Set,Map,正则,Error对象的数据，会转成空对象字面量{}</li>
+<li>如果存在undefined的值，会被忽略造成丢失。</li>
+</ol>
+
+        <h2 id="%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B" class="docs-header-link">
+          <span header-link="%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"></span>
+          数据类型
+        </h2>
+      <ul>
+<li>基本数据类型(原始类型)：Number String Boolean Symbol undefined null BigInt(es10), 存储在<code>栈</code>当中，存储的值比较固定，空间较小，可直接操作其保存的变量值、运行效率高，系统自动分配存储空间。</li>
+<li>引用数据类型(对象类型)：Object(Array, Function), <code>堆</code>中存储地址，自动分配内存空间</li>
+</ul>
+
+        <h2 id="%E6%B7%B1%E6%8B%B7%E8%B4%9D%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0" class="docs-header-link">
+          <span header-link="%E6%B7%B1%E6%8B%B7%E8%B4%9D%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0"></span>
+          深拷贝递归实现
+        </h2>
+      <pre class="language-js"><code class="language-js"><div><span class="token keyword">function</span> <span class="token function">clone</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isObject</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> target<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">const</span> type <span class="token operator">=</span> <span class="token function">getType</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> cloneTarget<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> cloneValue <span class="token operator">=</span> <span class="token function">cloneByType</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>cloneValue<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    cloneTarget <span class="token operator">=</span> cloneValue<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span><span class="token punctuation">(</span>map<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> map<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  map<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span>cloneTarget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ 
+  <span class="token keyword">if</span><span class="token punctuation">(</span>type<span class="token operator">===</span><span class="token string">'Set'</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// clone set</span>
+    target<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+      cloneTarget<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>
+        <span class="token function">clone</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> map<span class="token punctuation">)</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>type<span class="token operator">===</span><span class="token string">'Map'</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// clone map</span>
+    target<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span>key<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+      cloneTarget<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span><span class="token function">clone</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span>map<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>type<span class="token operator">===</span><span class="token string">'Array'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    target<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span>index<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+      cloneTarget<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token operator">=</span>value<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>type<span class="token operator">===</span><span class="token string">'Object'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+      cloneTarget<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token operator">=</span>target<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> cloneTarget<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> cloneTarget<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">isObject</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">const</span> type <span class="token operator">=</span> <span class="token keyword">typeof</span> target<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> target<span class="token operator">!==</span><span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>type<span class="token operator">===</span><span class="token string">'object'</span><span class="token operator">||</span>type<span class="token operator">===</span><span class="token string">'function'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">getType</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">getInit</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">const</span> Constructor <span class="token operator">=</span> target<span class="token punctuation">.</span>constructor<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">cloneByType</span><span class="token punctuation">(</span>targe<span class="token punctuation">,</span> type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> Ctor <span class="token operator">=</span> targe<span class="token punctuation">.</span>constructor<span class="token punctuation">;</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> <span class="token string">'Object'</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token string">'Array'</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token string">'Map'</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token string">'Set'</span><span class="token punctuation">:</span>
+          <span class="token keyword">return</span> <span class="token function">getInit</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> <span class="token string">'Boolean'</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token string">'Number'</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token string">'String'</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token string">'Error'</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token string">'Date'</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Ctor</span><span class="token punctuation">(</span>targe<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> <span class="token string">'RegExp'</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token function">cloneReg</span><span class="token punctuation">(</span>targe<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> <span class="token string">'Symbol'</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token function">cloneSymbol</span><span class="token punctuation">(</span>targe<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">default</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">cloneSymbol</span><span class="token punctuation">(</span>targe<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">Object</span><span class="token punctuation">(</span>Symbol<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>valueOf<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>targe<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">cloneReg</span><span class="token punctuation">(</span>targe<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> reFlags <span class="token operator">=</span> <span class="token regex">/\w*$/</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">targe<span class="token punctuation">.</span>constructor</span><span class="token punctuation">(</span>targe<span class="token punctuation">.</span>source<span class="token punctuation">,</span> reFlags<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span>targe<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    result<span class="token punctuation">.</span>lastIndex <span class="token operator">=</span> targe<span class="token punctuation">.</span>lastIndex<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></div></code></pre>

@@ -1,0 +1,193 @@
+
+        <h2 id="load-js" class="docs-header-link">
+          <span header-link="load-js"></span>
+          load js
+        </h2>
+      <ul>
+<li>加载js主要分为两种方式:<code>同步</code>和<code>异步</code></li>
+</ul>
+
+        <h3 id="%E5%90%8C%E6%AD%A5" class="docs-header-link">
+          <span header-link="%E5%90%8C%E6%AD%A5"></span>
+          同步
+        </h3>
+      <ul>
+<li><code>同步</code>加载js，只需要在html中加入一个script标签，带上src就行。</li>
+<li>当执行到此处时，就算还在渲染页面，也会停止渲染，立即开始加载js。等到加载完毕，并执行完后，才会继续渲染页面，或执行接下去的内容</li>
+<li>因此以前加载js，都是放到最后，避免阻塞页面的渲染</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- html content --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>xxx.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="%E5%BC%82%E6%AD%A5" class="docs-header-link">
+          <span header-link="%E5%BC%82%E6%AD%A5"></span>
+          异步
+        </h3>
+      <ul>
+<li><code>异步</code>加载js，又可分为两种方式：<code>defer</code>,<code>async</code></li>
+<li><code>defer</code>的兼容性比<code>async</code>稍微差一点</li>
+</ul>
+
+        <h4 id="defer" class="docs-header-link">
+          <span header-link="defer"></span>
+          defer
+        </h4>
+      <ul>
+<li>defer异步加载js完成后，如果此时有在渲染页面，不会停止渲染，而是等页面渲染完后才执行该js</li>
+<li>defer异步加载的js的会按照声明的顺序来执行。即如果加载的该js前还有其它js，则会先执行其它的js。</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- html content --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>xxx.js<span class="token punctuation">"</span></span> <span class="token attr-name">defer</span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- yyy.js会等html content渲染完和xxx.js执行完后才开始执行 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>yyy.js<span class="token punctuation">"</span></span> <span class="token attr-name">defer</span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h4 id="async" class="docs-header-link">
+          <span header-link="async"></span>
+          async
+        </h4>
+      <ul>
+<li>async异步加载js完后，如果此时有在渲染页面，则会立即停止页面的渲染，执行该js。执行完后才继续渲染页面</li>
+<li>async异步加载的js的执行顺序没有保证。因为是加载完后立即执行，所以哪个先加载完就先执行哪个</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- html content --></span>
+    <span class="token comment" spellcheck="true">&lt;!-- xxx.js和yyy.js哪个先执行，要看哪个先加载完毕 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>xxx.js<span class="token punctuation">"</span></span> <span class="token attr-name">async</span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>yyy.js<span class="token punctuation">"</span></span> <span class="token attr-name">async</span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h4 id="%E5%8A%A0%E8%BD%BDes6%E6%A8%A1%E5%9D%97" class="docs-header-link">
+          <span header-link="%E5%8A%A0%E8%BD%BDes6%E6%A8%A1%E5%9D%97"></span>
+          加载es6模块
+        </h4>
+      <ul>
+<li>浏览器也能异步加载es6的模块，方法是在<code>script</code>标签中加入<code>type=&quot;module&quot;</code>属性。</li>
+<li>默认情况下，加载和执行的方式和<code>defer</code>一样，等页面都渲染完再执行脚本</li>
+<li>可以显示设置为<code>async</code>的方式加载</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- html content --></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>xxx.js<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- 等同于 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>xxx.js<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span> <span class="token attr-name">defer</span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- 可根据需求调整为async加载方式 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>yyy.js<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span> <span class="token attr-name">async</span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></div></code></pre>
+<ul>
+<li>es6模块也允许内嵌于网页中，语法与加载外部脚本完全一致</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- html content --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript">
+        <span class="token keyword">import</span> utils <span class="token keyword">from</span> <span class="token string">'./utils.js'</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// code...</span>
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></div></code></pre>
+<ul>
+<li>对于外部的ES6模块脚本，注意点<ol>
+<li>代码是在模块作用域中执行，而不是在全局作用域中执行。模块内部的顶层变量，外部不可见</li>
+<li>模块脚本自动采用严格模式，不管有没有声明<code>use strict</code></li>
+<li>模块中，可以使用<code>import</code>加载其它模块(<code>.js</code>不可省略)，也可以使用export输出对外接口</li>
+<li>模块中，顶层的<code>this</code>返回的是<code>undefined</code>，而不是<code>window</code></li>
+<li>同一个模块如果加载多次，只会执行一次</li>
+</ol>
+</li>
+</ul>
+
+        <h3 id="%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BAscript%E6%A0%87%E7%AD%BE" class="docs-header-link">
+          <span header-link="%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BAscript%E6%A0%87%E7%AD%BE"></span>
+          动态创建script标签
+        </h3>
+      <ul>
+<li>动态创建script标签，并赋值src后并不会开始下载，而是要等到将该标签添加到document中，js文件才会开始下载</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">const</span> script <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'script'</span><span class="token punctuation">)</span>
+script<span class="token punctuation">.</span>src<span class="token operator">=</span><span class="token string">'xxx.js'</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 添加到document后才开始下载js</span>
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>script<span class="token punctuation">)</span></div></code></pre>
+
+        <h3 id="xhr%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BDjs" class="docs-header-link">
+          <span header-link="xhr%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BDjs"></span>
+          XHR异步加载js
+        </h3>
+      <ul>
+<li>使用XHR加载js文件后执行，但是不太推荐</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">const</span> xhr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xhr<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'get'</span><span class="token punctuation">,</span><span class="token string">'xxx.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xhr<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xhr<span class="token punctuation">.</span>onreadystatechange <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>xhr<span class="token punctuation">.</span>readyState <span class="token operator">===</span> <span class="token number">4</span> <span class="token operator">&amp;&amp;</span> xhr<span class="token punctuation">.</span>status <span class="token operator">===</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">eval</span><span class="token punctuation">(</span>xhr<span class="token punctuation">.</span>responseText<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></div></code></pre>
+
+        <h2 id="%E9%A2%84%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6" class="docs-header-link">
+          <span header-link="%E9%A2%84%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6"></span>
+          预加载文件
+        </h2>
+      <ul>
+<li>预加载文件就是在执行到之前预先加载。主要有<code>preload</code>,<code>prefetch</code>,<code>subresource</code>,<code>prerender</code></li>
+</ul>
+
+        <h3 id="preload" class="docs-header-link">
+          <span header-link="preload"></span>
+          preload
+        </h3>
+      <ul>
+<li><code>preload</code>可以预先加载<strong>当前</strong>页面的js、css等资源，不用等到解析到<code>script</code>,<code>link</code>标签时才加载</li>
+<li>可以更早进行资源的加载，且不会阻塞页面的初步渲染，进而提升性能</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>preload<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>style.css<span class="token punctuation">"</span></span> <span class="token attr-name">as</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>style<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>preload<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>xxx.js<span class="token punctuation">"</span></span> <span class="token attr-name">as</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>script<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="prefetch" class="docs-header-link">
+          <span header-link="prefetch"></span>
+          prefetch
+        </h3>
+      <ul>
+<li><code>prefetch</code>是预先加载<strong>其它</strong>页面的资源。</li>
+<li>因为是加载其它页面的资源，优先级没那么高，所以在浏览器<strong>空闲</strong>时才会下载。这样，等进入相应页面时，就能直接从cache data中获取所需资源，提升页面加载渲染速度</li>
+<li>使用时，无需指定<code>as</code>属性</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>prefetch<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>style.css<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>prefetch<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>xxx.js<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="subresource" class="docs-header-link">
+          <span header-link="subresource"></span>
+          subresource
+        </h3>
+      <ul>
+<li><code>subresource</code>用于指定资源是当前页面的<strong>最高</strong>优先级。如果资源马上会被用到，推荐使用<code>subresource</code></li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>subresource<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>xxx.js<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="prerender" class="docs-header-link">
+          <span header-link="prerender"></span>
+          prerender
+        </h3>
+      <ul>
+<li><code>prerender</code>可以让浏览器提前加载一个页面的所有资源，就像打开一个隐藏的tab标签，会下载所有资源、创建DOM、渲染页面、执行js等</li>
+<li>这是一个重量级选项，只有在十分确定用户会访问某个页面时才能使用。因为代价是昂贵的，比如高CPU、耗电、占用带宽等</li>
+</ul>
+
+        <h2 id="%E5%8F%82%E8%80%83" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83"></span>
+          参考
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://juejin.cn/post/6844904033233141773">https://juejin.cn/post/6844904033233141773</a></li>
+</ul>

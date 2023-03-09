@@ -1,0 +1,194 @@
+
+        <h2 id="%E6%A8%A1%E5%9D%97%E5%8C%96" class="docs-header-link">
+          <span header-link="%E6%A8%A1%E5%9D%97%E5%8C%96"></span>
+          模块化
+        </h2>
+      <ul>
+<li>将一个复杂的程序、代码依据一定的规范分割成几个块（文件）并组合在一起。块内部的属性、方法函数是私有的，外部无法访问。只向外暴露导出几个属性或者方法函数于其它模块交互。</li>
+</ul>
+<hr>
+
+        <h2 id="%E7%9B%AE%E7%9A%84" class="docs-header-link">
+          <span header-link="%E7%9B%AE%E7%9A%84"></span>
+          目的
+        </h2>
+      <ul>
+<li>解耦</li>
+<li>降低复杂度</li>
+</ul>
+<hr>
+
+        <h2 id="%E5%A5%BD%E5%A4%84" class="docs-header-link">
+          <span header-link="%E5%A5%BD%E5%A4%84"></span>
+          好处
+        </h2>
+      <ul>
+<li>避免命名冲突</li>
+<li>能按需加载</li>
+<li>提高可维护性</li>
+<li>提高可复用性</li>
+</ul>
+<hr>
+
+        <h2 id="%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9D%97%E5%8C%96" class="docs-header-link">
+          <span header-link="%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9D%97%E5%8C%96"></span>
+          常见模块化
+        </h2>
+      
+        <h3 id="commonjs" class="docs-header-link">
+          <span header-link="commonjs"></span>
+          CommonJS
+        </h3>
+      <ul>
+<li>一开始是在服务端(NodeJS)使用，后来CommonJS也兼容浏览器端</li>
+<li>引入时是一个值的拷贝，因此引入后，该值在原模块中再被改变，都不会影响到引入该值得地方。同时，引入的地方改变了该值，也不会影响到该值在原模块的值</li>
+</ul>
+
+        <h4 id="%E8%AF%AD%E6%B3%95" class="docs-header-link">
+          <span header-link="%E8%AF%AD%E6%B3%95"></span>
+          语法
+        </h4>
+      <ul>
+<li>向外暴露：</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> value
+<span class="token comment" spellcheck="true">// 或者</span>
+exports<span class="token punctuation">.</span>xxx<span class="token operator">=</span>value</div></code></pre>
+<ul>
+<li>引入使用：<code>require(&#39;xxx/xxx&#39;)</code>。引入项目中的模块使用相对路径，引入第三方模块写包名</li>
+<li>使用<code>require</code>引入的本质：<code>exports</code>对象</li>
+</ul>
+
+        <h4 id="%E5%AE%9E%E7%8E%B0" class="docs-header-link">
+          <span header-link="%E5%AE%9E%E7%8E%B0"></span>
+          实现
+        </h4>
+      <ul>
+<li>服务端：NodeJS，模块加载是同步的</li>
+<li>浏览器端：借助Browserify进行打包，因此需要安装Browserify为开发依赖</li>
+</ul>
+
+        <h3 id="amd" class="docs-header-link">
+          <span header-link="amd"></span>
+          AMD
+        </h3>
+      <ul>
+<li>只能在浏览器端使用，模块加载是异步的。</li>
+<li>这是为了解决CommonJS加载模块是同步的问题，因为浏览器端不像在服务器端，如果同步加载会发起http请求</li>
+<li>推荐依赖前置，在一开始就写明依赖的模块</li>
+</ul>
+
+        <h4 id="%E8%AF%AD%E6%B3%95" class="docs-header-link">
+          <span header-link="%E8%AF%AD%E6%B3%95"></span>
+          语法
+        </h4>
+      <ul>
+<li>向外暴露：<code>define(id, dependencies, factory)</code>，id是定义的模块的名字，可省略；dependencies是依赖的模块，如果没有可省略</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token comment" spellcheck="true">// 只有factory</span>
+<span class="token function">define</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// code...</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//... </span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 定义了模块名</span>
+<span class="token function">define</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// ...</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//... </span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 依赖其它模块</span>
+<span class="token function">define</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'module1'</span><span class="token punctuation">,</span><span class="token string">'module2'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span>m1<span class="token punctuation">,</span>m2<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// ...</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//... </span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+<ul>
+<li>引入使用：</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token function">require</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'module1'</span><span class="token punctuation">,</span><span class="token string">'module2'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span>m1<span class="token punctuation">,</span>m2<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></div></code></pre>
+
+        <h3 id="cmd" class="docs-header-link">
+          <span header-link="cmd"></span>
+          CMD
+        </h3>
+      <ul>
+<li>也是只能用于浏览器端，模块异步加载，使用时才加载。</li>
+<li>和AMD的区别是，AMD是依赖前置，CMD是依赖在使用时才引入</li>
+</ul>
+
+        <h4 id="%E8%AF%AD%E6%B3%95" class="docs-header-link">
+          <span header-link="%E8%AF%AD%E6%B3%95"></span>
+          语法
+        </h4>
+      <ul>
+<li>向外暴露</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token comment" spellcheck="true">// 没有依赖时</span>
+<span class="token function">define</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>require<span class="token punctuation">,</span>exports<span class="token punctuation">,</span>module<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//...</span>
+    exports<span class="token punctuation">.</span>moduleName <span class="token operator">=</span> value<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 第一种导出方式</span>
+    module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span> value <span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 第二种导出方式</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">// 有依赖时</span>
+<span class="token function">define</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>require<span class="token punctuation">,</span><span class="token keyword">export</span><span class="token punctuation">,</span>module<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 同步引入</span>
+    <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'xxx'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 异步引入</span>
+    <span class="token keyword">var</span> b <span class="token operator">=</span> require<span class="token punctuation">.</span><span class="token keyword">async</span><span class="token punctuation">(</span><span class="token string">'./module1'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span>m1<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// ...</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// ...</span>
+    exports<span class="token punctuation">.</span>moduleName <span class="token operator">=</span> value<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 第一种导出方式</span>
+    module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span> value <span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 第二种导出方式</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></div></code></pre>
+<ul>
+<li>引入使用:</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token function">define</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>require<span class="token punctuation">,</span><span class="token keyword">export</span><span class="token punctuation">,</span>module<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'xxx'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></div></code></pre>
+
+        <h3 id="umd" class="docs-header-link">
+          <span header-link="umd"></span>
+          UMD
+        </h3>
+      <ul>
+<li>统一AMD和CommonJS的模块化方案</li>
+<li>先检测看是否支持AMD，支持的化就用AMD方式加载模块</li>
+<li>不支持就用CommonJS</li>
+<li>都不存在，将模块公开到全局</li>
+</ul>
+
+        <h3 id="module" class="docs-header-link">
+          <span header-link="module"></span>
+          Module
+        </h3>
+      <ul>
+<li>是ES6才推出的语法，因此为了兼容性，需要在打包时对语法进行降级，再借助Browserify等插件进行打包。</li>
+<li>引入时是值的引用，因此对引用后的值进行调整后，其它引用的地方的值也是改变后的值。这和CommonJS是不一样的，CommonJS引用的是一个拷贝值。</li>
+<li>因此这种模块的引入是静态的，而AMD,CMD,CommonJS等是动态的，能够在运行时才动态引入</li>
+</ul>
+
+        <h4 id="%E8%AF%AD%E6%B3%95" class="docs-header-link">
+          <span header-link="%E8%AF%AD%E6%B3%95"></span>
+          语法
+        </h4>
+      <ul>
+<li>向外暴露</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">export</span> <span class="token keyword">default</span> xxx<span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> xxx<span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token punctuation">{</span> xxx<span class="token punctuation">}</span><span class="token punctuation">;</span></div></code></pre>
+<ul>
+<li>引入使用</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">import</span> xxx <span class="token keyword">from</span> <span class="token string">'./xxx'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>xxx<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./xxx'</span><span class="token punctuation">;</span></div></code></pre>

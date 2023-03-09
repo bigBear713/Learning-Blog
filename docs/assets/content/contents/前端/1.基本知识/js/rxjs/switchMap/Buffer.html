@@ -1,0 +1,19 @@
+
+        <h2 id="buffer%E6%93%8D%E4%BD%9C%E7%AC%A6" class="docs-header-link">
+          <span header-link="buffer%E6%93%8D%E4%BD%9C%E7%AC%A6"></span>
+          buffer操作符
+        </h2>
+      <ul>
+<li>将<strong>过往的</strong>值收集到一个数组中，并且<strong>仅当</strong>另一个 Observable 发出通知时<strong>才发出</strong>此数组</li>
+<li>即将Observable发出的数据流先储存到缓存区，等到另一个Observable发出信号了，才将之前储存的数据流以数组的形式发送出来。</li>
+<li>将之前存储的数据发送出来后，缓存区就被清空</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span> <span class="token comment" spellcheck="true">// 每隔1s发出一次值</span>
+    <span class="token function">buffer</span><span class="token punctuation">(</span>          <span class="token comment" spellcheck="true">// 将发出的值储存到缓存区</span>
+        <span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token operator">*</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 每隔5s发送一次信号，将之前缓存的数据以数组形式发送出来</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>data<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// [0, 1, 2, 3, 4]</span>
+<span class="token comment" spellcheck="true">// [5, 6, 7, 8, 9]</span>
+<span class="token comment" spellcheck="true">// [10, 11, 12, 13, 14]</span>
+<span class="token comment" spellcheck="true">// ...</span></div></code></pre>

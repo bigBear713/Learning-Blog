@@ -1,0 +1,38 @@
+
+        <h2 id="let" class="docs-header-link">
+          <span header-link="let"></span>
+          let
+        </h2>
+      <ul>
+<li>只在代码块内有效</li>
+<li>不存在变量提升</li>
+<li>不允许重复声明</li>
+</ul>
+
+        <h2 id="const" class="docs-header-link">
+          <span header-link="const"></span>
+          const
+        </h2>
+      <ul>
+<li>声明一个只读常量.一旦声明，常量的值就不能改变。</li>
+<li><code>const</code>实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址所保存的数据不得改动</li>
+<li>不存在变量提升</li>
+<li>不允许重复声明</li>
+</ul>
+
+        <h2 id="%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA" class="docs-header-link">
+          <span header-link="%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA"></span>
+          暂时性死区
+        </h2>
+      <ul>
+<li>只要块级作用域内存在<code>let</code>, <code>const</code>,它所声明的变量就<strong>绑定</strong>这个区域,不再受外部影响.</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">var</span> tmp <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 声明一个全局变量</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>condition<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 会报ReferenceError错, 因为当前代码块中有用 let 又声明了tmp</span>
+    <span class="token keyword">let</span> tmp <span class="token operator">=</span> <span class="token number">234</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></div></code></pre>
+<ul>
+<li>意味着typeof不再是一个百分之百安全的操作</li>
+</ul>

@@ -1,0 +1,80 @@
+
+        <h2 id="%E7%8A%B6%E6%80%81%E7%A0%81" class="docs-header-link">
+          <span header-link="%E7%8A%B6%E6%80%81%E7%A0%81"></span>
+          状态码
+        </h2>
+      <ul>
+<li>每一个http请求的响应都会有一个状态码，来简单表示响应状态。</li>
+<li>根据响应结果类型，状态码可分为几类。<ol>
+<li>1xx: 消息状态码</li>
+<li>2xx：成功状态码</li>
+<li>3xx：重定向状态码</li>
+<li>4xx：客户端状态码</li>
+<li>5xx：服务端状态码</li>
+</ol>
+</li>
+</ul>
+
+        <h2 id="1xx---%E6%B6%88%E6%81%AF%E7%8A%B6%E6%80%81%E7%A0%81" class="docs-header-link">
+          <span header-link="1xx---%E6%B6%88%E6%81%AF%E7%8A%B6%E6%80%81%E7%A0%81"></span>
+          1xx - 消息状态码
+        </h2>
+      <ul>
+<li>100 - Continue,继续，表示客户端可以继续其请求</li>
+<li>101 - Switching Protocols, 切换协议。服务器根据客户端的要求切换协议。只能切换到更高级的协议。如切换到http的新版本协议</li>
+</ul>
+
+        <h2 id="2xx---%E6%88%90%E5%8A%9F%E7%8A%B6%E6%80%81%E7%A0%81" class="docs-header-link">
+          <span header-link="2xx---%E6%88%90%E5%8A%9F%E7%8A%B6%E6%80%81%E7%A0%81"></span>
+          2xx - 成功状态码
+        </h2>
+      <ul>
+<li>200 - OK, 请求成功，一般用于GET和POST</li>
+<li>201 - Created，请求成功并创建了新的资源</li>
+<li>202 - Accept，已接受请求，但是为处理完成</li>
+<li>203 - Non-Authoritative Information, 非授权信息。请求成功，但返回的meta信息不在原始的服务器，而是一个副本</li>
+<li>204 - No Content, 没有内容。服务器处理成功，但是没有返回内容。在未更新网页的情况下，可确保浏览器继续显示当前文档</li>
+<li>205 - Reset Content, 重置内容。 服务器处理成功，客户端应重置文档视图。可通过此状态码清除浏览器的表单域</li>
+<li>206 - Partial Content, 部分内容。服务器成功处理了部分GET请求。</li>
+</ul>
+
+        <h2 id="3xx---%E9%87%8D%E5%AE%9A%E5%90%91%E7%8A%B6%E6%80%81%E7%A0%81" class="docs-header-link">
+          <span header-link="3xx---%E9%87%8D%E5%AE%9A%E5%90%91%E7%8A%B6%E6%80%81%E7%A0%81"></span>
+          3XX - 重定向状态码
+        </h2>
+      <ul>
+<li>300 - Multiple Choice, 多种选择，请求的资源可包括多个位置。可返回一个资源特征与地址的列表供客户端选择。</li>
+<li>301 - Moved Permanently, 永久移动。请求的资源已经被永久移动到新的URI，返回的信息会包含新的URI，浏览器会自动定向到新URI，今后的任何新请求都应使用新的URI代替。请求方法有时候会被客户端错误的修改为GET</li>
+<li>302 - Found, 临时移动。和301类似，但资源只是临时被移动到新的URI，客户端后续应继续使用目前的URI。请求方法有时也会被客户端错误的修改为GET</li>
+<li>303 - See Other，查看其它地址，与301类似，使用GET和POST请求查看</li>
+<li>304 - Not Modified, 未修改。请求的资源未被做任何修改。服务器返回此状态码时，不会返回任何资源，客户端通常使用缓存过的资源</li>
+<li>307 - Temporary Redirect, 临时重定向，和302类似。区别是307不会改变请求方式和消息主体</li>
+<li>308 - Permanent Redirect, 永久重定向，与301类似。区别是308不会改变请求方式和消息主体</li>
+</ul>
+
+        <h2 id="4xx---%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%8A%B6%E6%80%81%E7%A0%81" class="docs-header-link">
+          <span header-link="4xx---%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%8A%B6%E6%80%81%E7%A0%81"></span>
+          4xx - 客户端状态码
+        </h2>
+      <ul>
+<li>400 - Bad Request, 错误的请求，客户端请求语法错误，服务端无法理解</li>
+<li>401 - Unauthorized，未认证，用户应进行身份认证</li>
+<li>402 - Payment Required，要求付费，这是一个还处于实验中的状态码</li>
+<li>403 - Forbidden, 禁止访问， 服务端理解客户端的请求，但是拒绝执行此请求，即禁止客户端访问</li>
+<li>404 - Not Found, 服务端无法根据客户端的请求找到相应的资源</li>
+<li>405 - Method Not Allowed， 客户端请求中的方法被禁止</li>
+<li>408 - Request Time-out, 请求超时</li>
+</ul>
+
+        <h2 id="5xx---%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%8A%B6%E6%80%81%E7%A0%81" class="docs-header-link">
+          <span header-link="5xx---%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%8A%B6%E6%80%81%E7%A0%81"></span>
+          5xx - 服务端状态码
+        </h2>
+      <ul>
+<li>500 - Internal Server Error, 服务器内部错误，无法完成请求</li>
+<li>501 - Not Impletemented, 服务器不支持请求的功能，无法完成请求</li>
+<li>502 - Bad Gateway, 网关或者代理服务器尝试执行请求时，从远程服务器接收到一个无效的响应</li>
+<li>503 - Service Unavailable, 因为超载或系统维护，导致服务器不可用，暂时无法处理请求。</li>
+<li>504 - Gateway Time-out, 充当网关或者代理的服务器，未能及时从远程服务器获取请求</li>
+<li>505 - HTTP Version not supported, 服务器不支持请求的http协议版本，无法完成请求</li>
+</ul>

@@ -1,0 +1,207 @@
+
+        <h2 id="jsx" class="docs-header-link">
+          <span header-link="jsx"></span>
+          JSX
+        </h2>
+      <ul>
+<li>JSX是一个 JavaScript 的语法扩展</li>
+<li>JSX 语法上更接近 JavaScript 而不是 HTML，所以 React DOM 使用 camelCase（小驼峰命名）来定义属性的名称，而不使用 HTML 属性名称的命名约定。如<code>class</code> 变成了 <code>className</code>，而 <code>tabindex</code> 则变为 <code>tabIndex</code></li>
+<li>JSX 仅仅只是 <code>React.createElement(component, props, ...children)</code>函数的语法糖</li>
+</ul>
+
+        <h3 id="%E5%B5%8C%E5%85%A5%E8%A1%A8%E8%BE%BE%E5%BC%8F" class="docs-header-link">
+          <span header-link="%E5%B5%8C%E5%85%A5%E8%A1%A8%E8%BE%BE%E5%BC%8F"></span>
+          嵌入表达式
+        </h3>
+      <ul>
+<li>使用<code>{}</code>插入表达式</li>
+<li>大括号内放置任何有效的 JavaScript 表达式</li>
+<li>建议将内容包裹在<code>()</code>括号中，虽然这样做不是强制要求的，但是这可以避免遇到自动插入分号陷阱</li>
+</ul>
+<pre class="language-jsx"><code class="language-jsx"><div><span class="token keyword">const</span> name <span class="token operator">=</span> <span class="token string">'Josh Perez'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> element <span class="token operator">=</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Hello<span class="token punctuation">,</span> <span class="token punctuation">{</span>name<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> element <span class="token operator">=</span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>
+    Hello<span class="token punctuation">,</span> <span class="token punctuation">{</span>name<span class="token punctuation">}</span><span class="token operator">!</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+
+        <h3 id="jsx%E4%B9%9F%E6%98%AF%E4%B8%80%E4%B8%AA%E8%A1%A8%E8%BE%BE%E5%BC%8F" class="docs-header-link">
+          <span header-link="jsx%E4%B9%9F%E6%98%AF%E4%B8%80%E4%B8%AA%E8%A1%A8%E8%BE%BE%E5%BC%8F"></span>
+          JSX也是一个表达式
+        </h3>
+      <ul>
+<li>编译之后，JSX 表达式会被转为普通 JavaScript 函数调用，并且对其取值后，得到 JavaScript 对象。</li>
+<li>可以在 <code>if</code> 语句和 <code>for</code> 循环的代码块中使用 JSX，将 JSX 赋值给变量，把 JSX 当作参数传入，以及从函数中返回 JSX</li>
+</ul>
+
+        <h3 id="jsx%E4%B8%AD%E6%8C%87%E5%AE%9A%E5%B1%9E%E6%80%A7" class="docs-header-link">
+          <span header-link="jsx%E4%B8%AD%E6%8C%87%E5%AE%9A%E5%B1%9E%E6%80%A7"></span>
+          JSX中指定属性
+        </h3>
+      <ul>
+<li>通过引号<code>&quot;&quot;</code>,将属性值指定为字符串变量</li>
+<li>也可使用大括号<code>{}</code>在属性值中插入一个js表达式</li>
+<li>在属性值中插入js表达式式，外围不用加引号<code>&quot;&quot;</code></li>
+<li>对于同一属性，不能同时使用<code>&quot;&quot;</code>,<code>{}</code>这两种符号</li>
+</ul>
+
+        <h3 id="jsx%E9%98%B2%E6%AD%A2%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB" class="docs-header-link">
+          <span header-link="jsx%E9%98%B2%E6%AD%A2%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB"></span>
+          JSX防止注入攻击
+        </h3>
+      <ul>
+<li>可以放心的在jsx中插入用户的输入内容。因为React DOM在渲染所有输入内容时，默认会进行<strong>转义</strong>。</li>
+<li>它可以确保在应用中，永远不会注入那些非自己明确编写的内容。所有内容在渲染前都被转成<strong>字符串</strong></li>
+<li>这样可以有效防止xss攻击</li>
+</ul>
+
+        <h3 id="jsx%E8%A1%A8%E7%A4%BA%E5%AF%B9%E8%B1%A1" class="docs-header-link">
+          <span header-link="jsx%E8%A1%A8%E7%A4%BA%E5%AF%B9%E8%B1%A1"></span>
+          JSX表示对象
+        </h3>
+      <ul>
+<li>Babel会将JSX转译成一个<code>React.createElement()</code>函数调用</li>
+<li><code>React.createElement()</code> 会预先执行一些检查，避免代码粗无，然后创建了一个“React 元素”对象</li>
+<li>React 通过读取这些对象，然后使用它们来构建 DOM 以及保持随时更新。</li>
+</ul>
+<hr>
+
+        <h2 id="%E5%85%83%E7%B4%A0%E6%B8%B2%E6%9F%93" class="docs-header-link">
+          <span header-link="%E5%85%83%E7%B4%A0%E6%B8%B2%E6%9F%93"></span>
+          元素渲染
+        </h2>
+      <ul>
+<li>React DOM负责更新DOM，以保证和React元素一致</li>
+<li>React 元素是不可变对象。一旦被创建，你就<strong>无法更改</strong>它的子元素或者属性</li>
+<li>更新 UI 唯一的方式是创建一个全新的元素</li>
+<li>React 只更新它<strong>需要更新</strong>的部分</li>
+<li><code>false</code>, <code>null</code>, <code>undefined</code>, and <code>true</code> 是合法的子元素。但它们并不会被渲染。有一些 “falsy” 值，如数字 <code>0</code>，仍然会被 React 渲染</li>
+</ul>
+<pre class="language-jsx"><code class="language-jsx"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token punctuation">/></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">{</span><span class="token boolean">false</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">{</span><span class="token keyword">null</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>undefined<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">{</span><span class="token boolean">true</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></div></code></pre>
+<hr>
+
+        <h2 id="refs%E8%BD%AC%E5%8F%91" class="docs-header-link">
+          <span header-link="refs%E8%BD%AC%E5%8F%91"></span>
+          refs转发
+        </h2>
+      <ul>
+<li><code>Ref</code> 转发是一项将 <code>ref</code> 自动地通过组件传递到其一子组件的技巧，来实现通过 <code>ref</code> 获取子组件中的dom的效果</li>
+<li><code>Ref</code> 转发是一个可选特性，其允许某些组件接收 <code>ref</code>，并将其向下传递（换句话说，“转发”它）给子组件。</li>
+<li><code>ref</code> 不是 <code>prop</code> 属性，就像 <code>key</code> 一样，其被 React 进行了特殊处理</li>
+<li>使用 <code>React.forwardRef</code> API 明确地将 <code>refs</code> 转发到内部的组件。<code>React.forwardRef</code> 接受一个渲染函数，其接收 <code>props</code> 和 <code>ref</code> 参数并返回一个 React 节点。</li>
+<li>默认情况下，不能在<strong>函数组件</strong>上使用 ref 属性，因为它们没有实例，即<code>ref</code>不能在一个函数组件上。但可以在函数组件内的Html元素上或者class组件上</li>
+</ul>
+<pre class="language-jsx"><code class="language-jsx"><div><span class="token comment" spellcheck="true">// FancyButton 使用 React.forwardRef 来获取传递给它的 ref</span>
+<span class="token keyword">const</span> FancyButton <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">forwardRef</span><span class="token punctuation">(</span><span class="token punctuation">(</span>props<span class="token punctuation">,</span> ref<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span>
+  <span class="token comment" spellcheck="true">// 然后转发到它渲染的 DOM button</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">ref</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>ref<span class="token punctuation">}</span></span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>FancyButton<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token punctuation">{</span>props<span class="token punctuation">.</span>children<span class="token punctuation">}</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//使用 FancyButton 的组件可以获取底层 DOM 节点 button 的 ref ，并在必要时访问，就像其直接使用 DOM button 一样</span>
+
+<span class="token comment" spellcheck="true">// 你可以直接获取 DOM button 的 ref：</span>
+<span class="token keyword">const</span> ref <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">createRef</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FancyButton</span> <span class="token attr-name">ref</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>ref<span class="token punctuation">}</span></span><span class="token punctuation">></span></span>Click me<span class="token operator">!</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>FancyButton</span><span class="token punctuation">></span></span><span class="token punctuation">;</span></div></code></pre>
+<hr>
+
+        <h2 id="fragments" class="docs-header-link">
+          <span header-link="fragments"></span>
+          Fragments
+        </h2>
+      <ul>
+<li>React 中的一个常见模式是一个组件返回多个元素。<code>Fragments</code> 允许你将子列表分组，而无需向 DOM 添加额外节点</li>
+<li>短语法<code>&lt;&gt;&lt;/&gt;</code> - 一种新的，且更简短的语法来声明 <code>Fragments</code></li>
+<li><code>key</code> 是唯一可以传递给 <code>Fragment</code> 的属性</li>
+</ul>
+<pre class="language-jsx"><code class="language-jsx"><div><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>React.Fragment</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ChildA</span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ChildB</span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ChildC</span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>React.Fragment</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 等价于</span>
+<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span><span class="token operator">></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ChildA</span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ChildB</span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ChildC</span> <span class="token punctuation">/></span></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></div></code></pre>
+<hr>
+
+        <h2 id="%E5%B1%9E%E6%80%A7" class="docs-header-link">
+          <span header-link="%E5%B1%9E%E6%80%A7"></span>
+          属性
+        </h2>
+      
+        <h3 id="%E9%BB%98%E8%AE%A4%E5%80%BC%E4%B8%BA-%E2%80%9Ctrue%E2%80%9D" class="docs-header-link">
+          <span header-link="%E9%BB%98%E8%AE%A4%E5%80%BC%E4%B8%BA-%E2%80%9Ctrue%E2%80%9D"></span>
+          默认值为 “True”
+        </h3>
+      <ul>
+<li>如果没给 <code>prop</code> 赋值，它的默认值是 <code>true</code></li>
+<li><strong>不建议</strong>不传递 value 给 <code>prop</code>，因为这可能与 ES6 对象简写混淆，{foo} 是 {foo: foo} 的简写，而不是 {foo: true}</li>
+</ul>
+<pre class="language-jsx"><code class="language-jsx"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>MyTextBox</span> <span class="token attr-name">autocomplete</span> <span class="token punctuation">/></span></span>
+<span class="token comment" spellcheck="true">// 等价于</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>MyTextBox</span> <span class="token attr-name">autocomplete</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token boolean">true</span><span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span></div></code></pre>
+
+        <h3 id="%E5%B1%9E%E6%80%A7%E5%B1%95%E5%BC%80" class="docs-header-link">
+          <span header-link="%E5%B1%9E%E6%80%A7%E5%B1%95%E5%BC%80"></span>
+          属性展开
+        </h3>
+      <ul>
+<li>如果已经有了一个 <code>props</code> 对象，可以使用展开运算符 <code>...</code> 来在 JSX 中传递整个 props 对象</li>
+<li>还可以选择只保留当前组件需要接收的 props，并使用展开运算符将其他 <code>props</code> 传递下去</li>
+</ul>
+<pre class="language-jsx"><code class="language-jsx"><div><span class="token keyword">function</span> <span class="token function">App1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Greeting</span> <span class="token attr-name">firstName</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Ben<span class="token punctuation">"</span></span> <span class="token attr-name">lastName</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Hector<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 等价于</span>
+<span class="token keyword">function</span> <span class="token function">App2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> props <span class="token operator">=</span> <span class="token punctuation">{</span>firstName<span class="token punctuation">:</span> <span class="token string">'Ben'</span><span class="token punctuation">,</span> lastName<span class="token punctuation">:</span> <span class="token string">'Hector'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token operator">&lt;</span>Greeting <span class="token punctuation">{</span><span class="token operator">...</span>props<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> Button <span class="token operator">=</span> props <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 使用...获取其它props，以便继续传入子组件</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> kind<span class="token punctuation">,</span> <span class="token operator">...</span>other <span class="token punctuation">}</span> <span class="token operator">=</span> props<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> className <span class="token operator">=</span> kind <span class="token operator">===</span> <span class="token string">"primary"</span> <span class="token operator">?</span> <span class="token string">"PrimaryButton"</span> <span class="token punctuation">:</span> <span class="token string">"SecondaryButton"</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">className</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>className<span class="token punctuation">}</span></span> <span class="token attr-name">{...other}</span> <span class="token punctuation">/></span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></div></code></pre>
+<hr>
+
+        <h2 id="portals" class="docs-header-link">
+          <span header-link="portals"></span>
+          Portals
+        </h2>
+      <ul>
+<li>Portal 提供了一种将子节点渲染到存在于父组件以外的 DOM 节点的优秀的方案。比如渲染到<code>body</code>下</li>
+<li><code>ReactDOM.createPortal(child, container)</code> - 第一个参数（child）是任何可渲染的 React 子元素，第二个参数（container）是一个 DOM 元素</li>
+</ul>
+
+        <h3 id="%E9%80%9A%E8%BF%87-portal-%E8%BF%9B%E8%A1%8C%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1" class="docs-header-link">
+          <span header-link="%E9%80%9A%E8%BF%87-portal-%E8%BF%9B%E8%A1%8C%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1"></span>
+          通过 Portal 进行事件冒泡
+        </h3>
+      <ul>
+<li>尽管 portal 可以被放置在 DOM 树中的任何地方，但在任何其他方面，其行为和普通的 React 子节点行为一致</li>
+<li>由于 portal 仍存在于 React 树， 且与 DOM 树 中的位置无关，那么无论其子节点是否是 portal，像 context 这样的功能特性都是不变的。这包含事件冒泡</li>
+<li>一个从 portal 内部触发的事件会一直冒泡至包含 React 树的祖先，即便这些元素并不是 DOM 树 中的祖先</li>
+</ul>

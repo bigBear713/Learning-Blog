@@ -1,0 +1,11 @@
+
+        <h2 id="every" class="docs-header-link">
+          <span header-link="every"></span>
+          every
+        </h2>
+      <ul>
+<li>Observable发出的每个数据都符合条件，则返回true，否则返回false</li>
+<li>和数组的every方法类似</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">of</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">every</span><span class="token punctuation">(</span>val<span class="token operator">=</span><span class="token operator">></span>val<span class="token operator">></span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>data<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">// false</span></div></code></pre>

@@ -1,0 +1,43 @@
+
+        <h2 id="proxy%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F" class="docs-header-link">
+          <span header-link="proxy%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F"></span>
+          Proxy代理模式
+        </h2>
+      <ul>
+<li>为一个对象提供一个替身对象，以便控制对他的访问</li>
+<li>由于一个对象不能直接引用另一个对象，或者不满足需求时，需要通过代理对象在这两个对象之间起到中介的作用</li>
+<li>代理和本体必须保持接口的一致性</li>
+<li>常用的代理模式：<ol>
+<li>缓存代理</li>
+<li>虚拟代理</li>
+</ol>
+</li>
+</ul>
+
+        <h3 id="%E7%BC%93%E5%AD%98%E4%BB%A3%E7%90%86" class="docs-header-link">
+          <span header-link="%E7%BC%93%E5%AD%98%E4%BB%A3%E7%90%86"></span>
+          缓存代理
+        </h3>
+      <ul>
+<li>为一些开销大的运算结果提供暂时的存储，在下次运算时，如果传进来的参数和之前的一致，则可以直接返回前面存储的结果</li>
+</ul>
+
+        <h3 id="%E8%99%9A%E6%8B%9F%E4%BB%A3%E7%90%86" class="docs-header-link">
+          <span header-link="%E8%99%9A%E6%8B%9F%E4%BB%A3%E7%90%86"></span>
+          虚拟代理
+        </h3>
+      <ul>
+<li>把一些开销很大的对象，延迟到真正需要它的时候才去创建</li>
+<li>常见：图片预加载功能</li>
+</ul>
+
+        <h2 id="%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF" class="docs-header-link">
+          <span header-link="%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"></span>
+          应用场景
+        </h2>
+      <ul>
+<li>模块职责单一且可复用</li>
+<li>两个模块之间的交互需要一定的限制关系</li>
+<li>很多前端框架或者状态管理框架都使用代理模式，用与监听变量的变化</li>
+<li>使用代理模式代理对象的访问方式，一般又被称为拦截器。</li>
+</ul>

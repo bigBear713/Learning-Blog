@@ -1,0 +1,141 @@
+
+        <h2 id="%E5%87%A0%E4%B8%AA%E5%B8%83%E5%B1%80%E7%9A%84%E5%AE%9A%E4%B9%89" class="docs-header-link">
+          <span header-link="%E5%87%A0%E4%B8%AA%E5%B8%83%E5%B1%80%E7%9A%84%E5%AE%9A%E4%B9%89"></span>
+          几个布局的定义
+        </h2>
+      
+        <h3 id="%E5%B8%B8%E8%A7%84%E6%96%87%E6%A1%A3%E6%B5%81" class="docs-header-link">
+          <span header-link="%E5%B8%B8%E8%A7%84%E6%96%87%E6%A1%A3%E6%B5%81"></span>
+          常规文档流
+        </h3>
+      <ul>
+<li>box 一个接一个排列</li>
+<li>在<code>BFC</code>里，box竖值方向排列</li>
+<li>在<code>IFC</code>里，box横向方向排列</li>
+<li>当<code>position:static/relative</code>或<code>float:none</code>时，为常规文档流</li>
+<li>当<code>position:static</code>时，box的位置是常规文档流里的位置</li>
+<li>当<code>position:relative</code>时，box的位置是相对于原有位置进行偏移，通过<code>top</code>,<code>bottom</code>,<code>left</code>,<code>right</code>等调整偏移位置。偏移后，元素在常规文档流中的位置仍存在，其它元素不能占据它</li>
+</ul>
+
+        <h3 id="%E6%B5%AE%E5%8A%A8" class="docs-header-link">
+          <span header-link="%E6%B5%AE%E5%8A%A8"></span>
+          浮动
+        </h3>
+      <ul>
+<li>浮动下，box为float box</li>
+<li>位于当前行的开头或结尾</li>
+<li>会导致常规文档流会环绕在它四周。除非设置<code>clear</code>属性</li>
+<li>脱离常规文档流</li>
+</ul>
+
+        <h3 id="%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D" class="docs-header-link">
+          <span header-link="%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D"></span>
+          绝对定位
+        </h3>
+      <ul>
+<li>box从常规文档流中脱离，不影响常规文档流的布局。</li>
+<li>当<code>position:absolute</code>时，位置相对于离它最近的且position为非<code>static</code>的父元素进行偏移，没有这样的父元素，则相对于<code>body</code>进行偏移</li>
+<li>当<code>position:fixed</code>时，位置相对于整个浏览器窗口进行偏移</li>
+</ul>
+
+        <h2 id="bfc" class="docs-header-link">
+          <span header-link="bfc"></span>
+          BFC
+        </h2>
+      <ul>
+<li>BFC, Block Formatting Context，块级格式化上下文，是一个独立的容器。</li>
+<li>容器内的元素不会影响外部</li>
+<li>每一个BFC容器只包含其子元素，<strong>不包含</strong>子元素的子元素</li>
+<li>每一个BFC容器都是相互独立、隔离的，互不影响</li>
+<li>一个元素不能同时存在于多个BFC容器中</li>
+</ul>
+
+        <h3 id="%E7%89%B9%E6%80%A7" class="docs-header-link">
+          <span header-link="%E7%89%B9%E6%80%A7"></span>
+          特性
+        </h3>
+      <ul>
+<li><code>BFC</code>容器就是一个块级元素，因此会在竖直方向上一个接一个排列</li>
+<li>属于同一个<code>BFC</code>容器的两个相邻元素，上下间距由<code>margin</code>决定。如果同时设置两个相邻元素的上下<code>margin</code>，会发生重叠，间距由最大的那个<code>margin</code>值决定</li>
+<li>计算<code>BFC</code>高度时，<code>float</code>元素等脱离文档流的元素也会参与计算</li>
+<li><code>BFC</code>容器不会与<code>float</code>元素发生重叠</li>
+</ul>
+
+        <h3 id="%E6%A0%B9%E6%8D%AE%E7%89%B9%E6%80%A7%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98" class="docs-header-link">
+          <span header-link="%E6%A0%B9%E6%8D%AE%E7%89%B9%E6%80%A7%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98"></span>
+          根据特性解决问题
+        </h3>
+      <ol>
+<li>解决相邻两个块级元素的<code>margin</code>塌陷的问题<ul>
+<li>两个相邻元素设置都设置<code>margin</code>后，最终间距只取决于<code>margin</code>最大的那个值。这是因为它们处于同一个<code>BFC</code>容器中</li>
+<li>让它们在不同的<code>BFC</code>容器中就可解决。比如新建一个BFC容器，并将其中一个元素放入其中。因为BFC容器内的元素不会影响外部</li>
+</ul>
+</li>
+<li>解决使用<code>float</code>或者<code>绝对定位</code>后，父元素高度塌陷的问题<ul>
+<li>使用<code>float</code>或者<code>绝对定位</code>后，因为会让元素脱离文档流，这就导致计算时，父元素被当作没有子元素而没有高度</li>
+<li>将父元素设置为<code>BFC</code>容器(如<code>overflow:hidden</code>)，利用“计算<code>BFC</code>高度时，<code>float</code>元素等脱离文档流的元素也会参与计算”从而计算出父元素的高度</li>
+</ul>
+</li>
+<li>解决使用<code>float</code>后内容重叠环绕的问题<ul>
+<li>使用<code>float</code>后变成浮动布局，会导致常规文档流会环绕在float box的四周</li>
+<li>通过将另一个非float box元素设置成<code>BFC</code>容器，利用“<code>BFC</code>容器不会与<code>float</code>元素发生重叠”避免内容重叠环绕的问题</li>
+</ul>
+</li>
+</ol>
+
+        <h3 id="%E7%94%9F%E6%88%90bfc%E5%AE%B9%E5%99%A8" class="docs-header-link">
+          <span header-link="%E7%94%9F%E6%88%90bfc%E5%AE%B9%E5%99%A8"></span>
+          生成BFC容器
+        </h3>
+      <ul>
+<li>根元素(html)，或者包含body的元素</li>
+<li>设置<code>float</code>脱离文档流，即不为<code>none</code>的（left或者right）</li>
+<li>设置<code>position</code>脱离文档流，即不为<code>static</code>,<code>relative</code></li>
+<li>设置<code>display</code>为这些值：<code>inline-block</code>,<code>flex</code>,<code>grid</code>,<code>table</code>,<code>table-cell</code>,<code>table-caption</code></li>
+<li>设置<code>overflow</code>，且值不为<code>visible</code>(auto, scroll, hidden)</li>
+</ul>
+
+        <h3 id="ffc,-gfc" class="docs-header-link">
+          <span header-link="ffc,-gfc"></span>
+          FFC, GFC
+        </h3>
+      <ul>
+<li>FFC, Flex Formatting Context, 弹性格式上下文。通过设置<code>display:flex/inline-flex</code>触发</li>
+<li>FFC通常用于弹性布局</li>
+<li>GFC, Grid Formatting Context, 网格格式上下文。通过设置<code>display:grid/inline-grid</code>触发</li>
+<li>GFC通常用于二维网格布局</li>
+<li>FFC能做的GFC也能做，GFC能做的FFC也能做</li>
+<li>FFC，GFC也是一个BFC，在遵循自己的规范的时候，向下兼容BFC规范</li>
+</ul>
+
+        <h2 id="ifc" class="docs-header-link">
+          <span header-link="ifc"></span>
+          IFC
+        </h2>
+      <ul>
+<li>IFC, Inline Formatting Context, 行内格式化上下文</li>
+</ul>
+
+        <h3 id="%E7%89%B9%E6%80%A7" class="docs-header-link">
+          <span header-link="%E7%89%B9%E6%80%A7"></span>
+          特性
+        </h3>
+      <ul>
+<li><code>IFC</code>容器中的元素会在水平方向，一个接一个排列。</li>
+<li>同一行的元素会形成一个行框。如果元素太多，会换行。换行后，新的一行仍会形成一个行框</li>
+<li>行框的高度由该行中，高度最高的元素决定。且该最高的元素的border/padding/margin的<code>top</code>，<code>bottom</code>不会影响行框的高度。</li>
+<li>行框中所有的元素的border/padding/margin的<code>left</code>，<code>right</code>会被计算，影响行框内能容纳的元素个数</li>
+<li>浮动元素不会在行框中</li>
+<li>行框内的元素遵循<code>text-align</code>和<code>vertical-align</code></li>
+<li>在<code>IFC</code>中是不能存在块级元素的。如果将块级元素插入到<code>IFC</code>环境中，那么它会被破坏称为<code>BFC</code>.而块级元素前的元素或文本和块级元素后的元素或文本将会各自自动产生一个匿名块盒其包围。</li>
+</ul>
+
+        <h2 id="%E5%8F%82%E8%80%83" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83"></span>
+          参考
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://juejin.cn/post/7147928538811727880">https://juejin.cn/post/7147928538811727880</a></li>
+<li><a target="_blank" href="https://juejin.cn/post/6950082193632788493">https://juejin.cn/post/6950082193632788493</a></li>
+<li><a target="_blank" href="https://juejin.cn/post/7072174649735381029">https://juejin.cn/post/7072174649735381029</a></li>
+</ul>

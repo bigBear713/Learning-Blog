@@ -1,0 +1,274 @@
+
+        <h2 id="%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%98%BE%E7%A4%BA%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85" class="docs-header-link">
+          <span header-link="%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%98%BE%E7%A4%BA%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85"></span>
+          从输入URL到页面渲染显示期间发生的事情
+        </h2>
+      <ul>
+<li>输入要访问的URL, DNS解析，找到服务器</li>
+<li>和服务器建立TCP连接，发起HTTP请求</li>
+<li>服务器响应请求，返回页面，客户端接收响应</li>
+<li>客户端解析并渲染页面</li>
+<li>连接结束</li>
+</ul>
+
+        <h2 id="%E8%BE%93%E5%85%A5url%EF%BC%8Cdns%E8%A7%A3%E6%9E%90" class="docs-header-link">
+          <span header-link="%E8%BE%93%E5%85%A5url%EF%BC%8Cdns%E8%A7%A3%E6%9E%90"></span>
+          输入URL，DNS解析
+        </h2>
+      <ul>
+<li>根据输入的url，尝试从客户端本地缓存中查找相应的IP地址</li>
+<li>如果找不到，则进行DNS解析，找到服务器对应的ip地址</li>
+<li>找到ip地址后，会在本地进行缓存，以便下次更快访问</li>
+<li>根据ip地址，访问对应的服务器</li>
+</ul>
+
+        <h3 id="url%E8%A7%A3%E6%9E%90" class="docs-header-link">
+          <span header-link="url%E8%A7%A3%E6%9E%90"></span>
+          URL解析
+        </h3>
+      <ul>
+<li>访问页面时，通常是一串特殊的字符串，而不是ip地址。字符串只是更方便理解和记忆，但最终仍是根据ip地址访问服务器的</li>
+<li>URL解析时，是从后往前解析。比如<code>www.baidu.com</code>，是先解析<code>.com</code>部分，再解析<code>baidu</code>部分。这是因为<code>.com</code>是根域名，表示<code>baidu</code>域名对应的服务器是在<code>.com</code>下的，类似的根域名还有<code>.cn</code></li>
+</ul>
+
+        <h2 id="%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BB%BA%E7%AB%8Btcp%E8%BF%9E%E6%8E%A5%EF%BC%8C%E5%8F%91%E8%B5%B7http%E8%AF%B7%E6%B1%82" class="docs-header-link">
+          <span header-link="%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BB%BA%E7%AB%8Btcp%E8%BF%9E%E6%8E%A5%EF%BC%8C%E5%8F%91%E8%B5%B7http%E8%AF%B7%E6%B1%82"></span>
+          和服务器建立TCP连接，发起HTTP请求
+        </h2>
+      <ul>
+<li>客户端和服务器进行三次握手，建立TCP连接</li>
+<li>客户端向服务器发起http请求，请求页面数据</li>
+</ul>
+
+        <h2 id="%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%93%8D%E5%BA%94%E8%AF%B7%E6%B1%82%EF%BC%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E6%94%B6%E5%93%8D%E5%BA%94" class="docs-header-link">
+          <span header-link="%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%93%8D%E5%BA%94%E8%AF%B7%E6%B1%82%EF%BC%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E6%94%B6%E5%93%8D%E5%BA%94"></span>
+          服务器响应请求，客户端接收响应
+        </h2>
+      <ul>
+<li>服务器接收到请求后，查找数据，然后发送给客户端</li>
+<li>客户端接收响应的结果</li>
+</ul>
+
+        <h2 id="%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AF%B9%E7%BB%93%E6%9E%9C%E8%BF%9B%E8%A1%8C%E8%A7%A3%E6%9E%90%EF%BC%8C%E5%B9%B6%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2" class="docs-header-link">
+          <span header-link="%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AF%B9%E7%BB%93%E6%9E%9C%E8%BF%9B%E8%A1%8C%E8%A7%A3%E6%9E%90%EF%BC%8C%E5%B9%B6%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2"></span>
+          客户端对结果进行解析，并渲染页面
+        </h2>
+      <ul>
+<li>客户端对返回的html, js, css进行解析</li>
+<li>解析html文件中的html标记，以及js中的dom api，生成DOM树</li>
+<li>解析css文件，以及js中的css api，生成CSSOM树</li>
+<li>将DOM树和CSSOM树结合生成渲染树</li>
+<li>客户端开始进行reflow回流和repain重绘<ol>
+<li><code>reflow</code> - 是对html中dom的大小、位置等进行计算</li>
+<li><code>repain</code> - 是对元素的字体、颜色等进行绘制</li>
+</ol>
+</li>
+<li>最终渲染出整个页面</li>
+</ul>
+
+        <h2 id="%E8%BF%9E%E6%8E%A5%E7%BB%93%E6%9D%9F" class="docs-header-link">
+          <span header-link="%E8%BF%9E%E6%8E%A5%E7%BB%93%E6%9D%9F"></span>
+          连接结束
+        </h2>
+      <ul>
+<li>客户端和服务器进行四次挥手，结束TCP连接</li>
+</ul>
+
+        <h2 id="reflow%E5%9B%9E%E6%B5%81%E5%92%8Crepain%E9%87%8D%E7%BB%98" class="docs-header-link">
+          <span header-link="reflow%E5%9B%9E%E6%B5%81%E5%92%8Crepain%E9%87%8D%E7%BB%98"></span>
+          reflow回流和repain重绘
+        </h2>
+      
+        <h3 id="reflow%E5%9B%9E%E6%B5%81" class="docs-header-link">
+          <span header-link="reflow%E5%9B%9E%E6%B5%81"></span>
+          reflow回流
+        </h3>
+      <ul>
+<li>渲染树中的部分或者全部元素的尺寸、结构，或者某些属性发生改变时，浏览器重新计算、渲染部分或全部文档的过程</li>
+<li>会引起回流的操作<ol>
+<li>页面首次渲染</li>
+<li>浏览器窗口大小发生改变</li>
+<li>元素的尺寸或大小发生改变</li>
+<li>元素的内容发生改变，比如文字数量或者图片大小等</li>
+<li>元素字体大小变化</li>
+<li>添加或删除<code>可见</code>的DOM元素</li>
+<li>激活css<code>伪类</code></li>
+<li>查询某些属性或者调用某些方法</li>
+</ol>
+</li>
+<li>一些常用会导致回流的属性和方法<ol>
+<li>clientWidth, clientHeight, clientTop, clientLeft</li>
+<li>offsetWidth, offsetHeight, offsetTop, offsetLeft</li>
+<li>scrollWidth, scrollHeight, scrollTop, scrollLeft</li>
+<li>scrollIntoView(), scrollIntoViewIfNeeded()</li>
+<li>getComputedStyle()</li>
+<li>getBoundingClientRect()</li>
+<li>scrollTo()</li>
+</ol>
+</li>
+<li>回流必定引起重绘，重绘不一定引起回流</li>
+</ul>
+
+        <h3 id="repain%E9%87%8D%E7%BB%98" class="docs-header-link">
+          <span header-link="repain%E9%87%8D%E7%BB%98"></span>
+          repain重绘
+        </h3>
+      <ul>
+<li>当页面中DOM元素样式的改变不会影响它在文档流中的位置(比如<code>color</code>，<code>visibility</code>等)时，客户端会将新样式赋予DOM元素，并重新绘制它</li>
+</ul>
+
+        <h3 id="%E6%80%A7%E8%83%BD%E5%BD%B1%E5%93%8D" class="docs-header-link">
+          <span header-link="%E6%80%A7%E8%83%BD%E5%BD%B1%E5%93%8D"></span>
+          性能影响
+        </h3>
+      <ul>
+<li>回流会比重绘的代价要高</li>
+<li>客户端对频繁回流做的优化：维护一个队列，把所有引起回流和重绘的操作放到队列中。如果队列中的数量达到一定阈值，或者达到一定的时间间隔，浏览器会做一次批处理，然后清空队列。这样就可以将多次回流和重绘变成一次。</li>
+<li>当访问这些属性或者方法时，会立即清空队列。因为队列中的一些操作会影响到这些属性的取值或者方法的返回值，为了确保结果的精确，会立即执行清空队列<ol>
+<li>clientWidth, clientHeight, clientTop, clientLeft</li>
+<li>offsetWidth, offsetHeight, offsetTop, offsetLeft</li>
+<li>scrollWidth, scrollHeight, scrollTop, scrollLeft</li>
+<li>width, height</li>
+<li>getComputedStyle()</li>
+<li>getBoundingClientRect()</li>
+</ol>
+</li>
+</ul>
+
+        <h3 id="%E8%A7%A6%E5%8F%91" class="docs-header-link">
+          <span header-link="%E8%A7%A6%E5%8F%91"></span>
+          触发
+        </h3>
+      <ul>
+<li>隐藏元素，<code>display:none</code>会触发reflow + repain，<code>visibility:hidden</code>只会触发repain</li>
+<li>transform/opacity, 不会触发生repain, reflow</li>
+</ul>
+
+        <h3 id="%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D" class="docs-header-link">
+          <span header-link="%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D"></span>
+          如何避免
+        </h3>
+      
+        <h4 id="css" class="docs-header-link">
+          <span header-link="css"></span>
+          css
+        </h4>
+      <ul>
+<li>避免使用<code>table</code>布局</li>
+<li>尽可能在DOM树的最末端改变<code>class</code></li>
+<li>避免设置多层内联样式</li>
+<li>将动画效果应用到<code>position</code>为<code>absolute/fixed</code>的元素上</li>
+<li>避免使用css表达式，如<code>calc()</code></li>
+<li>避免css选择器嵌套层级太深</li>
+<li>使用<code>translate</code>替代<code>top</code></li>
+<li>使用<code>flexBox</code>代替老式布局模型</li>
+</ul>
+
+        <h4 id="js" class="docs-header-link">
+          <span header-link="js"></span>
+          js
+        </h4>
+      <ul>
+<li>避免频繁操作样式，最好一次性重写<code>style</code>属性，或者将样式列表定义为<code>class</code>并一次性修改<code>class</code>的属性</li>
+<li>避免频繁操作DOM，可以创建一个<code>documentFragment</code>，在它上面执行所有的DOM操作，再将它添加到文档中</li>
+<li>可以先将元素设置为<code>display:none</code>，操作结束后再显示出来。因为对<code>display:none</code>的元素进行DOM操作，不会引起回流和重绘</li>
+<li>避免频繁读取会引起回流和重绘的属性。如果需要频繁读取，可用一个变量缓存起来</li>
+<li>对有复杂动画效果的DOM元素使用<code>absolute/fixed</code>定位，使它脱离文档流，否则会引起父元素及后续元素的频繁回流</li>
+<li>把DOM离线后再修改</li>
+<li>动画实现速度的选择，速度越快，reflow的次数越多。也可以选择用<code>requestAnimationFrame</code></li>
+</ul>
+
+        <h3 id="reflow,-repain%E5%92%8Ceventloop%E7%9A%84%E5%85%B3%E7%B3%BB" class="docs-header-link">
+          <span header-link="reflow,-repain%E5%92%8Ceventloop%E7%9A%84%E5%85%B3%E7%B3%BB"></span>
+          reflow, repain和EventLoop的关系
+        </h3>
+      <ul>
+<li>当<code>EventLoop</code>执行完<code>MicroTasks</code>后，会判断document是否需要更新。因为浏览器是60HZ刷新率，所以每16ms才会更新一次</li>
+<li>然后判断是否有<code>scroll</code>或者<code>resize</code>，有的话会触发事件。因此<code>scroll</code>和<code>resize</code>也是16ms才触发一次，并自带节流功能</li>
+<li>判断是否触发<code>media query</code></li>
+<li>更新动画并发送事件</li>
+<li>判断是否有全屏操作事件</li>
+<li>执行<code>requestAnimationFrame</code>回调</li>
+<li>执行<code>IntersectionObserver</code>回调，该方法用于判断元素是否可见，可以用于懒加载上，但是有兼容性问题</li>
+<li>更新界面</li>
+</ul>
+
+        <h2 id="%E4%BC%98%E5%8C%96%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%B8%B2%E6%9F%93" class="docs-header-link">
+          <span header-link="%E4%BC%98%E5%8C%96%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%B8%B2%E6%9F%93"></span>
+          优化页面的渲染
+        </h2>
+      
+        <h3 id="%E4%BD%BF%E7%94%A8requestanimationframe" class="docs-header-link">
+          <span header-link="%E4%BD%BF%E7%94%A8requestanimationframe"></span>
+          使用requestAnimationFrame
+        </h3>
+      <ul>
+<li>动画实现避免使用<code>setTimeout</code>和<code>setInterval</code>，尽量使用<code>requestAnimationFrame</code></li>
+<li><code>setTimeout(callback)</code>和<code>setInterval(callback)</code>无法保证callback函数执行的时机</li>
+<li><code>requestAnimationFrame(callback)</code>可以保证callback函数在每帧动画开始时执行</li>
+</ul>
+
+        <h3 id="%E5%B0%86%E8%80%97%E6%97%B6%E9%95%BF%E7%9A%84js%E4%BB%A3%E7%A0%81%E6%94%BE%E5%88%B0web-worker%E4%B8%AD%E5%8E%BB%E5%81%9A" class="docs-header-link">
+          <span header-link="%E5%B0%86%E8%80%97%E6%97%B6%E9%95%BF%E7%9A%84js%E4%BB%A3%E7%A0%81%E6%94%BE%E5%88%B0web-worker%E4%B8%AD%E5%8E%BB%E5%81%9A"></span>
+          将耗时长的js代码放到Web Worker中去做
+        </h3>
+      <ul>
+<li>js代码是运行在客户端的主线程上。同时 客户端主线程还负责样式计算、布局、绘制等工作。如果js运行耗时太长，会阻塞其它渲染工作，导致丢帧。</li>
+<li>每帧的渲染应该在16ms内完成。但在动画过程中，因为已经被占用不少时间，所以js代码运行耗时应控制在<code>3-4</code>毫秒。</li>
+</ul>
+
+        <h3 id="%E5%AF%B9%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%A4%84%E7%90%86%E4%BA%8B%E4%BB%B6%E5%87%BD%E6%95%B0%E5%81%9A%E5%8E%BB%E6%8A%96%E5%8A%A8" class="docs-header-link">
+          <span header-link="%E5%AF%B9%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%A4%84%E7%90%86%E4%BA%8B%E4%BB%B6%E5%87%BD%E6%95%B0%E5%81%9A%E5%8E%BB%E6%8A%96%E5%8A%A8"></span>
+          对用户输入事件的处理事件函数做去抖动
+        </h3>
+      <ul>
+<li>用户输入事件的处理函数在执行时会阻塞帧的渲染，并导致额外的布局发生。</li>
+<li>正常情况下，用户和页面交互，页面的渲染层合并线程将受到这个事件并移动元素。这个响应过程是不需要主线程参与的，不会导致js、布局和绘制过程发生。但如果被触摸的元素绑定了事件处理函数，如<code>touchstart</code>/<code>touchend</code>等，那么渲染层合并线程必须等待这些被绑定的处理函数执行完毕才能执行，也就是页面滚动页面等操作被阻塞了，表现出的行为就是滚动出现延迟或者卡断。因此，必须保证用户输入事件绑定的任何处理函数都能够快速执行完毕，以便腾出时间来让渲染合并线程完成它的工作</li>
+</ul>
+
+        <h3 id="%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4%E8%BF%87%E9%95%BF%E7%9A%84%E8%BE%93%E5%85%A5%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0" class="docs-header-link">
+          <span header-link="%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4%E8%BF%87%E9%95%BF%E7%9A%84%E8%BE%93%E5%85%A5%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"></span>
+          避免使用运行时间过长的输入事件处理函数
+        </h3>
+      <ul>
+<li>如<code>scroll</code>等输入事件处理函数，都会在<code>requestAnimationFrame</code>之前被调用执行。</li>
+<li>如果在输入事件处理函数中做<strong>修改样式属性</strong>的操作，那么这些操作就会被浏览器暂存起来。</li>
+<li>然后在调用<code>requestAnimationFrame</code>的时候，如果一开始就执行读取样式属性的操作，将会触发浏览器的强制同步布局操作</li>
+</ul>
+
+        <h3 id="%E5%AF%B9%E6%BB%9A%E5%8A%A8%E4%BA%8B%E4%BB%B6%E5%81%9A%E5%8E%BB%E6%8A%96%E5%8A%A8" class="docs-header-link">
+          <span header-link="%E5%AF%B9%E6%BB%9A%E5%8A%A8%E4%BA%8B%E4%BB%B6%E5%81%9A%E5%8E%BB%E6%8A%96%E5%8A%A8"></span>
+          对滚动事件做去抖动
+        </h3>
+      <ul>
+<li>通过<code>requestAnamitionFrame</code>可以对样式的修改做去抖动，同时也可让事件处理函数变得更轻。</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">function</span> <span class="token function">onScroll</span><span class="token punctuation">(</span>evt<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// scroll the scroll value for later</span>
+  lastScrollY <span class="token operator">=</span> window<span class="token punctuation">.</span>scrollY<span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// prevent multiple rAF callbacks</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>scheduleAnimatitonFrame<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+  scheduleAnimationFrame <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span>readAndUpdatePage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'scroll'</span><span class="token punctuation">,</span> onScroll<span class="token punctuation">)</span></div></code></pre>
+
+        <h3 id="%E7%BB%93%E5%90%88chrome%E5%88%86%E6%9E%90" class="docs-header-link">
+          <span header-link="%E7%BB%93%E5%90%88chrome%E5%88%86%E6%9E%90"></span>
+          结合chrome分析
+        </h3>
+      <ul>
+<li>chrome dev tool &gt; performance</li>
+</ul>
+
+        <h2 id="%E5%8F%82%E8%80%83" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83"></span>
+          参考
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://juejin.cn/post/6844903569087266823">https://juejin.cn/post/6844903569087266823</a></li>
+<li><a target="_blank" href="https://juejin.cn/post/6844903935614910471">https://juejin.cn/post/6844903935614910471</a></li>
+</ul>

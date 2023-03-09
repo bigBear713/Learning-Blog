@@ -1,0 +1,15 @@
+
+        <h2 id="take" class="docs-header-link">
+          <span header-link="take"></span>
+          take
+        </h2>
+      <ul>
+<li>自定义只发出源Observable的前几个值。</li>
+<li>算是<code>first</code>的进阶版</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>
+    <span class="token function">take</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 只取前3个值</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>data<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">// 0</span>
+<span class="token comment" spellcheck="true">// 1</span>
+<span class="token comment" spellcheck="true">// 2</span></div></code></pre>

@@ -1,0 +1,13 @@
+
+        <h2 id="exclude" class="docs-header-link">
+          <span header-link="exclude"></span>
+          Exclude
+        </h2>
+      <ul>
+<li>差集，即A中去除B的属性</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div>type A <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">|</span><span class="token number">2</span><span class="token operator">|</span><span class="token number">3</span><span class="token punctuation">;</span>
+type B <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">|</span><span class="token number">3</span><span class="token operator">|</span><span class="token number">4</span><span class="token operator">|</span><span class="token number">5</span><span class="token punctuation">;</span>
+type AExcludeB <span class="token operator">=</span> Exclude<span class="token operator">&lt;</span>A<span class="token punctuation">,</span>B<span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 等价于</span>
+type AExcludeB <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span></div></code></pre>

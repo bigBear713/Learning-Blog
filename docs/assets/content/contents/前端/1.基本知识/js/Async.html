@@ -1,0 +1,28 @@
+
+        <h2 id="%E5%8D%95%E8%BF%9B%E7%A8%8B" class="docs-header-link">
+          <span header-link="%E5%8D%95%E8%BF%9B%E7%A8%8B"></span>
+          单进程
+        </h2>
+      <ul>
+<li>js是单进程，只有一个进程执行代码。</li>
+<li>单进程可以有效避免一些问题，比如同时操作某一个dom元素等。</li>
+</ul>
+
+        <h2 id="%E5%BC%82%E6%AD%A5" class="docs-header-link">
+          <span header-link="%E5%BC%82%E6%AD%A5"></span>
+          异步
+        </h2>
+      <ul>
+<li>异步是进行在执行该行为后，不用等待结果，直接执行下一步。</li>
+<li>因为js是单进程，如果一段代码不能很快得到结果从而执行下一步，会造成阻塞，让用户等待很久，造成糟糕的体验。</li>
+<li>常见的是调用接口获取信息。</li>
+</ul>
+
+        <h2 id="ajax%E8%AF%B7%E6%B1%82" class="docs-header-link">
+          <span header-link="ajax%E8%AF%B7%E6%B1%82"></span>
+          Ajax请求
+        </h2>
+      <ul>
+<li>Ajax请求就是一种异步请求。当代码执行时，会执行请求发出操作。等请求响应时，再执行响应操作。在等待响应的这段时间内，js会直接执行其它代码。</li>
+<li>在早期，js还主要是进行dom操作和表单操作。进行表单操作时，是整个页面提交、刷新。而Ajax能够实现只进行页面的局部刷新，不用重新加载整个页面。</li>
+</ul>

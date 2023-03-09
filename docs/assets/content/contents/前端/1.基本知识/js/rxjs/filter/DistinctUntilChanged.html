@@ -1,0 +1,27 @@
+
+        <h2 id="distinctuntilchanged" class="docs-header-link">
+          <span header-link="distinctuntilchanged"></span>
+          distinctUntilChanged
+        </h2>
+      <ul>
+<li>只有当最新值和之前最后一个有效值不同时，才发出数据</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">of</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>
+    <span class="token function">distinctUntilChanged</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>data<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">// 1</span>
+<span class="token comment" spellcheck="true">// 2</span>
+<span class="token comment" spellcheck="true">// 3</span>
+<span class="token comment" spellcheck="true">// 1</span>
+<span class="token comment" spellcheck="true">// 2</span>
+<span class="token comment" spellcheck="true">// 3</span>
+<span class="token comment" spellcheck="true">// 4</span></div></code></pre>
+
+        <h2 id="%E5%92%8Cdistinct%E7%9A%84%E4%B8%8D%E5%90%8C" class="docs-header-link">
+          <span header-link="%E5%92%8Cdistinct%E7%9A%84%E4%B8%8D%E5%90%8C"></span>
+          和distinct的不同
+        </h2>
+      <ul>
+<li><code>distinct</code>是会让结果都不会重复。比如上述例子如果使用distinct,则结果是：1，2，3，4</li>
+<li><code>distinctUntilChanged</code>只对当前值和前一个有效值进行比对，无法保证有效值之前是否有当前值，所以可能重复</li>
+</ul>

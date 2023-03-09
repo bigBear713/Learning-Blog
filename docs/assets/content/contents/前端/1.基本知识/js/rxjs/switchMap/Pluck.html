@@ -1,0 +1,11 @@
+
+        <h2 id="pluck" class="docs-header-link">
+          <span header-link="pluck"></span>
+          pluck
+        </h2>
+      <ul>
+<li>用于选出每个数据对象上的指定属性值的便捷操作符</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">of</span><span class="token punctuation">(</span><span class="token punctuation">{</span>name<span class="token punctuation">:</span> <span class="token string">'张三'</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>name<span class="token punctuation">:</span> <span class="token string">'李四'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>
+    <span class="token function">pluck</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>data<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>

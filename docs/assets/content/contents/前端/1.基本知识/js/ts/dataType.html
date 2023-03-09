@@ -1,0 +1,272 @@
+
+        <h2 id="datatype%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%88%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B%EF%BC%89" class="docs-header-link">
+          <span header-link="datatype%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%88%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B%EF%BC%89"></span>
+          dataType数据类型（基础类型）
+        </h2>
+      <ul>
+<li>boolean - 布尔类型</li>
+<li>number - 数值类型，和js一样，都是浮点数，可支持二进制、八进制、十进制和十六进制</li>
+<li>string - 字符串类型</li>
+<li>array - 数组类型</li>
+<li>tuple - 元组类型</li>
+<li>enum - 枚举类型，能为一组数值赋予更易读的名字</li>
+<li>any - 任意类型</li>
+<li>null 和 undefined 类型</li>
+<li>void 类型</li>
+<li>never 类型</li>
+<li>object 对象类型</li>
+</ul>
+
+        <h3 id="tuple%E5%85%83%E7%BB%84%E7%B1%BB%E5%9E%8B" class="docs-header-link">
+          <span header-link="tuple%E5%85%83%E7%BB%84%E7%B1%BB%E5%9E%8B"></span>
+          tuple元组类型
+        </h3>
+      <ul>
+<li>允许表示一个已知元素<strong>数量和类型</strong>的的数组，各元素类型<strong>不必相同</strong></li>
+<li>赋值的类型、位置、个数需要和定义声明的类型、位置和个数一致</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div><span class="token keyword">let</span> tupleArr：<span class="token punctuation">[</span><span class="token keyword">number</span><span class="token punctuation">,</span><span class="token keyword">string</span><span class="token punctuation">,</span><span class="token keyword">boolean</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+tupleArr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token keyword">true</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ok</span>
+tupleArr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token keyword">true</span><span class="token punctuation">,</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// error</span></div></code></pre>
+
+        <h3 id="enum" class="docs-header-link">
+          <span header-link="enum"></span>
+          enum
+        </h3>
+      <ul>
+<li>是一个可能取值的集合，并为这些值赋予更易读的名字</li>
+<li>分为<ol>
+<li>数字枚举 - 没给赋值时，默认是数字类型，且是从 <code>0</code> 开始，依次累加。如果对第一个赋值，则后面的值会在此基础上进行累加1</li>
+<li>字符串枚举 - 给一个变量赋值为字符串后，后续字符串也需赋值为字符串，否则报错</li>
+<li>异构枚举 - 将数字枚举和字符串枚举混合起来使用</li>
+</ol>
+</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div><span class="token comment" spellcheck="true">// 数字枚举</span>
+<span class="token keyword">enum</span> NumberEnum <span class="token punctuation">{</span>
+    Up<span class="token punctuation">,</span>         <span class="token comment" spellcheck="true">// 默认值为0</span>
+    Download<span class="token punctuation">,</span>   <span class="token comment" spellcheck="true">// 默认值为1</span>
+    Left<span class="token punctuation">,</span>       <span class="token comment" spellcheck="true">// 默认值为2</span>
+    Right<span class="token punctuation">,</span>      <span class="token comment" spellcheck="true">// 默认值为3</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">enum</span> NumberEnum <span class="token punctuation">{</span>
+    Up <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span>        <span class="token comment" spellcheck="true">// 默认值为0</span>
+    Download<span class="token punctuation">,</span>       <span class="token comment" spellcheck="true">// 默认值为11</span>
+    Left<span class="token punctuation">,</span>           <span class="token comment" spellcheck="true">// 默认值为12</span>
+    Right<span class="token punctuation">,</span>          <span class="token comment" spellcheck="true">// 默认值为13</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 字符串枚举</span>
+<span class="token keyword">enum</span> StringEnum <span class="token punctuation">{</span>
+    Up <span class="token operator">=</span> <span class="token string">'Up'</span><span class="token punctuation">,</span>
+    Down <span class="token operator">=</span> <span class="token string">'Down'</span><span class="token punctuation">,</span>  
+    Left <span class="token operator">=</span> <span class="token string">'Left'</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">// 后续的字段也需要赋值字符串</span>
+    Right           <span class="token comment" spellcheck="true">// error TS1061: Enum member must have initializer</span>
+<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Direction<span class="token punctuation">[</span><span class="token string">'Left'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> Direction<span class="token punctuation">.</span>Up<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// Left Up</span>
+<span class="token comment" spellcheck="true">// 混合枚举</span>
+<span class="token keyword">enum</span> ChoiceEnum <span class="token punctuation">{</span>
+    No <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    Yes <span class="token operator">=</span> <span class="token string">"YES"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span></div></code></pre>
+
+        <h3 id="any" class="docs-header-link">
+          <span header-link="any"></span>
+          any
+        </h3>
+      <ul>
+<li>可以指定任何类型的值</li>
+<li>使用<code>any</code>类型允许被赋值为任意类型，甚至可以调用其属性、方法</li>
+</ul>
+
+        <h3 id="unknown" class="docs-header-link">
+          <span header-link="unknown"></span>
+          unknown
+        </h3>
+      <ul>
+<li>是 <code>any</code> 类型对应的安全类型</li>
+<li>和 <code>any</code> 的区别是，<code>unknown</code>更严格：对 <code>unknown</code> 类型的值进行某种操作前，必须进行某种形式的检查；而对 <code>any</code> 类型的值执行操作前，不用进行任何检查</li>
+</ul>
+
+        <h3 id="void" class="docs-header-link">
+          <span header-link="void"></span>
+          void
+        </h3>
+      <ul>
+<li>标识方法的返回值类型，表示该方法没有返回值</li>
+</ul>
+
+        <h3 id="never" class="docs-header-link">
+          <span header-link="never"></span>
+          never
+        </h3>
+      <ul>
+<li>是其它类型(null, undefined)的子类型，可以赋值给任何类型，代表从不会出现的值。</li>
+<li>但是没有类型是 <code>never</code> 的子类型，这意味着 <code>never</code> 的变量只能被 <code>never</code> 类型所赋值</li>
+<li><code>never</code> 一般用来指定那些总是会抛出异常、无限循环的情况</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div><span class="token comment" spellcheck="true">// 返回never的函数必须存在无法达到的终点</span>
+<span class="token keyword">function</span> <span class="token function">error</span><span class="token punctuation">(</span>message<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> never <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></div></code></pre>
+
+        <h3 id="interface%E6%8E%A5%E5%8F%A3" class="docs-header-link">
+          <span header-link="interface%E6%8E%A5%E5%8F%A3"></span>
+          interface接口
+        </h3>
+      <ul>
+<li>一系列抽象属性和方法的声明，需要具体的<code>class</code>去实现，，描述的是一个对象相关的属性和方法，当并不提供创建此对象实例的方法</li>
+</ul>
+
+        <h3 id="class%E7%B1%BB" class="docs-header-link">
+          <span header-link="class%E7%B1%BB"></span>
+          class类
+        </h3>
+      <ul>
+<li>是面向对象程序设计，实现信息封装的基础</li>
+<li>是一种用户定义的引用数据类型，又被称为类类型</li>
+<li>包含几个模块：属性字段、构造函数、方法</li>
+<li><code>abstract</code>抽象类：作为其它派生类的基类使用，一般不会被直接实例化。不同于接口，抽象类可以包含成员的实现细节，即方法实现</li>
+</ul>
+<hr>
+
+        <h2 id="%E9%AB%98%E7%BA%A7%E7%B1%BB%E5%9E%8B" class="docs-header-link">
+          <span header-link="%E9%AB%98%E7%BA%A7%E7%B1%BB%E5%9E%8B"></span>
+          高级类型
+        </h2>
+      <ul>
+<li>交叉类型</li>
+<li>联合类型</li>
+<li>类型别名</li>
+<li>类型索引</li>
+<li>类型约束</li>
+<li>类型映射</li>
+<li>条件类型</li>
+</ul>
+
+        <h3 id="%E4%BA%A4%E5%8F%89%E7%B1%BB%E5%9E%8B" class="docs-header-link">
+          <span header-link="%E4%BA%A4%E5%8F%89%E7%B1%BB%E5%9E%8B"></span>
+          交叉类型
+        </h3>
+      <ul>
+<li>通过 <code>&amp;</code> 将多个类型合并成一个类型，包含所需的所有类型的特性，本质上是一个<strong>并</strong>操作，即将所有类型的属性合并在一起，得到一个新的类型</li>
+</ul>
+
+        <h3 id="%E8%81%94%E5%90%88%E7%B1%BB%E5%9E%8B" class="docs-header-link">
+          <span header-link="%E8%81%94%E5%90%88%E7%B1%BB%E5%9E%8B"></span>
+          联合类型
+        </h3>
+      <ul>
+<li>逻辑和逻辑 <code>或</code> 的规则一致，表示为多个类型中的任意一个，如<code>string|number|boolean</code>，表示只能是<code>string</code>，或者<code>number</code>，或者<code>boolean</code></li>
+</ul>
+
+        <h3 id="%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D" class="docs-header-link">
+          <span header-link="%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D"></span>
+          类型别名
+        </h3>
+      <ul>
+<li>给一个类型起新的名字</li>
+<li>类型别名<code>type</code>有时候和<code>interface</code>很像，但是可以用于原始类型、联合类型、元组以及其它任何需要你手写的的类型</li>
+<li>和<code>interface</code>的区别：<ol>
+<li><code>interface</code>只能用于定义对象类型；</li>
+<li><code>type</code>除了可以定义对象类型外，还能定义交叉类型、交叉类型、联合类型、原始类型等，类型的声明方式和适用范围更广泛</li>
+<li><code>interface</code>能合并声明，即定义两个同名接口，最后只得到一个接口，且该接口含有两个接口的所有属性方法</li>
+</ol>
+</li>
+<li>使用 <code>type SomeName = someValidTypeAnnotation</code> 的语法来创建类型别名</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div><span class="token comment" spellcheck="true">// 原始类型</span>
+type StringType <span class="token operator">=</span> <span class="token keyword">string</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 联合类型</span>
+type SomeType <span class="token operator">=</span> <span class="token keyword">string</span><span class="token operator">|</span><span class="token keyword">number</span><span class="token operator">|</span><span class="token keyword">boolean</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 元组类型</span>
+type TupleType <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token keyword">string</span><span class="token punctuation">,</span> <span class="token keyword">number</span><span class="token punctuation">,</span> <span class="token keyword">boolean</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 可以是泛型</span>
+type Container<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">=</span> <span class="token punctuation">{</span>value<span class="token punctuation">:</span>T<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 可以使用类型别名，在属性里引用自己</span>
+type Tree<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    value<span class="token punctuation">:</span> T<span class="token punctuation">;</span>
+    node<span class="token punctuation">:</span> Tree<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></div></code></pre>
+
+        <h3 id="%E7%B1%BB%E5%9E%8B%E7%B4%A2%E5%BC%95" class="docs-header-link">
+          <span header-link="%E7%B1%BB%E5%9E%8B%E7%B4%A2%E5%BC%95"></span>
+          类型索引
+        </h3>
+      <ul>
+<li><code>keyof</code>是类型索引，能获取<code>interface</code>中的联合类型（即属性），类似于<code>Object.keys()</code></li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div><span class="token keyword">interface</span> <span class="token class-name">Button</span><span class="token punctuation">{</span>
+    type<span class="token punctuation">:</span><span class="token keyword">string</span><span class="token punctuation">;</span>
+    text<span class="token punctuation">:</span><span class="token keyword">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+type ButtonKyes <span class="token operator">=</span> keyof Button<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 等效于</span>
+type ButtonKeys <span class="token operator">=</span> <span class="token string">'type'</span> <span class="token operator">|</span> <span class="token string">'text'</span></div></code></pre>
+
+        <h3 id="%E7%B1%BB%E5%9E%8B%E7%BA%A6%E6%9D%9F" class="docs-header-link">
+          <span header-link="%E7%B1%BB%E5%9E%8B%E7%BA%A6%E6%9D%9F"></span>
+          类型约束
+        </h3>
+      <ul>
+<li>使用关键字<code>extends</code>对泛型进行类型约束</li>
+<li>通常和索引类型<code>keyof</code>一起使用</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div><span class="token keyword">function</span> getValue<span class="token operator">&lt;</span>T<span class="token punctuation">,</span> K <span class="token keyword">extends</span> <span class="token class-name">keyof</span> T<span class="token operator">></span><span class="token punctuation">(</span>obj<span class="token punctuation">:</span> T<span class="token punctuation">,</span> key<span class="token punctuation">:</span> K<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> obj<span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span> a<span class="token punctuation">:</span> <span class="token number">1</span> <span class="token punctuation">}</span>
+<span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token function">getValue</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">)</span></div></code></pre>
+
+        <h3 id="%E6%98%A0%E5%B0%84%E7%B1%BB%E5%9E%8B" class="docs-header-link">
+          <span header-link="%E6%98%A0%E5%B0%84%E7%B1%BB%E5%9E%8B"></span>
+          映射类型
+        </h3>
+      <ul>
+<li>通过<code>in</code>关键词做类型的映射，遍历已有接口的<code>key</code>或是遍历联合类型</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div>type Readonly<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    readonly <span class="token punctuation">[</span>P <span class="token keyword">in</span> keyof T<span class="token punctuation">]</span><span class="token punctuation">:</span> T<span class="token punctuation">[</span>P<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Obj</span> <span class="token punctuation">{</span>
+  a<span class="token punctuation">:</span> <span class="token keyword">string</span>
+  b<span class="token punctuation">:</span> <span class="token keyword">string</span>
+<span class="token punctuation">}</span>
+
+type ReadOnlyObj <span class="token operator">=</span> Readonly<span class="token operator">&lt;</span>Obj<span class="token operator">></span>
+<span class="token comment" spellcheck="true">// 等价于</span>
+<span class="token keyword">interface</span> <span class="token class-name">ReadOnlyObj</span> <span class="token punctuation">{</span>
+    readonly a<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">;</span>
+    readonly b<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></div></code></pre>
+
+        <h3 id="%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B" class="docs-header-link">
+          <span header-link="%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B"></span>
+          条件类型
+        </h3>
+      <ul>
+<li>规则和三元表达式一样，经常用于一些不确定的情况</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div>T <span class="token keyword">extends</span> <span class="token class-name">U</span><span class="token operator">?</span> X <span class="token punctuation">:</span> Y<span class="token punctuation">;</span></div></code></pre>
+<hr>
+
+        <h2 id="function-%E5%87%BD%E6%95%B0" class="docs-header-link">
+          <span header-link="function-%E5%87%BD%E6%95%B0"></span>
+          function 函数
+        </h2>
+      <ul>
+<li>定义时，ts的function需要定义参数的类型或者声明返回值的类型</li>
+<li>ts在参数中，可添加可选参数供使用者选择</li>
+<li>ts中能进行函数重载，使用者只需要通过查看函数的声明方式，就可知道函数传递的参数个数以及类型</li>
+</ul>
+<hr>
+
+        <h2 id="t%E6%B3%9B%E5%9E%8B" class="docs-header-link">
+          <span header-link="t%E6%B3%9B%E5%9E%8B"></span>
+          T泛型
+        </h2>
+      <ul>
+<li>编写代码时，允许定义一个以后使用时才指定的类型，在实例化时作为参数指明这些类型。</li>
+<li>可在函数、接口、类中使用</li>
+</ul>

@@ -1,0 +1,17 @@
+
+        <h2 id="timeout" class="docs-header-link">
+          <span header-link="timeout"></span>
+          timeout
+        </h2>
+      <ul>
+<li>在指定的时间内不发出值，就报错</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">of</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>
+    <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">timeout</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>
+    data<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'next'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    eror<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'error'</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 3s后，报错,触发error function</span>
+<span class="token comment" spellcheck="true">// error</span></div></code></pre>

@@ -1,0 +1,120 @@
+
+        <h2 id="csrf" class="docs-header-link">
+          <span header-link="csrf"></span>
+          csrf
+        </h2>
+      <ul>
+<li>csrf - Cross Site Request Forgery, 跨站点请求伪造，也被称为one-click attack或者session riding</li>
+<li>是一种挟制用户在已登录的Web应用程序上，执行非本意的操作的攻击方法</li>
+</ul>
+
+        <h2 id="%E6%94%BB%E5%87%BB%E6%B5%81%E7%A8%8B" class="docs-header-link">
+          <span header-link="%E6%94%BB%E5%87%BB%E6%B5%81%E7%A8%8B"></span>
+          攻击流程
+        </h2>
+      <ul>
+<li>用户登录网站A，并获取cookie</li>
+<li>用户被诱导访问有问题的网站B</li>
+<li>网站B返回有问题的代码</li>
+<li>浏览器执行有问题的代码，偷偷向网站A发送恶意请求</li>
+<li>网站A不知这是恶意请求，按照用户的权限进行操作，导致用户遭受损失</li>
+</ul>
+
+        <h3 id="%E6%94%BB%E5%87%BB%E7%9A%84%E5%89%8D%E6%8F%90" class="docs-header-link">
+          <span header-link="%E6%94%BB%E5%87%BB%E7%9A%84%E5%89%8D%E6%8F%90"></span>
+          攻击的前提
+        </h3>
+      <ul>
+<li>用户登录网站A，并在本地生成cookie</li>
+<li>在不登出网站A的前提下，访问有问题的网站B</li>
+</ul>
+
+        <h2 id="%E5%B8%B8%E8%A7%81%E7%9A%84%E6%94%BB%E5%87%BB%E7%B1%BB%E5%9E%8B" class="docs-header-link">
+          <span header-link="%E5%B8%B8%E8%A7%81%E7%9A%84%E6%94%BB%E5%87%BB%E7%B1%BB%E5%9E%8B"></span>
+          常见的攻击类型
+        </h2>
+      
+        <h3 id="get%E7%B1%BB%E5%9E%8B%E7%9A%84csrf" class="docs-header-link">
+          <span header-link="get%E7%B1%BB%E5%9E%8B%E7%9A%84csrf"></span>
+          GET类型的CSRF
+        </h3>
+      <ul>
+<li>GET类型的CSRF很简单，只需要一个HTTP请求。一般会这样利用</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://bank.example/withdraw?amount<span class="token punctuation">=</span>10000&amp;for<span class="token punctuation">=</span>hacker<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></div></code></pre>
+<ul>
+<li>用户在访问含有该图片的网页后，浏览器就会自动向<code>http://bank.example/withdraw?amount=10000&amp;for=hacker</code>发送一次HTTP请求。bank.example就会收到包含用户登录信息的一次跨域请求</li>
+</ul>
+
+        <h3 id="post%E7%B1%BB%E5%9E%8B%E7%9A%84csrf" class="docs-header-link">
+          <span header-link="post%E7%B1%BB%E5%9E%8B%E7%9A%84csrf"></span>
+          POST类型的CSRF
+        </h3>
+      <ul>
+<li>这种类型的CSRF通常是一个自动提交的表单</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://bank.example/withdraw<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation">=</span>POST</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>account<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>xiaoming<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>amount<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10000<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>for<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>hacker<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript"> document<span class="token punctuation">.</span>forms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span> </div></code></pre>
+<ul>
+<li>访问该页面后，表单会被自动提交，相当于模拟用户完成一次POST操作</li>
+<li>任何个人网站、博客，被黑客上传页面的网站都有可能是发起攻击的来源。</li>
+<li>后端接口不能将安全都寄托在仅允许POST上</li>
+</ul>
+
+        <h3 id="%E9%93%BE%E6%8E%A5%E7%B1%BB%E5%9E%8B%E7%9A%84csrf" class="docs-header-link">
+          <span header-link="%E9%93%BE%E6%8E%A5%E7%B1%BB%E5%9E%8B%E7%9A%84csrf"></span>
+          链接类型的CSRF
+        </h3>
+      <ul>
+<li>这种类型并不常见</li>
+<li>比起其它两种访问页面就立即中招的情况，链接类型的CSRF需要用户点击才行</li>
+<li>这种类型通常是在论坛中发布的图片中嵌入恶意链接，或者以广告的形式诱导用户中招</li>
+<li>攻击者通常会以较夸张的词语诱骗用户点击</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://test.com/csrf/withdraw.php?amount<span class="token punctuation">=</span>1000&amp;for<span class="token punctuation">=</span>hacker<span class="token punctuation">"</span></span> <span class="token attr-name">taget</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>_blank<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>重磅消息！！<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h2 id="csrf%E7%9A%84%E7%89%B9%E7%82%B9" class="docs-header-link">
+          <span header-link="csrf%E7%9A%84%E7%89%B9%E7%82%B9"></span>
+          CSRF的特点
+        </h2>
+      <ul>
+<li>攻击一般是在第三方网站发起，而不是被攻击的网站。被攻击网站无法阻止</li>
+<li>攻击<strong>利用用户在被攻击网站的登录凭证，冒充用户提交操作</strong>，而不是直接窃取数据</li>
+<li>整个过程中并不能获取用户的登录凭证，只能<strong>冒用</strong></li>
+<li>跨站请求可以用各种方式，图片URL，超链接，CORS，Form提交等。</li>
+<li>部分请求可以嵌入在第三方论坛、文章中，难以被发现追踪</li>
+<li>CSRF通常是跨域的，因为外域通常更容易被黑客掌控。如果本域下有容易被利用的功能，比如可以发图片、链接的论坛和评论区，攻击者可以直接在本域下运行。而且这种攻击更加危险</li>
+</ul>
+
+        <h2 id="csrf%E5%92%8Cxss%E7%9A%84%E5%8C%BA%E5%88%AB" class="docs-header-link">
+          <span header-link="csrf%E5%92%8Cxss%E7%9A%84%E5%8C%BA%E5%88%AB"></span>
+          CSRF和XSS的区别
+        </h2>
+      <ul>
+<li>通常来说，CSRF就是通过XSS实现的，CSRF也被称为XSRF</li>
+<li>本质上讲，XSS是代码注入问题，CSRF是HTTP问题</li>
+<li>XSS是因为内容没有过滤导致浏览器将攻击者的输入当正常代码执行</li>
+<li>CSRF是因为HTTP请求时会自动带上cookie。而一般网站的session都存在cookie里面。Token验证可以避免</li>
+</ul>
+
+        <h2 id="%E9%98%B2%E5%BE%A1" class="docs-header-link">
+          <span header-link="%E9%98%B2%E5%BE%A1"></span>
+          防御
+        </h2>
+      <ul>
+<li>验证码：强制用户必须与页面进行交互，才能完成最终请求。这种方式能很好的遏制CSRF，但用户体验较差</li>
+<li>Referer check：请求来源限制。这种方法成本低，但并不能保证100%有效。因为服务器并不是什么时候都能取到Referer。而且低版本的浏览器存在伪造Referer的风险</li>
+<li>Token：token验证的CSRF防御机制是公认的最合适方案。但如果网站同时存在XSS漏洞，这个方法也是空谈</li>
+</ul>
+
+        <h2 id="%E5%8F%82%E8%80%83" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83"></span>
+          参考
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://juejin.cn/post/6844903781704925191">https://juejin.cn/post/6844903781704925191</a></li>
+</ul>

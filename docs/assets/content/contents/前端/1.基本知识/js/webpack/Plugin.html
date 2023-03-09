@@ -1,0 +1,69 @@
+
+        <h2 id="plugin" class="docs-header-link">
+          <span header-link="plugin"></span>
+          plugin
+        </h2>
+      <ul>
+<li>负责功能扩展。</li>
+<li>webpack基于发布订阅模式，在运行的声明中周期中会广播出许多事件。plugin通过监听这些事件，在特定阶段执行相应的任务，实现预期功能</li>
+<li><code>compiler</code>提供webpack整个生命周期相关的钩子，<code>compilation</code>提供与模块和依赖相关的粒度更小的钩子</li>
+</ul>
+
+        <h2 id="%E5%BC%80%E5%8F%91%E8%A7%84%E5%88%99" class="docs-header-link">
+          <span header-link="%E5%BC%80%E5%8F%91%E8%A7%84%E5%88%99"></span>
+          开发规则
+        </h2>
+      <ul>
+<li>plugin必须是一个函数，或者是一个包含<code>apply</code>方法的对象。这样才能访问<code>compiler</code>实例</li>
+<li>传递给每个插件的<code>compiler</code>和<code>compilation</code>都是同一个引用。若在插件上改变它们的属性或方法，会影响后面的插件。</li>
+<li>异步事件需要在插件处理完任务时，调用回调函数通知webpack进入下一流程，不然会卡住</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">class</span> <span class="token class-name">MyPlugin</span> <span class="token punctuation">{</span>
+  apply <span class="token punctuation">(</span>compiler<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 找到合适的事件钩子，实现自己的插件功能</span>
+    compiler<span class="token punctuation">.</span>hooks<span class="token punctuation">.</span>emit<span class="token punctuation">.</span><span class="token function">tap</span><span class="token punctuation">(</span><span class="token string">'MyPlugin'</span><span class="token punctuation">,</span> compilation <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// compilation: 当前打包构建流程的上下文</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>compilation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment" spellcheck="true">// do something...</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></div></code></pre>
+<ul>
+<li>找出合适的事件点去完成预期的功能<ol>
+<li>emit事件发生时，可以读取到最终输出的资源、代码块、模块以及其依赖，并进行修改。emit是修改webpack输出资源的最后时机</li>
+<li>watch-run当依赖的文件发生变化时会触发</li>
+</ol>
+</li>
+</ul>
+
+        <h2 id="%E5%B8%B8%E8%A7%81plugin" class="docs-header-link">
+          <span header-link="%E5%B8%B8%E8%A7%81plugin"></span>
+          常见Plugin
+        </h2>
+      <ul>
+<li><code>define-plugin</code>：定义环境变量 (Webpack4 之后指定 mode 会自动配置)</li>
+<li><code>ignore-plugin</code>：忽略部分文件</li>
+<li><code>html-webpack-plugin</code>：简化 HTML 文件创建 (依赖于 html-loader)</li>
+<li><code>web-webpack-plugin</code>：可方便地为单页应用输出 HTML，比 html-webpack-plugin 好用</li>
+<li><code>uglifyjs-webpack-plugin</code>：不支持 ES6 压缩 (Webpack4 以前)</li>
+<li><code>terser-webpack-plugin</code>: 支持压缩 ES6 (Webpack4)</li>
+<li><code>webpack-parallel-uglify-plugin</code>: 多进程执行代码压缩，提升构建速度</li>
+<li><code>mini-css-extract-plugin</code>: 分离样式文件，CSS 提取为独立文件，支持按需加载 (替代extract-text-webpack-plugin)</li>
+<li><code>serviceworker-webpack-plugin</code>：为网页应用增加离线缓存功能</li>
+<li><code>clean-webpack-plugin</code>: 目录清理</li>
+<li><code>ModuleConcatenationPlugin</code>: 开启 Scope Hoisting</li>
+<li><code>speed-measure-webpack-plugin</code>: 可以看到每个 Loader 和 Plugin 执行耗时 (整个打包耗时、每个 Plugin 和 Loader 耗时)</li>
+<li><code>webpack-bundle-analyzer</code>: 可视化 Webpack 输出文件的体积 (业务组件、依赖第三方模块)</li>
+<li><code>size-plugin</code>：监控资源体积变化，尽早发现问题</li>
+<li><code>HotModuleReplacementPlugin</code>: HotModuleReplacementPlugin</li>
+</ul>
+
+        <h2 id="%E5%8F%82%E8%80%83" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83"></span>
+          参考
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://juejin.cn/post/6844904094281236487">https://juejin.cn/post/6844904094281236487</a></li>
+<li><a target="_blank" href="https://juejin.cn/post/6943468761575849992">https://juejin.cn/post/6943468761575849992</a></li>
+</ul>

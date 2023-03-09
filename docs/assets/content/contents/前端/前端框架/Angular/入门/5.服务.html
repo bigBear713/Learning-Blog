@@ -1,0 +1,79 @@
+
+        <h2 id="%E5%9C%BA%E6%99%AF" class="docs-header-link">
+          <span header-link="%E5%9C%BA%E6%99%AF"></span>
+          场景
+        </h2>
+      <ul>
+<li>将组件逻辑和业务逻辑解耦。</li>
+<li>复用功能、逻辑</li>
+</ul>
+
+        <h2 id="%E6%A0%BC%E5%BC%8F" class="docs-header-link">
+          <span header-link="%E6%A0%BC%E5%BC%8F"></span>
+          格式
+        </h2>
+      <pre class="language-ts"><code class="language-ts"><div>@<span class="token function">Injectable</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">XXXService</span><span class="token punctuation">{</span><span class="token punctuation">}</span></div></code></pre>
+<ul>
+<li>基本组成形式：<code>@Injectable()</code>后面紧跟一个<code>class</code>就组成一个服务。</li>
+</ul>
+
+        <h2 id="%E4%BD%BF%E7%94%A8" class="docs-header-link">
+          <span header-link="%E4%BD%BF%E7%94%A8"></span>
+          使用
+        </h2>
+      
+        <h3 id="%E9%A1%B6%E7%BA%A7%E6%9C%8D%E5%8A%A1" class="docs-header-link">
+          <span header-link="%E9%A1%B6%E7%BA%A7%E6%9C%8D%E5%8A%A1"></span>
+          顶级服务
+        </h3>
+      <ul>
+<li>当在<code>@Injectable()</code>中输入参数<code>providedIn: &#39;root&#39;</code>时，可将当前服务设置为顶级服务。</li>
+<li>顶级服务在使用时不用再在<a href="">模块</a>中<code>providers</code>中声明，直接使用便可。</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div>@<span class="token function">Injectable</span><span class="token punctuation">(</span><span class="token punctuation">{</span>providedIn<span class="token punctuation">:</span><span class="token string">'root'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">XXXService</span><span class="token punctuation">{</span><span class="token punctuation">}</span></div></code></pre>
+<ul>
+<li>这种方式是被推荐的。如果没有数据状态的需求，推荐使用这种方式。</li>
+</ul>
+
+        <h3 id="%E6%A8%A1%E5%9D%97%E7%BA%A7%E6%9C%8D%E5%8A%A1" class="docs-header-link">
+          <span header-link="%E6%A8%A1%E5%9D%97%E7%BA%A7%E6%9C%8D%E5%8A%A1"></span>
+          模块级服务
+        </h3>
+      <ul>
+<li>当将服务在模块中的<code>providers</code>中声明时，在该模块中，该服务是一个模块级的服务，不管<code>@Injectable()</code>中是否有参数<code>providedIn: &#39;root&#39;</code>。</li>
+<li>模块级服务，会在当前模块中新创建一个该服务的实例。如果该服务还是一个顶级服务，则此时该模块内获取的该服务实例都是模块级服务的实例，而不是顶级服务的实例。</li>
+<li>模块级服务的作用范围是当前模块，其它模块无法使用。该服务实例可以在模块中的任何地方(组件、指令、管道、服务)中被获取使用。</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div>@<span class="token function">Injectable</span><span class="token punctuation">(</span><span class="token punctuation">{</span>providedIn<span class="token punctuation">:</span> <span class="token string">'root'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">XXXService</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+@<span class="token function">NgModule</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+ declarations<span class="token punctuation">:</span> <span class="token punctuation">[</span>XXXComponent<span class="token punctuation">,</span>YYYDirective<span class="token punctuation">,</span>ZZZPipe<span class="token punctuation">]</span><span class="token punctuation">,</span>
+ providers<span class="token punctuation">:</span> <span class="token punctuation">[</span>XXXService<span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">XXXModule</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">XXXComponent</span><span class="token punctuation">{</span>
+    <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token keyword">private</span> xxxService<span class="token punctuation">:</span>XXXService<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>xxxService<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+@<span class="token function">Derective</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">YYYDirective</span><span class="token punctuation">{</span>
+    <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token keyword">private</span> xxxService<span class="token punctuation">:</span>XXXService<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>xxxService<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></div></code></pre>
+
+        <h3 id="%E7%BB%84%E4%BB%B6%E7%BA%A7%E6%9C%8D%E5%8A%A1" class="docs-header-link">
+          <span header-link="%E7%BB%84%E4%BB%B6%E7%BA%A7%E6%9C%8D%E5%8A%A1"></span>
+          组件级服务
+        </h3>
+      <ul>
+<li>组件也有<code>providers</code>参数，服务也可在此参数中声明。声明后会在该组件内生成一个该服务的实例来使用。</li>
+<li>组件级服务的作用范围在当前组件内，其他组件、指令无法获取到该实例，除非是在当前组件中使用，即为当前组件的子组件、指令、管道。</li>
+</ul>

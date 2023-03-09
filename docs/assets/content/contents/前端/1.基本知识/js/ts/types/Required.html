@@ -1,0 +1,16 @@
+
+        <h2 id="required" class="docs-header-link">
+          <span header-link="required"></span>
+          Required
+        </h2>
+      <ul>
+<li>所有属性都需要</li>
+<li>和<code>Partial</code>相反</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div><span class="token keyword">interface</span> <span class="token class-name">IUser</span><span class="token punctuation">{</span>
+    name<span class="token operator">?</span><span class="token punctuation">:</span><span class="token keyword">string</span><span class="token punctuation">;</span>
+    sex<span class="token operator">?</span><span class="token punctuation">:</span><span class="token keyword">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+type MyUser <span class="token operator">=</span> Required<span class="token operator">&lt;</span>IUser<span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 此时，MyUser中的name，sex都变成必需属性</span></div></code></pre>

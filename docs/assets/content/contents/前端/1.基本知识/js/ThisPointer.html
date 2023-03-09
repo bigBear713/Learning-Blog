@@ -1,0 +1,122 @@
+
+        <h2 id="this%E6%8C%87%E9%92%88" class="docs-header-link">
+          <span header-link="this%E6%8C%87%E9%92%88"></span>
+          this指针
+        </h2>
+      <ul>
+<li>this指针一般在运行调用时才确定，指向最后调用它的那个对象。</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token number">1</span><span class="token punctuation">.</span> 
+<span class="token keyword">var</span> name <span class="token operator">=</span> <span class="token string">"windows name"</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> name <span class="token operator">=</span> <span class="token string">"innerName"</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// windows name</span>
+<span class="token punctuation">}</span>
+<span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 此时等价于windows.a(); 最后调用a()的是windows，所以this指向的是windows</span>
+
+<span class="token number">2</span><span class="token punctuation">.</span>
+<span class="token keyword">var</span> name <span class="token operator">=</span> <span class="token string">"windows name"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span><span class="token string">'a name'</span><span class="token punctuation">,</span>
+    fn<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// a name</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+a<span class="token punctuation">.</span><span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 最后调用fn()的是对象a，所以this指向的是对象a</span>
+windows<span class="token punctuation">.</span>a<span class="token punctuation">.</span><span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 最后调用fn()的是对象a，所以this指向的是对象a</span>
+
+<span class="token number">3</span><span class="token punctuation">.</span> 
+<span class="token keyword">var</span> name <span class="token operator">=</span> <span class="token string">"windows name"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span><span class="token string">'a name'</span><span class="token punctuation">,</span>
+    fn<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// windows name</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> fn <span class="token operator">=</span> a<span class="token punctuation">.</span>fn<span class="token punctuation">;</span>
+<span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 等价于windows.fn()，最后调用fn()的是windows，所以this指向的是windows</span>
+
+<span class="token number">4</span><span class="token punctuation">.</span>
+<span class="token keyword">var</span> name <span class="token operator">=</span> <span class="token string">"windows name"</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> name <span class="token operator">=</span> <span class="token string">"innerName"</span><span class="token punctuation">;</span>
+    <span class="token keyword">function</span> <span class="token function">innerFn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// windows name</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">innerFn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 等价于windows.a()，最后调用a()的是windows，所以a()内部的this是指向windows</span>
+
+<span class="token number">5</span><span class="token punctuation">.</span> 
+<span class="token keyword">var</span> name <span class="token operator">=</span> <span class="token string">"windows name"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span><span class="token string">'a name'</span><span class="token punctuation">,</span>
+    fn<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// windows name</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+a<span class="token punctuation">.</span><span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// setTimeout是在windows下，所以此时this指向的是windows</span>
+</div></code></pre>
+<ul>
+<li>箭头函数比较特殊，在定义时就已经确定this指向谁。</li>
+</ul>
+<hr>
+
+        <h2 id="call,-apply,-bind" class="docs-header-link">
+          <span header-link="call,-apply,-bind"></span>
+          call, apply, bind
+        </h2>
+      <ul>
+<li>这3个都可以改变方法函数内的this指针指向。</li>
+<li>bind是返回一个改变后的新方法函数；call，apply则是直接调用执行。</li>
+<li>call在传参时是将参数展开，一个一个的传入；apply在传参时是将所有参数合为一个数组传入。</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">const</span> obj1 <span class="token operator">=</span> <span class="token punctuation">{</span>name<span class="token punctuation">:</span><span class="token string">'obj1'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> obj2 <span class="token operator">=</span> <span class="token punctuation">{</span>name<span class="token punctuation">:</span><span class="token string">'obj2'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> obj3 <span class="token operator">=</span> <span class="token punctuation">{</span>name<span class="token punctuation">:</span><span class="token string">'obj3'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>name<span class="token punctuation">:</span><span class="token string">'obj'</span><span class="token punctuation">,</span>getName<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>arg1<span class="token punctuation">,</span>arg2<span class="token punctuation">)</span><span class="token punctuation">{</span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`this name is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, arg1 is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>arg1<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, arg2 is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>arg2<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+obj<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token string">'obj-arg1'</span><span class="token punctuation">,</span><span class="token string">'obj-arg2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// this name is obj, arg1 is obj-arg1, arg2 is obj-arg2</span>
+
+<span class="token keyword">const</span> obj1GetName <span class="token operator">=</span> obj<span class="token punctuation">.</span>getName<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>obj1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">obj1GetName</span><span class="token punctuation">(</span><span class="token string">'obj1-arg1'</span><span class="token punctuation">,</span><span class="token string">'obj1-arg2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// this name is obj1, arg1 is obj1-arg1, arg2 is obj1-arg2</span>
+obj<span class="token punctuation">.</span>getName<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>obj2<span class="token punctuation">,</span><span class="token string">'obj2-arg1'</span><span class="token punctuation">,</span><span class="token string">'obj2-arg2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// this name is obj2, arg1 is obj2-arg1, arg2 is obj2-arg2</span>
+obj<span class="token punctuation">.</span>getName<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>obj3<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'obj3-arg1'</span><span class="token punctuation">,</span><span class="token string">'obj3-arg2'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// this name is obj3, arg1 is obj3-arg1, arg2 is obj3-arg2</span></div></code></pre>
+<hr>
+
+        <h2 id="new" class="docs-header-link">
+          <span header-link="new"></span>
+          new
+        </h2>
+      <ul>
+<li>通过 <code>new</code> 关键字创建的实例，<code>this</code> 总是指向它本身</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">function</span> <span class="token function">newFn</span><span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> constructor <span class="token operator">=</span> args<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> obj <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>constructor<span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> result <span class="token operator">=</span> constructor<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">typeof</span> result <span class="token operator">===</span> <span class="token string">"object"</span> <span class="token operator">&amp;&amp;</span> result <span class="token operator">!==</span> <span class="token keyword">null</span> <span class="token operator">?</span> result <span class="token punctuation">:</span> obj<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">Person</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> p <span class="token operator">=</span> <span class="token function">newFn</span><span class="token punctuation">(</span>Person<span class="token punctuation">,</span> <span class="token string">"person"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"p.name : "</span><span class="token punctuation">,</span> p<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// p.name :  person</span></div></code></pre>
+<hr>
+
+        <h2 id="%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0" class="docs-header-link">
+          <span header-link="%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"></span>
+          箭头函数
+        </h2>
+      <ul>
+<li>箭头函数自身不会创建<code>this</code>，只会从上一级继承<code>this</code>。</li>
+<li>箭头函数的<code>this</code>在定义的时候就已经确定，之后不会再改变。</li>
+<li>箭头函数不能作为构造函数使用，没有自身的<code>prototype</code>，也没有<code>arguments</code></li>
+</ul>

@@ -1,0 +1,30 @@
+
+        <h2 id="merge" class="docs-header-link">
+          <span header-link="merge"></span>
+          merge
+        </h2>
+      <ul>
+<li>将多个Observable合并成一个Observable</li>
+<li>某个Observable发送一次数据，就触发next function</li>
+<li>并行订阅</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div>  <span class="token function">merge</span><span class="token punctuation">(</span>
+      <span class="token keyword">new</span> <span class="token class-name">Observable</span><span class="token punctuation">(</span>o <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        o<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+          o<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token string">'b'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          o<span class="token punctuation">.</span><span class="token function">complete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span> <span class="token operator">*</span> <span class="token number">6</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">of</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">of</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">of</span><span class="token punctuation">(</span><span class="token number">21</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">1000</span> <span class="token operator">*</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>data <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 'a'</span>
+    <span class="token comment" spellcheck="true">// 1</span>
+    <span class="token comment" spellcheck="true">// 2</span>
+    <span class="token comment" spellcheck="true">// 3</span>
+    <span class="token comment" spellcheck="true">// 11</span>
+    <span class="token comment" spellcheck="true">// 12</span>
+    <span class="token comment" spellcheck="true">// 21 // 5s后</span>
+    <span class="token comment" spellcheck="true">// 'b' // 6s后</span></div></code></pre>

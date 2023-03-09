@@ -1,0 +1,37 @@
+
+        <h2 id="retrywhen" class="docs-header-link">
+          <span header-link="retrywhen"></span>
+          retryWhen
+        </h2>
+      <ul>
+<li>当Observable报错时，自定义retry的条件</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>
+    <span class="token function">map</span><span class="token punctuation">(</span>val <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 抛出错误以进行演示</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">></span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 错误将由 retryWhen 接收</span>
+            <span class="token keyword">throw</span> val<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> val<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">retryWhen</span><span class="token punctuation">(</span>errors <span class="token operator">=</span><span class="token operator">></span>
+        errors<span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>
+            <span class="token comment" spellcheck="true">// 输出错误信息</span>
+            <span class="token function">tap</span><span class="token punctuation">(</span>val <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`Value </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>val<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> was too high!`</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token comment" spellcheck="true">// 5秒后重启</span>
+            <span class="token function">delayWhen</span><span class="token punctuation">(</span>val <span class="token operator">=</span><span class="token operator">></span> <span class="token function">timer</span><span class="token punctuation">(</span>val <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>
+    val <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    err <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>err<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">: Retried 2 times then quit!`</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//   0</span>
+<span class="token comment" spellcheck="true">//   1</span>
+<span class="token comment" spellcheck="true">//   2</span>
+<span class="token comment" spellcheck="true">//   3</span>
+<span class="token comment" spellcheck="true">//   4</span>
+<span class="token comment" spellcheck="true">//   5</span>
+<span class="token comment" spellcheck="true">//   "Value 6 was too high!"</span>
+<span class="token comment" spellcheck="true">//   --等待5秒后然后重复此过程</span></div></code></pre>

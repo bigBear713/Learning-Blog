@@ -1,0 +1,15 @@
+
+        <h2 id="buffertoggle" class="docs-header-link">
+          <span header-link="buffertoggle"></span>
+          bufferToggle
+        </h2>
+      <ul>
+<li>与<code>buffer</code>类似，将Observable发出的值储存在缓冲区。</li>
+<li>接收一个Observable参数，用于打开开关，将缓存区中的数据流发送出去</li>
+<li>接收一个Observable参数，用于关闭开关，将源Observable发出的数据存储在缓冲区</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">const</span> startToggle$ <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Subject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> closeToggle$ <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Subject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>
+    <span class="token function">bufferToggle</span><span class="token punctuation">(</span>startToggle$<span class="token punctuation">,</span>closeToggle$<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>data<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span></div></code></pre>

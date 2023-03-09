@@ -1,0 +1,130 @@
+
+        <h2 id="xss" class="docs-header-link">
+          <span header-link="xss"></span>
+          XSS
+        </h2>
+      <ul>
+<li>xss, Cross Site Script, 跨站脚本。原本是css，为了和样式css区分，改成了xss.</li>
+<li>黑客通过一系列方法，将攻击脚本注入到html文件或者dom中，从而在用户访问页面时，对用户产生攻击（窃取密码等）</li>
+<li>xss主要分为<code>存储型xss</code>，<code>反射型xss</code></li>
+</ul>
+
+        <h3 id="%E5%AD%98%E5%82%A8%E5%9E%8Bxss" class="docs-header-link">
+          <span header-link="%E5%AD%98%E5%82%A8%E5%9E%8Bxss"></span>
+          存储型xss
+        </h3>
+      <ul>
+<li>存储型xss，是将攻击脚本存储到数据库中，这样每个访问需要用到该数据的页面都会被攻击。</li>
+<li>黑客常通过可自由编写，或者输入富文本的地方，将恶意代码存储到数据库中，比如评论区、个性签名、留言等</li>
+<li>造成的危害会更大，因为影响范围更大，而且是持久型的</li>
+</ul>
+
+        <h3 id="%E5%8F%8D%E5%B0%84%E5%9E%8Bxss" class="docs-header-link">
+          <span header-link="%E5%8F%8D%E5%B0%84%E5%9E%8Bxss"></span>
+          反射型xss
+        </h3>
+      <ul>
+<li>反射型xss，是黑客通过特定手法，通过在url后带上一个参数或<code>script</code>，诱导用户去访问一个包含恶意代码的URL。当用户真的访问含有恶意脚本的网站时，恶意脚本会直接在用户主机上的浏览器运行。</li>
+<li>常用来窃取浏览器的cookie,或进行钓鱼欺骗。常出现在网站搜索栏、用户登录口等</li>
+</ul>
+
+        <h2 id="%E5%8D%B1%E5%AE%B3" class="docs-header-link">
+          <span header-link="%E5%8D%B1%E5%AE%B3"></span>
+          危害
+        </h2>
+      <ul>
+<li>修改dom结构，伪造页面，欺骗用户，获取账户密码等</li>
+<li>在页面内生成浮窗广告，影响用户体验</li>
+<li>监听用户行为，窃取用户信息</li>
+<li>窃取cookie信息</li>
+</ul>
+
+        <h2 id="%E9%98%B2%E8%8C%83" class="docs-header-link">
+          <span header-link="%E9%98%B2%E8%8C%83"></span>
+          防范
+        </h2>
+      <ul>
+<li>服务器对脚本进行过滤和转码<ol>
+<li>服务器对用户的输入应该永远不信任</li>
+<li>普遍做法是：转义输入输出内容，对引号、尖括号、斜杠进行转义，把js变成不可识别、执行的字符串</li>
+</ol>
+</li>
+<li>充分利用CSP<ol>
+<li>CSP，Content Security Policy, 是服务器的安全策略</li>
+<li>本质上是建立白名单，明确告诉客户端，哪些外部资源是可加载和执行的</li>
+<li>限制加载其它域下的资源文件、禁止向第三方提交数据</li>
+</ol>
+</li>
+<li>使用https</li>
+<li>针对cookie使用<code>httpOnly</code>, 提升cookie的安全性。这样js就无法读取到cookie的信息</li>
+<li>设置cookie中的<code>sameSize</code>。它有3种模式：<code>strict</code>,<code>lax</code>,<code>none</code>。<ol>
+<li>strict: 严格模式，cookie不能被第三方网站获取</li>
+<li>lax：宽松模式，可以被第三方网站获取</li>
+<li>none：完全敞开式</li>
+</ol>
+</li>
+</ul>
+
+        <h3 id="%E9%A2%84%E9%98%B2%E5%AD%98%E5%82%A8%E5%9E%8B%E5%92%8C%E5%8F%8D%E5%B0%84%E5%9E%8Bxss%E6%94%BB%E5%87%BB" class="docs-header-link">
+          <span header-link="%E9%A2%84%E9%98%B2%E5%AD%98%E5%82%A8%E5%9E%8B%E5%92%8C%E5%8F%8D%E5%B0%84%E5%9E%8Bxss%E6%94%BB%E5%87%BB"></span>
+          预防存储型和反射型xss攻击
+        </h3>
+      <ul>
+<li>这两种攻击都是在服务器取到恶意代码后，插入到响应的HTML里面。</li>
+<li>预防这两种漏洞主要有两种方式:<ol>
+<li>改成纯前端渲染，把代码和数据分隔开</li>
+<li>对HTML做充分转义</li>
+</ol>
+</li>
+</ul>
+
+        <h4 id="%E7%BA%AF%E5%89%8D%E7%AB%AF%E6%B8%B2%E6%9F%93" class="docs-header-link">
+          <span header-link="%E7%BA%AF%E5%89%8D%E7%AB%AF%E6%B8%B2%E6%9F%93"></span>
+          纯前端渲染
+        </h4>
+      <ul>
+<li>过程: 类似于SAP<ol>
+<li>浏览器先加载一个静态的HTML。HTML中不包含任何跟业务相关的数据 </li>
+<li>浏览器执行HTML中的js</li>
+<li>js通过AJAX加载业务数据，调用DOM api更新到页面上</li>
+</ol>
+</li>
+<li>在纯前端渲染中，我们会明确告诉浏览器，接下来要设置的内容是文本(<code>.innerText</code>)，还是属性(<code>.setAttribute</code>)，还是样式(<code>.style</code>)。这样浏览器就不会轻易被欺骗，执行预期外的代码</li>
+<li>纯前端渲染还需要注意<code>DOM</code>型的xss攻击，如<code>onload</code>事件和<code>href</code>中的<code>javascript:xxx</code>等</li>
+</ul>
+
+        <h3 id="%E9%A2%84%E9%98%B2dom%E5%9E%8Bxss%E6%94%BB%E5%87%BB" class="docs-header-link">
+          <span header-link="%E9%A2%84%E9%98%B2dom%E5%9E%8Bxss%E6%94%BB%E5%87%BB"></span>
+          预防DOM型xss攻击
+        </h3>
+      <ul>
+<li>dom型xss攻击，其实就是前端js本身不够严谨，把不可信的数据当作代码执行</li>
+<li>使用<code>.innerHTML</code>，<code>.outerHTML</code>，<code>document.write()</code>时要尽量小心，避免将不可信任的数据作为HTML插入到页面中。尽量使用<code>.textContent</code>,<code>.setAttribute()</code>等</li>
+<li>如果使用angular/react/vue等技术栈，并且不使用官方提供的功能时，就在前端代码阶段对数据进行处理，以避免<code>innerHTML</code>,<code>outerHTML</code>等的隐患</li>
+<li>DOM的内联事件监听器，如<code>location</code>，<code>onclick</code>，<code>onerror</code>，<code>onload</code>，<code>onmouseover</code>等，<code>a</code>标签的<code>href</code>属性，js的<code>eval()</code>，<code>setTimeout()</code>，<code>setInterval()</code>等，都能将字符串作为代码运行。如果不可信的数据拼接到字符串中，传递给这些API，很容易产生安全隐患</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token comment" spellcheck="true">&lt;!-- 内联事件监听器中包含恶意代码 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UNTRUSTED<span class="token punctuation">"</span></span> <span class="token attr-name">onerror</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UNTRUSTED<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>data:image/png,<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- 链接内包含恶意代码 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UNTRUSTED<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<span class="token comment" spellcheck="true">// setTimeout()/setInterval() 中调用恶意代码</span>
+<span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token string">"UNTRUSTED"</span><span class="token punctuation">)</span>
+<span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token string">"UNTRUSTED"</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// location 调用恶意代码</span>
+location<span class="token punctuation">.</span>href <span class="token operator">=</span> <span class="token string">'UNTRUSTED'</span>
+
+<span class="token comment" spellcheck="true">// eval() 中调用恶意代码</span>
+<span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">"UNTRUSTED"</span><span class="token punctuation">)</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h2 id="%E5%8F%82%E8%80%83" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83"></span>
+          参考
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://juejin.cn/post/7175919622179749947">https://juejin.cn/post/7175919622179749947</a></li>
+<li><a target="_blank" href="https://juejin.cn/post/6844903781704925191">https://juejin.cn/post/6844903781704925191</a></li>
+</ul>

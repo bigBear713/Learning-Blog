@@ -1,0 +1,35 @@
+
+        <h2 id="concatall" class="docs-header-link">
+          <span header-link="concatall"></span>
+          concatAll
+        </h2>
+      <ul>
+<li>将所有内部Observables收集</li>
+<li>按照顺序，当前一个Observable <code>complete</code>后，才开始订阅下一个Observable</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">of</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>
+    <span class="token function">map</span><span class="token punctuation">(</span>val <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">new</span> <span class="token class-name">Observable</span><span class="token punctuation">(</span>o <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        o<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`第</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>val<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">个内部Observable`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        o<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        o<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        o<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        o<span class="token punctuation">.</span><span class="token function">complete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 没有将该Observable设置为complete，无法订阅下一个Observable</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">concatAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>data <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">// 第1个内部Observable</span>
+<span class="token comment" spellcheck="true">// 10</span>
+<span class="token comment" spellcheck="true">// 11</span>
+<span class="token comment" spellcheck="true">// 12</span>
+
+<span class="token comment" spellcheck="true">// 第2个内部Observable</span>
+<span class="token comment" spellcheck="true">// 10</span>
+<span class="token comment" spellcheck="true">// 11</span>
+<span class="token comment" spellcheck="true">// 12</span>
+
+<span class="token comment" spellcheck="true">// 第3个内部Observable</span>
+<span class="token comment" spellcheck="true">// 10</span>
+<span class="token comment" spellcheck="true">// 11</span>
+<span class="token comment" spellcheck="true">// 12</span></div></code></pre>

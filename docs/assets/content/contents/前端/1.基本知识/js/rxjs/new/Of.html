@@ -1,0 +1,13 @@
+
+        <h2 id="of%E6%93%8D%E4%BD%9C%E7%AC%A6" class="docs-header-link">
+          <span header-link="of%E6%93%8D%E4%BD%9C%E7%AC%A6"></span>
+          of操作符
+        </h2>
+      <ul>
+<li>与<code>from</code>的能力差不太多，只不过在使用的时候是传入一个个参数来调用的，有点类似于js中的concat方法</li>
+<li>会依次将你传入的参数合并并将数据以<strong>同步</strong>的方式发出</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">of</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 依次输出1、2、3.</span>
+<span class="token comment" spellcheck="true">// 1</span>
+<span class="token comment" spellcheck="true">// 2</span>
+<span class="token comment" spellcheck="true">// 3</span></div></code></pre>

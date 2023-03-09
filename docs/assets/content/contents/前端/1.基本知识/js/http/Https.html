@@ -1,0 +1,70 @@
+
+        <h2 id="http%E7%89%88%E6%9C%AC" class="docs-header-link">
+          <span header-link="http%E7%89%88%E6%9C%AC"></span>
+          http版本
+        </h2>
+      <ul>
+<li>http目前的版本有：http1.0, http1.1, https, http2.0</li>
+</ul>
+
+        <h2 id="http1-1" class="docs-header-link">
+          <span header-link="http1-1"></span>
+          http1.1
+        </h2>
+      <ul>
+<li>目前使用的主流版本</li>
+<li>支持长连接</li>
+<li>支持6个tcp连接</li>
+</ul>
+
+        <h2 id="https" class="docs-header-link">
+          <span header-link="https"></span>
+          https
+        </h2>
+      <ul>
+<li>http+SSL协议</li>
+<li>比较安全</li>
+<li>过程：<ol>
+<li>浏览器和服务器三次握手建立连接</li>
+<li>服务器生成一对公钥，将其中的公钥发送给浏览器，自己保留私钥</li>
+<li>浏览器收到公钥后，生成一个key（浏览器自己的私钥），并用公钥对key进行加密，然后发送给服务器</li>
+<li>服务器接收到后，用私钥解密，就得到key</li>
+<li>浏览器和服务器之间就开始用加密后的数据进行数据交换</li>
+<li>浏览器和服务器对数据加密时，都是用key进行加密</li>
+</ol>
+</li>
+<li>https比较安全的原因，是因为就算过程中被黑客入侵拦截获取，也只能得到公钥，而无法对用公钥加密后的key进行解密，从而无法得到key，无法对后续的加密内容进行解密</li>
+<li>对称加密是指加密的密钥和解密的密钥一致，如后期使用浏览器生成的key对数据进行加密和解密</li>
+<li>非对称加密是只加密的密钥和解密的密钥不一致，如将浏览器生成的key加密后发送给服务器，服务器进行解密获取key的过程</li>
+</ul>
+
+        <h3 id="%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B" class="docs-header-link">
+          <span header-link="%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"></span>
+          三次握手
+        </h3>
+      <ul>
+<li>第一次：客户端向服务器发送一些信息，表示要建立连接</li>
+<li>第二次：服务器响应请求，并发送一些信息让客户端确认</li>
+<li>第三次：客户端发送一些信息确认信息无误，连接建立</li>
+</ul>
+
+        <h3 id="%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B" class="docs-header-link">
+          <span header-link="%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"></span>
+          四次挥手
+        </h3>
+      <ul>
+<li>第一次：客户端发信息告诉服务器想关闭连接</li>
+<li>第二次：服务器告诉客户端收到请求，开始做关闭准备</li>
+<li>第三次：服务器做好关闭准备后，再发信息给客户端确认是否关闭</li>
+<li>第四次：客户端发送确认信息</li>
+</ul>
+
+        <h2 id="http2-0" class="docs-header-link">
+          <span header-link="http2-0"></span>
+          http2.0
+        </h2>
+      <ul>
+<li>能实现多路复用，即一个tcp连接能够处理多个请求</li>
+<li>能够服务器端主动推送</li>
+<li>steam传输</li>
+</ul>

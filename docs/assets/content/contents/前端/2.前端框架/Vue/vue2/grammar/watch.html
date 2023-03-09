@@ -1,0 +1,33 @@
+
+        <h2 id="watch%E4%BE%A6%E5%90%AC%E5%99%A8" class="docs-header-link">
+          <span header-link="watch%E4%BE%A6%E5%90%AC%E5%99%A8"></span>
+          watch侦听器
+        </h2>
+      <ul>
+<li>一个更通用的方法，来相应数据的变化</li>
+<li>当需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的。</li>
+</ul>
+
+        <h2 id="watch%E4%BE%A6%E5%90%AC%E5%99%A8%E7%9A%84%E5%B1%9E%E6%80%A7" class="docs-header-link">
+          <span header-link="watch%E4%BE%A6%E5%90%AC%E5%99%A8%E7%9A%84%E5%B1%9E%E6%80%A7"></span>
+          watch侦听器的属性
+        </h2>
+      <ul>
+<li>如果直接赋值为一个function，则为处理函数</li>
+<li>如果赋值为对象，则<ol>
+<li><code>deep</code>: 是否深层监听，默认为false。对于Object等应用类型来说，属性值改变时会监听不到。当将<code>deep</code>设置为true时，能够对应用类型的属性进行监听，避免属性值改变却没触发视图更新的问题。但是会影响性能</li>
+<li><code>immediate</code>：是否立即执行，默认为false。控制侦听器创建时是否立即执行一次处理函数。如果为true，则立即执行</li>
+<li><code>handler</code>：处理函数，会传递newValue和oldValue这两个值。</li>
+</ol>
+</li>
+<li>如果赋值为数组，则当作处理函数，依次执行</li>
+<li>可以使用组件实例的 <code>$watch</code> 方法来命令式地创建一个侦听器<code>this.$watch(&#39;question&#39;, (newQuestion) =&gt; {}</code> </li>
+<li><ul>
+<li>手动停止watch侦听器</li>
+</ul>
+</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">const</span> unwatch <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$watch</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">,</span> callback<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// ...当该侦听器不再需要时</span>
+<span class="token function">unwatch</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></code></pre>

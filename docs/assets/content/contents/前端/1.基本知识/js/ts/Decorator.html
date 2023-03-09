@@ -1,0 +1,120 @@
+
+        <h2 id="decorator%E8%A3%85%E9%A5%B0%E5%99%A8" class="docs-header-link">
+          <span header-link="decorator%E8%A3%85%E9%A5%B0%E5%99%A8"></span>
+          Decorator装饰器
+        </h2>
+      <ul>
+<li>是一种特殊类型的声明，能够被附加到类声明、方法、访问符、属性或参数上。</li>
+<li>是一种在不改变原来类和使用继承的情况下，动态拓展对象功能</li>
+<li>本质是一个函数，<code>@expression</code>的形式是<code>Object.defineProperty</code>的语法糖</li>
+<li><code>expression</code>求值后必须也是一个函数，会在运行时被调用，被装饰的声明信息将作为参数传入</li>
+</ul>
+
+        <h3 id="%E7%B1%BB%E8%A3%85%E9%A5%B0" class="docs-header-link">
+          <span header-link="%E7%B1%BB%E8%A3%85%E9%A5%B0"></span>
+          类装饰
+        </h3>
+      <ul>
+<li>会将构造函数作为参数传入</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div><span class="token keyword">function</span> <span class="token function">addAge</span><span class="token punctuation">(</span><span class="token keyword">constructor</span><span class="token punctuation">:</span><span class="token keyword">Function</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">constructor</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">18</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+@addAge
+<span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span><span class="token keyword">string</span><span class="token punctuation">;</span>
+    age<span class="token operator">!</span><span class="token punctuation">:</span><span class="token keyword">number</span><span class="token punctuation">;</span>
+    <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token operator">=</span><span class="token string">'person'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">let</span> person <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 18</span>
+<span class="token comment" spellcheck="true">// 等价于</span>
+Person <span class="token operator">=</span> <span class="token function">addAge</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">)</span></div></code></pre>
+
+        <h3 id="%E6%96%B9%E6%B3%95/%E5%B1%9E%E6%80%A7%E8%A3%85%E9%A5%B0" class="docs-header-link">
+          <span header-link="%E6%96%B9%E6%B3%95/%E5%B1%9E%E6%80%A7%E8%A3%85%E9%A5%B0"></span>
+          方法/属性装饰
+        </h3>
+      <ul>
+<li>当装饰器用于修饰类的方法和属性时，参数就变成：<ol>
+<li>target - 对象原型</li>
+<li>propertyKey - 方法\属性名称</li>
+<li>descriptor - 方法的属性描述符（如果是属性，则没有此参数）</li>
+</ol>
+</li>
+<li>这3个参数就是<code>Object.defineProperty()</code>的3个参数</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div><span class="token comment" spellcheck="true">// 声明装饰器修饰方法/属性</span>
+<span class="token keyword">function</span> <span class="token function">method</span><span class="token punctuation">(</span>target<span class="token punctuation">:</span> <span class="token keyword">any</span><span class="token punctuation">,</span> propertyKey<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">,</span> descriptor<span class="token punctuation">:</span> PropertyDescriptor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"prop "</span> <span class="token operator">+</span> propertyKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"desc "</span> <span class="token operator">+</span> JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>descriptor<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"\n\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  descriptor<span class="token punctuation">.</span>writable <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">property</span><span class="token punctuation">(</span>target<span class="token punctuation">:</span> <span class="token keyword">any</span><span class="token punctuation">,</span> propertyKey<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"target"</span><span class="token punctuation">,</span> target<span class="token punctuation">)</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"propertyKey"</span><span class="token punctuation">,</span> propertyKey<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">{</span>
+ @property
+ name<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">;</span>
+ <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'huihui'</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+
+ @method
+ <span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+   <span class="token keyword">return</span> <span class="token string">'instance method'</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+
+ @method
+ <span class="token keyword">static</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+   <span class="token keyword">return</span> <span class="token string">'static method'</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> xmz <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 修改实例方法say</span>
+xmz<span class="token punctuation">.</span>say <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword">return</span> <span class="token string">'edit'</span>
+<span class="token punctuation">}</span></div></code></pre>
+
+        <h3 id="%E5%8F%82%E6%95%B0%E8%A3%85%E9%A5%B0" class="docs-header-link">
+          <span header-link="%E5%8F%82%E6%95%B0%E8%A3%85%E9%A5%B0"></span>
+          参数装饰
+        </h3>
+      <ul>
+<li>接收3个参数<ol>
+<li>target - 当前对象的原型</li>
+<li>propertyKey - 参数的名称</li>
+<li>index - 参数数组中的位置</li>
+</ol>
+</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div><span class="token keyword">function</span> <span class="token function">logParameter</span><span class="token punctuation">(</span>target<span class="token punctuation">:</span> Object<span class="token punctuation">,</span> propertyName<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">,</span> index<span class="token punctuation">:</span> <span class="token keyword">number</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>propertyName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Employee</span> <span class="token punctuation">{</span>
+  <span class="token function">greet</span><span class="token punctuation">(</span>@logParameter message<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">string</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`hello </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>message<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> emp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Employee</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+emp<span class="token punctuation">.</span><span class="token function">greet</span><span class="token punctuation">(</span><span class="token string">'hello'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+
+        <h3 id="%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F" class="docs-header-link">
+          <span header-link="%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"></span>
+          执行顺序
+        </h3>
+      <ul>
+<li>当多个装饰器应用于同一个声明上，将由上至下依次对装饰器表达式求值，执行的结果会被当作函数，由下至上依次调用</li>
+</ul>

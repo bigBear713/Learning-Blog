@@ -1,0 +1,51 @@
+
+        <h2 id="%E8%8A%82%E6%B5%81" class="docs-header-link">
+          <span header-link="%E8%8A%82%E6%B5%81"></span>
+          节流
+        </h2>
+      <ul>
+<li>控制事件函数触发执行的频率，每隔一段时间触发执行一次</li>
+</ul>
+
+        <h2 id="%E6%89%8B%E5%86%99%E8%8A%82%E6%B5%81%E5%AE%9E%E7%8E%B0" class="docs-header-link">
+          <span header-link="%E6%89%8B%E5%86%99%E8%8A%82%E6%B5%81%E5%AE%9E%E7%8E%B0"></span>
+          手写节流实现
+        </h2>
+      <pre class="language-js"><code class="language-js"><div><span class="token keyword">function</span> <span class="token function">throttle</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> internalTime<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> immediate<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">let</span> lastTime <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> isFirstTime <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">const</span> nowTime <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment" spellcheck="true">// 首次立即执行</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>isFirstTime <span class="token operator">&amp;&amp;</span> immediate<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            lastTime <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            isFirstTime <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        
+        <span class="token keyword">const</span> remainTime <span class="token operator">=</span> nowTime<span class="token operator">-</span>lastTime<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>remainTime <span class="token operator">>=</span> internalTime<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            fn<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            lastTime <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            isFirstTime <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">logStr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// ...</span>
+<span class="token punctuation">}</span>
+
+window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span><span class="token function">throttle</span><span class="token punctuation">(</span>logStr<span class="token punctuation">,</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+<ul>
+<li>如果需要获取返回结果，可以增加回调函数参数。</li>
+</ul>
+
+        <h2 id="%E5%8F%82%E8%80%83" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83"></span>
+          参考
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://juejin.cn/post/7032905194736189477">https://juejin.cn/post/7032905194736189477</a></li>
+</ul>

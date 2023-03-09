@@ -1,0 +1,31 @@
+
+        <h2 id="vue3%E4%B8%AD%E7%9A%84ref%E3%80%81toref%E3%80%81torefs" class="docs-header-link">
+          <span header-link="vue3%E4%B8%AD%E7%9A%84ref%E3%80%81toref%E3%80%81torefs"></span>
+          vue3中的ref、toRef、toRefs
+        </h2>
+      
+        <h3 id="ref" class="docs-header-link">
+          <span header-link="ref"></span>
+          ref
+        </h3>
+      <ul>
+<li>接收一个内部值，生成一个响应式数据。该内部值挂载在ref对象的<code>value</code>属性上</li>
+<li>该对象可以用于模板和<code>reactive</code>。</li>
+<li>使用<code>ref</code>是为了解决<code>setup</code>，<code>computed</code>，<code>合成函数</code>等情况下，响应式丢失的问题</li>
+</ul>
+
+        <h3 id="toref" class="docs-header-link">
+          <span header-link="toref"></span>
+          toRef
+        </h3>
+      <ul>
+<li>为响应式对象(reactive)的一个属性，创建对应的<code>ref</code>,且该方式创建的<code>ref</code>与源属性保持同步</li>
+</ul>
+
+        <h3 id="torefs" class="docs-header-link">
+          <span header-link="torefs"></span>
+          toRefs
+        </h3>
+      <ul>
+<li>将响应式对象(reactive)转换成普通对象，对象的每个属性都是对应的<code>ref</code>，两者之间保持同步。使用<code>toRefs</code>进行对象解构</li>
+</ul>

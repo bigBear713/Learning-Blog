@@ -1,0 +1,126 @@
+
+        <h2 id="observable%E5%8F%AF%E8%A7%82%E5%AF%9F%E5%AF%B9%E8%B1%A1" class="docs-header-link">
+          <span header-link="observable%E5%8F%AF%E8%A7%82%E5%AF%9F%E5%AF%B9%E8%B1%A1"></span>
+          Observable可观察对象
+        </h2>
+      <ul>
+<li>可以被订阅观察</li>
+<li>数据是一个流的形式，即可以不断发出值</li>
+<li>可以通过<strong>管道</strong>操作符对数据流进行转换处理</li>
+<li>有3种状态：活跃中，错误，完成。只有当它不再会发出值(发出值的实例失去引用，相应内存被释放时)，或者为错误状态，或者完成状态时，内存才会被释放</li>
+<li>通过对Observable进行<code>.subscribe()</code>，订阅它发出的数据流。</li>
+<li><code>.subscribe()</code>接收3个参数：<code>next:function(value){}</code>,<code>error:function(err){}</code>,<code>complete:function(){}</code>。<ol>
+<li>活跃中时，数据流在next function中接收、处理。每发出一次数据，都会触发一次next function，除非它处于<code>complete</code>状态，或者被取消订阅</li>
+<li>当发生错误时，会触发error function，带有错误信息。只会触发一次，此时可观察对象被关闭。</li>
+<li>当可观察对象处于完成状态时，会触发complete function。此时不会带有任何参数。</li>
+</ol>
+</li>
+<li>只有被<code>.subscribe()</code>了，这个可观察对象才会被执行。</li>
+<li>可通过<code>.unsubscribe()</code>取消订阅。取消订阅后，可观察对象再发出任何值，都接收不到。</li>
+<li>可通过<code>.toPromise()</code>将Observable转为<code>Promise</code>，此时只有当Observable为<code>complete</code>或<code>error</code>状态时，才会触发<code>.then()</code>或<code>.catch()</code>方法。</li>
+</ul>
+
+        <h2 id="%E5%88%9B%E5%BB%BAobservable" class="docs-header-link">
+          <span header-link="%E5%88%9B%E5%BB%BAobservable"></span>
+          创建Observable
+        </h2>
+      <pre class="language-js"><code class="language-js"><div><span class="token comment" spellcheck="true">// 创建</span>
+<span class="token keyword">const</span> ob$<span class="token punctuation">:</span>observer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Observable</span><span class="token punctuation">(</span>o<span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token keyword">of</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      o<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 将Observable设置为complete状态</span>
+    o<span class="token punctuation">.</span><span class="token function">complete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 将Observable设置为error状态</span>
+    <span class="token comment" spellcheck="true">// o.error('error info');</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 订阅</span>
+<span class="token keyword">const</span> sub <span class="token operator">=</span> ob$<span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>
+  <span class="token comment" spellcheck="true">// operators</span>
+  <span class="token function">map</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token operator">></span>value<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token function">filter</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token operator">></span><span class="token operator">!</span><span class="token operator">!</span>value<span class="token punctuation">)</span><span class="token punctuation">,</span>  
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>
+    data<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// next function, 此处会打印出0,1,2,3,4,5,6,7,8,9</span>
+    err<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// err function</span>
+    <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment" spellcheck="true">// complete function</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 取消订阅</span>
+sub<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+<ul>
+<li>使用<code>new</code>关键字</li>
+<li>observer可以通过<code>.pipe()</code>实现对数据流的处理</li>
+</ul>
+
+        <h2 id="subscription" class="docs-header-link">
+          <span header-link="subscription"></span>
+          Subscription
+        </h2>
+      <ul>
+<li>订阅Observable后，得到的就是一个<code>Subscription</code>类型的实例。</li>
+<li>可用来取消对Observable的订阅</li>
+<li>可通过<code>.add()</code>取消多个订阅</li>
+</ul>
+
+        <h2 id="%E5%8D%95%E6%92%AD%E5%92%8C%E5%A4%9A%E6%92%AD" class="docs-header-link">
+          <span header-link="%E5%8D%95%E6%92%AD%E5%92%8C%E5%A4%9A%E6%92%AD"></span>
+          单播和多播
+        </h2>
+      
+        <h3 id="%E5%8D%95%E6%92%AD" class="docs-header-link">
+          <span header-link="%E5%8D%95%E6%92%AD"></span>
+          单播
+        </h3>
+      <ul>
+<li>单播，即一个Observable只能被一个observer订阅观察。</li>
+<li>当被其它observer订阅观察时，会产生一个新的实例。新的实例都是<strong>从头开始</strong>把值发给相应的observer</li>
+<li>普通的Observable是单播的</li>
+</ul>
+
+        <h3 id="%E5%A4%9A%E6%92%AD" class="docs-header-link">
+          <span header-link="%E5%A4%9A%E6%92%AD"></span>
+          多播
+        </h3>
+      <ul>
+<li>多播，即一个Observable能被多个observer订阅观察。新的observer不管何时开始订阅，接收到的值都是最新的值，而不是从头开始</li>
+<li><code>Subject</code>是实现多播的唯一方式</li>
+</ul>
+
+        <h2 id="cold-observables%E4%B8%8Ehot-observables" class="docs-header-link">
+          <span header-link="cold-observables%E4%B8%8Ehot-observables"></span>
+          Cold-Observables与Hot-Observables
+        </h2>
+      
+        <h3 id="cold-observables" class="docs-header-link">
+          <span header-link="cold-observables"></span>
+          Cold Observables
+        </h3>
+      <ul>
+<li>只有被 <code>observers</code> 订阅的时候，才会开始产生值</li>
+<li>是单播的，有多少个订阅就会生成多少个订阅实例。每个订阅都是从第一个产生的值开始接收值，所以每个订阅接收到的值都是一样的。</li>
+</ul>
+
+        <h3 id="hot-observables" class="docs-header-link">
+          <span header-link="hot-observables"></span>
+          Hot-Observables
+        </h3>
+      <ul>
+<li>不管有没有被订阅都会产生值</li>
+<li>是多播的。多个订阅共享同一个实例，是从订阅开始接受到值，每个订阅接收到的值是不同的，取决于它们是<strong>从什么时候</strong>开始订阅。</li>
+</ul>
+
+        <h2 id="operators" class="docs-header-link">
+          <span header-link="operators"></span>
+          Operators
+        </h2>
+      <ul>
+<li>采用函数式编程风格的纯函数 (pure function)，使用像 map、filter、concat、flatMap 等这样的操作符来处理集合</li>
+<li>调用任意的操作符时都<strong>不会改变</strong>已存在的Observable实例，而是会在原有的基础上返回一个新的Observable。</li>
+</ul>
+
+        <h2 id="%E5%8F%82%E8%80%83" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83"></span>
+          参考
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://juejin.cn/post/6910943445569765384">https://juejin.cn/post/6910943445569765384</a></li>
+</ul>

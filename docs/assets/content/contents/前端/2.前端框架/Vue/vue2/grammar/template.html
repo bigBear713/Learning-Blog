@@ -1,0 +1,412 @@
+
+        <h2 id="template%E6%A8%A1%E6%9D%BF" class="docs-header-link">
+          <span header-link="template%E6%A8%A1%E6%9D%BF"></span>
+          template模板
+        </h2>
+      <ul>
+<li>负责渲染view视图</li>
+</ul>
+
+        <h2 id="%E6%8F%92%E5%80%BC" class="docs-header-link">
+          <span header-link="%E6%8F%92%E5%80%BC"></span>
+          插值
+        </h2>
+      
+        <h3 id="%E6%96%87%E6%9C%AC" class="docs-header-link">
+          <span header-link="%E6%96%87%E6%9C%AC"></span>
+          文本
+        </h3>
+      <ul>
+<li>使用<code>{{ [prod name] }}</code>显示普通文本</li>
+<li>当属性值改变时，view上的文本也会同步更新。如果只想更新一次时，可用指令<code>v-once</code></li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token comment" spellcheck="true">&lt;!-- msg的值改变时，此处会同步更新 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ msg }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- 只会同步更新一次，后续msg不管怎么改变，此处都不会改变 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">v-once</span><span class="token punctuation">></span></span>{{ msg }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="html" class="docs-header-link">
+          <span header-link="html"></span>
+          html
+        </h3>
+      <ul>
+<li><code>{{}}</code>会将内容都以文本处理。</li>
+<li>如果想通过属性值，插入html，需要用<code>v-html</code>指令</li>
+<li>用<code>v-html</code>指令可能会导致xss攻击，使用时需要小心</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">v-html</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>rawHtml<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="attribute" class="docs-header-link">
+          <span header-link="attribute"></span>
+          Attribute
+        </h3>
+      <ul>
+<li>设置dom上的属性值，使用<code>v-bind</code></li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>disabled</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>isButtonDisabled<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Button<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="js%E8%A1%A8%E8%BE%BE%E5%BC%8F" class="docs-header-link">
+          <span header-link="js%E8%A1%A8%E8%BE%BE%E5%BC%8F"></span>
+          js表达式
+        </h3>
+      <ul>
+<li>对所有的数据绑定，vuejs都提供完全的js表达式支持</li>
+<li>每个绑定都只能包含单个表达式</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div>{{ message.split('').reverse().join('') }}
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">'</span>list-<span class="token punctuation">'</span> + id<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h2 id="%E6%8C%87%E4%BB%A4" class="docs-header-link">
+          <span header-link="%E6%8C%87%E4%BB%A4"></span>
+          指令
+        </h2>
+      <ul>
+<li>指令 (Directives) 是带有 <code>v-</code> 前缀的特殊 attribute</li>
+<li>指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM</li>
+</ul>
+
+        <h3 id="%E5%8F%82%E6%95%B0" class="docs-header-link">
+          <span header-link="%E5%8F%82%E6%95%B0"></span>
+          参数
+        </h3>
+      <ul>
+<li>一些指令能接收一个参数，在指令名称后使用<code>:</code>表示</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>url<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name"><span class="token namespace">v-on:</span>click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>doSomething<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="%E5%8A%A8%E6%80%81%E5%8F%82%E6%95%B0" class="docs-header-link">
+          <span header-link="%E5%8A%A8%E6%80%81%E5%8F%82%E6%95%B0"></span>
+          动态参数
+        </h3>
+      <ul>
+<li>用<code>[]</code>方括号括起来的 JavaScript 表达式作为一个指令的参数</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>[attributeName]</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>url<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> ... <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name"><span class="token namespace">v-on:</span>[eventName]</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>doSomething<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> ... <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></div></code></pre>
+<ul>
+<li>对动态参数的值的约束：<ol>
+<li>预期会求出一个字符串，异常情况下值为 null</li>
+<li>这个特殊的 null 值可以被显性地用于移除绑定</li>
+<li>任何其它<strong>非字符串</strong>类型的值都将会触发一个警告</li>
+</ol>
+</li>
+<li>对动态参数表达式的约束:<ol>
+<li>使用没有空格或引号的表达式，或用计算属性替代这种复杂表达式</li>
+<li>在 DOM 中使用模板时 (直接在一个 HTML 文件里撰写模板)，还需要避免使用<strong>大写字符</strong>来命名键名，因为浏览器会把 attribute 名全部<strong>强制</strong>转为小写</li>
+</ol>
+</li>
+</ul>
+
+        <h3 id="%E4%BF%AE%E9%A5%B0%E7%AC%A6" class="docs-header-link">
+          <span header-link="%E4%BF%AE%E9%A5%B0%E7%AC%A6"></span>
+          修饰符
+        </h3>
+      <ul>
+<li>是以半角句号 <code>.</code> 指明的特殊后缀</li>
+<li>用于指出一个指令应该以特殊方式绑定</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name"><span class="token namespace">v-on:</span>submit.prevent</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>onSubmit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="%E7%BC%A9%E5%86%99" class="docs-header-link">
+          <span header-link="%E7%BC%A9%E5%86%99"></span>
+          缩写
+        </h3>
+      <ul>
+<li><code>v-</code> 前缀作为一种视觉提示，用来识别模板中 Vue 特定的 attribute</li>
+<li><code>w-bind</code>的缩写：<code>:</code></li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token comment" spellcheck="true">&lt;!-- 完整语法 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>url<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- 缩写 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">:href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>url<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- 动态参数的缩写 (2.6.0+) --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">:[key]</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>url<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> ... <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></div></code></pre>
+<ul>
+<li><code>v-on</code>的缩写：<code>@</code></li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token comment" spellcheck="true">&lt;!-- 完整语法 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name"><span class="token namespace">v-on:</span>click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>doSomething<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- 缩写 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>doSomething<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- 动态参数的缩写 (2.6.0+) --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">@[event]</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>doSomething<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> ... <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h2 id="class%E5%92%8Cinline-style%E7%BB%91%E5%AE%9A" class="docs-header-link">
+          <span header-link="class%E5%92%8Cinline-style%E7%BB%91%E5%AE%9A"></span>
+          class和inline-style绑定
+        </h2>
+      <ul>
+<li>操作元素的 class 列表和内联样式是数据绑定的一个常见需求</li>
+<li>做了专门的增强。表达式结果的类型除了字符串之外，还可以是对象或数组。</li>
+</ul>
+
+        <h3 id="class" class="docs-header-link">
+          <span header-link="class"></span>
+          class
+        </h3>
+      <ul>
+<li>可以给<code>:class</code>传一个对象，方便动态切换</li>
+<li>可以给<code>:class</code>传一个数组</li>
+<li>在数组语法中也可以使用对象语法</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token comment" spellcheck="true">&lt;!-- 对象语法 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>static<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">v-bind:</span>class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{ active: isActive, <span class="token punctuation">'</span>text-danger<span class="token punctuation">'</span>: hasError }<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>classObject<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token comment" spellcheck="true">&lt;!-- 数组语法 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>[activeClass, errorClass]<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token comment" spellcheck="true">&lt;!-- 在数组语法中使用对象语法 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>[{ active: isActive }, errorClass]<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>&lt;/div</div></code></pre>
+
+        <h3 id="inlinestyle%E5%86%85%E8%81%94%E6%A0%B7%E5%BC%8F" class="docs-header-link">
+          <span header-link="inlinestyle%E5%86%85%E8%81%94%E6%A0%B7%E5%BC%8F"></span>
+          inlineStyle内联样式
+        </h3>
+      <ul>
+<li>可以给<code>:style</code>传一个对象，属性名用驼峰式 (camelCase) 或短横线分隔 (kebab-case，记得用引号括起来) 来命名</li>
+<li>可以给<code>:style</code>传一个数组，含有多个样式对象</li>
+<li>当 v-bind:style 使用需要添加浏览器引擎前缀的 CSS property 时，如 transform</li>
+<li>为 style 绑定中的 property 提供一个包含多个值的数组，常用于提供多个带前缀的值, 这样写只会渲染数组中最后一个被浏览器支持的值</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token comment" spellcheck="true">&lt;!-- 对象语法 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name"><span class="token namespace">v-bind:</span></span><span class="token style-attr language-css"><span class="token attr-name"><span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token punctuation">{</span> <span class="token property">color</span><span class="token punctuation">:</span> activeColor, <span class="token property">fontSize</span><span class="token punctuation">:</span> fontSize + <span class="token string">'px'</span> <span class="token punctuation">}</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name"><span class="token namespace">v-bind:</span></span><span class="token style-attr language-css"><span class="token attr-name"><span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value">styleObject</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token comment" spellcheck="true">&lt;!-- 数组语法 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name"><span class="token namespace">v-bind:</span></span><span class="token style-attr language-css"><span class="token attr-name"><span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value">[baseStyles, overridingStyles]</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- 只会渲染display: flex --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">:</span><span class="token style-attr language-css"><span class="token attr-name"><span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token punctuation">{</span> <span class="token property">display</span><span class="token punctuation">:</span> [<span class="token string">'-webkit-box'</span>, <span class="token string">'-ms-flexbox'</span>, <span class="token string">'flex'</span>] <span class="token punctuation">}</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h2 id="v-if%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93" class="docs-header-link">
+          <span header-link="v-if%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93"></span>
+          v-if条件渲染
+        </h2>
+      <ul>
+<li><code>v-if</code> 指令用于条件性地渲染一块内容</li>
+<li>只会在指令的表达式返回 <code>truthy</code> 值的时候被渲染</li>
+<li>也可以用 <code>v-else</code> 添加一个“else 块”</li>
+<li>可在 <template> 元素上使用 v-if 条件渲染分组</li>
+<li><code>v-else-if</code>充当 v-if 的“else-if 块”，可以连续使用</li>
+<li><code>v-else</code> 元素必须紧跟在带 <code>v-if</code> 或者 <code>v-else-if</code> 的元素的后面，否则它将不会被识别。</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>awesome<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Vue is awesome!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">v-else</span><span class="token punctuation">></span></span>Oh no 😢<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ok<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Paragraph 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Paragraph 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>type <span class="token punctuation">=</span><span class="token punctuation">=</span><span class="token punctuation">=</span> <span class="token punctuation">'</span>A<span class="token punctuation">'</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  A
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-else-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>type <span class="token punctuation">=</span><span class="token punctuation">=</span><span class="token punctuation">=</span> <span class="token punctuation">'</span>B<span class="token punctuation">'</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  B
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-else-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>type <span class="token punctuation">=</span><span class="token punctuation">=</span><span class="token punctuation">=</span> <span class="token punctuation">'</span>C<span class="token punctuation">'</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  C
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-else</span><span class="token punctuation">></span></span>
+  Not A/B/C
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="%E7%94%A8-key-%E7%AE%A1%E7%90%86%E5%8F%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E5%85%83%E7%B4%A0" class="docs-header-link">
+          <span header-link="%E7%94%A8-key-%E7%AE%A1%E7%90%86%E5%8F%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E5%85%83%E7%B4%A0"></span>
+          用 key 管理可复用的元素
+        </h3>
+      <ul>
+<li>vuejs默认会尽量复用已有元素，而不是从头开始渲染，创建新的元素</li>
+<li>当不想复用已有元素时，可给元素的<code>key</code>属性添加唯一值</li>
+</ul>
+
+        <h3 id="v-show" class="docs-header-link">
+          <span header-link="v-show"></span>
+          v-show
+        </h3>
+      <ul>
+<li>另一个用于根据条件展示元素的选项，和<code>v-if</code>用法类似</li>
+<li>不同的是带有 <code>v-show</code> 的元素<strong>始终</strong>会被渲染并保留在 DOM 中。</li>
+<li><code>v-show</code> 只是简单地切换元素的 CSS property <code>display</code>。</li>
+<li><code>v-show</code> 不支持 <code>&lt;template&gt;</code> 元素，也不支持 <code>v-else</code></li>
+<li><code>v-if</code> VS <code>v-show</code><ol>
+<li><code>v-if</code> 是“真正”的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建</li>
+<li><code>v-if</code> 也是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。</li>
+<li><code>v-show</code>不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS 进行切换。</li>
+<li><code>v-if</code> 有更高的切换开销，而 <code>v-show</code> 有更高的初始渲染开销</li>
+<li>如果需要非常频繁地切换，则使用 <code>v-show</code> 较好；如果在运行时条件很少改变，则使用 <code>v-if</code> 较好</li>
+</ol>
+</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-show</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>type <span class="token punctuation">=</span><span class="token punctuation">=</span><span class="token punctuation">=</span> <span class="token punctuation">'</span>A<span class="token punctuation">'</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  A
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="v-if%E5%92%8Cv-for%E4%B8%80%E8%B5%B7%E4%BD%BF%E7%94%A8" class="docs-header-link">
+          <span header-link="v-if%E5%92%8Cv-for%E4%B8%80%E8%B5%B7%E4%BD%BF%E7%94%A8"></span>
+          v-if和v-for一起使用
+        </h3>
+      <ul>
+<li>不推荐同时使用 <code>v-if</code> 和 <code>v-for</code></li>
+<li>当 <code>v-if</code> 与 <code>v-for</code> 一起使用时，<code>v-for</code> 具有比 <code>v-if</code> 更高的优先级</li>
+</ul>
+
+        <h2 id="v-for%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93" class="docs-header-link">
+          <span header-link="v-for%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93"></span>
+          v-for列表渲染
+        </h2>
+      <ul>
+<li><code>v-for</code> 指令时基于一个数组来渲染一个列表</li>
+<li>需要使用 <code>item in items</code> 形式的特殊语法，其中 <code>items</code> 是源数据数组，而 <code>item</code> 则是被迭代的数组元素的别名</li>
+<li><code>v-for</code> 块中，可以访问所有父作用域的 property</li>
+<li>还支持一个可选的第二个参数，即当前项的索引</li>
+<li>可以用 <code>of</code> 替代 <code>in</code> 作为分隔符，因为它更接近 JavaScript 迭代器的语法</li>
+<li><code>v-for</code> 也可以接受整数。在这种情况下，它会把模板重复对应次数</li>
+<li>可以利用带有 <code>v-for</code> 的 <code>&lt;template&gt;</code> 来循环渲染一段包含多个元素的内容</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>example-1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(item, index) in items<span class="token punctuation">"</span></span> <span class="token attr-name">:key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item.message<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    {{ item.message }} - {{ index }}
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item of items<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>n in 10<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{ n }} <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item in items<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>{{ item.msg }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>divider<span class="token punctuation">"</span></span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>presentation<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="v-for%E9%87%8C%E4%BD%BF%E7%94%A8%E5%AF%B9%E8%B1%A1" class="docs-header-link">
+          <span header-link="v-for%E9%87%8C%E4%BD%BF%E7%94%A8%E5%AF%B9%E8%B1%A1"></span>
+          v-for里使用对象
+        </h3>
+      <ul>
+<li>用 <code>v-for</code> 来遍历一个对象的 property</li>
+<li>提供第二个的参数为 property 名称 (也就是键名)</li>
+<li>第三个参数为索引。遍历对象时，会按 <code>Object.keys()</code> 的结果遍历，但是不能保证它的结果在不同的 JavaScript 引擎下都一致。</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>v-for-object<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>demo<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(value, name, index) in object<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    {{ index }}.{{ name }}: {{ value }}
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="%E7%BB%B4%E6%8A%A4%E7%8A%B6%E6%80%81" class="docs-header-link">
+          <span header-link="%E7%BB%B4%E6%8A%A4%E7%8A%B6%E6%80%81"></span>
+          维护状态
+        </h3>
+      <ul>
+<li>使用 <code>v-for</code> 渲染的元素列表时，它默认使用“就地更新”的策略。如果数据项的顺序被改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序，而是就地更新每个元素，并且确保它们在每个索引位置正确渲染</li>
+<li>这个默认的模式是高效的，但是<strong>只适用于不依赖子组件状态或临时 DOM 状态 (例如：表单输入值) 的列表渲染输出</strong></li>
+<li>为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一 <code>key</code> attribute</li>
+<li>建议尽可能在使用 <code>v-for</code> 时提供 <code>key</code> attribute，<strong>除非</strong>遍历输出的 DOM 内容非常简单，或者是<strong>刻意</strong>依赖默认行为以获取性能上的提升。</li>
+<li>提供 <code>key</code> attribute是 Vue 识别节点的一个通用机制，key 并不仅与 v-for 特别关联</li>
+</ul>
+
+        <h2 id="%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86" class="docs-header-link">
+          <span header-link="%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86"></span>
+          事件处理
+        </h2>
+      <ul>
+<li>监听事件: 可用<code>v-on</code>指令监听dom事件，并在触发时运行一些js代码</li>
+<li>事件处理方法：<code>v-on</code> 还可以接收一个需要调用的方法名称</li>
+<li>内联处理器中的方法：也可以在内联 JavaScript 语句中调用方法。有时也需要在内联语句处理器中访问原始的 DOM 事件。可以用特殊变量 <code>$event</code> 把它传入方法</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>example-1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name"><span class="token namespace">v-on:</span>click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>counter +<span class="token punctuation">=</span> 1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Add 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>The button above has been clicked {{ counter }} times.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>example-2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token comment" spellcheck="true">&lt;!-- `greet` 是在js中定义的方法名 --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name"><span class="token namespace">v-on:</span>click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>greet<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Greet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name"><span class="token namespace">v-on:</span>click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>warn(<span class="token punctuation">'</span>Form cannot be submitted yet.<span class="token punctuation">'</span>, $event)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  Submit
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="%E4%BA%8B%E4%BB%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6" class="docs-header-link">
+          <span header-link="%E4%BA%8B%E4%BB%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6"></span>
+          事件修饰符
+        </h3>
+      <ul>
+<li>方法只有纯粹的数据逻辑，而不是去处理 DOM 事件细节。</li>
+<li>为此，vuejs提供了事件修饰符。修饰符是由点开头的指令后缀来表示的：<code>.stop</code>,<code>.prevent</code>,<code>.capture</code>,<code>.self</code>,<code>.once</code>,<code>.passive</code></li>
+<li>使用修饰符时，顺序很重要；相应的代码会以同样的顺序产生。比如用 <code>v-on:click.prevent.self</code> 会阻止所有的点击，而 <code>v-on:click.self.prevent</code> 只会阻止对元素自身的点击。</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token comment" spellcheck="true">&lt;!-- 阻止单击事件继续传播 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name"><span class="token namespace">v-on:</span>click.stop</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>doThis<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- 提交事件不再重载页面 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name"><span class="token namespace">v-on:</span>submit.prevent</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>onSubmit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- 修饰符可以串联 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name"><span class="token namespace">v-on:</span>click.stop.prevent</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>doThat<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- 只有修饰符 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name"><span class="token namespace">v-on:</span>submit.prevent</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- 添加事件监听器时使用事件捕获模式 --></span>
+<span class="token comment" spellcheck="true">&lt;!-- 即内部元素触发的事件先在此处理，然后才交由内部元素进行处理 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name"><span class="token namespace">v-on:</span>click.capture</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>doThis<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- 只当在 event.target 是当前元素自身时触发处理函数 --></span>
+<span class="token comment" spellcheck="true">&lt;!-- 即事件不是从内部元素触发的 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name"><span class="token namespace">v-on:</span>click.self</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>doThat<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="%E6%8C%89%E9%94%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6" class="docs-header-link">
+          <span header-link="%E6%8C%89%E9%94%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6"></span>
+          按键修饰符
+        </h3>
+      <ul>
+<li>Vue 允许为 <code>v-on</code> 在监听键盘事件时添加按键修饰符：</li>
+<li>可直接将 <code>KeyboardEvent.key</code> 暴露的任意有效按键名转换为 <code>kebab-case</code> 来作为修饰符</li>
+<li>通过全局 <code>config.keyCodes</code> 对象自定义按键修饰符别名</li>
+<li>按键码别名：<code>.enter</code>,<code>.tab</code>,<code>.delete</code> (捕获“删除”和“退格”键),<code>.esc</code>,<code>.space</code>,<code>.up</code>,<code>.down</code>,<code>.left</code>,<code>.right</code></li>
+<li>可以用这些修饰符来实现：<strong>仅在</strong>按下相应按键时，才触发鼠标或键盘事件的监听器：<code>.ctrl</code>,<code>.alt</code>,<code>.shift</code>,<code>.meta</code>.</li>
+<li>在 Mac 系统键盘上，<code>meta</code> 对应 <code>command</code> 键 (⌘)。在 Windows 系统键盘 <code>meta</code> 对应 <code>Windows</code> 徽标键 (⊞)。在 Sun 操作系统键盘上，<code>meta</code> 对应<code>实心宝石键</code> (◆)。在其他特定键盘上，尤其在 MIT 和 Lisp 机器的键盘、以及其后继产品，比如 Knight 键盘、space-cadet 键盘，meta 被标记为“META”。在 Symbolics 键盘上，meta 被标记为“META”或者“Meta”</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token comment" spellcheck="true">&lt;!-- 只有在 `key` 是 `Enter` 时调用 `vm.submit()` --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name"><span class="token namespace">v-on:</span>keyup.enter</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name"><span class="token namespace">v-on:</span>keyup.page-down</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>onPageDown<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- Alt + C --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name"><span class="token namespace">v-on:</span>keyup.alt.67</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>clear<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- Ctrl + Click --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name"><span class="token namespace">v-on:</span>click.ctrl</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>doSomething<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Do something<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="-exact-%E4%BF%AE%E9%A5%B0%E7%AC%A6" class="docs-header-link">
+          <span header-link="-exact-%E4%BF%AE%E9%A5%B0%E7%AC%A6"></span>
+          .exact 修饰符
+        </h3>
+      <ul>
+<li><code>.exact</code> 修饰符允许你控制由<strong>精确</strong>的系统修饰符组合触发的事件</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token comment" spellcheck="true">&lt;!-- 即使 Alt 或 Shift 被一同按下时也会触发 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name"><span class="token namespace">v-on:</span>click.ctrl</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>onClick<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>A<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- 有且只有 Ctrl 被按下的时候才触发 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name"><span class="token namespace">v-on:</span>click.ctrl.exact</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>onCtrlClick<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>A<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- 没有任何系统修饰符被按下的时候才触发 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name"><span class="token namespace">v-on:</span>click.exact</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>onClick<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>A<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="%E9%BC%A0%E6%A0%87%E6%8C%89%E9%92%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6" class="docs-header-link">
+          <span header-link="%E9%BC%A0%E6%A0%87%E6%8C%89%E9%92%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6"></span>
+          鼠标按钮修饰符
+        </h3>
+      <ul>
+<li><code>.left</code>,<code>.right</code>,<code>.middle</code>。这些修饰符会限制处理函数仅响应特定的鼠标按钮</li>
+</ul>

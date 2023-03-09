@@ -1,0 +1,45 @@
+
+        <h2 id="%E5%B1%85%E4%B8%AD%E6%98%BE%E7%A4%BA%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%B7%E5%BC%8F" class="docs-header-link">
+          <span header-link="%E5%B1%85%E4%B8%AD%E6%98%BE%E7%A4%BA%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%B7%E5%BC%8F"></span>
+          居中显示的几种样式
+        </h2>
+      
+        <h2 id="flex" class="docs-header-link">
+          <span header-link="flex"></span>
+          flex
+        </h2>
+      <pre class="language-css"><code class="language-css"><div><span class="token selector"><span class="token class">.wrapper</span></span><span class="token punctuation">{</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+    <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+    <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></div></code></pre>
+
+        <h2 id="absolute-+-auto-margin" class="docs-header-link">
+          <span header-link="absolute-+-auto-margin"></span>
+          absolute + auto margin
+        </h2>
+      <pre class="language-css"><code class="language-css"><div><span class="token selector"><span class="token class">.father</span> </span><span class="token punctuation">{</span>
+    <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector"><span class="token class">.son</span> </span><span class="token punctuation">{</span>
+    <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+    <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token property">left</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token property">bottom</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token property">right</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></div></code></pre>
+
+        <h2 id="absolute-+-transform" class="docs-header-link">
+          <span header-link="absolute-+-transform"></span>
+          absolute + transform
+        </h2>
+      <pre class="language-css"><code class="language-css"><div><span class="token selector"><span class="token class">.father</span> </span><span class="token punctuation">{</span>
+    <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector"><span class="token class">.son</span> </span><span class="token punctuation">{</span>
+    <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+    <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">50%</span><span class="token punctuation">;</span>
+    <span class="token property">left</span><span class="token punctuation">:</span> <span class="token number">50%</span><span class="token punctuation">;</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translate</span><span class="token punctuation">(</span>-<span class="token number">50%</span>, -<span class="token number">50%</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></div></code></pre>

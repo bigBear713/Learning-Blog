@@ -1,0 +1,15 @@
+
+        <h2 id="partial" class="docs-header-link">
+          <span header-link="partial"></span>
+          Partial
+        </h2>
+      <ul>
+<li>将原始类型中的属性变成可选属性</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div><span class="token keyword">interface</span> <span class="token class-name">IUser</span><span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span><span class="token keyword">string</span><span class="token punctuation">;</span>
+    sex<span class="token punctuation">:</span><span class="token keyword">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+type MyUser <span class="token operator">=</span> Partial<span class="token operator">&lt;</span>IUser<span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 此时，MyUser中的name，sex都变成可选属性</span></div></code></pre>

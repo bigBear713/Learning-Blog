@@ -1,0 +1,640 @@
+
+        <h2 id="%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B" class="docs-header-link">
+          <span header-link="%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B"></span>
+          变量类型
+        </h2>
+      <ul>
+<li>js中变量类型分为两种: <code>原始类型</code>和<code>引用类型</code>.</li>
+</ul>
+
+        <h2 id="%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%EF%BC%88%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%89" class="docs-header-link">
+          <span header-link="%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%EF%BC%88%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%89"></span>
+          原始类型（基本数据类型）
+        </h2>
+      <ul>
+<li>值是原始值，不可改变。每一次操作，其实都是创建新的变量值。</li>
+<li>值存储在<code>栈</code>中。</li>
+<li>类型包括：<ol>
+<li><code>undefined</code>，只包含一个值:undefined</li>
+<li><code>null</code>，只包含一个值：null</li>
+<li><code>boolean</code>，只包含true和false</li>
+<li><code>string</code>，一串表示文本值的字符串</li>
+<li><code>number</code>，包含整数和浮点数，以及一些特殊的字符：<code>-Infinity</code>，<code>+Infiniti</code>,<code>NaN</code></li>
+<li><code>Symbol</code>(es6)，一种实例是唯一，且不可改变的数据类型</li>
+<li><code>bigInt</code>(es10)，一种可操作超大数字的数据类型，目前在chrome中已支持</li>
+</ol>
+</li>
+</ul>
+
+        <h2 id="%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B(%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B)" class="docs-header-link">
+          <span header-link="%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B(%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B)"></span>
+          引用类型(对象类型)
+        </h2>
+      <ul>
+<li>实际的值是存储在<code>堆</code>中，<code>栈</code>中存储的其实是指向<code>堆</code>中实际值的内存地址</li>
+<li>类型是<code>Object</code>，具体还可包括<code>Object</code>，<code>Array</code>，<code>Date</code>，<code>Function</code>等</li>
+</ul>
+
+        <h2 id="%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%AB" class="docs-header-link">
+          <span header-link="%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%AB"></span>
+          原始类型和引用类型的区别
+        </h2>
+      <ul>
+<li>栈内存：存储的值长度固定，空间较小，可以直接操作保存的值，运行效率高，系统自动分配存储空间</li>
+<li>堆内存：存储的值的长度不固定，可动态调整，空间较大，运行效率较低，无法直接操作其内部存储值，需要通过引用地址读取，通过代码分配存储空间</li>
+</ul>
+
+        <h3 id="%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%80%A7" class="docs-header-link">
+          <span header-link="%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%80%A7"></span>
+          不可变性
+        </h3>
+      <ul>
+<li>原始类型的值是直接存在<code>栈内存</code>中，值具有不可变性。每一次操作，都是创建新的值，再将变量指向它。</li>
+<li>引用类型的实际值是存在<code>堆内存</code>中，<code>栈内存</code>中存储的是指向堆内存中的值的内存地址。所以当多个变量指向同一内存地址时，通过其中一个变量操作引用类型的值，通过另一个变量读取时，得到的是改变后的值</li>
+</ul>
+
+        <h3 id="%E5%A4%8D%E5%88%B6" class="docs-header-link">
+          <span header-link="%E5%A4%8D%E5%88%B6"></span>
+          复制
+        </h3>
+      <ul>
+<li>新建一个变量，复制一个原始类型的值时，其实是在<code>栈内存</code>中创建了一个具有相同值的新值，再将新变量指向这个新值。所以对于原始类型变量，复制时，两个变量其实指向的是不同份数据，只是数据的值相同</li>
+<li>新建一个变量，复制一个引用类型的值时，其实是在<code>栈内存</code>中创建一个具有相同内存地址的新值，同样是指向<code>堆内存</code>中的值的内存地址，再将新变量指向这个新值。所以对于引用类型变量，复制时，两个变量其实指向的是同一份数据</li>
+</ul>
+
+        <h3 id="%E6%AF%94%E8%BE%83" class="docs-header-link">
+          <span header-link="%E6%AF%94%E8%BE%83"></span>
+          比较
+        </h3>
+      <ul>
+<li>两个原始类型的变量比较时，比较的是值。只要值相等，这两个变量就相等。</li>
+<li>两个引用类型的变量比较时，比较的是内存地址。只要内存地址相等，它们就是相等的。如果内存地址不相等，就算它们的结构和值都一样，也是不相等的。</li>
+</ul>
+
+        <h3 id="%E5%80%BC%E4%BC%A0%E9%80%92" class="docs-header-link">
+          <span header-link="%E5%80%BC%E4%BC%A0%E9%80%92"></span>
+          值传递
+        </h3>
+      <ul>
+<li>调用函数传参时，都是值传递，不存在引用传递。</li>
+<li>对于原始数据类型，传参时，是将值传递进去。因为原始类型的值具有不可变性，所以传到函数中的值其实是一个新值，因此对传进去的变量进行各种操作，都不会影响原来的值</li>
+<li>对于引用类型数据，传参时，是将指向实际值的内存地址传进去，所以函数内得到的值同样是指向<code>堆内存</code>中的那一份值。</li>
+</ul>
+
+        <h2 id="null%E5%92%8Cundefined" class="docs-header-link">
+          <span header-link="null%E5%92%8Cundefined"></span>
+          null和undefined
+        </h2>
+      
+        <h3 id="null" class="docs-header-link">
+          <span header-link="null"></span>
+          null
+        </h3>
+      <ul>
+<li>null表示有值，变量已经被赋值，这个值就是null</li>
+<li>null转为数字是<code>0</code></li>
+</ul>
+
+        <h3 id="undefined" class="docs-header-link">
+          <span header-link="undefined"></span>
+          undefined
+        </h3>
+      <ul>
+<li>undefined表示没值，变量还没被赋值</li>
+<li>undefined转为数字时是<code>NaN</code></li>
+</ul>
+
+        <h2 id="symbol" class="docs-header-link">
+          <span header-link="symbol"></span>
+          Symbol
+        </h2>
+      <ul>
+<li>创建时是像函数一样调用，而不是通过<code>new</code></li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// right</span>
+<span class="token keyword">let</span> b <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Symbol</span><span class="token punctuation">(</span><span class="token string">'b'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// wrong</span></div></code></pre>
+
+        <h3 id="%E5%94%AF%E4%B8%80%E6%80%A7" class="docs-header-link">
+          <span header-link="%E5%94%AF%E4%B8%80%E6%80%A7"></span>
+          唯一性
+        </h3>
+      <ul>
+<li>Symbol变量具有唯一性，就算通过相同字符串创建的两个Symbol变量也是不相等的。</li>
+<li>如果想让两个Symbol变量相等，创建时应调用<code>Symbol.for(key)</code>方法, 因为这个方法会优先查找是否存在这样一个Symbol值，有的话返回，没有的话创建</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//  false</span>
+
+Symbol<span class="token punctuation">.</span><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span> <span class="token operator">===</span> Symbol<span class="token punctuation">.</span><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span></div></code></pre>
+
+        <h3 id="%E4%B8%8D%E5%8F%AF%E6%9E%9A%E4%B8%BE" class="docs-header-link">
+          <span header-link="%E4%B8%8D%E5%8F%AF%E6%9E%9A%E4%B8%BE"></span>
+          不可枚举
+        </h3>
+      <ul>
+<li>将Symbol值作为Object的属性时，无法通过<code>Object.keys()</code>，<code>Object.getOwnPropertyNames()</code>等获取到，也无法通过<code>for...in</code>将其枚举出来</li>
+<li>可以使用专门的函数方法<code>Object.getOwnPropertySymbols()</code></li>
+</ul>
+
+        <h3 id="%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF" class="docs-header-link">
+          <span header-link="%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"></span>
+          应用场景
+        </h3>
+      <ul>
+<li>防止<code>xxs</code>攻击。假设服务器允许用户存储任何JSON对象，但客户端代码需要一个字符串，这可能导致问题发生。而JSON中不能存储Symbol类型变量，可以有效防止xss攻击。</li>
+<li>私有属性。因为Symbol变量无法被枚举，所以可以利用其定义私有属性，避免被外部读取</li>
+<li>防止属性污染。因为Symbol变量具有唯一性，所以可以避免属性被覆盖</li>
+</ul>
+
+        <h2 id="number" class="docs-header-link">
+          <span header-link="number"></span>
+          Number
+        </h2>
+      
+        <h3 id="%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1" class="docs-header-link">
+          <span header-link="%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1"></span>
+          精度丢失
+        </h3>
+      <ul>
+<li>数字计算时，先换算成<code>二进制</code>计算，然后再转成<code>十进制</code>。</li>
+<li>小数在转成二进制计算时发生精度丢失，导致转成十进制时结果也不准确</li>
+<li>js使用64位双精度浮点数编码，其中<code>符号位</code>占<code>1</code>位，<code>指数位</code>占<code>11</code>位，<code>尾数位</code>占<code>53</code>位。<ol>
+<li><code>符号位</code>：标识正负，1表示正，0表负</li>
+<li><code>指数位</code>：存储科学计数法的指数</li>
+<li><code>位数法</code>: 存储科学计数法后的有效数字</li>
+</ol>
+</li>
+<li>计算时，当结果超过53位时，超出部分无法存储，此时遵循的原则：如果第54位是<code>1</code>，就向前进<code>1</code>位，如果是<code>0</code>则舍弃。而<code>0.1+0.2</code>的结果就是一个超过53位的结果，遵循原则后导致结果不准确</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token comment" spellcheck="true">// 0.1的二进制</span>
+<span class="token number">0.0001100110011001100110011001100110011001100110011001101</span>
+<span class="token comment" spellcheck="true">// 0.2的二进制</span>
+<span class="token number">0.001100110011001100110011001100110011001100110011001101</span>
+
+<span class="token comment" spellcheck="true">// 计算后的结果理论上应该是</span>
+<span class="token number">0.0100110011001100110011001100110011001100110011001100111</span>
+<span class="token comment" spellcheck="true">// 遵循原则后的结果,因为后3位数字被处理，进1了</span>
+<span class="token number">0.0100110011001100110011001100110011001100110011001101</span></div></code></pre>
+
+        <h3 id="js%E8%83%BD%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0" class="docs-header-link">
+          <span header-link="js%E8%83%BD%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0"></span>
+          js能表示的最大数
+        </h3>
+      <ul>
+<li><code>指数位</code>能表示的最大数的十进制的值是<code>1023</code>，即二进制下的11位1</li>
+<li><code>尾数位</code>能表示的最大数即53位1</li>
+<li>js能表示的最大数为<code>1.11111......</code>*2的1023次方，即<code>Number.MAX_VALUE</code></li>
+<li><code>Number.MAX_SAFE_INTEGER</code>为js能表示的最大安全整数，在这个范围内不会发生精度丢失问题，这个数实际上是<code>1.11111</code>*2的52次方</li>
+<li>es10中，使用<code>bigInt</code>可以操作大于最大安全整数的数字</li>
+</ul>
+
+        <h2 id="%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B" class="docs-header-link">
+          <span header-link="%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B"></span>
+          包装类型
+        </h2>
+      <ul>
+<li><code>String</code>，<code>Boolean</code>，<code>Number</code>等也是引用类型，同时又被称为<code>包装类型</code></li>
+<li>是为了更方便的操作基本类型而存在，与<code>string</code>，<code>boolean</code>，<code>number</code>等一一对应</li>
+</ul>
+
+        <h3 id="%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%AB" class="docs-header-link">
+          <span header-link="%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%AB"></span>
+          基本类型和包装类型的区别
+        </h3>
+      <ul>
+<li>生命周期不同。</li>
+<li>基本类型只存在一行代码的执行瞬间，然后会立即被销毁释放。因此无法在运行时给基本类型添加属性和方法</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token string">'color'</span><span class="token punctuation">;</span>
+str<span class="token punctuation">.</span>color<span class="token operator">=</span><span class="token string">'red'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span>color<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// undefined</span></div></code></pre>
+<ul>
+<li>包装类型则在执行流离开当前作用域之前，实例会一直存在于内存中。</li>
+<li>包装类型的实例是使用<code>new</code>操作符创建。</li>
+</ul>
+
+        <h3 id="%E8%A3%85%E7%AE%B1%E5%92%8C%E6%8B%86%E7%AE%B1" class="docs-header-link">
+          <span header-link="%E8%A3%85%E7%AE%B1%E5%92%8C%E6%8B%86%E7%AE%B1"></span>
+          装箱和拆箱
+        </h3>
+      
+        <h4 id="%E8%A3%85%E7%AE%B1" class="docs-header-link">
+          <span header-link="%E8%A3%85%E7%AE%B1"></span>
+          装箱
+        </h4>
+      <ul>
+<li>装箱：将基本类型转成包装类型</li>
+<li>每当<code>操作</code>一个基本类型变量时，会自动生成一个包装类型的对象实例。调用方法和属性时，其实调用的是该基本类型变量对应的包装类型的对象实例上的方法和属性</li>
+</ul>
+
+        <h4 id="%E6%8B%86%E7%AE%B1" class="docs-header-link">
+          <span header-link="%E6%8B%86%E7%AE%B1"></span>
+          拆箱
+        </h4>
+      <ul>
+<li>拆箱：将包装类型转成基本类型</li>
+<li>转化过程中，遵循ECMAScript规定的<code>toPrimitive</code>原则，一般会调用引用类型的<code>valueOf</code>和<code>toString</code>方法，我们也可以重写<code>toPrimitive</code>方法。</li>
+<li>一般转换成不同类型的值遵循的规则不同<ol>
+<li>包装类型转成<code>number</code>类型时，先调用<code>valueOf</code>方法，再调用<code>toString</code>方法</li>
+<li>包装类型转成<code>string</code>类型时，先调用<code>toString</code>方法，再调用<code>valueOf</code>方法</li>
+</ol>
+</li>
+<li>如果<code>valueOf</code>和<code>toString</code>都不存在，或者都没有返回基本类型，会报<code>TypeError</code>错误</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+  valueOf<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'call valueOf'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">return</span> <span class="token number">123</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  toString<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'call toString'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">return</span> <span class="token string">'object string'</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// call valueOf 122</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token operator">+</span><span class="token string">'!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// call toString object string!</span>
+
+<span class="token keyword">const</span> obj2 <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>toPrimitive<span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'call toPrimitive'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span> <span class="token number">123</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj2<span class="token number">-1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// call toPrimitive 122</span></div></code></pre>
+
+        <h2 id="%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2" class="docs-header-link">
+          <span header-link="%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"></span>
+          类型转换
+        </h2>
+      <ul>
+<li>js是弱语言类型，类型转化容易且频繁。</li>
+<li>装箱和拆箱就是一种类型转换</li>
+<li>类型转化分为<code>隐式转换</code>和<code>强制转换</code><ol>
+<li><code>隐式转换</code>是客户端自动进行的类型转换</li>
+<li><code>强制转换</code>是开发人员手动进行的类型转换</li>
+</ol>
+</li>
+</ul>
+
+        <h3 id="%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E8%A7%84%E5%88%99" class="docs-header-link">
+          <span header-link="%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E8%A7%84%E5%88%99"></span>
+          类型转换规则
+        </h3>
+      <table>
+<thead>
+<tr>
+<th>转换前类型</th>
+<th>转换前值</th>
+<th>转为Boolean后的值</th>
+<th>转为Number后的值</th>
+<th>转为String后的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Boolean</td>
+<td>true</td>
+<td>-</td>
+<td>1</td>
+<td>&#39;true&#39;</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>false</td>
+<td>-</td>
+<td>0</td>
+<td>&#39;fase&#39;</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>1</td>
+<td>true</td>
+<td>-</td>
+<td>&#39;1&#39;</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>0</td>
+<td>false</td>
+<td>-</td>
+<td>&#39;0&#39;</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>Infinity</td>
+<td>true</td>
+<td>-</td>
+<td>&#39;Infinity&#39;</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>NaN</td>
+<td>false</td>
+<td>-</td>
+<td>&#39;NaN&#39;</td>
+</tr>
+<tr>
+<td>String</td>
+<td>&#39;&#39;</td>
+<td>false</td>
+<td>0</td>
+<td>-</td>
+</tr>
+<tr>
+<td>String</td>
+<td>&#39;123&#39;</td>
+<td>true</td>
+<td>123</td>
+<td>-</td>
+</tr>
+<tr>
+<td>String</td>
+<td>&#39;123abc&#39;</td>
+<td>true</td>
+<td>NaN</td>
+<td>-</td>
+</tr>
+<tr>
+<td>String</td>
+<td>&#39;abc&#39;</td>
+<td>true</td>
+<td>NaN</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Symbol</td>
+<td>Symbol()</td>
+<td>true</td>
+<td>TypeError</td>
+<td>TypeError</td>
+</tr>
+<tr>
+<td>Null</td>
+<td>null</td>
+<td>false</td>
+<td>0</td>
+<td>&#39;null&#39;</td>
+</tr>
+<tr>
+<td>Undefined</td>
+<td>undefined</td>
+<td>false</td>
+<td>NaN</td>
+<td>&#39;undefined&#39;</td>
+</tr>
+<tr>
+<td>Function</td>
+<td>function(){}</td>
+<td>true</td>
+<td>NaN</td>
+<td>&#39;function(){}&#39;</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>{}</td>
+<td>true</td>
+<td>NaN</td>
+<td>&#39;{}&#39;</td>
+</tr>
+<tr>
+<td>Array</td>
+<td>[]</td>
+<td>true</td>
+<td>0</td>
+<td>&#39;&#39;</td>
+</tr>
+<tr>
+<td>Array</td>
+<td>[&#39;abc&#39;]</td>
+<td>true</td>
+<td>NaN</td>
+<td>&#39;abc&#39;</td>
+</tr>
+<tr>
+<td>Array</td>
+<td>[&#39;abc&#39;,&#39;123&#39;]</td>
+<td>true</td>
+<td>NaN</td>
+<td>&#39;abc,123&#39;</td>
+</tr>
+</tbody></table>
+
+        <h3 id="if%E8%AF%AD%E5%8F%A5%E5%92%8C%E9%80%BB%E8%BE%91%E8%AF%AD%E5%8F%A5" class="docs-header-link">
+          <span header-link="if%E8%AF%AD%E5%8F%A5%E5%92%8C%E9%80%BB%E8%BE%91%E8%AF%AD%E5%8F%A5"></span>
+          if语句和逻辑语句
+        </h3>
+      <ul>
+<li>在if语句和逻辑语句中，如果只是单个变量，都会先被转成<code>Boolean</code>类型</li>
+<li>值基本都是转成<code>true</code></li>
+<li>只有这几种情况值会被转成<code>false</code>：<code>&#39;&#39;</code>，<code>0</code>，<code>NaN</code>，<code>null</code>，<code>undefined</code>，<code>false</code></li>
+</ul>
+
+        <h3 id="%E5%90%84%E7%A7%8D%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97%E7%AC%A6" class="docs-header-link">
+          <span header-link="%E5%90%84%E7%A7%8D%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97%E7%AC%A6"></span>
+          各种数学运算符
+        </h3>
+      <ul>
+<li>在对各种非<code>number</code>类型变量使用数学运算符（-,*,/）时，会先将变量值转成<code>Number</code>类型</li>
+<li>运算符<code>+</code>是个例外，因为它对于字符串也有特殊含义。<ol>
+<li>当其中一方是<code>string</code>类型时，作为字符串拼接处理，优先将另一方转为<code>String</code>处理</li>
+<li>当其中一方是<code>number</code>类型，且另一方是除<code>string</code>外的其它原始类型时，将原始类型变量转为<code>Number</code>处理</li>
+<li>当其中一方是<code>number</code>类型，且另一方是引用类型时，会将<code>number</code>类型和引用类型都转成<code>String</code>类型后拼接处理</li>
+</ol>
+</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token number">123</span><span class="token operator">+</span><span class="token string">'abc'</span> <span class="token operator">=</span> <span class="token string">'123abc'</span>
+<span class="token number">123</span><span class="token operator">+</span><span class="token boolean">true</span> <span class="token operator">=</span> <span class="token number">124</span>
+<span class="token number">123</span><span class="token operator">+</span><span class="token keyword">null</span> <span class="token operator">=</span> <span class="token number">123</span>
+<span class="token number">123</span><span class="token operator">+</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token string">'123[object Object]'</span>
+<span class="token number">123</span><span class="token operator">+</span><span class="token punctuation">[</span><span class="token number">123</span><span class="token punctuation">,</span><span class="token string">'abc'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'123123,abc'</span></div></code></pre>
+
+        <h3 id="==" class="docs-header-link">
+          <span header-link="=="></span>
+          ==
+        </h3>
+      <ul>
+<li>使用<code>==</code>时，如果两侧的类型相同，结果和<code>===</code>一样</li>
+<li>如果两侧类型不同，会发生隐式转换</li>
+</ul>
+
+        <h4 id="nan" class="docs-header-link">
+          <span header-link="nan"></span>
+          NaN
+        </h4>
+      <ul>
+<li>NaN和任何值比较都是<code>false</code>，包括它自己</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token number">NaN</span><span class="token operator">==</span><span class="token number">NaN</span> <span class="token comment" spellcheck="true">// false</span></div></code></pre>
+
+        <h4 id="boolean" class="docs-header-link">
+          <span header-link="boolean"></span>
+          Boolean
+        </h4>
+      <ul>
+<li>Boolean和其它类型比较，Boolean首先转成<code>Number</code>类型</li>
+<li>Boolean中的<code>false</code>和<code>null</code>，<code>undefined</code>比较的结果是<code>false</code>，因为<code>false</code>先被转成<code>Number</code>的<code>0</code>，即最后是<code>null</code>,<code>undefined</code>和<code>0</code>的比较</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token boolean">true</span> <span class="token operator">==</span> <span class="token number">1</span> <span class="token comment" spellcheck="true">// true</span>
+<span class="token boolean">true</span> <span class="token operator">==</span> <span class="token number">2</span> <span class="token comment" spellcheck="true">// false</span>
+<span class="token boolean">false</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token comment" spellcheck="true">// true</span>
+<span class="token boolean">false</span> <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token comment" spellcheck="true">// false</span>
+<span class="token boolean">true</span> <span class="token operator">==</span> <span class="token punctuation">[</span><span class="token string">'1'</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true">// true</span>
+<span class="token boolean">true</span> <span class="token operator">==</span> <span class="token string">'2'</span> <span class="token comment" spellcheck="true">// false</span>
+<span class="token boolean">true</span> <span class="token operator">==</span> <span class="token punctuation">[</span><span class="token string">'2'</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true">// false</span>
+
+<span class="token keyword">null</span> <span class="token operator">==</span> <span class="token boolean">false</span> <span class="token comment" spellcheck="true">// false</span>
+undefined <span class="token operator">==</span> <span class="token boolean">false</span> <span class="token comment" spellcheck="true">// false</span></div></code></pre>
+
+        <h4 id="string%E5%92%8Cnumber" class="docs-header-link">
+          <span header-link="string%E5%92%8Cnumber"></span>
+          String和Number
+        </h4>
+      <ul>
+<li><code>String</code>和<code>Number</code>比较时，先将<code>String</code>转成<code>Number</code>再进行比较</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token number">123</span> <span class="token operator">==</span> <span class="token string">'123'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span>
+<span class="token string">''</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span></div></code></pre>
+
+        <h4 id="null%E5%92%8Cundefined" class="docs-header-link">
+          <span header-link="null%E5%92%8Cundefined"></span>
+          null和undefined
+        </h4>
+      <ul>
+<li><code>null</code>, <code>undefined</code>除了彼此比较时为<code>true</code>外，和其它类型比较都是false</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">null</span> <span class="token operator">==</span> undefined <span class="token comment" spellcheck="true">// true</span>
+<span class="token keyword">null</span> <span class="token operator">==</span> <span class="token string">''</span> <span class="token comment" spellcheck="true">// false</span>
+<span class="token keyword">null</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token comment" spellcheck="true">// false</span>
+<span class="token keyword">null</span> <span class="token operator">==</span> <span class="token boolean">false</span> <span class="token comment" spellcheck="true">// false</span>
+undefined <span class="token operator">==</span> <span class="token string">''</span> <span class="token comment" spellcheck="true">// false</span>
+undefined <span class="token operator">==</span> <span class="token number">0</span> <span class="token comment" spellcheck="true">// false</span>
+undefined <span class="token operator">==</span> <span class="token boolean">false</span> <span class="token comment" spellcheck="true">// false</span></div></code></pre>
+
+        <h4 id="%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B" class="docs-header-link">
+          <span header-link="%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"></span>
+          原始类型和引用类型
+        </h4>
+      <ul>
+<li>原始类型和引用类型做比较时，引用类型会遵循<code>toPrimitive</code>规则先转成原始类型</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token string">'[object Object]'</span> <span class="token operator">==</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span>
+<span class="token punctuation">[</span><span class="token number">123</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">123</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span></div></code></pre>
+<ul>
+<li><code>!</code>的优先级高于<code>==</code>，所以带有<code>!</code>的变量会先进行转化</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token operator">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true">// true. 因为[]被转成0, ![]先转成false，再转成0</span></div></code></pre>
+
+        <h4 id="%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84null%E5%92%8Cundefined" class="docs-header-link">
+          <span header-link="%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84null%E5%92%8Cundefined"></span>
+          数组中的null和undefined
+        </h4>
+      <ul>
+<li>根据数组的<code>toPrimitive</code>规则，数组中有<code>null</code>,<code>undefined</code>时会被当作空字符串处理</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token punctuation">[</span><span class="token keyword">null</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token boolean">false</span> <span class="token comment" spellcheck="true">// true</span>
+<span class="token punctuation">[</span>undefined<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token boolean">false</span> <span class="token comment" spellcheck="true">// true</span></div></code></pre>
+
+        <h2 id="%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%96%B9%E5%BC%8F" class="docs-header-link">
+          <span header-link="%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%96%B9%E5%BC%8F"></span>
+          判断数据类型的方式
+        </h2>
+      
+        <h3 id="typeof" class="docs-header-link">
+          <span header-link="typeof"></span>
+          typeof
+        </h3>
+      <ul>
+<li><code>typeof</code>可以用于准确判断是否为这几种原始类型：<code>string</code>，<code>number</code>，<code>boolean</code>，<code>symbol</code>，<code>undefined</code></li>
+<li>还可以用于判断函数类型<code>function</code></li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">typeof</span> <span class="token string">'123'</span> <span class="token comment" spellcheck="true">// string</span>
+<span class="token keyword">typeof</span> <span class="token number">123</span> <span class="token comment" spellcheck="true">// number</span>
+<span class="token keyword">typeof</span> <span class="token boolean">true</span> <span class="token comment" spellcheck="true">// boolean</span>
+<span class="token keyword">typeof</span> <span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// symbol</span>
+<span class="token keyword">typeof</span> undefined <span class="token comment" spellcheck="true">// undefined</span>
+<span class="token keyword">typeof</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment" spellcheck="true">// function</span></div></code></pre>
+<ul>
+<li><code>typeof</code>不适合用于判断引用类型和<code>null</code>。判断时结果都是&#39;object&#39;.</li>
+</ul>
+
+        <h3 id="instanceof" class="docs-header-link">
+          <span header-link="instanceof"></span>
+          instanceof
+        </h3>
+      <ul>
+<li>能判断引用类型变量具体属于什么类型的对象</li>
+<li>但其实不是很准确，因为所有引用类型最终都指向<code>Object</code>，这也不是它设计的初衷</li>
+<li>它也不能用于检测原始数据类型</li>
+</ul>
+
+        <h3 id="tostring" class="docs-header-link">
+          <span header-link="tostring"></span>
+          toString
+        </h3>
+      <ul>
+<li>每个引用类型都有一个<code>toString</code>方法，它存在于<code>Object</code>上。</li>
+<li>默认情况下，即<code>toString</code>未被重写覆盖的前提下，会返回<code>[object Type]</code>, 其中Type是对象的类型</li>
+<li>很多引用类型都重写了<code>toString</code>方法，比如<code>Array</code>，<code>Date</code>等</li>
+<li>可直接调用原型Object上的<code>toString</code>方法，使用call来改变this的指向，便可解决在引用类型上被重写的问题</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>调用</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Object.prototype.toString.call({})</td>
+<td>[object Object]</td>
+</tr>
+<tr>
+<td>Object.prototype.toString.call(true)</td>
+<td>[object Boolean]</td>
+</tr>
+<tr>
+<td>Object.prototype.toString.call(123)</td>
+<td>[object Number]</td>
+</tr>
+<tr>
+<td>Object.prototype.toString.call(&#39;abc&#39;)</td>
+<td>[object String]</td>
+</tr>
+<tr>
+<td>Object.prototype.toString.call(Symbol(&#39;a&#39;))</td>
+<td>[object Symbol]</td>
+</tr>
+<tr>
+<td>Object.prototype.toString.call(null)</td>
+<td>[object Null]</td>
+</tr>
+<tr>
+<td>Object.prototype.toString.call(undefined)</td>
+<td>[object Undefined]</td>
+</tr>
+<tr>
+<td>Object.prototype.toString.call(function(){})</td>
+<td>[object Function]</td>
+</tr>
+<tr>
+<td>Object.prototype.toString.call([])</td>
+<td>[object Array]</td>
+</tr>
+<tr>
+<td>Object.prototype.toString.call(new Error())</td>
+<td>[object Error]</td>
+</tr>
+<tr>
+<td>Object.prototype.toString.call(new RegExp())</td>
+<td>[object RegExp]</td>
+</tr>
+<tr>
+<td>Object.prototype.toString.call(Math)</td>
+<td>[object Math]</td>
+</tr>
+<tr>
+<td>Object.prototype.toString.call(JSON)</td>
+<td>[object JSON]</td>
+</tr>
+<tr>
+<td>Object.prototype.toString.call(window)</td>
+<td>[object Window]</td>
+</tr>
+</tbody></table>
+
+        <h2 id="%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"></span>
+          参考资料
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://juejin.cn/post/6844903854882947080">https://juejin.cn/post/6844903854882947080</a></li>
+</ul>

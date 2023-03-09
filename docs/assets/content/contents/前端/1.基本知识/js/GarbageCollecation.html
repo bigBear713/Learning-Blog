@@ -1,0 +1,301 @@
+
+        <h2 id="garbage-collecation" class="docs-header-link">
+          <span header-link="garbage-collecation"></span>
+          Garbage Collecation
+        </h2>
+      <ul>
+<li>js具有自动垃圾回收机制</li>
+<li>主要是为了实现内存资源的循环利用，避免资源被消耗完，导致系统崩溃。</li>
+<li>每次在创建Object, String, Array时，都需要分配、消耗内存资源来存储。像这样动态分配了内存资源，最终都要将它们释放，让它们能够再被利用。否则，js的解释器就会很快消耗完系统中的所有可用内存资源，造成系统崩溃</li>
+<li>垃圾回收机制的大体思路，就是找出不再被使用的变量，释放掉其占用的内存资源。但这个过程开销比较大，所以不是时时的，会按照固定的时间间隔周期性执行</li>
+</ul>
+
+        <h2 id="%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6" class="docs-header-link">
+          <span header-link="%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"></span>
+          垃圾回收机制
+        </h2>
+      <ul>
+<li>常见的垃圾回收有两种方式：<code>标记清除</code>,<code>引用计数</code></li>
+<li><code>标记清除</code>比较常用</li>
+<li><code>引用计数</code>很少用了现在</li>
+</ul>
+
+        <h3 id="%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4" class="docs-header-link">
+          <span header-link="%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4"></span>
+          标记清除
+        </h3>
+      <ul>
+<li>当变量进入执行环境时，会被标记为&quot;进入环境&quot;。在离开环境时，则将其标记为&quot;离开环境&quot;</li>
+<li>逻辑上讲，永远不能释放进入环境的变量所占用的内存。因为只要执行流进入环境，就可能用到这些变量</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token comment" spellcheck="true">// 将m, n, func()标记进入环境</span>
+<span class="token keyword">let</span> m <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> 
+<span class="token keyword">let</span> n <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">func</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    a<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> c <span class="token operator">=</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> c<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 将a, b, c标记为进入环境</span>
+<span class="token function">func</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 将a, b, c标记离开环境，等待垃圾回收</span></div></code></pre>
+<ul>
+<li>何时开始回收：一般来说，未引用的对象不会被立即回收，而是垃圾对象一直累计到内存耗尽为止。但内存耗尽，程序将被挂起，垃圾回收开始执行</li>
+<li>标记清除算法的缺陷<ol>
+<li>那些无法从根对象查询到的对象将被清除</li>
+<li>垃圾收集后可能会造成大量的<strong>内存碎片</strong></li>
+</ol>
+</li>
+</ul>
+
+        <h3 id="%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0" class="docs-header-link">
+          <span header-link="%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0"></span>
+          引用计数
+        </h3>
+      <ul>
+<li>语言引擎有一张“引用表”，记录内存中所有资源（通常是各种值）的引用次数。</li>
+<li>如果一个变量的引用次数变为0, 表明这个值不会再被用到，因此这个值占用的内存将被释放</li>
+<li>如果一个值不再被需要，但是引用次数却不为0，垃圾回收机制无法释放这个值占用的内存，就会导致内存泄漏</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">var</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// arr对[1,2,3]进行了引用，引用计数为1</span>
+arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// arr对另外的[2,3,4]进行了引用，[1,2,3]的引用计数变为了0，可以被回收</span></div></code></pre>
+<ul>
+<li><code>循环引用</code>问题：下面函数执行完后，返回值为undefined，所以整个函数以及内部变量都应该被回收。但根据引用计数方法，obj1和obj2的引用计数都不为0，所以它们不会被回收</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">function</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">let</span> obj1 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> obj2 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    obj1<span class="token punctuation">.</span>a <span class="token operator">=</span> obj2<span class="token punctuation">;</span>
+    obj2<span class="token punctuation">.</span>a <span class="token operator">=</span> obj1<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></div></code></pre>
+<ul>
+<li>解决循环引用的问题，最好就是在不使用它们的时候手动将它们设置为空</li>
+</ul>
+
+        <h2 id="chrome-v8-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95" class="docs-header-link">
+          <span header-link="chrome-v8-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"></span>
+          Chrome V8 垃圾回收算法
+        </h2>
+      <ul>
+<li>采用分代回收策略，和JAVA的回收策略一致</li>
+<li>通过区分<code>临时</code>和<code>持久</code>对象，多回收<strong>临时对象区（新生代）</strong>，少回收<strong>持久对象区（老生代）</strong>，减少每次遍历的对象，从而减少每次GC的耗时</li>
+</ul>
+
+        <h3 id="v8%E5%86%85%E5%AD%98%E9%99%90%E5%88%B6" class="docs-header-link">
+          <span header-link="v8%E5%86%85%E5%AD%98%E9%99%90%E5%88%B6"></span>
+          V8内存限制
+        </h3>
+      <ul>
+<li><strong>node</strong>中，js能使用的内存是有限制的<ol>
+<li>64位下约为1.4G，32位下约为0.7G</li>
+<li>对应分代内存中，64位下，新生代32MB，老生代1.4G；32位下，新生代16MB，老生代0.7GB</li>
+</ol>
+</li>
+<li>新生代内存会被平均分成两个部分，叫<code>semispace</code>。</li>
+<li>这个限制可以通过参数<code>--max-old-space-size</code> 和 <code>--max-new-space-size</code>调整设置</li>
+<li>内存限制的原因：处理时间上的限制。以 1.5GB的垃圾回收堆内存为例，v8做一次小的垃圾回收需要50ms左右，做一次非增量的垃圾回收甚至要1s以上。这是垃圾回收中引起js线程暂停执行的时间。在这样的时间花销情况下，应用的性能和响应能力都直线下降</li>
+</ul>
+
+        <h3 id="v8%E7%9A%84%E5%88%86%E4%BB%A3%E5%9B%9E%E6%94%B6" class="docs-header-link">
+          <span header-link="v8%E7%9A%84%E5%88%86%E4%BB%A3%E5%9B%9E%E6%94%B6"></span>
+          v8的分代回收
+        </h3>
+      
+        <h3 id="%E6%96%B0%E7%94%9F%E4%BB%A3%E7%AE%97%E6%B3%95" class="docs-header-link">
+          <span header-link="%E6%96%B0%E7%94%9F%E4%BB%A3%E7%AE%97%E6%B3%95"></span>
+          新生代算法
+        </h3>
+      <ul>
+<li>新生代的算法叫Scavenge，主要采用了Cheney算法。</li>
+<li>思路:<ol>
+<li>将新生代内存平均分为两份，都叫<code>semispace</code>。其中一份是<strong>使用</strong>状态(又叫From)，另一个是<strong>闲置</strong>状态(又叫To)。</li>
+<li>分配内存时，在<strong>使用</strong>状态内存中进行分配。</li>
+<li>当开始新生代垃圾回收时，检测<strong>使用</strong>状态的内存，将还被使用的对象复制到<strong>闲置</strong>状态的内存中，将没被使用的对象的内存资源释放。</li>
+<li>检测完后，两块内存角色互换，<strong>闲置</strong>状态的内存变成<strong>使用</strong>状态，<strong>使用</strong>状态的内存变成<strong>闲置</strong>状态</li>
+</ol>
+</li>
+<li>晋升：<ol>
+<li>当新生代内存中，一个对象经过多次复制，仍然存活，则会被认为是生命周期比较长的变量，随后会被移动到老生代内存中，采用另外的算法管理。这就是晋升。</li>
+<li>From内存中的对象在复制到To内存中时，会进行检查。在一定条件下，如果该对象被判定为生命周期较长，会被移动到老生代内存中，而不是到To内存中</li>
+<li>条件：一是对象是否经历过新生代回收，二是To内存的空间占比超过25%限制。</li>
+<li>设置25%限制的原因：如果To内存的空间占比超过25%，在转为From内存的时候，会影响后续内存的分配。</li>
+</ol>
+</li>
+<li>缺陷：<ol>
+<li>只能使用堆内存的一半。这是由划分空间和复制机制决定的</li>
+<li>是典型的空间换时间的算法，所以无法大规模的应用到所有垃圾回收上</li>
+</ol>
+</li>
+<li>优点：<ol>
+<li>在时间效率上有优异表现，因为只复制存活对象，且对于生命周期短的场景的存货对象只占少数</li>
+<li>非常适合新生代的内存回收的场景</li>
+</ol>
+</li>
+</ul>
+
+        <h3 id="%E8%80%81%E7%94%9F%E4%BB%A3%E7%AE%97%E6%B3%95" class="docs-header-link">
+          <span header-link="%E8%80%81%E7%94%9F%E4%BB%A3%E7%AE%97%E6%B3%95"></span>
+          老生代算法
+        </h3>
+      <ul>
+<li>老生代算法不适合Scavenge有2个原因：一是存活对象比较多，复制对象效率会变慢；二是内存空间将被浪费一半。</li>
+<li>老生代中主要采用<code>Mark-Sweep</code>和<code>Mark-Compact</code>相结合的方式</li>
+</ul>
+
+        <h4 id="mark-sweep" class="docs-header-link">
+          <span header-link="mark-sweep"></span>
+          Mark-Sweep
+        </h4>
+      <ul>
+<li>Mark-Sweep, 标记清除，分为<code>标记</code>和<code>清除</code>两个阶段。</li>
+<li>过程：<ol>
+<li>在<code>标记</code>阶段，遍历所有对象，并只标记存活对象</li>
+<li>在<code>清除</code>阶段，清除所有没有被标记的对象</li>
+</ol>
+</li>
+<li>Scavenge是只复制存活的对象，Mark-Sweep是只清除没被标记的死亡对象</li>
+<li>活对象在新生代中只占很小一部分，死对象在老生代中只占很小一部分。所以两者效率都很高</li>
+<li>问题：在进行一次标记清除回收后，会造成大量的内存碎片，会对后续的内存分配造成问题。比如需要为一个对象分配一个大内存，但是此时的内存都是碎片状，没有一片内存碎片能满足。此时会提前触发内存回收。但是内存回收开销比较大。</li>
+</ul>
+
+        <h4 id="mark-compact" class="docs-header-link">
+          <span header-link="mark-compact"></span>
+          Mark-Compact
+        </h4>
+      <ul>
+<li>Mark-Compack, 标记整理，为了解决Mark-Sweep的内存碎片问题</li>
+<li>和Mark-Sweep区别：在<code>清除</code>阶段清除死亡对象时，会将存活对象往一端移动。移动完成后，直接清理掉边界外的内存。</li>
+</ul>
+
+        <h3 id="scavenge,-mark-sweep,-mark-compact%E7%9A%84%E5%AF%B9%E6%AF%94" class="docs-header-link">
+          <span header-link="scavenge,-mark-sweep,-mark-compact%E7%9A%84%E5%AF%B9%E6%AF%94"></span>
+          Scavenge, Mark-Sweep, Mark-Compact的对比
+        </h3>
+      <table>
+<thead>
+<tr>
+<th>算法</th>
+<th>Scavenge</th>
+<th>Mark-Sweep</th>
+<th>Mark-Compact</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>速度</td>
+<td>最快</td>
+<td>中等</td>
+<td>最慢</td>
+</tr>
+<tr>
+<td>空间开销</td>
+<td>双倍空间，无碎片</td>
+<td>少，但有碎片</td>
+<td>少，但无碎片</td>
+</tr>
+<tr>
+<td>是否移动对象</td>
+<td>是</td>
+<td>否</td>
+<td>是</td>
+</tr>
+</tbody></table>
+<ul>
+<li>V8中，对老生代算法，主要采用Mark-Sweep。只有在存活对象从新生代移动到老生代内存中时，才会采用Mark-Compact进行内存整理</li>
+</ul>
+
+        <h2 id="incremental-marking%EF%BC%8C%E5%A2%9E%E9%87%8F%E5%BC%8F%E6%A0%87%E8%AE%B0%E5%9B%9E%E6%94%B6" class="docs-header-link">
+          <span header-link="incremental-marking%EF%BC%8C%E5%A2%9E%E9%87%8F%E5%BC%8F%E6%A0%87%E8%AE%B0%E5%9B%9E%E6%94%B6"></span>
+          Incremental Marking，增量式标记回收
+        </h2>
+      <ul>
+<li>Scavenge, Mark-Sweep, Mark-Compact在执行时，都需要将应用逻辑停下来，以保证js应用逻辑和垃圾回收器看到的不一致。等垃圾回收执行完后，再恢复js应用逻辑的执行。这种叫做<code>stop-the-world</code>全停顿。</li>
+<li>对于新生代来说，因为默认配置的空间比较小，所以执行起来比较快，全停顿影响不大。</li>
+<li>对老生代来说，要清理的对象比较多，所以全停顿一次耗时比较长，会造成卡顿的问题</li>
+<li>为降低全堆垃圾回收带来的全停顿影响，从<code>标记</code>阶段入手，将原本需要一次性完成的标记动作改成增量标记，也就是拆分成很多小部分。每完成一个小部分，就让js逻辑执行一会。</li>
+<li>垃圾回收与应用逻辑交替执行直到标记阶段完成</li>
+<li>经过增量标记的改善后，垃圾回收的最大停顿时间可以减少到原来的1/6左右</li>
+<li>V8后续在<code>清理</code>阶段，还引入延迟清理与增量式清理,让清理动作也变成增量式的。</li>
+<li>还计划引入并行标记和并行清理，进一步利用多核性能降低每次停顿的时间</li>
+</ul>
+
+        <h2 id="%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E5%BC%95%E8%B5%B7%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F" class="docs-header-link">
+          <span header-link="%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E5%BC%95%E8%B5%B7%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"></span>
+          哪些情况引起内存泄漏
+        </h2>
+      <ul>
+<li>意外的全局变量。当声明的变量意外变成全局时(比如变量提升)，只能等页面关闭时才被销毁释放</li>
+<li>被遗忘的计时器或者回调函数。下面代码中有计时器<code>setInterval</code>，且回调函数中有对标签元素ele的引用和对someResource的处理。因此就算标签元素ele从页面中移除，因为该计数器的存在，ele占用的资源和外部变量someResource都不会被释放</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">let</span> someResource <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+    <span class="token keyword">let</span> ele <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'ele'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>ele<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        node<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>someResource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+<ul>
+<li>闭包。闭包可以维持函数内的变量，使其不会被释放。解决方法：解除闭包。</li>
+<li>没有清除DOM元素的引用。有时缓存DOM元素内部数据结构很有用。但是没用时没有及时清除该缓存，就算移除了页面中该DOM元素，该dom元素占用的内存还是不会被释放</li>
+</ul>
+
+        <h2 id="%E9%81%BF%E5%85%8D%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F" class="docs-header-link">
+          <span header-link="%E9%81%BF%E5%85%8D%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"></span>
+          避免内存泄漏
+        </h2>
+      <ul>
+<li>减少不必要的全局变量，或者生命周期较长的对象</li>
+<li>及时对无用的数据进行垃圾回收</li>
+<li>注意程序逻辑，避免死循环</li>
+<li>避免创建过多的对象</li>
+</ul>
+
+        <h2 id="%E6%A3%80%E6%B5%8B%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F" class="docs-header-link">
+          <span header-link="%E6%A3%80%E6%B5%8B%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"></span>
+          检测内存泄漏
+        </h2>
+      <ul>
+<li>使用Chrome dev tool的performance</li>
+</ul>
+
+        <h2 id="%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E4%BC%98%E5%8C%96" class="docs-header-link">
+          <span header-link="%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E4%BC%98%E5%8C%96"></span>
+          垃圾回收的使用场景优化
+        </h2>
+      <ul>
+<li>Array数组优化。将空数组[]赋值给无用的数组对象，这样虽然将原来的数组值的内存释放，但同时也占用了一个空数组值得内存。最好的方式是<code>arr.length = 0</code></li>
+<li>对象尽量复用。特别是循环等地方出现创建新的对象，能复用就复用。不用的对象就设置为null。</li>
+<li>在循环中的函数表达式，能复用的，尽量放到循环外。</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token comment" spellcheck="true">// 不好的写法</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token keyword">of</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">let</span> func <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+    <span class="token function">func</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 推荐</span>
+<span class="token keyword">let</span> func <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token keyword">of</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">func</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></div></code></pre>
+
+        <h2 id="%E5%87%8F%E5%B0%91%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%AF%B9%E6%80%A7%E8%83%BD%E7%9A%84%E5%BD%B1%E5%93%8D" class="docs-header-link">
+          <span header-link="%E5%87%8F%E5%B0%91%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%AF%B9%E6%80%A7%E8%83%BD%E7%9A%84%E5%BD%B1%E5%93%8D"></span>
+          减少垃圾回收对性能的影响
+        </h2>
+      <ul>
+<li>让垃圾回收尽量少的运行，尤其是全堆垃圾回收</li>
+<li>避免内存泄漏，让内存及时得到释放</li>
+</ul>
+
+        <h2 id="%E5%8F%82%E8%80%83" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83"></span>
+          参考
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://juejin.cn/post/6844903833387155464">https://juejin.cn/post/6844903833387155464</a></li>
+<li><a target="_blank" href="https://juejin.cn/post/6844903781079973902">https://juejin.cn/post/6844903781079973902</a></li>
+</ul>

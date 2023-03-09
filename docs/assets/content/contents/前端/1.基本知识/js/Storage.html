@@ -1,0 +1,38 @@
+
+        <h2 id="%E4%BF%A1%E6%81%AF%E5%AD%98%E5%82%A8" class="docs-header-link">
+          <span header-link="%E4%BF%A1%E6%81%AF%E5%AD%98%E5%82%A8"></span>
+          信息存储
+        </h2>
+      <ul>
+<li>浏览器上的信息存储主要有几种方式：cookie, localStorage, sessionStorage，indexDB等。</li>
+</ul>
+
+        <h2 id="%E5%8C%BA%E5%88%AB" class="docs-header-link">
+          <span header-link="%E5%8C%BA%E5%88%AB"></span>
+          区别
+        </h2>
+      <ul>
+<li>indexDB是浏览器上的一种数据库，用的比较少。不进行此次比较</li>
+<li>cookie: 默认保存在内存中，浏览器关闭时失效，或者超过过期时间；大小最大为4KB；存储在浏览器上，每次http请求时都会带上</li>
+<li>localStorage: 理论上永久存在，只能手动清除；大小最大为5MB，部分浏览器可能有所差异；存储在浏览器上，http请求时不会带上</li>
+<li>sessionStorage: 当前页面会话下有效，关闭页面或浏览器后会被自动清除；大小最大为5MB，部分浏览器可能有所差异；存储在浏览器上，http请求时不会带上</li>
+<li>适用场景：localStorage适合持久化缓存数据，比如页面的默认偏好等；sessionStorage适合存储临时的数据</li>
+</ul>
+
+        <h2 id="web-storage%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9" class="docs-header-link">
+          <span header-link="web-storage%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"></span>
+          web storage注意事项
+        </h2>
+      <ul>
+<li>localStorage存储的数据超出容量大小时会报错.之前存储的信息不会丢失</li>
+<li>localStorage存储的容量快满时,getItem的性能会急剧下降</li>
+<li>web storage存储复杂数据时依赖<code>JSON.stringify</code>,在移动端性能问题比较明显</li>
+</ul>
+
+        <h2 id="%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"></span>
+          参考资料
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://juejin.cn/post/6844903989096497159">https://juejin.cn/post/6844903989096497159</a></li>
+</ul>

@@ -1,0 +1,33 @@
+
+        <h2 id="%E5%85%B1%E5%90%8C%E4%B9%8B%E5%A4%84" class="docs-header-link">
+          <span header-link="%E5%85%B1%E5%90%8C%E4%B9%8B%E5%A4%84"></span>
+          共同之处
+        </h2>
+      <ul>
+<li>cookie和session都是用于跟踪浏览器用户的身份的会话方式，有了它们，服务端可以区分此次会话是哪个浏览器用户发起的，从而更好的针对该用户做一些处理。</li>
+<li>一个会话正常是没有状态的，所以如果没有cookie/session，服务器端是不知道前后两次会话是否有什么关联，是否属于同一用户等</li>
+</ul>
+
+        <h2 id="cookie" class="docs-header-link">
+          <span header-link="cookie"></span>
+          cookie
+        </h2>
+      <ul>
+<li>当浏览器第一次访问服务器，服务器会生成一个cookie，在响应时发送给浏览器。</li>
+<li>浏览器后续再跟服务器会话时，都会带上该cookie。</li>
+<li>因此每次http请求时都会带上cookie，所以会占用一定的带宽资源。</li>
+<li>cookie存储在浏览器端，大小限制为4KB。因此数据没那边安全，可以被伪造</li>
+<li>关闭浏览器时自动被清除</li>
+</ul>
+
+        <h2 id="session" class="docs-header-link">
+          <span header-link="session"></span>
+          session
+        </h2>
+      <ul>
+<li>当浏览器第一次访问服务器时，服务器会生成一个id，响应时发送给浏览器</li>
+<li>浏览器每次和服务器会话时，都会带上该id</li>
+<li>一些具体的信息保存在服务器上，会话、请求时根据带来的id来获取相应的数据</li>
+<li>因此session的数据是存在服务器上的。也因此数据相对安全，无法被伪造。但是数据保存太多会影响服务器性能</li>
+<li>页面关闭时自动被清除</li>
+</ul>

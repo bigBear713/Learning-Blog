@@ -1,0 +1,13 @@
+
+        <h2 id="buffertime" class="docs-header-link">
+          <span header-link="buffertime"></span>
+          bufferTime
+        </h2>
+      <ul>
+<li>与<code>buffer</code>类似，将Observable发出的值存储到缓存区，直到设定的时间后，或Observable为<code>complete</code>时才发出值</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">bufferTime</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>data<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// [0]</span>
+<span class="token comment" spellcheck="true">// [1,2,3]</span>
+<span class="token comment" spellcheck="true">// [4,5]</span>
+<span class="token comment" spellcheck="true">// [6,7]</span></div></code></pre>

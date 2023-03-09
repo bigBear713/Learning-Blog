@@ -1,0 +1,17 @@
+
+        <h2 id="throttletime" class="docs-header-link">
+          <span header-link="throttletime"></span>
+          throttleTime
+        </h2>
+      <ul>
+<li><code>throttle</code>节流操作符的简化版</li>
+<li>每隔一段时间才会发送一次数据流</li>
+<li>observer接收第一个值时不会被阻塞, 而是接收完一个之后的设定时间里都拿不到值</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>
+    <span class="token function">throttleTime</span><span class="token punctuation">(</span><span class="token number">2000</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>data<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 第一次不会被阻塞</span>
+<span class="token comment" spellcheck="true">// 0</span>
+<span class="token comment" spellcheck="true">// 2s后</span>
+<span class="token comment" spellcheck="true">// 3</span></div></code></pre>

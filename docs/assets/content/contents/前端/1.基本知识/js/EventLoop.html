@@ -1,0 +1,47 @@
+
+        <h2 id="%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AFeventloop" class="docs-header-link">
+          <span header-link="%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AFeventloop"></span>
+          事件循环EventLoop
+        </h2>
+      <ul>
+<li>EventLoop是js的执行机制。</li>
+<li>需要被执行的代码块会被放到调用栈（call stack）中，周期内调用栈中的代码块会从上到下被执行。</li>
+<li>当调用栈中的代码块都被执行完后，会先看微任务中是否有能执行的，再看宏任务中是否有能执行的，最后开启下一个事件周期，将执行队列中的代码块放到调用栈中并清空队列，形成一个循环。</li>
+<li>异步代码需要响应时，会将响应事件放入执行队列中等待下一个周期被执行。</li>
+</ul>
+
+        <h2 id="%E5%BE%AE%E4%BB%BB%E5%8A%A1" class="docs-header-link">
+          <span header-link="%E5%BE%AE%E4%BB%BB%E5%8A%A1"></span>
+          微任务
+        </h2>
+      <ul>
+<li>微任务，microtask，又称jobs，由js自身发起的。</li>
+<li>常见的微任务：Promise, process.nextTick, Object.observe(已被废弃，proxy代替), MutationObserver</li>
+<li>在ES3以及以前的版本中，js是没有发起异步请求的能力的，所以此时不存在微任务。ES5之后，引入Promise后，在不需要浏览器的情况下，js引擎也能自己发起异步任务，此时就有了微任务。</li>
+</ul>
+
+        <h2 id="%E5%AE%8F%E4%BB%BB%E5%8A%A1" class="docs-header-link">
+          <span header-link="%E5%AE%8F%E4%BB%BB%E5%8A%A1"></span>
+          宏任务
+        </h2>
+      <ul>
+<li>宏任务，macrotask，又称task，由宿主（浏览器、Node）发起。</li>
+<li>常见的宏任务：setTimeout, setInterval, script, I/O, UI rendering等。</li>
+<li>宏任务中没有能执行的后，会开启下一个事件循环。</li>
+</ul>
+
+        <h2 id="requestanimationframe" class="docs-header-link">
+          <span header-link="requestanimationframe"></span>
+          requestAnimationFrame
+        </h2>
+      <ul>
+<li>既不是宏任务也不是微任务，它是跟渲染相关，所以有时执行得像微任务，有时执行得像宏任务</li>
+</ul>
+
+        <h2 id="requestidlecallback" class="docs-header-link">
+          <span header-link="requestidlecallback"></span>
+          requestIdleCallback
+        </h2>
+      <ul>
+<li>回调属于低优先级任务，仅在浏览器<strong>空闲</strong>时期被调用（目前仍处于实验功能阶段，在微前端中常有应用）</li>
+</ul>

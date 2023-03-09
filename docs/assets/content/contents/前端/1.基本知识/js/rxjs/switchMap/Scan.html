@@ -1,0 +1,16 @@
+
+        <h2 id="scan%E7%B4%AF%E5%8A%A0%E5%99%A8%E6%93%8D%E4%BD%9C%E7%AC%A6" class="docs-header-link">
+          <span header-link="scan%E7%B4%AF%E5%8A%A0%E5%99%A8%E6%93%8D%E4%BD%9C%E7%AC%A6"></span>
+          scan累加器操作符
+        </h2>
+      <ul>
+<li>对源Observable发出的数据流进行累加处理。</li>
+<li>类似于数组中的<code>.reduce()</code></li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">of</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>
+    <span class="token function">scan</span><span class="token punctuation">(</span><span class="token punctuation">(</span>acc<span class="token punctuation">,</span>cur<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span>acc<span class="token operator">+</span>cur<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>data<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 1</span>
+<span class="token comment" spellcheck="true">// 3</span>
+<span class="token comment" spellcheck="true">// 6</span>
+<span class="token comment" spellcheck="true">// 10</span></div></code></pre>

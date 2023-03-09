@@ -1,0 +1,35 @@
+
+        <h2 id="observers%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F" class="docs-header-link">
+          <span header-link="observers%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"></span>
+          Observers观察者模式
+        </h2>
+      <ul>
+<li>定义了一种对象间，一对多的依赖关系。当一个对象的状态发生改变，所有依赖它的对象都将得到通知，并自动更新</li>
+<li>属于行为型模式，关注的是对象间的通讯。观察者模式就是观察者和被观察者之间的通讯</li>
+</ul>
+<hr>
+
+        <h2 id="publisher-subscriber%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F" class="docs-header-link">
+          <span header-link="publisher-subscriber%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F"></span>
+          Publisher-Subscriber发布订阅模式
+        </h2>
+      <ul>
+<li>是一种消息规范。</li>
+<li>消息的发送者不会直接将消息发送给订阅者，而是将消息分为不同的类别，无需了解可能存在的哪些订阅者</li>
+<li>反过来，订阅者无需知道有哪些消息发送者，只需关注感兴趣的一个或多个类别</li>
+<li>是多对多的关系</li>
+</ul>
+<hr>
+
+        <h2 id="%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E8%80%85%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB" class="docs-header-link">
+          <span header-link="%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E8%80%85%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB"></span>
+          观察者模式和发布订阅者模式的区别
+        </h2>
+      <ul>
+<li>两者的设计思路是一样的。</li>
+<li>两者区别：<ol>
+<li>观察者模式中，观察者是知道Subject的，Subject也一直保持对观察者进行记录，它们互相知道彼此。而发布订阅模式中，发布者和订阅者之间，是不知道彼此的，它们只有通过消息代理进行通信</li>
+<li>观察者模式大多数是同步的，比如当事件触发，Subject就会触发观察者的回调。发布订阅模式大多数是异步的，使用消息队列的方式</li>
+</ol>
+</li>
+</ul>

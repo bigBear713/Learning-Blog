@@ -1,0 +1,87 @@
+
+        <h2 id="%E5%9C%BA%E6%99%AF" class="docs-header-link">
+          <span header-link="%E5%9C%BA%E6%99%AF"></span>
+          场景
+        </h2>
+      <ul>
+<li>对展现在UI上的数据进行一些转化的同时，又不想改变数据本身。</li>
+</ul>
+
+        <h2 id="%E6%A0%BC%E5%BC%8F" class="docs-header-link">
+          <span header-link="%E6%A0%BC%E5%BC%8F"></span>
+          格式
+        </h2>
+      <pre class="language-ts"><code class="language-ts"><div>@<span class="token function">Pipe</span><span class="token punctuation">(</span><span class="token punctuation">{</span>name<span class="token punctuation">:</span><span class="token string">'[name]'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ZZZPipe</span> <span class="token keyword">extends</span> <span class="token class-name">Transform</span><span class="token punctuation">{</span>
+    <span class="token function">transform</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span><span class="token keyword">any</span><span class="token punctuation">,</span>arg<span class="token punctuation">:</span><span class="token keyword">any</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> value<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></div></code></pre>
+<ul>
+<li>基本形式：<code>@Pipe()</code>后面紧跟一个<code>class</code>就组成一个管道。</li>
+<li>管道类中必定要有方法<code>transform</code>，管道被调用时就是调用管道实例中的该方法进行数据处理。可通过继承<code>Transform</code>强制class实现该方法。</li>
+</ul>
+
+        <h2 id="%E8%B0%83%E7%94%A8" class="docs-header-link">
+          <span header-link="%E8%B0%83%E7%94%A8"></span>
+          调用
+        </h2>
+      <ul>
+<li>在组件模板中，通过<code>&quot;|&quot;＋&quot;[name]&quot;</code>来调用管道。</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div>@<span class="token function">Pipe</span><span class="token punctuation">(</span><span class="token punctuation">{</span>name<span class="token punctuation">:</span><span class="token string">'obj2Str'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ZZZPipe</span> <span class="token keyword">extends</span> <span class="token class-name">Transform</span><span class="token punctuation">{</span>
+    <span class="token function">transform</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span>Object<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> JSON<span class="token punctuation">.</span><span class="token function">stringfy</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>template<span class="token punctuation">:</span><span class="token template-string"><span class="token string">`&lt;p>{{data|obj2Str}}`</span></span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">XXXComponent</span><span class="token punctuation">{</span>
+    data<span class="token operator">=</span><span class="token punctuation">{</span>a<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></div></code></pre>
+
+        <h2 id="%E7%BA%AF%E7%AE%A1%E9%81%93%E5%92%8C%E9%9D%9E%E7%BA%AF%E7%AE%A1%E9%81%93" class="docs-header-link">
+          <span header-link="%E7%BA%AF%E7%AE%A1%E9%81%93%E5%92%8C%E9%9D%9E%E7%BA%AF%E7%AE%A1%E9%81%93"></span>
+          纯管道和非纯管道
+        </h2>
+      <ul>
+<li>组件会时常进行更新操作，以便页面上的数据及时显示最新的内容。</li>
+<li>纯管道是不随着组件更新而更新，它只有在所操作的数据发生改变时才会更新，重新转化。因此有利于性能的提升。</li>
+<li>非纯管道则是将管道设置成随组件的更新而更新，因此可能会导致性能问题。</li>
+<li>将管道设置为非纯管道，将<code>@Pipe()</code>中显式设置<code>pure</code>为<code>true</code>。</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div>@<span class="token function">Pipe</span><span class="token punctuation">(</span><span class="token punctuation">{</span>name<span class="token punctuation">:</span><span class="token string">'[name]'</span><span class="token punctuation">,</span>pure<span class="token punctuation">:</span><span class="token keyword">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ZZZPipe</span> <span class="token keyword">extends</span> <span class="token class-name">Transform</span><span class="token punctuation">{</span>
+    <span class="token function">transform</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span><span class="token keyword">any</span><span class="token punctuation">,</span>arg<span class="token punctuation">:</span><span class="token keyword">any</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> value
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></div></code></pre>
+<ul>
+<li>除非有必要，否则不建议将管道设为非纯管道。</li>
+</ul>
+
+        <h2 id="%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0" class="docs-header-link">
+          <span header-link="%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0"></span>
+          多个参数
+        </h2>
+      <ul>
+<li>一些情况下管道需要多个参数。在模板中调用管道时，使用&quot;:&quot;连接参数。</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div>@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>template<span class="token punctuation">:</span><span class="token template-string"><span class="token string">`&lt;p>{{today|date:format}}`</span></span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">XXXComponent</span><span class="token punctuation">{</span>
+    today <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    format<span class="token operator">=</span><span class="token string">'MM/dd/yy'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></div></code></pre>
+
+        <h2 id="%E4%BC%98%E5%85%88%E7%BA%A7" class="docs-header-link">
+          <span header-link="%E4%BC%98%E5%85%88%E7%BA%A7"></span>
+          优先级
+        </h2>
+      <ul>
+<li>当和三目表达&quot;?:&quot;同时存在时，管道的优先级比较高。即&quot;a?&#39;true&#39;:&#39;false&#39;|uppercase&quot;等价于&quot;a?&#39;true&#39;:(&#39;false&#39;|uppercase)&quot;</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div>@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>template<span class="token punctuation">:</span><span class="token template-string"><span class="token string">`&lt;p>{{a?'true':'false'|uppercase}}`</span></span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">XXXComponent</span><span class="token punctuation">{</span>
+    a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></div></code></pre>

@@ -1,0 +1,16 @@
+
+        <h2 id="forkjoin" class="docs-header-link">
+          <span header-link="forkjoin"></span>
+          forkJoin
+        </h2>
+      <ul>
+<li>当所有Observable都<code>complete</code>时，发出每个Observable最新的值</li>
+<li>只会发出一次，即所有Observable最新的值</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token function">forkJoin</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+    <span class="token keyword">of</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">of</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">,</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">of</span><span class="token punctuation">(</span><span class="token number">21</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token operator">*</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>data<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 5s后</span>
+<span class="token comment" spellcheck="true">// [3,12,21]</span></div></code></pre>

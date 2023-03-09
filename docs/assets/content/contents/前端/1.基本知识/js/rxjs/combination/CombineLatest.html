@@ -1,0 +1,21 @@
+
+        <h2 id="combinelatest" class="docs-header-link">
+          <span header-link="combinelatest"></span>
+          combineLatest
+        </h2>
+      <ul>
+<li>内部每个Observable都至少发出一次数据后，才触发next function</li>
+<li>然后只要有一个内部Observable发出数据，都会触发一次next function。订阅到的值是各个内部Observable最新发出的值</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token function">combineLatest</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+    <span class="token function">timer</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">,</span> <span class="token number">4000</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">timer</span><span class="token punctuation">(</span><span class="token number">2000</span><span class="token punctuation">,</span> <span class="token number">4000</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">timer</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">,</span> <span class="token number">4000</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>data <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// [0,0,0] // 3s才开始第一个输出值，因为有个timer是在第3s才发出第一个值</span>
+<span class="token comment" spellcheck="true">// [1,0,0] // 4s</span>
+<span class="token comment" spellcheck="true">// [1,1,0] // 5s</span>
+<span class="token comment" spellcheck="true">// [1,1,1] // 6s</span>
+<span class="token comment" spellcheck="true">// [2,1,1] // 7s</span>
+<span class="token comment" spellcheck="true">// [2,2,1] // 8s</span>
+<span class="token comment" spellcheck="true">// [2,2,2] // 9s</span></div></code></pre>

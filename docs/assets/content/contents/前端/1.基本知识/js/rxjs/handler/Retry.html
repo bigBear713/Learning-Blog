@@ -1,0 +1,26 @@
+
+        <h2 id="retry" class="docs-header-link">
+          <span header-link="retry"></span>
+          retry
+        </h2>
+      <ul>
+<li>当Observable报错时，可重试</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>
+    <span class="token function">mergeMap</span><span class="token punctuation">(</span>val <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 抛出错误以进行演示</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">></span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">throwError</span><span class="token punctuation">(</span><span class="token string">'Error!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token keyword">of</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment" spellcheck="true">// 出错的话可以重试2次</span>
+    <span class="token function">retry</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>
+    val <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    err <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>err<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">: Retried 2 times then quit!`</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//   0..1..2..3..4..5..</span>
+<span class="token comment" spellcheck="true">//   0..1..2..3..4..5..</span>
+<span class="token comment" spellcheck="true">//   0..1..2..3..4..5..</span>
+<span class="token comment" spellcheck="true">//  "Error!: Retried 2 times then quit!"</span></div></code></pre>

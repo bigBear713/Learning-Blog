@@ -1,0 +1,112 @@
+
+        <h2 id="a11y" class="docs-header-link">
+          <span header-link="a11y"></span>
+          a11y
+        </h2>
+      <ul>
+<li><code>a11y</code>，即<code>accessibility</code>。</li>
+<li>web上的a11y就是一种提升残障人士在web上的使用体验的技术。</li>
+</ul>
+
+        <h2 id="%E8%81%9A%E7%84%A6" class="docs-header-link">
+          <span header-link="%E8%81%9A%E7%84%A6"></span>
+          聚焦
+        </h2>
+      
+        <h3 id="%E6%8C%89%E9%94%AE" class="docs-header-link">
+          <span header-link="%E6%8C%89%E9%94%AE"></span>
+          按键
+        </h3>
+      <ul>
+<li>tab: 开始、切换聚焦选中页面中tabindex&gt;-1的元素。 shift + tab可以实现回到前一个聚焦的元素</li>
+<li>enter/space：确认键，在button上可以实现点击效果，在下拉列表可以实现弹出列表效果</li>
+<li>esc：取消键，回退键。当弹出下拉列表的时候，可以实现收起下拉列表的效果</li>
+<li>方向键：上下键在一些时候(下拉列表中)可以代替tab实现悬浮选项的效果。</li>
+</ul>
+
+        <h3 id="%E9%A1%BA%E5%BA%8F" class="docs-header-link">
+          <span header-link="%E9%A1%BA%E5%BA%8F"></span>
+          顺序
+        </h3>
+      <ul>
+<li>从上到下，从左到右</li>
+</ul>
+
+        <h2 id="%E4%BD%BF%E7%94%A8%E6%9C%89%E6%84%8F%E4%B9%89%E7%9A%84html%E6%A0%87%E7%AD%BE" class="docs-header-link">
+          <span header-link="%E4%BD%BF%E7%94%A8%E6%9C%89%E6%84%8F%E4%B9%89%E7%9A%84html%E6%A0%87%E7%AD%BE"></span>
+          使用有意义的html标签
+        </h2>
+      <ul>
+<li>html有一些标签本身就带有一定含义。在相应的位置推荐优先使用这些标签。</li>
+<li>header: 头部，一般是页面的头部部分</li>
+<li>main：主要内容，一般是网页的主要内容部分</li>
+<li>footer: 底部，一般是 页面的底部内容</li>
+<li>nav：一般是一些菜单项</li>
+<li>form：表单</li>
+<li>ul/ol：列表</li>
+<li>section：区域</li>
+</ul>
+
+        <h2 id="tabindex" class="docs-header-link">
+          <span header-link="tabindex"></span>
+          tabindex
+        </h2>
+      <ul>
+<li>值有3种情况：&lt;0，=0，&gt;0。</li>
+<li>tabindex &lt; 0时，无法通过tab聚焦到，但通过js仍可以获取聚焦到。</li>
+<li>tabindex = 0时，能通过tab聚焦到。</li>
+<li>tabindex &gt; 0时，能通过tab聚焦到，但是需要等页面上所有tabindex = 0的元素被过了一遍之后才能被聚焦到。</li>
+</ul>
+
+        <h2 id="role" class="docs-header-link">
+          <span header-link="role"></span>
+          role
+        </h2>
+      <ul>
+<li>用于设置一些元素为特殊的角色。当一些情况下没有使用有表示特殊含义的html标签时，可以通过该属性，将该标签设置为扮演这个特殊含义的角色。比如将div设置为main角色</li>
+</ul>
+
+        <h2 id="aria-*" class="docs-header-link">
+          <span header-link="aria-*"></span>
+          aria-*
+        </h2>
+      <ul>
+<li>一些特殊属性，用于a11y的。</li>
+<li>aria-label: 控制元素读取时的内容。正常读取的是元素的文本内容，当不想读取元素的文本内容时可以通过该属性让屏幕阅读器读取其它内容。</li>
+<li>aria-labelledby=#id：阅读指定元素的内容，值为指定元素的 id。优先级高于 aria-label</li>
+<li>aria-description:</li>
+<li>aira-hidden:对屏幕阅读器不可见，即跳过</li>
+<li>aria-checked=&quot;true&quot;：按钮已选中，与 role=&quot;checkbox/raido&quot;搭配使用</li>
+<li>aria-selected=&quot;true&quot;：选项已选中</li>
+<li>aria-disabled=&quot;true&quot;：按钮不可用</li>
+<li>aria-haspopup=&quot;true&quot;：当前元素会触发弹出式 UI 组件，与 aria-expanded 搭配使用。默认 false</li>
+<li>aria-expanded=&quot;true&quot;：当前元素的弹出式 UI 组已弹出，默认 false</li>
+</ul>
+
+        <h2 id="screen-reader" class="docs-header-link">
+          <span header-link="screen-reader"></span>
+          screen reader
+        </h2>
+      <ul>
+<li>screen reader能够读出当前focus的元素是什么元素(button, ul等)，内容、状态等信息。</li>
+<li>Mac和Iphone上都是VoiceOver，苹果自己带有专门的软件已经集成。</li>
+<li>PC上可以下载。。。</li>
+<li>安卓上也有专门的软件Talkback，已经集成</li>
+</ul>
+
+        <h2 id="%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7" class="docs-header-link">
+          <span header-link="%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7"></span>
+          测试工具
+        </h2>
+      <ul>
+<li>axe插件</li>
+<li>Lighthouse</li>
+</ul>
+
+        <h2 id="%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"></span>
+          参考链接
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://juejin.cn/post/7190341213126410298">https://juejin.cn/post/7190341213126410298</a></li>
+</ul>

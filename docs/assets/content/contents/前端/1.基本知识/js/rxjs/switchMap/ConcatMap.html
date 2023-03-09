@@ -1,0 +1,36 @@
+
+        <h2 id="concatmap" class="docs-header-link">
+          <span header-link="concatmap"></span>
+          concatMap
+        </h2>
+      <ul>
+<li>将源Observable映射成内部Observable，并按顺序订阅发出</li>
+<li>如果源Observable发出了下一个值，内部Observable还没发出值，会先将源Observable新发出的值储存起来，等内部Observable发出了值，再映射发送源Observable新发出的值</li>
+<li>如果内部Observable不是<code>complete</code>状态，则永远不会处理源Observable后续发出的值</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>
+    <span class="token function">concatMap</span><span class="token punctuation">(</span>
+        value<span class="token operator">=</span><span class="token operator">></span><span class="token keyword">of</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`the value is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>value<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 应是一个Observable，否则会自动转为Observable。比如 如果返回string，会转成of(string)</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>data<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>
+  <span class="token function">concatMap</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Observable</span><span class="token punctuation">(</span>o<span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+      o<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`the value is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>value<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">// 如果没有complete，则永远不会处理源Observable后续发出的值</span>
+      <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span>o<span class="token punctuation">.</span><span class="token function">complete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">1000</span><span class="token operator">*</span><span class="token number">5</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>data<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+<ul>
+<li>concatMap = map + concatAll</li>
+</ul>
+
+        <h2 id="%E5%92%8Cmergemap%E7%9A%84%E5%8C%BA%E5%88%AB" class="docs-header-link">
+          <span header-link="%E5%92%8Cmergemap%E7%9A%84%E5%8C%BA%E5%88%AB"></span>
+          和mergeMap的区别
+        </h2>
+      <ul>
+<li><a href="">link</a></li>
+</ul>

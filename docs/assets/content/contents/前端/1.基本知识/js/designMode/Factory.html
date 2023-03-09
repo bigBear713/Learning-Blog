@@ -1,0 +1,136 @@
+
+        <h2 id="factory%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F" class="docs-header-link">
+          <span header-link="factory%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"></span>
+          Factory工厂模式
+        </h2>
+      <ul>
+<li>不暴露创建对象的逻辑，而是封装在一个函数中。这个函数就可被称为 <code>Factory</code> 工厂</li>
+<li>分类<ol>
+<li>Simple Factory - 简单工厂模式</li>
+<li>Factory Method - 工厂方法模式</li>
+<li>Abstract Factory - 抽象工厂模式</li>
+</ol>
+</li>
+</ul>
+
+        <h3 id="simple-factory" class="docs-header-link">
+          <span header-link="simple-factory"></span>
+          Simple Factory
+        </h3>
+      <ul>
+<li>也叫静态工厂模式，用一个工厂函数创建一类对象类的实例</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">function</span> <span class="token function">Factory</span><span class="token punctuation">(</span>career<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">function</span> <span class="token function">User</span><span class="token punctuation">(</span>career<span class="token punctuation">,</span> work<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>career <span class="token operator">=</span> career 
+        <span class="token keyword">this</span><span class="token punctuation">.</span>work <span class="token operator">=</span> work
+    <span class="token punctuation">}</span>
+    <span class="token keyword">let</span> work
+    <span class="token keyword">switch</span><span class="token punctuation">(</span>career<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> <span class="token string">'coder'</span><span class="token punctuation">:</span>
+            work <span class="token operator">=</span>  <span class="token punctuation">[</span><span class="token string">'写代码'</span><span class="token punctuation">,</span> <span class="token string">'修Bug'</span><span class="token punctuation">]</span> 
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>career<span class="token punctuation">,</span> work<span class="token punctuation">)</span>
+            <span class="token keyword">break</span>
+        <span class="token keyword">case</span> <span class="token string">'hr'</span><span class="token punctuation">:</span>
+            work <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'招聘'</span><span class="token punctuation">,</span> <span class="token string">'员工信息管理'</span><span class="token punctuation">]</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>career<span class="token punctuation">,</span> work<span class="token punctuation">)</span>
+            <span class="token keyword">break</span>
+        <span class="token keyword">case</span> <span class="token string">'driver'</span><span class="token punctuation">:</span>
+            work <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'开车'</span><span class="token punctuation">]</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>career<span class="token punctuation">,</span> work<span class="token punctuation">)</span>
+            <span class="token keyword">break</span>
+        <span class="token keyword">case</span> <span class="token string">'boss'</span><span class="token punctuation">:</span>
+            work <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'喝茶'</span><span class="token punctuation">,</span> <span class="token string">'开会'</span><span class="token punctuation">,</span> <span class="token string">'审批文件'</span><span class="token punctuation">]</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>career<span class="token punctuation">,</span> work<span class="token punctuation">)</span>
+            <span class="token keyword">break</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">let</span> coder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Factory</span><span class="token punctuation">(</span><span class="token string">'coder'</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>coder<span class="token punctuation">)</span>
+<span class="token keyword">let</span> boss <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Factory</span><span class="token punctuation">(</span><span class="token string">'boss'</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>boss<span class="token punctuation">)</span></div></code></pre>
+
+        <h3 id="%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F" class="docs-header-link">
+          <span header-link="%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"></span>
+          工厂方法模式
+        </h3>
+      <ul>
+<li>跟简单工厂模式差不多，差别是将具体的产品放到工厂函数的 <code>prototype</code> 中</li>
+<li>这样当拓展产品类时，就不必修改工厂函数，核心类就变成抽象类，也可以随时修改某种具体的产品</li>
+<li>工厂方法关键核心代码是工厂里面的判断this是否属于工厂，也就是做了分支判断，这个工厂只做我能做的产品</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token comment" spellcheck="true">// 工厂方法</span>
+<span class="token keyword">function</span> <span class="token function">Factory</span><span class="token punctuation">(</span>career<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span> <span class="token keyword">instanceof</span> <span class="token class-name">Factory</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">this</span><span class="token punctuation">[</span>career<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Factory</span><span class="token punctuation">(</span>career<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 工厂方法函数的原型中设置所有对象的构造函数</span>
+Factory<span class="token punctuation">.</span>prototype<span class="token operator">=</span><span class="token punctuation">{</span>
+    <span class="token string">'coder'</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>careerName <span class="token operator">=</span> <span class="token string">'程序员'</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>work <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'写代码'</span><span class="token punctuation">,</span> <span class="token string">'修Bug'</span><span class="token punctuation">]</span> 
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">'hr'</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>careerName <span class="token operator">=</span> <span class="token string">'HR'</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>work <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'招聘'</span><span class="token punctuation">,</span> <span class="token string">'员工信息管理'</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">'driver'</span><span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>careerName <span class="token operator">=</span> <span class="token string">'司机'</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>work <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'开车'</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">'boss'</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>careerName <span class="token operator">=</span> <span class="token string">'老板'</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>work <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'喝茶'</span><span class="token punctuation">,</span> <span class="token string">'开会'</span><span class="token punctuation">,</span> <span class="token string">'审批文件'</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">let</span> coder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Factory</span><span class="token punctuation">(</span><span class="token string">'coder'</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>coder<span class="token punctuation">)</span>
+<span class="token keyword">let</span> hr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Factory</span><span class="token punctuation">(</span><span class="token string">'hr'</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>hr<span class="token punctuation">)</span></div></code></pre>
+
+        <h3 id="%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F" class="docs-header-link">
+          <span header-link="%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"></span>
+          抽象工厂模式
+        </h3>
+      <ul>
+<li>抽象工厂模式并不直接生成实例， 而是用于对产品类簇的创建</li>
+<li>主要分为4部分<ol>
+<li>用于创建抽象类的函数</li>
+<li>抽象类</li>
+<li>具体类</li>
+<li>实例化具体类</li>
+</ol>
+</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">let</span> CareerAbstractFactory <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>subType<span class="token punctuation">,</span> superType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 判断抽象工厂中是否有该抽象类</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> CareerAbstractFactory<span class="token punctuation">[</span>superType<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 缓存类</span>
+    <span class="token keyword">function</span> <span class="token function">F</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 继承父类属性和方法</span>
+    F<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CareerAbstractFactory</span><span class="token punctuation">[</span>superType<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// 将子类的constructor指向父类</span>
+    subType<span class="token punctuation">.</span>constructor <span class="token operator">=</span> subType<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 子类原型继承父类</span>
+    subType<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">F</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'抽象类不存在'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></div></code></pre>
+<hr>
+
+        <h2 id="%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF" class="docs-header-link">
+          <span header-link="%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"></span>
+          应用场景
+        </h2>
+      <ul>
+<li>简单工厂模式：有构造函数的地方，就应该考虑简单工厂。但如果函数构建太多与复杂，会导致工厂函数变得复杂，所以不适合复杂情况</li>
+<li>抽象工厂模式：一般用于严格要求用面向对象思想开发的大型项目中，常规开发一般简单工厂模式和工厂方法模式用得多一些</li>
+<li>如果<strong>不想</strong>让某个子系统与较大的那个对象之间形成强耦合，而是想运行时从许多子系统中进行挑选的话，那么工厂模式是一个不错的选择</li>
+<li>将<code>new</code>操作符简单封装，遇到new的时候就应该考虑工厂模式</li>
+<li>需要依赖具体环境创建不同实例，这些实例都有相同行为，这时候可以使用工厂模式，简化实现过程，同时也可减少每种对象所需的代码量，有利于消除对象间的耦合，提供更大灵活性</li>
+</ul>

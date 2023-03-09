@@ -1,0 +1,130 @@
+
+        <h2 id="hook" class="docs-header-link">
+          <span header-link="hook"></span>
+          hook
+        </h2>
+      <ul>
+<li>在不编写 <code>class</code> 的情况下（即函数组件中）使用 <code>state</code> 以及其他的 React 特性。</li>
+<li>Hook 是一些可以让你在<strong>函数组件</strong>里“钩入” <strong>React state 及生命周期</strong>等特性的函数</li>
+<li>Hook 不能在 class 组件中使用 </li>
+<li>使用规则<ol>
+<li>只能在函数<strong>最外层</strong>调用 Hook。不要在循环、条件判断或者子函数中调用。</li>
+<li>只能在 React 的<strong>函数组件</strong>中调用 Hook。不要在其他 JavaScript 函数中调用。还有一个地方可以调用 Hook —— 就是自定义的 Hook 中</li>
+</ol>
+</li>
+<li>hook 的结构是<strong>链表</strong>结构，上述操作会打断这种结构，导致取指错误等问题</li>
+<li>Hook 是一种复用状态逻辑的方式，它不复用 state 本身。事实上 Hook 的每次调用都有一个完全独立的 state —— 因此你可以在单个组件中多次调用同一个自定义 Hook。</li>
+</ul>
+<hr>
+
+        <h2 id="usestate" class="docs-header-link">
+          <span header-link="usestate"></span>
+          useState
+        </h2>
+      <ul>
+<li>通过在函数组件里调用它来给组件添加一些内部 state</li>
+<li>React 会在<strong>重复渲染</strong>时保留这个 state</li>
+<li>useState 会返回一对值：当前状态和一个让你更新它的函数</li>
+<li>useState 唯一的参数就是初始 state</li>
+</ul>
+<hr>
+
+        <h2 id="useeffect" class="docs-header-link">
+          <span header-link="useeffect"></span>
+          useEffect
+        </h2>
+      <ul>
+<li>给函数组件增加了操作副作用的能力</li>
+<li>它跟 class 组件中的 <code>componentDidMount</code>、<code>componentDidUpdate</code> 和 <code>componentWillUnmount</code> 具有相同的用途，只不过被合并成了一个 API</li>
+<li>告诉 React 在完成对 DOM 的更改后运行你的“副作用”函数</li>
+<li>默认情况下，React 会在<strong>每次</strong>渲染后调用副作用函数 —— 包括第一次渲染的时候</li>
+<li>可以通过<strong>返回</strong>一个函数来指定如何“清除”副作用</li>
+<li>通过使用 Effect Hook，你可以把组件内相关的副作用组织在一起，而不要把它们拆分到不同的生命周期函数里。</li>
+<li>第二个可选参数是一个数组，传入依赖值。此时，只有当依赖值变化时，Effect Hook才会执行</li>
+</ul>
+<pre class="language-jsx"><code class="language-jsx"><div> <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    ChatAPI<span class="token punctuation">.</span><span class="token function">subscribeToFriendStatus</span><span class="token punctuation">(</span>props<span class="token punctuation">.</span>friend<span class="token punctuation">.</span>id<span class="token punctuation">,</span> handleStatusChange<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 返回一个函数，指定如何清除副作用</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      ChatAPI<span class="token punctuation">.</span><span class="token function">unsubscribeFromFriendStatus</span><span class="token punctuation">(</span>props<span class="token punctuation">.</span>friend<span class="token punctuation">.</span>id<span class="token punctuation">,</span> handleStatusChange<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+<hr>
+
+        <h2 id="usecontext" class="docs-header-link">
+          <span header-link="usecontext"></span>
+          useContext
+        </h2>
+      <ul>
+<li>接收一个 <code>context</code> 对象（<code>React.createContext</code> 的返回值）并返回该 <code>context</code> 的当前值</li>
+<li><code>context</code> 值由上层组件中距离当前组件最近的 <code>&lt;MyContext.Provider&gt;</code> 的 <code>value</code> prop 决定</li>
+<li>当组件上层最近的 <code>&lt;MyContext.Provider&gt;</code> 更新时，该 Hook 会触发重渲染，并使用最新传递给 MyContext <code>provider</code> 的 context <code>value</code> 值</li>
+<li>即使祖先使用 <code>React.memo</code> 或 <code>shouldComponentUpdate</code>，也会在组件本身使用 <code>useContext</code> 时重新渲染。</li>
+</ul>
+<hr>
+
+        <h2 id="usecallback" class="docs-header-link">
+          <span header-link="usecallback"></span>
+          useCallback
+        </h2>
+      <ul>
+<li>返回一个 <code>memoized</code> <strong>回调函数</strong></li>
+<li>把内联回调函数及依赖项数组作为参数传入 <code>useCallback</code>，它将返回该回调函数的 <code>memoized</code> 版本，该回调函数仅在某个依赖项改变时才会更新。即类似于Vue中的<code>computed</code></li>
+<li>当你把回调函数传递给经过优化的并使用引用相等性去避免非必要渲染（例如 <code>shouldComponentUpdate</code>）的子组件时，它将非常有用</li>
+<li><code>useCallback(fn, deps)</code> 相当于 <code>useMemo(() =&gt; fn, deps)</code>。</li>
+<li>依赖项数组不会作为参数传给回调函数</li>
+</ul>
+<hr>
+
+        <h2 id="usememo" class="docs-header-link">
+          <span header-link="usememo"></span>
+          useMemo
+        </h2>
+      <ul>
+<li>返回一个 <code>memoized</code> <strong>值</strong></li>
+<li>把“创建”函数和依赖项数组作为参数传入 <code>useMemo</code>，它仅会在某个依赖项改变时才重新计算 <code>memoized</code> 值。即类似于Vue中的<code>computed</code></li>
+<li>有助于避免在每次渲染时都进行高开销的计算</li>
+<li>传入 <code>useMemo</code> 的函数会在渲染期间执行。请不要在这个函数内部执行<strong>不应该</strong>在渲染期间内执行的操作，诸如<strong>副作用</strong>这类的操作属于 <code>useEffect</code> 的适用范畴，而不是 <code>useMemo</code>。</li>
+<li>如果没有提供依赖项数组，<code>useMemo</code> 在每次渲染时都会计算新的值。</li>
+</ul>
+<hr>
+
+        <h2 id="useref" class="docs-header-link">
+          <span header-link="useref"></span>
+          useRef
+        </h2>
+      <ul>
+<li><code>useRef</code> 返回一个可变的 <code>ref</code> 对象，其 <code>.current</code> 属性被初始化为传入的参数（initialValue）。</li>
+<li>返回的 <code>ref</code> 对象在组件的整个生命周期内持续存在。</li>
+<li><code>useRef</code> 就像是可以在其 <code>.current</code> 属性中保存一个可变值的“盒子”</li>
+<li>当 <code>ref</code> 对象内容发生变化时，<code>useRef</code> 并不会通知你</li>
+<li>变更 <code>.current</code> 属性不会引发组件重新渲染</li>
+<li>如果想要在 React 绑定或解绑 DOM 节点的 <code>ref</code> 时运行某些代码，则需要使用回调 <code>ref</code> 来实现。即 <code>ref</code> 的回调函数是一个 <code>useCallback</code></li>
+</ul>
+<pre class="language-jsx"><code class="language-jsx"><div><span class="token keyword">function</span> <span class="token function">MeasureExample</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>height<span class="token punctuation">,</span> setHeight<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// ref回调是一个useCallback</span>
+  <span class="token keyword">const</span> measuredRef <span class="token operator">=</span> <span class="token function">useCallback</span><span class="token punctuation">(</span>node <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>node <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">setHeight</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span><span class="token operator">></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">ref</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>measuredRef<span class="token punctuation">}</span></span><span class="token punctuation">></span></span>Hello<span class="token punctuation">,</span> world<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>The above header is <span class="token punctuation">{</span>Math<span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span>height<span class="token punctuation">)</span><span class="token punctuation">}</span>px tall<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></div></code></pre>
+<hr>
+
+        <h2 id="%E8%87%AA%E5%AE%9A%E4%B9%89hook" class="docs-header-link">
+          <span header-link="%E8%87%AA%E5%AE%9A%E4%B9%89hook"></span>
+          自定义Hook
+        </h2>
+      <ul>
+<li>通过自定义 Hook，可以将组件逻辑提取到可重用的函数中</li>
+<li>自定义 Hook 是一个函数，其名称以 “<code>use</code>” 开头，函数内部可以调用其他的 Hook</li>
+</ul>

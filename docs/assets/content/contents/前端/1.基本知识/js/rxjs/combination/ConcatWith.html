@@ -1,0 +1,27 @@
+
+        <h2 id="concatwith" class="docs-header-link">
+          <span header-link="concatwith"></span>
+          concatWith
+        </h2>
+      <ul>
+<li>只有当源Observable<code>complete</code>后，<strong>才能</strong>开始内部的Observable</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">of</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>
+  <span class="token function">concatWith</span><span class="token punctuation">(</span>
+    <span class="token keyword">of</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 内部的Observable</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>data<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 1</span>
+<span class="token comment" spellcheck="true">// 2</span>
+<span class="token comment" spellcheck="true">// 3</span>
+<span class="token comment" spellcheck="true">// 5</span>
+<span class="token comment" spellcheck="true">// 6</span>
+<span class="token comment" spellcheck="true">// 7</span></div></code></pre>
+
+        <h2 id="concatmap" class="docs-header-link">
+          <span header-link="concatmap"></span>
+          concatMap
+        </h2>
+      <ul>
+<li><a href="">link</a></li>
+</ul>

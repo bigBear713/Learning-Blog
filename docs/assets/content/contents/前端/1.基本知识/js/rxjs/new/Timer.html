@@ -1,0 +1,16 @@
+
+        <h2 id="timer" class="docs-header-link">
+          <span header-link="timer"></span>
+          timer
+        </h2>
+      <ul>
+<li>在给定的时间后发出数字</li>
+<li>可接收第二个参数，设置每间隔多少时间发出连续的值</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token function">timer</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">,</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>data<span class="token operator">=</span><span class="token operator">></span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">// 1s后</span>
+<span class="token comment" spellcheck="true">// 0</span>
+<span class="token comment" spellcheck="true">// 4s后</span>
+<span class="token comment" spellcheck="true">// 1</span>
+<span class="token comment" spellcheck="true">// 7s后</span>
+<span class="token comment" spellcheck="true">// 2</span></div></code></pre>

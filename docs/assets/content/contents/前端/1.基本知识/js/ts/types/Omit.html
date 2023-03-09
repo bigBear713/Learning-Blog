@@ -1,0 +1,19 @@
+
+        <h2 id="omit" class="docs-header-link">
+          <span header-link="omit"></span>
+          Omit
+        </h2>
+      <ul>
+<li>从源类型中，移除某些属性，得到一个新的类型</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div><span class="token keyword">interface</span> <span class="token class-name">FilterDropdownProps</span> <span class="token punctuation">{</span>
+    prefixCls<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">;</span>
+    setSelectedKeys<span class="token punctuation">:</span> <span class="token punctuation">(</span>selectedKeys<span class="token punctuation">:</span> React<span class="token punctuation">.</span>Key<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+    selectedKeys<span class="token punctuation">:</span> React<span class="token punctuation">.</span>Key<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    confirm<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+    clearFilters<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+    filters<span class="token operator">?</span><span class="token punctuation">:</span> ColumnFilterItem<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    visible<span class="token punctuation">:</span> <span class="token keyword">boolean</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+type MyFilterDropdownProps <span class="token operator">=</span> Omit<span class="token operator">&lt;</span>FilterDropdownProps<span class="token punctuation">,</span> <span class="token string">'selectedKeys'</span> <span class="token operator">|</span> <span class="token string">'setSelectedKeys'</span><span class="token operator">></span></div></code></pre>

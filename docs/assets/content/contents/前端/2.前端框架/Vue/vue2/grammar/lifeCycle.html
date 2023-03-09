@@ -1,0 +1,134 @@
+
+        <h2 id="lifecycle%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F" class="docs-header-link">
+          <span header-link="lifecycle%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"></span>
+          lifeCycle生命周期
+        </h2>
+      <ul>
+<li>beforeCreate - 组件实例被创建之初</li>
+<li>created - 组件实例已经完全被创建</li>
+<li>beforeMount - 组件挂载之前</li>
+<li>mounted - 组件已经被挂载到实例上之后</li>
+<li>beforeUpdate- 组件数据发生变化，更新之前</li>
+<li>updated - 组件数据更新之后</li>
+<li>beforeDestroy - 组件实例销毁之前</li>
+<li>destroyed - 组件实例销毁之后</li>
+<li>activated - keep-alive缓存的组件激活时</li>
+<li>deactivated - keep-alive缓存的组件被停用时调用</li>
+<li>errorCaptured - 捕获一个来自子孙组件的错误时被调用</li>
+</ul>
+<hr>
+
+        <h2 id="beforecreated" class="docs-header-link">
+          <span header-link="beforecreated"></span>
+          beforeCreated
+        </h2>
+      <ul>
+<li>组件实例刚创建之初</li>
+<li>此时组件实例只有 <code>Event</code> 和 <code>lifeCycle</code> ，其它的都还没创建</li>
+</ul>
+<hr>
+
+        <h2 id="created" class="docs-header-link">
+          <span header-link="created"></span>
+          created
+        </h2>
+      <ul>
+<li>组件实例被创建之后</li>
+<li>此时 <code>props</code> ， <code>data</code> ， <code>methods</code> 已经被初始化，可以开始被调用</li>
+<li><code>props</code> 最早被初始化</li>
+</ul>
+<hr>
+
+        <h2 id="beforemount" class="docs-header-link">
+          <span header-link="beforemount"></span>
+          beforeMount
+        </h2>
+      <ul>
+<li>组件被挂载之前</li>
+<li>此时开始解析 <code>template</code> 模板，执行vue中的指令。在内存中生成一个编译好的模板字符串。然后将这模板字符串渲染成内存中的DOM</li>
+<li>此时只是在内存中渲染好DOM，并未把模板挂载到页面中去，页面中的内容还是旧的</li>
+</ul>
+<hr>
+
+        <h2 id="mounted" class="docs-header-link">
+          <span header-link="mounted"></span>
+          mounted
+        </h2>
+      <ul>
+<li>组件已经挂载到实例上之后</li>
+<li>此时将内存中的 <code>$el</code> -- 模板内容，替换到页面中</li>
+<li>因此，如果要对页面进行DOM操作，最早需要在 <code>mounted</code> 中。</li>
+<li>执行完 <code>mounted</code> ，就表示vue实例已经初始化完毕，脱离创建阶段，进入运行阶段</li>
+<li>数据请求在 <code>created</code> 和 <code>mounted</code> 的区别：放在<code>mounted</code>中的请求有可能导致页面闪动（因为此时页面dom结构已经生成），但如果在页面加载前完成请求，则不会出现此情况。建议对页面内容的改动放在<code>created</code>生命周期当中。</li>
+</ul>
+<hr>
+
+        <h2 id="beforeupdate" class="docs-header-link">
+          <span header-link="beforeupdate"></span>
+          beforeUpdate
+        </h2>
+      <ul>
+<li>在页面中的数据更新之前</li>
+<li>此时实例中<code>data</code>中的数据是最新的，页面中的数据还是旧的</li>
+<li>执行<code>re-render</code>和<code>patch</code>两个方法：会根据data中的数据，在内存中渲染出一份最新的DOM，然后再把更新的虚拟DOM-data重新渲染到页面view中去</li>
+</ul>
+<hr>
+
+        <h2 id="updated" class="docs-header-link">
+          <span header-link="updated"></span>
+          updated
+        </h2>
+      <ul>
+<li>在页面中的数据更新之后</li>
+<li>此时页面中的数据已经和实例中的<code>data</code>中的数据保持同步，都是最新的</li>
+<li>若在<code>updated</code>中再次修改数据，会再次触发更新方法（<code>beforeUpdate</code>、<code>updated</code>）</li>
+</ul>
+<hr>
+
+        <h2 id="beforedestroy" class="docs-header-link">
+          <span header-link="beforedestroy"></span>
+          beforeDestroy
+        </h2>
+      <ul>
+<li>组件实例被销毁之前</li>
+<li>此时组件实例已经进入销毁阶段。但<code>data</code>，<code>methods</code>等都仍可用，还没开始被销毁</li>
+<li>若在<code>beforeUpdate</code>中再次修改数据，不会再次触发更新方法</li>
+</ul>
+<hr>
+
+        <h2 id="destroyed" class="docs-header-link">
+          <span header-link="destroyed"></span>
+          destroyed
+        </h2>
+      <ul>
+<li>组件实例已经被销毁</li>
+<li>此时组件实例已经完全被销毁，<code>data</code>、<code>props</code>和<code>methods</code>等都不可用</li>
+<li>并不能清除DOM，仅仅销毁实例</li>
+</ul>
+<hr>
+
+        <h2 id="activated" class="docs-header-link">
+          <span header-link="activated"></span>
+          activated
+        </h2>
+      <ul>
+<li>使用keep-alive缓存组件时，当组件处于 <code>created</code> 时也会执行该钩子函数</li>
+</ul>
+<hr>
+
+        <h2 id="deactivated" class="docs-header-link">
+          <span header-link="deactivated"></span>
+          deactivated
+        </h2>
+      <ul>
+<li>keep-alive缓存的组件被停用时调用</li>
+</ul>
+<hr>
+
+        <h2 id="%E5%8F%82%E8%80%83" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83"></span>
+          参考
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://vue3js.cn/interview/vue/lifecycle.htm">https://vue3js.cn/interview/vue/lifecycle.htm</a></li>
+</ul>
