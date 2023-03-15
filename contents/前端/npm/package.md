@@ -360,6 +360,16 @@ import 'antd/dist/antd.css'; // 如果 Ant Design 的 package.json 里不设置 
 }
 ``` 
 
+---
+
+## package-lock.json
+- package-lock.json 它会在 npm 更改 node_modules 目录树 或者 package.json 时自动生成的
+- 准确的描述了当前项目npm包的依赖树，并且在随后的安装中会根据 package-lock.json 来安装，保证是相同的一个依赖树，不考虑这个过程中是否有某个依赖有小版本的更新。
+- 它的产生就是来对整个依赖树进行版本固定的（锁死）
+
+---
+
 ## 参考
 - https://juejin.cn/post/7122240572491825160
 - https://juejin.cn/post/7161392772665540644
+- https://juejin.cn/post/7078233610683170824
