@@ -1,0 +1,58 @@
+
+        <h2 id="%E5%8E%9F%E5%9E%8Bprototype" class="docs-header-link">
+          <span header-link="%E5%8E%9F%E5%9E%8Bprototype"></span>
+          原型prototype
+        </h2>
+      <ul>
+<li>每个对象都会在内部初始化一个prototype，即原型，存储这共享的属性和方法。</li>
+</ul>
+
+        <h2 id="%E5%8E%9F%E5%9E%8B%E9%93%BE" class="docs-header-link">
+          <span header-link="%E5%8E%9F%E5%9E%8B%E9%93%BE"></span>
+          原型链
+        </h2>
+      <ul>
+<li>一个对象本身，对象的prototype，对象父级的prototype......一直到Object, Function等的prototype，这些组成了一个链条，就是原型链。</li>
+<li>访问一个对象的属性或者调用一个对象的方法时，会在原型链上寻找，从对象本身开始，到对象的prototype，逐级往上直到找到为止。</li>
+</ul>
+
+        <h2 id="%3Cstrong%3Eproto%3C/strong%3E,-constructor,prototype%E7%9A%84%E5%85%B3%E7%B3%BB" class="docs-header-link">
+          <span header-link="%3Cstrong%3Eproto%3C/strong%3E,-constructor,prototype%E7%9A%84%E5%85%B3%E7%B3%BB"></span>
+          <strong>proto</strong>, constructor,prototype的关系
+        </h2>
+      
+        <h3 id="%E4%B8%89%E8%80%85%E5%90%AB%E4%B9%89" class="docs-header-link">
+          <span header-link="%E4%B8%89%E8%80%85%E5%90%AB%E4%B9%89"></span>
+          三者含义
+        </h3>
+      <ul>
+<li>__proto__在每个对象中都存在，指向对象的constructor的prototype。即父级的prototype</li>
+<li>prototype只存在构造函数中，用于存储共享属性和方法。</li>
+<li>constructor只存在于构造函数的prototype中，指向构造函数本身。const a = new A()，此时A是一个构造函数。所以a.<strong>proto</strong>===A.prototype.</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> fn <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+obj<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> Object<span class="token punctuation">.</span>prototype  
+arr<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> Array<span class="token punctuation">.</span>prototype  
+fn<span class="token punctuation">.</span>__proto__ <span class="token operator">==</span> Function<span class="token punctuation">.</span>prototype </div></code></pre>
+
+        <h3 id="%E5%85%B3%E7%B3%BB" class="docs-header-link">
+          <span header-link="%E5%85%B3%E7%B3%BB"></span>
+          关系
+        </h3>
+      <ul>
+<li>一个对象或者构造函数的隐式原型__proto__的属性值指向其构造函数的显式原型prototype属性值。即<code>instance.__proto__===instance.constructor.prototype</code>。</li>
+<li>除了Object，所有对象或构造函数的prototype都继承于Object.prototype。原型链的顶层指向null。<code>Object.prototype.__proto__===null</code></li>
+<li>Object.prototype中也有constructor:<code>Object.prototype.constructor===Object</code>,即<code>Object</code>自己。</li>
+<li>构造函数创建的对象（Object, Function, Array, 普通对象等）都是Function的实例，他们的__proto__均指向Function.prototype</li>
+</ul>
+
+        <h2 id="instanceof" class="docs-header-link">
+          <span header-link="instanceof"></span>
+          instanceof
+        </h2>
+      <ul>
+<li>instanceof 运算符用于测试构造函数的 prototype 属性是否出现在对象原型链中的任何位置。</li>
+</ul>

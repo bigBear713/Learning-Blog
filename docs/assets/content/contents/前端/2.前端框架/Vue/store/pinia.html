@@ -1,0 +1,206 @@
+
+        <h2 id="pinia" class="docs-header-link">
+          <span header-link="pinia"></span>
+          Pinia
+        </h2>
+      <ul>
+<li>是Vue的存储库，允许跨组件/页面共享状态</li>
+<li>核心概念<ol>
+<li>store - 数据仓库，可以将一些要共享的数据放在仓库中。可以设置<strong>不同的</strong>store给<strong>不同的</strong>功能模块</li>
+<li>state - 数据状态，存储<code>store</code>中的元数据</li>
+<li>getters - 等同于vue中的<code>computed</code>，有缓存的效果</li>
+<li>actions - 操作<code>store</code>中的数据，可以进行<strong>异步</strong>操作</li>
+</ol>
+</li>
+</ul>
+<hr>
+
+        <h2 id="store" class="docs-header-link">
+          <span header-link="store"></span>
+          store
+        </h2>
+      
+        <h3 id="%E5%88%9B%E5%BB%BA" class="docs-header-link">
+          <span header-link="%E5%88%9B%E5%BB%BA"></span>
+          创建
+        </h3>
+      <ul>
+<li>使用<code>defineStore(name, options)</code>方法，创建一个数据仓库。</li>
+<li>参数：<ol>
+<li>name - 仓库名称，为pinia中的唯一id</li>
+<li>options - 配置项，配置了该<code>store</code>中的<code>state</code>，<code>getters</code>，<code>actions</code></li>
+</ol>
+</li>
+</ul>
+
+        <h3 id="%E4%BD%BF%E7%94%A8" class="docs-header-link">
+          <span header-link="%E4%BD%BF%E7%94%A8"></span>
+          使用
+        </h3>
+      <ul>
+<li><code>store</code>被实例化后，可以直接在store上访问<code>state</code>，<code>getters</code>，<code>actions</code></li>
+<li>store是一个用 <code>reactive</code> 包裹的对象，这意味着不需要在 <code>getter</code> 之后写 <code>.value</code></li>
+<li>不能对<code>store</code>进行解构。如果想提取store中的属性的同时，保持响应式的话，需要使用<code>storeToRefs()</code>，它将为响应式属性创建refs</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div><span class="token comment" spellcheck="true">// src/store/formInfo.js</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> defineStore <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'pinia'</span><span class="token punctuation">;</span>
+​
+<span class="token comment" spellcheck="true">// 第一个参数是应用程序中 store 的唯一 id</span>
+<span class="token keyword">const</span> useFormInfoStore <span class="token operator">=</span> <span class="token function">defineStore</span><span class="token punctuation">(</span><span class="token string">'formInfo'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// state, getters, actions</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> name<span class="token punctuation">,</span> age <span class="token punctuation">}</span> <span class="token operator">=</span> formInfoStore<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ❌ 此时解构出来的name和age不具有响应式</span>
+​
+<span class="token keyword">const</span> <span class="token punctuation">{</span> name<span class="token punctuation">,</span> age <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">storeToRefs</span><span class="token punctuation">(</span>formInfoStore<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ✅ 此时解构出来的name和age是响应式引用</span></div></code></pre>
+<hr>
+
+        <h2 id="state" class="docs-header-link">
+          <span header-link="state"></span>
+          state
+        </h2>
+      <ul>
+<li>定义store时，在<code>options.state</code>中设置，推荐使用完整类型推断的箭头函数</li>
+<li>可使用通过store直接<strong>读取</strong>和<strong>写入</strong>state中的属性</li>
+<li>几种额外的方法操作<code>state</code>:<ol>
+<li><code>$reset</code> - 将state重置为初始值</li>
+<li><code>$patch</code> - 一次性设置state中的多个属性值。设置时，是将新值和旧值合并，将新设置的值覆盖旧的值，没有设置的值不变</li>
+<li><code>$state</code> - 更新state的初始值。这样下次通过<code>$reset</code>恢复初始值时，就是此次新设置的值。设置时，也是新值和旧值合并，而不是直接替换原本的整个state</li>
+<li><code>$subscribe</code> - 订阅 <code>$patch</code>和<code>$state</code> 操作引起的变化，直接通过store修改state的值则不会订阅到</li>
+</ol>
+</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div><span class="token keyword">const</span> useFormInfoStore <span class="token operator">=</span> <span class="token function">defineStore</span><span class="token punctuation">(</span><span class="token string">'formInfo'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+   state<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        name<span class="token punctuation">:</span> <span class="token string">'Hello World'</span><span class="token punctuation">,</span>
+        age<span class="token punctuation">:</span> <span class="token number">18</span><span class="token punctuation">,</span>
+        isStudent<span class="token punctuation">:</span> <span class="token keyword">false</span>
+      <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+​<span class="token comment" spellcheck="true">// 通过store直接读取state中的属性值</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>formInfoStore<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'Hello World'</span>
+<span class="token comment" spellcheck="true">// 直接修改state中的属性</span>
+formInfoStore<span class="token punctuation">.</span>age<span class="token operator">++</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 19</span>
+​
+<span class="token comment" spellcheck="true">// 1.$reset 重置状态，将状态重置成为初始值</span>
+formInfoStore<span class="token punctuation">.</span><span class="token function">$reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>formInfoStore<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 18</span>
+  
+<span class="token comment" spellcheck="true">// 2.$patch 支持对state对象的部分批量修改</span>
+formInfoStore<span class="token punctuation">.</span><span class="token function">$patch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'hello Vue'</span><span class="token punctuation">,</span>
+    age<span class="token punctuation">:</span> <span class="token number">198</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+<span class="token comment" spellcheck="true">// 3.$state 通过将其 $state 属性设置为新对象来替换 Store 的整个状态</span>
+formInfoStore<span class="token punctuation">.</span>$state <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">'hello Vue3'</span><span class="token punctuation">,</span>
+  age<span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+  gender<span class="token punctuation">:</span> <span class="token string">'男'</span>
+<span class="token punctuation">}</span>
+​
+<span class="token comment" spellcheck="true">// 4.$subscribe 订阅store中的状态变化</span>
+formInfoStore<span class="token punctuation">.</span><span class="token function">$subscribe</span><span class="token punctuation">(</span><span class="token punctuation">(</span>mutation<span class="token punctuation">,</span> state<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 监听回调处理</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  detached<span class="token punctuation">:</span> <span class="token keyword">true</span>  <span class="token comment" spellcheck="true">// 💡如果在组件的setup中进行订阅，当组件被卸载时，订阅会被删除，通过detached:true可以让订阅保留</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></div></code></pre>
+<hr>
+
+        <h2 id="getters" class="docs-header-link">
+          <span header-link="getters"></span>
+          getters
+        </h2>
+      <ul>
+<li>定义<code>store</code>时，在<code>options</code>中定义，可以定义多个<code>getters</code></li>
+<li>通过<code>this</code>访问其它<code>getters</code>，此时<strong>不能</strong>用箭头函数</li>
+<li>通过getters不允许额外传参，但可以从getters返回一个函数的方式接收参数，但使用这种方式后，该getters将不再具有缓存性</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div><span class="token keyword">const</span> useFormInfoStore <span class="token operator">=</span> <span class="token function">defineStore</span><span class="token punctuation">(</span><span class="token string">'formInfo'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    state<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+            age<span class="token punctuation">:</span> <span class="token number">18</span><span class="token punctuation">,</span>
+            gender<span class="token punctuation">:</span> <span class="token string">'男'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    getters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 仅依赖state，通过箭头函数方式</span>
+        isMan<span class="token punctuation">:</span> <span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> state<span class="token punctuation">.</span>gender <span class="token operator">===</span> <span class="token string">'男'</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function">isWoman</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 通过this访问其他getter，此时不可以用箭头函数</span>
+            <span class="token keyword">return</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>isMan<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        isLargeBySpecialAge<span class="token punctuation">:</span> <span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token punctuation">(</span>age<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+             <span class="token keyword">return</span> state<span class="token punctuation">.</span>age <span class="token operator">></span> age
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 此时该getters不具有缓存行</span>
+useFormInfoStore<span class="token punctuation">.</span><span class="token function">isLargeBySpecialAge</span><span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">)</span></div></code></pre>
+<hr>
+
+        <h2 id="actions" class="docs-header-link">
+          <span header-link="actions"></span>
+          actions
+        </h2>
+      <ul>
+<li>定义<code>store</code>时，在<code>options</code>中定义。</li>
+<li>常用于定义业务逻辑用</li>
+<li>可以是<strong>异步</strong>的，可以在其中<code>wait</code>任何api甚至其它操作</li>
+<li><code>$onAction()</code> - <ol>
+<li>可用于订阅action及其结果。</li>
+<li>回调函数在action执行<strong>前</strong>执行。回调函数接收<code>after</code>参数，处理Promise，并允许在action执行<strong>后</strong>执行。<code>onError</code>参数用于处理action过程中抛出的错误</li>
+<li>和<code>$subscribe</code>类似，在组件中使用时，组件卸载，订阅也会被删除，如果希望保留的话，需要传入true作为第二个参数。</li>
+</ol>
+</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div><span class="token keyword">const</span> unsubscribe <span class="token operator">=</span> formInfoStore<span class="token punctuation">.</span><span class="token function">$onAction</span><span class="token punctuation">(</span>
+  <span class="token punctuation">(</span><span class="token punctuation">{</span>
+    name<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// action 的名字</span>
+    store<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// store 实例</span>
+    args<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 调用这个 action 的参数</span>
+    after<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 在这个 action 执行完毕之后，执行这个函数</span>
+    onError<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 在这个 action 抛出异常的时候，执行这个函数</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 记录开始的时间变量</span>
+    <span class="token keyword">const</span> startTime <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// 这将在 `store` 上的操作执行之前触发</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`Start "</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">" with params [</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>args<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">', '</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">].`</span></span><span class="token punctuation">)</span>
+​
+    <span class="token comment" spellcheck="true">// 如果 action 成功并且完全运行后，after 将触发。</span>
+    <span class="token comment" spellcheck="true">// 它将等待任何返回的 promise</span>
+    <span class="token function">after</span><span class="token punctuation">(</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>
+        <span class="token template-string"><span class="token string">`Finished "</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">" after </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>
+          Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> startTime
+        <span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">ms.\nResult: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>result<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.`</span></span>
+      <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+​
+    <span class="token comment" spellcheck="true">// 如果 action 抛出或返回 Promise.reject ，onError 将触发</span>
+    <span class="token function">onError</span><span class="token punctuation">(</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span>
+        <span class="token template-string"><span class="token string">`Failed "</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">" after </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> startTime<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">ms.\nError: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>error<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.`</span></span>
+      <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment" spellcheck="true">// 如果在组件卸载后还希望保留，传入true作为第二个参数</span>
+  <span class="token keyword">true</span>
+<span class="token punctuation">)</span>
+​
+<span class="token comment" spellcheck="true">// 手动移除订阅</span>
+<span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></code></pre>
+<hr>
+
+        <h2 id="%E5%8F%82%E8%80%83" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83"></span>
+          参考
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://juejin.cn/post/7207848485856100410">https://juejin.cn/post/7207848485856100410</a></li>
+</ul>

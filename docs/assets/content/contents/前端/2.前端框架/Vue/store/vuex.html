@@ -1,0 +1,56 @@
+
+        <h2 id="vuex" class="docs-header-link">
+          <span header-link="vuex"></span>
+          Vuex
+        </h2>
+      <ul>
+<li>背后基本思想借鉴了Flux</li>
+<li>核心内容<ol>
+<li>module - 数据模块。每个数据模块的<code>state</code>,<code>getter</code>等都是独立的</li>
+<li>state - 整个应用的状态管理单例，等效于Vue中的<code>data</code>，对应Flux中的<code>store</code></li>
+<li>getter - 可由<code>state</code>中的数据派生而成，等同于计算属性<code>computed</code>。能自动实现依赖的收集，以便实现计算属性的缓存</li>
+<li>mutation - 类似于事件，包含一个类型名和回调函数。回调函数中可对<code>state</code>中的数据<strong>同步</strong>修改。</li>
+<li>action - 内部操作没有限制，可以进行任意的<strong>异步</strong>操作。需要通过<code>dispatch</code>方法来触发action操作。同样的，参数包含类型名<code>type</code>和负载<code>payload</code></li>
+</ol>
+</li>
+</ul>
+<hr>
+
+        <h2 id="module" class="docs-header-link">
+          <span header-link="module"></span>
+          module
+        </h2>
+      <ul>
+<li>每个<code>module</code>中，都有独立的<code>state</code>,<code>getter</code>,<code>mutation</code>,<code>action</code></li>
+<li>可以通过<code>module.registerModule</code>动态注册模块</li>
+<li>支持模块的相互嵌套，可以通过设置命名空间来进行数据和操作隔离</li>
+</ul>
+<hr>
+
+        <h2 id="mutation" class="docs-header-link">
+          <span header-link="mutation"></span>
+          mutation
+        </h2>
+      <ul>
+<li>Vuex不允许直接调用该函数，而是需要通过<code>store.commit()</code>提交一个操作，并将参数传入回调函数中</li>
+<li><code>commit()</code>的参数也可以是一个对象，和Flux中的<code>action</code>对象一样，包含类型名<code>type</code>和负载<code>payload</code></li>
+<li>这里要求<code>mutation</code>中回调函数的操作一定是同步的。这是因为同步的、可序列化的操作步骤能保证生成唯一的日志记录，才能使devtools能够实现对状态的追踪，实现time-travel</li>
+</ul>
+<hr>
+
+        <h2 id="action" class="docs-header-link">
+          <span header-link="action"></span>
+          action
+        </h2>
+      <ul>
+<li>action的操作本质上脱离了Vuex本身，加入将它剥离出来，仅仅在开发者代码中调用<code>commit</code>来提交一个<code>mutation</code>也能达到一样的效果</li>
+</ul>
+<hr>
+
+        <h2 id="%E5%8F%82%E8%80%83" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83"></span>
+          参考
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://juejin.cn/post/7207848485856100410">https://juejin.cn/post/7207848485856100410</a></li>
+</ul>

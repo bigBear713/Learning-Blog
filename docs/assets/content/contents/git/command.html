@@ -1,0 +1,164 @@
+
+        <h2 id="git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4" class="docs-header-link">
+          <span header-link="git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"></span>
+          git常用命令
+        </h2>
+      
+        <h3 id="%E5%85%8B%E9%9A%86%E6%8B%89%E5%8F%96%E9%A1%B9%E7%9B%AE" class="docs-header-link">
+          <span header-link="%E5%85%8B%E9%9A%86%E6%8B%89%E5%8F%96%E9%A1%B9%E7%9B%AE"></span>
+          克隆拉取项目
+        </h3>
+      <ul>
+<li>可以将一个项目从远程仓库克隆到本地电脑上</li>
+</ul>
+<pre class="language-bash"><code class="language-bash"><div><span class="token function">git</span> clone <span class="token punctuation">[</span>href<span class="token punctuation">]</span></div></code></pre>
+
+        <h3 id="%E5%88%9D%E5%A7%8B%E5%8C%96git%E4%BB%93%E5%BA%93" class="docs-header-link">
+          <span header-link="%E5%88%9D%E5%A7%8B%E5%8C%96git%E4%BB%93%E5%BA%93"></span>
+          初始化git仓库
+        </h3>
+      <ul>
+<li>可以在当前文件夹下，创建并初始化一个代码仓库</li>
+<li>此时文件不会被自动提交，都是新增状态，需要用户手动选择要提交的文件</li>
+</ul>
+<pre class="language-bash"><code class="language-bash"><div><span class="token function">git</span> init</div></code></pre>
+
+        <h3 id="%E6%9A%82%E5%AD%98%E6%96%87%E4%BB%B6" class="docs-header-link">
+          <span header-link="%E6%9A%82%E5%AD%98%E6%96%87%E4%BB%B6"></span>
+          暂存文件
+        </h3>
+      <ul>
+<li>将新增、修改的文件调整为暂存状态，此时文件还没提交到本地仓库，但能区分最新的改动</li>
+<li>可指定暂存哪个文件，也能使用 <code>.</code> 暂存所有文件</li>
+</ul>
+<pre class="language-bash"><code class="language-bash"><div><span class="token function">git</span> add <span class="token punctuation">[</span>file<span class="token punctuation">]</span>
+
+<span class="token function">git</span> add <span class="token keyword">.</span></div></code></pre>
+
+        <h3 id="%E6%8F%90%E4%BA%A4%E5%88%B0%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93" class="docs-header-link">
+          <span header-link="%E6%8F%90%E4%BA%A4%E5%88%B0%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93"></span>
+          提交到本地仓库
+        </h3>
+      <ul>
+<li>将暂存的文件的改动，提交到本地仓库</li>
+<li>可增加参数<code>-a</code>将所有未暂存的文件改动一次性提交到本地仓库</li>
+</ul>
+<pre class="language-bash"><code class="language-bash"><div><span class="token function">git</span> commit -m <span class="token string">'[commit msg]'</span>
+
+<span class="token function">git</span> commit -a -m <span class="token string">'[commit msg]'</span></div></code></pre>
+
+        <h3 id="%E4%BB%8E%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E6%8B%89%E5%8F%96%E5%90%8C%E6%AD%A5%E6%9C%80%E6%96%B0%E7%9A%84%E8%AE%B0%E5%BD%95" class="docs-header-link">
+          <span header-link="%E4%BB%8E%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E6%8B%89%E5%8F%96%E5%90%8C%E6%AD%A5%E6%9C%80%E6%96%B0%E7%9A%84%E8%AE%B0%E5%BD%95"></span>
+          从远程仓库拉取同步最新的记录
+        </h3>
+      <ul>
+<li>当本地仓库的记录落后于远程仓库的记录时，可进行拉取同步，保持一致</li>
+<li>需要指定要同步的远程代码仓库，以及要同步的分支名</li>
+<li>同步时，远程分支名和本地分支名可不同</li>
+</ul>
+<pre class="language-bash"><code class="language-bash"><div><span class="token function">git</span> pull <span class="token punctuation">[</span>remote repository name<span class="token punctuation">]</span> <span class="token punctuation">[</span>branch name<span class="token punctuation">]</span>
+
+<span class="token function">git</span> pull <span class="token punctuation">[</span>remote repository name<span class="token punctuation">]</span> <span class="token punctuation">[</span>oemote branch name<span class="token punctuation">]</span>:<span class="token punctuation">[</span>local branch name<span class="token punctuation">]</span></div></code></pre>
+
+        <h3 id="%E5%B0%86%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E7%9A%84%E8%AE%B0%E5%BD%95%E6%8E%A8%E5%8A%A8%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93" class="docs-header-link">
+          <span header-link="%E5%B0%86%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E7%9A%84%E8%AE%B0%E5%BD%95%E6%8E%A8%E5%8A%A8%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"></span>
+          将本地仓库的记录推动到远程仓库
+        </h3>
+      <ul>
+<li>本地仓库提交一些改动记录后，可推送到远程，让其它人获取你的改动</li>
+<li>需要指定要同步的远程代码仓库，以及要推送的分支名</li>
+<li>推送时，远程分支名和本地分支名可不同</li>
+</ul>
+<pre class="language-bash"><code class="language-bash"><div><span class="token function">git</span> push <span class="token punctuation">[</span>remote repository name<span class="token punctuation">]</span> <span class="token punctuation">[</span>branch name<span class="token punctuation">]</span>
+
+<span class="token function">git</span> push <span class="token punctuation">[</span>remote repository name<span class="token punctuation">]</span> <span class="token punctuation">[</span>oemote branch name<span class="token punctuation">]</span>:<span class="token punctuation">[</span>local branch name<span class="token punctuation">]</span></div></code></pre>
+
+        <h3 id="%E7%AE%A1%E7%90%86%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF" class="docs-header-link">
+          <span header-link="%E7%AE%A1%E7%90%86%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF"></span>
+          管理本地分支
+        </h3>
+      <ul>
+<li>可在本地仓库中，创建不同的分支进行代码修改</li>
+<li>仓库初始化时，默认有一个<code>master</code>分支</li>
+<li>使用<code>git branch</code>可查看本地的所有分支名</li>
+<li>使用<code>git branch [branch name]</code>可创建一个新分支，但不会切换过去</li>
+<li>使用<code>git branch -D [branch name]</code>可删除指定的分支</li>
+</ul>
+<pre class="language-bash"><code class="language-bash"><div><span class="token function">git</span> branch 
+
+<span class="token function">git</span> branch <span class="token punctuation">[</span>branch name<span class="token punctuation">]</span>
+
+<span class="token function">git</span> branch -D <span class="token punctuation">[</span>branch name<span class="token punctuation">]</span></div></code></pre>
+
+        <h3 id="%E5%88%87%E6%8D%A2%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF" class="docs-header-link">
+          <span header-link="%E5%88%87%E6%8D%A2%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF"></span>
+          切换本地分支
+        </h3>
+      <ul>
+<li>创建分支后，默认不会切换过去，需要手动切换</li>
+<li>也可创建后直接切换，需要添加参数<code>-b</code></li>
+</ul>
+<pre class="language-bash"><code class="language-bash"><div><span class="token function">git</span> checkout <span class="token punctuation">[</span>branch name<span class="token punctuation">]</span>
+
+<span class="token function">git</span> checkout -b <span class="token punctuation">[</span>brand name<span class="token punctuation">]</span></div></code></pre>
+
+        <h3 id="%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF%E6%94%B9%E5%8A%A8" class="docs-header-link">
+          <span header-link="%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF%E6%94%B9%E5%8A%A8"></span>
+          合并分支改动
+        </h3>
+      <ul>
+<li>在另一个分支上改动后，可将其改动合并到当前的分支</li>
+<li>不能将当前分支合并到另一个分支，必须先切换成当前分支</li>
+</ul>
+<pre class="language-bash"><code class="language-bash"><div><span class="token function">git</span> merge <span class="token punctuation">[</span>branch name<span class="token punctuation">]</span></div></code></pre>
+
+        <h3 id="%E5%90%8C%E6%AD%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%BF%A1%E6%81%AF" class="docs-header-link">
+          <span header-link="%E5%90%8C%E6%AD%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%BF%A1%E6%81%AF"></span>
+          同步远程仓库信息
+        </h3>
+      <ul>
+<li>只同步本地存储的远程仓库的信息，比如最新记录，最新的分支等信息</li>
+<li>不会拉取远程的改动或者推送本地的改动</li>
+</ul>
+<pre class="language-bash"><code class="language-bash"><div><span class="token function">git</span> fetch
+
+<span class="token function">git</span> fetch origin <span class="token punctuation">[</span>branch name<span class="token punctuation">]</span></div></code></pre>
+
+        <h3 id="%E6%9F%A5%E7%9C%8B%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%BF%A1%E6%81%AF" class="docs-header-link">
+          <span header-link="%E6%9F%A5%E7%9C%8B%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%BF%A1%E6%81%AF"></span>
+          查看远程仓库信息
+        </h3>
+      <ul>
+<li>本地可设置多个远程仓库地址，并设置名称</li>
+<li>添加参数<code>-v</code>，可看远程仓库名字+具体的地址</li>
+</ul>
+<pre class="language-bash"><code class="language-bash"><div><span class="token function">git</span> remote
+
+<span class="token function">git</span> remote -v</div></code></pre>
+
+        <h3 id="%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93" class="docs-header-link">
+          <span header-link="%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"></span>
+          添加远程仓库
+        </h3>
+      <ul>
+<li>可在本地仓库添加远程仓库，以便将改动推送到远程仓库</li>
+</ul>
+<pre class="language-bash"><code class="language-bash"><div><span class="token function">git</span> remote add <span class="token punctuation">[</span>name<span class="token punctuation">]</span> <span class="token punctuation">[</span>href<span class="token punctuation">]</span></div></code></pre>
+
+        <h3 id="%E5%AF%B9%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%90%8D%E5%AD%97%E9%87%8D%E5%91%BD%E5%90%8D" class="docs-header-link">
+          <span header-link="%E5%AF%B9%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%90%8D%E5%AD%97%E9%87%8D%E5%91%BD%E5%90%8D"></span>
+          对远程仓库名字重命名
+        </h3>
+      <ul>
+<li>可对本地仓库中的远程仓库的名字重命名</li>
+</ul>
+<pre class="language-bash"><code class="language-bash"><div><span class="token function">git</span> remote <span class="token function">rename</span> <span class="token punctuation">[</span>old name<span class="token punctuation">]</span> <span class="token punctuation">[</span>new name<span class="token punctuation">]</span></div></code></pre>
+
+        <h3 id="%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80" class="docs-header-link">
+          <span header-link="%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80"></span>
+          删除远程仓库地址
+        </h3>
+      <ul>
+<li>可删除本地仓库中，远程仓库的地址</li>
+</ul>
+<pre class="language-bash"><code class="language-bash"><div><span class="token function">git</span> remote remove origin</div></code></pre>
