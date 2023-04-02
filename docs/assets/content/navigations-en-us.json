@@ -1,6 +1,135 @@
 {
   "navs": [
     {
+      "id": "git",
+      "path": "git",
+      "channelPath": "git",
+      "title": "Git",
+      "items": [
+        {
+          "id": "command",
+          "path": "git/command",
+          "channelPath": "git",
+          "title": "Command",
+          "order": 9007199254740991,
+          "toc": "content",
+          "headings": [
+            {
+              "id": "git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4",
+              "name": "git常用命令",
+              "level": 2,
+              "type": "h2"
+            },
+            {
+              "id": "%E5%85%8B%E9%9A%86%E6%8B%89%E5%8F%96%E9%A1%B9%E7%9B%AE",
+              "name": "克隆拉取项目",
+              "level": 3,
+              "type": "h3"
+            },
+            {
+              "id": "%E5%88%9D%E5%A7%8B%E5%8C%96git%E4%BB%93%E5%BA%93",
+              "name": "初始化git仓库",
+              "level": 3,
+              "type": "h3"
+            },
+            {
+              "id": "%E6%9A%82%E5%AD%98%E6%96%87%E4%BB%B6",
+              "name": "暂存文件",
+              "level": 3,
+              "type": "h3"
+            },
+            {
+              "id": "%E6%8F%90%E4%BA%A4%E5%88%B0%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93",
+              "name": "提交到本地仓库",
+              "level": 3,
+              "type": "h3"
+            },
+            {
+              "id": "%E4%BB%8E%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E6%8B%89%E5%8F%96%E5%90%8C%E6%AD%A5%E6%9C%80%E6%96%B0%E7%9A%84%E8%AE%B0%E5%BD%95",
+              "name": "从远程仓库拉取同步最新的记录",
+              "level": 3,
+              "type": "h3"
+            },
+            {
+              "id": "%E5%B0%86%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E7%9A%84%E8%AE%B0%E5%BD%95%E6%8E%A8%E5%8A%A8%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93",
+              "name": "将本地仓库的记录推动到远程仓库",
+              "level": 3,
+              "type": "h3"
+            },
+            {
+              "id": "%E7%AE%A1%E7%90%86%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF",
+              "name": "管理本地分支",
+              "level": 3,
+              "type": "h3"
+            },
+            {
+              "id": "%E5%88%87%E6%8D%A2%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF",
+              "name": "切换本地分支",
+              "level": 3,
+              "type": "h3"
+            },
+            {
+              "id": "%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF%E6%94%B9%E5%8A%A8",
+              "name": "合并分支改动",
+              "level": 3,
+              "type": "h3"
+            },
+            {
+              "id": "%E5%90%8C%E6%AD%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%BF%A1%E6%81%AF",
+              "name": "同步远程仓库信息",
+              "level": 3,
+              "type": "h3"
+            },
+            {
+              "id": "%E6%9F%A5%E7%9C%8B%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%BF%A1%E6%81%AF",
+              "name": "查看远程仓库信息",
+              "level": 3,
+              "type": "h3"
+            },
+            {
+              "id": "%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93",
+              "name": "添加远程仓库",
+              "level": 3,
+              "type": "h3"
+            },
+            {
+              "id": "%E5%AF%B9%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%90%8D%E5%AD%97%E9%87%8D%E5%91%BD%E5%90%8D",
+              "name": "对远程仓库名字重命名",
+              "level": 3,
+              "type": "h3"
+            },
+            {
+              "id": "%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80",
+              "name": "删除远程仓库地址",
+              "level": 3,
+              "type": "h3"
+            }
+          ],
+          "contentPath": "contents/git/command.html",
+          "originPath": "contents/git/command.md"
+        },
+        {
+          "id": "commitMsg",
+          "path": "git/commit-msg",
+          "channelPath": "git",
+          "title": "commitMsg",
+          "order": 9007199254740991,
+          "toc": "content",
+          "headings": [
+            {
+              "id": "commit-message%E7%9A%84%E8%A7%84%E8%8C%83",
+              "name": "commit message的规范",
+              "level": 2,
+              "type": "h2"
+            }
+          ],
+          "contentPath": "contents/git/commitMsg.html",
+          "originPath": "contents/git/commitMsg.md"
+        }
+      ],
+      "order": 9007199254740991
+    },
+    {
       "id": "前端",
       "path": "前端",
       "channelPath": "前端",
@@ -4366,6 +4495,168 @@
               "title": "Angular",
               "items": [
                 {
+                  "id": "Directive",
+                  "path": "前端/2.前端框架/angular/directive",
+                  "channelPath": "前端",
+                  "title": "Directive",
+                  "order": 9007199254740991,
+                  "toc": "content",
+                  "headings": [
+                    {
+                      "id": "directive%E6%8C%87%E4%BB%A4",
+                      "name": "Directive指令",
+                      "level": 2,
+                      "type": "h2"
+                    },
+                    {
+                      "id": "%E5%AE%9A%E4%B9%89selector%E9%80%89%E6%8B%A9%E5%99%A8",
+                      "name": "定义selector选择器",
+                      "level": 2,
+                      "type": "h2"
+                    },
+                    {
+                      "id": "%E5%A3%B0%E6%98%8E%E4%B8%BAstandalone-component",
+                      "name": "声明为standalone component",
+                      "level": 2,
+                      "type": "h2"
+                    },
+                    {
+                      "id": "%E4%B8%BA%E5%86%85%E9%83%A8%E6%8F%90%E4%BE%9B%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83",
+                      "name": "为内部提供运行环境",
+                      "level": 2,
+                      "type": "h2"
+                    },
+                    {
+                      "id": "%E8%8E%B7%E5%8F%96%E5%AE%BF%E4%B8%BB%E5%85%83%E7%B4%A0",
+                      "name": "获取宿主元素",
+                      "level": 2,
+                      "type": "h2"
+                    },
+                    {
+                      "id": "%E7%BB%93%E6%9E%84%E5%9E%8B%E6%8C%87%E4%BB%A4%E5%92%8C%E5%B1%9E%E6%80%A7%E5%9E%8B%E6%8C%87%E4%BB%A4",
+                      "name": "结构型指令和属性型指令",
+                      "level": 2,
+                      "type": "h2"
+                    },
+                    {
+                      "id": "%E7%BB%93%E6%9E%84%E5%9E%8B%E6%8C%87%E4%BB%A4",
+                      "name": "结构型指令",
+                      "level": 3,
+                      "type": "h3"
+                    },
+                    {
+                      "id": "%E5%B1%9E%E6%80%A7%E5%9E%8B%E6%8C%87%E4%BB%A4",
+                      "name": "属性型指令",
+                      "level": 3,
+                      "type": "h3"
+                    },
+                    {
+                      "id": "%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA",
+                      "name": "输入和输出",
+                      "level": 2,
+                      "type": "h2"
+                    },
+                    {
+                      "id": "@input()-%E8%BE%93%E5%85%A5",
+                      "name": "@Input() 输入",
+                      "level": 3,
+                      "type": "h3"
+                    },
+                    {
+                      "id": "@output()-%E8%BE%93%E5%87%BA",
+                      "name": "@Output() 输出",
+                      "level": 3,
+                      "type": "h3"
+                    },
+                    {
+                      "id": "%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F",
+                      "name": "生命周期",
+                      "level": 2,
+                      "type": "h2"
+                    },
+                    {
+                      "id": "ngonchanges",
+                      "name": "ngOnChanges",
+                      "level": 3,
+                      "type": "h3"
+                    },
+                    {
+                      "id": "ngoninit",
+                      "name": "ngOnInit",
+                      "level": 3,
+                      "type": "h3"
+                    },
+                    {
+                      "id": "ngdocheck",
+                      "name": "ngDoCheck",
+                      "level": 3,
+                      "type": "h3"
+                    },
+                    {
+                      "id": "ngondestroy",
+                      "name": "ngOnDestroy",
+                      "level": 3,
+                      "type": "h3"
+                    }
+                  ],
+                  "contentPath": "contents/前端/2.前端框架/Angular/Directive.html",
+                  "originPath": "contents/前端/2.前端框架/Angular/Directive.md"
+                },
+                {
+                  "id": "NgModule",
+                  "path": "前端/2.前端框架/angular/ng-module",
+                  "channelPath": "前端",
+                  "title": "NgModule",
+                  "order": 9007199254740991,
+                  "toc": "content",
+                  "headings": [
+                    {
+                      "id": "ngmodule%E6%A8%A1%E5%9D%97",
+                      "name": "NgModule模块",
+                      "level": 2,
+                      "type": "h2"
+                    },
+                    {
+                      "id": "%E8%81%9A%E5%90%88component%E3%80%81directive%E3%80%81pipe",
+                      "name": "聚合component、directive、pipe",
+                      "level": 2,
+                      "type": "h2"
+                    },
+                    {
+                      "id": "%E5%AF%BC%E5%87%BA%E9%83%A8%E5%88%86component%E3%80%81directive%E3%80%81pipe%E4%BB%A5%E5%8F%8Angmodule",
+                      "name": "导出部分component、directive、pipe以及NgModule",
+                      "level": 2,
+                      "type": "h2"
+                    },
+                    {
+                      "id": "%E4%B8%BA%E5%86%85%E9%83%A8%E6%8F%90%E4%BE%9B%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83",
+                      "name": "为内部提供运行环境",
+                      "level": 2,
+                      "type": "h2"
+                    },
+                    {
+                      "id": "%E5%AF%BC%E5%85%A5%E5%85%B6%E5%AE%83ngmodule",
+                      "name": "导入其它NgModule",
+                      "level": 3,
+                      "type": "h3"
+                    },
+                    {
+                      "id": "%E6%88%90%E4%B8%BA%E5%86%85%E9%83%A8di%E7%9A%84%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B%E5%95%86",
+                      "name": "成为内部DI的服务提供商",
+                      "level": 3,
+                      "type": "h3"
+                    },
+                    {
+                      "id": "%E5%9C%A8%E6%A0%B9%E6%A8%A1%E5%9D%97%EF%BC%8C%E5%BC%95%E5%AF%BC%E6%95%B4%E4%B8%AA%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F",
+                      "name": "在根模块，引导整个应用程序",
+                      "level": 2,
+                      "type": "h2"
+                    }
+                  ],
+                  "contentPath": "contents/前端/2.前端框架/Angular/NgModule.html",
+                  "originPath": "contents/前端/2.前端框架/Angular/NgModule.md"
+                },
+                {
                   "id": "前端/2.前端框架/angular/入门",
                   "path": "前端/2.前端框架/angular/入门",
                   "channelPath": "前端",
@@ -4774,22 +5065,6 @@
                       "originPath": "contents/前端/2.前端框架/Angular/入门/4.指令.md"
                     },
                     {
-                      "id": "前端/2.前端框架/angular/入门/4.管道",
-                      "path": "前端/2.前端框架/angular/入门/4.管道",
-                      "channelPath": "前端",
-                      "title": "4.管道",
-                      "items": [],
-                      "order": 9007199254740991
-                    },
-                    {
-                      "id": "前端/2.前端框架/angular/入门/5.服务",
-                      "path": "前端/2.前端框架/angular/入门/5.服务",
-                      "channelPath": "前端",
-                      "title": "5.服务",
-                      "items": [],
-                      "order": 9007199254740991
-                    },
-                    {
                       "id": "5.服务",
                       "path": "前端/2.前端框架/angular/入门/5",
                       "channelPath": "前端",
@@ -4886,22 +5161,6 @@
                       "originPath": "contents/前端/2.前端框架/Angular/入门/6.管道.md"
                     },
                     {
-                      "id": "前端/2.前端框架/angular/入门/6.路由",
-                      "path": "前端/2.前端框架/angular/入门/6.路由",
-                      "channelPath": "前端",
-                      "title": "6.路由",
-                      "items": [],
-                      "order": 9007199254740991
-                    },
-                    {
-                      "id": "前端/2.前端框架/angular/入门/7.依赖注入",
-                      "path": "前端/2.前端框架/angular/入门/7.依赖注入",
-                      "channelPath": "前端",
-                      "title": "7.依赖注入",
-                      "items": [],
-                      "order": 9007199254740991
-                    },
-                    {
                       "id": "7.依赖注入",
                       "path": "前端/2.前端框架/angular/入门/7",
                       "channelPath": "前端",
@@ -4932,14 +5191,6 @@
                       "originPath": "contents/前端/2.前端框架/Angular/入门/7.依赖注入.md"
                     }
                   ],
-                  "order": 9007199254740991
-                },
-                {
-                  "id": "前端/2.前端框架/angular/提升",
-                  "path": "前端/2.前端框架/angular/提升",
-                  "channelPath": "前端",
-                  "title": "提升",
-                  "items": [],
                   "order": 9007199254740991
                 },
                 {
@@ -5262,14 +5513,6 @@
                     }
                   ],
                   "order": 9007199254740991
-                },
-                {
-                  "id": "前端/2.前端框架/react/interviews",
-                  "path": "前端/2.前端框架/react/interviews",
-                  "channelPath": "前端",
-                  "title": "Interviews",
-                  "items": [],
-                  "order": 9007199254740991
                 }
               ],
               "order": 9007199254740991
@@ -5375,6 +5618,135 @@
                       ],
                       "contentPath": "contents/前端/2.前端框架/Vue/interviews/watchComputed.html",
                       "originPath": "contents/前端/2.前端框架/Vue/interviews/watchComputed.md"
+                    }
+                  ],
+                  "order": 9007199254740991
+                },
+                {
+                  "id": "前端/2.前端框架/vue/store",
+                  "path": "前端/2.前端框架/vue/store",
+                  "channelPath": "前端",
+                  "title": "Store",
+                  "items": [
+                    {
+                      "id": "pinia",
+                      "path": "前端/2.前端框架/vue/store/pinia",
+                      "channelPath": "前端",
+                      "title": "Pinia",
+                      "order": 9007199254740991,
+                      "toc": "content",
+                      "headings": [
+                        {
+                          "id": "pinia",
+                          "name": "Pinia",
+                          "level": 2,
+                          "type": "h2"
+                        },
+                        {
+                          "id": "store",
+                          "name": "store",
+                          "level": 2,
+                          "type": "h2"
+                        },
+                        {
+                          "id": "%E5%88%9B%E5%BB%BA",
+                          "name": "创建",
+                          "level": 3,
+                          "type": "h3"
+                        },
+                        {
+                          "id": "%E4%BD%BF%E7%94%A8",
+                          "name": "使用",
+                          "level": 3,
+                          "type": "h3"
+                        },
+                        {
+                          "id": "state",
+                          "name": "state",
+                          "level": 2,
+                          "type": "h2"
+                        },
+                        {
+                          "id": "getters",
+                          "name": "getters",
+                          "level": 2,
+                          "type": "h2"
+                        },
+                        {
+                          "id": "actions",
+                          "name": "actions",
+                          "level": 2,
+                          "type": "h2"
+                        },
+                        {
+                          "id": "%E5%8F%82%E8%80%83",
+                          "name": "参考",
+                          "level": 2,
+                          "type": "h2"
+                        }
+                      ],
+                      "contentPath": "contents/前端/2.前端框架/Vue/store/pinia.html",
+                      "originPath": "contents/前端/2.前端框架/Vue/store/pinia.md"
+                    },
+                    {
+                      "id": "piniaVSvuex",
+                      "path": "前端/2.前端框架/vue/store/pinia-v-svuex",
+                      "channelPath": "前端",
+                      "title": "piniaVSvuex",
+                      "order": 9007199254740991,
+                      "toc": "content",
+                      "headings": [
+                        {
+                          "id": "pinia%E5%92%8Cvuex3-x/vuex4-x%E7%9A%84%E5%AF%B9%E6%AF%94",
+                          "name": "Pinia和Vuex3.x/Vuex4.x的对比",
+                          "level": 2,
+                          "type": "h2"
+                        }
+                      ],
+                      "contentPath": "contents/前端/2.前端框架/Vue/store/piniaVSvuex.html",
+                      "originPath": "contents/前端/2.前端框架/Vue/store/piniaVSvuex.md"
+                    },
+                    {
+                      "id": "vuex",
+                      "path": "前端/2.前端框架/vue/store/vuex",
+                      "channelPath": "前端",
+                      "title": "Vuex",
+                      "order": 9007199254740991,
+                      "toc": "content",
+                      "headings": [
+                        {
+                          "id": "vuex",
+                          "name": "Vuex",
+                          "level": 2,
+                          "type": "h2"
+                        },
+                        {
+                          "id": "module",
+                          "name": "module",
+                          "level": 2,
+                          "type": "h2"
+                        },
+                        {
+                          "id": "mutation",
+                          "name": "mutation",
+                          "level": 2,
+                          "type": "h2"
+                        },
+                        {
+                          "id": "action",
+                          "name": "action",
+                          "level": 2,
+                          "type": "h2"
+                        },
+                        {
+                          "id": "%E5%8F%82%E8%80%83",
+                          "name": "参考",
+                          "level": 2,
+                          "type": "h2"
+                        }
+                      ],
+                      "contentPath": "contents/前端/2.前端框架/Vue/store/vuex.html",
+                      "originPath": "contents/前端/2.前端框架/Vue/store/vuex.md"
                     }
                   ],
                   "order": 9007199254740991
@@ -6356,14 +6728,6 @@
                     }
                   ],
                   "order": 9007199254740991
-                },
-                {
-                  "id": "前端/2.前端框架/vue/vuex",
-                  "path": "前端/2.前端框架/vue/vuex",
-                  "channelPath": "前端",
-                  "title": "Vuex",
-                  "items": [],
-                  "order": 9007199254740991
                 }
               ],
               "order": 9007199254740991
@@ -6418,6 +6782,309 @@
               ],
               "contentPath": "contents/前端/3.优化/firstScreenLoading.html",
               "originPath": "contents/前端/3.优化/firstScreenLoading.md"
+            }
+          ],
+          "order": 9007199254740991
+        },
+        {
+          "id": "前端/npm",
+          "path": "前端/npm",
+          "channelPath": "前端",
+          "title": "Npm",
+          "items": [
+            {
+              "id": "package",
+              "path": "前端/npm/package",
+              "channelPath": "前端",
+              "title": "Package",
+              "order": 9007199254740991,
+              "toc": "content",
+              "headings": [
+                {
+                  "id": "package-json",
+                  "name": "package.json",
+                  "level": 2,
+                  "type": "h2"
+                },
+                {
+                  "id": "%E6%8F%8F%E8%BF%B0%E9%85%8D%E7%BD%AE",
+                  "name": "描述配置",
+                  "level": 2,
+                  "type": "h2"
+                },
+                {
+                  "id": "name",
+                  "name": "name",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "version",
+                  "name": "version",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "repository",
+                  "name": "repository",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "description",
+                  "name": "description",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "keywords",
+                  "name": "keywords",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "homepage",
+                  "name": "homepage",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "bugs",
+                  "name": "bugs",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "license",
+                  "name": "license",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "author",
+                  "name": "author",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE",
+                  "name": "文件配置",
+                  "level": 2,
+                  "type": "h2"
+                },
+                {
+                  "id": "files",
+                  "name": "files",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "type",
+                  "name": "type",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "main",
+                  "name": "main",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "browser",
+                  "name": "browser",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "module",
+                  "name": "module",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "exports",
+                  "name": "exports",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "workspaces",
+                  "name": "workspaces",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "%E8%84%9A%E6%9C%AC%E9%85%8D%E7%BD%AE",
+                  "name": "脚本配置",
+                  "level": 2,
+                  "type": "h2"
+                },
+                {
+                  "id": "scripts",
+                  "name": "scripts",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "config",
+                  "name": "config",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "%E4%BE%9D%E8%B5%96%E9%85%8D%E7%BD%AE",
+                  "name": "依赖配置",
+                  "level": 2,
+                  "type": "h2"
+                },
+                {
+                  "id": "dependencies",
+                  "name": "dependencies",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "devdependencies",
+                  "name": "devDependencies",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "peerdependencies",
+                  "name": "peerDependencies",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "optionaldependencies",
+                  "name": "optionalDependencies",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "peerdependenciesmeta",
+                  "name": "peerDependenciesMeta",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "bundledependencies",
+                  "name": "bundleDependencies",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "overrides",
+                  "name": "overrides",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "version",
+                  "name": "version",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "%E5%8F%91%E5%B8%83%E9%85%8D%E7%BD%AE",
+                  "name": "发布配置",
+                  "level": 2,
+                  "type": "h2"
+                },
+                {
+                  "id": "private",
+                  "name": "private",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "publishconfig",
+                  "name": "publishConfig",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE",
+                  "name": "系统配置",
+                  "level": 2,
+                  "type": "h2"
+                },
+                {
+                  "id": "engines",
+                  "name": "engines",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "os",
+                  "name": "os",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "cpu",
+                  "name": "cpu",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "%E7%AC%AC%E4%B8%89%E6%96%B9%E9%85%8D%E7%BD%AE",
+                  "name": "第三方配置",
+                  "level": 2,
+                  "type": "h2"
+                },
+                {
+                  "id": "types-%E6%88%96%E8%80%85-typings",
+                  "name": "types 或者 typings",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "unpkg",
+                  "name": "unpkg",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "jsdelivr",
+                  "name": "jsdelivr",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "browserslist",
+                  "name": "browserslist",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "sideeffects",
+                  "name": "sideEffects",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "lint-staged",
+                  "name": "lint-staged",
+                  "level": 3,
+                  "type": "h3"
+                },
+                {
+                  "id": "package-lock-json",
+                  "name": "package-lock.json",
+                  "level": 2,
+                  "type": "h2"
+                },
+                {
+                  "id": "%E5%8F%82%E8%80%83",
+                  "name": "参考",
+                  "level": 2,
+                  "type": "h2"
+                }
+              ],
+              "contentPath": "contents/前端/npm/package.html",
+              "originPath": "contents/前端/npm/package.md"
             }
           ],
           "order": 9007199254740991
@@ -6549,6 +7216,126 @@
     }
   ],
   "docs": [
+    {
+      "id": "command",
+      "path": "git/command",
+      "channelPath": "git",
+      "title": "Command",
+      "order": 9007199254740991,
+      "toc": "content",
+      "headings": [
+        {
+          "id": "git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4",
+          "name": "git常用命令",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E5%85%8B%E9%9A%86%E6%8B%89%E5%8F%96%E9%A1%B9%E7%9B%AE",
+          "name": "克隆拉取项目",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E5%88%9D%E5%A7%8B%E5%8C%96git%E4%BB%93%E5%BA%93",
+          "name": "初始化git仓库",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E6%9A%82%E5%AD%98%E6%96%87%E4%BB%B6",
+          "name": "暂存文件",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E6%8F%90%E4%BA%A4%E5%88%B0%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93",
+          "name": "提交到本地仓库",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E4%BB%8E%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E6%8B%89%E5%8F%96%E5%90%8C%E6%AD%A5%E6%9C%80%E6%96%B0%E7%9A%84%E8%AE%B0%E5%BD%95",
+          "name": "从远程仓库拉取同步最新的记录",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E5%B0%86%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E7%9A%84%E8%AE%B0%E5%BD%95%E6%8E%A8%E5%8A%A8%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93",
+          "name": "将本地仓库的记录推动到远程仓库",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E7%AE%A1%E7%90%86%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF",
+          "name": "管理本地分支",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E5%88%87%E6%8D%A2%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF",
+          "name": "切换本地分支",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF%E6%94%B9%E5%8A%A8",
+          "name": "合并分支改动",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E5%90%8C%E6%AD%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%BF%A1%E6%81%AF",
+          "name": "同步远程仓库信息",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E6%9F%A5%E7%9C%8B%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%BF%A1%E6%81%AF",
+          "name": "查看远程仓库信息",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93",
+          "name": "添加远程仓库",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E5%AF%B9%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%90%8D%E5%AD%97%E9%87%8D%E5%91%BD%E5%90%8D",
+          "name": "对远程仓库名字重命名",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80",
+          "name": "删除远程仓库地址",
+          "level": 3,
+          "type": "h3"
+        }
+      ],
+      "contentPath": "contents/git/command.html",
+      "originPath": "contents/git/command.md"
+    },
+    {
+      "id": "commitMsg",
+      "path": "git/commit-msg",
+      "channelPath": "git",
+      "title": "commitMsg",
+      "order": 9007199254740991,
+      "toc": "content",
+      "headings": [
+        {
+          "id": "commit-message%E7%9A%84%E8%A7%84%E8%8C%83",
+          "name": "commit message的规范",
+          "level": 2,
+          "type": "h2"
+        }
+      ],
+      "contentPath": "contents/git/commitMsg.html",
+      "originPath": "contents/git/commitMsg.md"
+    },
     {
       "id": "BFC",
       "path": "前端/1.基本知识/css/bfc",
@@ -10726,6 +11513,168 @@
       "originPath": "contents/前端/1.基本知识/js/webpack/Plugin.md"
     },
     {
+      "id": "Directive",
+      "path": "前端/2.前端框架/angular/directive",
+      "channelPath": "前端",
+      "title": "Directive",
+      "order": 9007199254740991,
+      "toc": "content",
+      "headings": [
+        {
+          "id": "directive%E6%8C%87%E4%BB%A4",
+          "name": "Directive指令",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E5%AE%9A%E4%B9%89selector%E9%80%89%E6%8B%A9%E5%99%A8",
+          "name": "定义selector选择器",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E5%A3%B0%E6%98%8E%E4%B8%BAstandalone-component",
+          "name": "声明为standalone component",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E4%B8%BA%E5%86%85%E9%83%A8%E6%8F%90%E4%BE%9B%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83",
+          "name": "为内部提供运行环境",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E8%8E%B7%E5%8F%96%E5%AE%BF%E4%B8%BB%E5%85%83%E7%B4%A0",
+          "name": "获取宿主元素",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E7%BB%93%E6%9E%84%E5%9E%8B%E6%8C%87%E4%BB%A4%E5%92%8C%E5%B1%9E%E6%80%A7%E5%9E%8B%E6%8C%87%E4%BB%A4",
+          "name": "结构型指令和属性型指令",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E7%BB%93%E6%9E%84%E5%9E%8B%E6%8C%87%E4%BB%A4",
+          "name": "结构型指令",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E5%B1%9E%E6%80%A7%E5%9E%8B%E6%8C%87%E4%BB%A4",
+          "name": "属性型指令",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA",
+          "name": "输入和输出",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "@input()-%E8%BE%93%E5%85%A5",
+          "name": "@Input() 输入",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "@output()-%E8%BE%93%E5%87%BA",
+          "name": "@Output() 输出",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F",
+          "name": "生命周期",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "ngonchanges",
+          "name": "ngOnChanges",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "ngoninit",
+          "name": "ngOnInit",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "ngdocheck",
+          "name": "ngDoCheck",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "ngondestroy",
+          "name": "ngOnDestroy",
+          "level": 3,
+          "type": "h3"
+        }
+      ],
+      "contentPath": "contents/前端/2.前端框架/Angular/Directive.html",
+      "originPath": "contents/前端/2.前端框架/Angular/Directive.md"
+    },
+    {
+      "id": "NgModule",
+      "path": "前端/2.前端框架/angular/ng-module",
+      "channelPath": "前端",
+      "title": "NgModule",
+      "order": 9007199254740991,
+      "toc": "content",
+      "headings": [
+        {
+          "id": "ngmodule%E6%A8%A1%E5%9D%97",
+          "name": "NgModule模块",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E8%81%9A%E5%90%88component%E3%80%81directive%E3%80%81pipe",
+          "name": "聚合component、directive、pipe",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E5%AF%BC%E5%87%BA%E9%83%A8%E5%88%86component%E3%80%81directive%E3%80%81pipe%E4%BB%A5%E5%8F%8Angmodule",
+          "name": "导出部分component、directive、pipe以及NgModule",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E4%B8%BA%E5%86%85%E9%83%A8%E6%8F%90%E4%BE%9B%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83",
+          "name": "为内部提供运行环境",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E5%AF%BC%E5%85%A5%E5%85%B6%E5%AE%83ngmodule",
+          "name": "导入其它NgModule",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E6%88%90%E4%B8%BA%E5%86%85%E9%83%A8di%E7%9A%84%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B%E5%95%86",
+          "name": "成为内部DI的服务提供商",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E5%9C%A8%E6%A0%B9%E6%A8%A1%E5%9D%97%EF%BC%8C%E5%BC%95%E5%AF%BC%E6%95%B4%E4%B8%AA%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F",
+          "name": "在根模块，引导整个应用程序",
+          "level": 2,
+          "type": "h2"
+        }
+      ],
+      "contentPath": "contents/前端/2.前端框架/Angular/NgModule.html",
+      "originPath": "contents/前端/2.前端框架/Angular/NgModule.md"
+    },
+    {
       "id": "1.项目创建",
       "path": "前端/2.前端框架/angular/入门/1",
       "channelPath": "前端",
@@ -11618,6 +12567,126 @@
       ],
       "contentPath": "contents/前端/2.前端框架/Vue/interviews/watchComputed.html",
       "originPath": "contents/前端/2.前端框架/Vue/interviews/watchComputed.md"
+    },
+    {
+      "id": "pinia",
+      "path": "前端/2.前端框架/vue/store/pinia",
+      "channelPath": "前端",
+      "title": "Pinia",
+      "order": 9007199254740991,
+      "toc": "content",
+      "headings": [
+        {
+          "id": "pinia",
+          "name": "Pinia",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "store",
+          "name": "store",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E5%88%9B%E5%BB%BA",
+          "name": "创建",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E4%BD%BF%E7%94%A8",
+          "name": "使用",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "state",
+          "name": "state",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "getters",
+          "name": "getters",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "actions",
+          "name": "actions",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E5%8F%82%E8%80%83",
+          "name": "参考",
+          "level": 2,
+          "type": "h2"
+        }
+      ],
+      "contentPath": "contents/前端/2.前端框架/Vue/store/pinia.html",
+      "originPath": "contents/前端/2.前端框架/Vue/store/pinia.md"
+    },
+    {
+      "id": "piniaVSvuex",
+      "path": "前端/2.前端框架/vue/store/pinia-v-svuex",
+      "channelPath": "前端",
+      "title": "piniaVSvuex",
+      "order": 9007199254740991,
+      "toc": "content",
+      "headings": [
+        {
+          "id": "pinia%E5%92%8Cvuex3-x/vuex4-x%E7%9A%84%E5%AF%B9%E6%AF%94",
+          "name": "Pinia和Vuex3.x/Vuex4.x的对比",
+          "level": 2,
+          "type": "h2"
+        }
+      ],
+      "contentPath": "contents/前端/2.前端框架/Vue/store/piniaVSvuex.html",
+      "originPath": "contents/前端/2.前端框架/Vue/store/piniaVSvuex.md"
+    },
+    {
+      "id": "vuex",
+      "path": "前端/2.前端框架/vue/store/vuex",
+      "channelPath": "前端",
+      "title": "Vuex",
+      "order": 9007199254740991,
+      "toc": "content",
+      "headings": [
+        {
+          "id": "vuex",
+          "name": "Vuex",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "module",
+          "name": "module",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "mutation",
+          "name": "mutation",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "action",
+          "name": "action",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E5%8F%82%E8%80%83",
+          "name": "参考",
+          "level": 2,
+          "type": "h2"
+        }
+      ],
+      "contentPath": "contents/前端/2.前端框架/Vue/store/vuex.html",
+      "originPath": "contents/前端/2.前端框架/Vue/store/vuex.md"
     },
     {
       "id": "webpack",
@@ -12584,6 +13653,300 @@
       ],
       "contentPath": "contents/前端/3.优化/firstScreenLoading.html",
       "originPath": "contents/前端/3.优化/firstScreenLoading.md"
+    },
+    {
+      "id": "package",
+      "path": "前端/npm/package",
+      "channelPath": "前端",
+      "title": "Package",
+      "order": 9007199254740991,
+      "toc": "content",
+      "headings": [
+        {
+          "id": "package-json",
+          "name": "package.json",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E6%8F%8F%E8%BF%B0%E9%85%8D%E7%BD%AE",
+          "name": "描述配置",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "name",
+          "name": "name",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "version",
+          "name": "version",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "repository",
+          "name": "repository",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "description",
+          "name": "description",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "keywords",
+          "name": "keywords",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "homepage",
+          "name": "homepage",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "bugs",
+          "name": "bugs",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "license",
+          "name": "license",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "author",
+          "name": "author",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE",
+          "name": "文件配置",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "files",
+          "name": "files",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "type",
+          "name": "type",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "main",
+          "name": "main",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "browser",
+          "name": "browser",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "module",
+          "name": "module",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "exports",
+          "name": "exports",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "workspaces",
+          "name": "workspaces",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E8%84%9A%E6%9C%AC%E9%85%8D%E7%BD%AE",
+          "name": "脚本配置",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "scripts",
+          "name": "scripts",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "config",
+          "name": "config",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E4%BE%9D%E8%B5%96%E9%85%8D%E7%BD%AE",
+          "name": "依赖配置",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "dependencies",
+          "name": "dependencies",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "devdependencies",
+          "name": "devDependencies",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "peerdependencies",
+          "name": "peerDependencies",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "optionaldependencies",
+          "name": "optionalDependencies",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "peerdependenciesmeta",
+          "name": "peerDependenciesMeta",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "bundledependencies",
+          "name": "bundleDependencies",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "overrides",
+          "name": "overrides",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "version",
+          "name": "version",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E5%8F%91%E5%B8%83%E9%85%8D%E7%BD%AE",
+          "name": "发布配置",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "private",
+          "name": "private",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "publishconfig",
+          "name": "publishConfig",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE",
+          "name": "系统配置",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "engines",
+          "name": "engines",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "os",
+          "name": "os",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "cpu",
+          "name": "cpu",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "%E7%AC%AC%E4%B8%89%E6%96%B9%E9%85%8D%E7%BD%AE",
+          "name": "第三方配置",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "types-%E6%88%96%E8%80%85-typings",
+          "name": "types 或者 typings",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "unpkg",
+          "name": "unpkg",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "jsdelivr",
+          "name": "jsdelivr",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "browserslist",
+          "name": "browserslist",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "sideeffects",
+          "name": "sideEffects",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "lint-staged",
+          "name": "lint-staged",
+          "level": 3,
+          "type": "h3"
+        },
+        {
+          "id": "package-lock-json",
+          "name": "package-lock.json",
+          "level": 2,
+          "type": "h2"
+        },
+        {
+          "id": "%E5%8F%82%E8%80%83",
+          "name": "参考",
+          "level": 2,
+          "type": "h2"
+        }
+      ],
+      "contentPath": "contents/前端/npm/package.html",
+      "originPath": "contents/前端/npm/package.md"
     },
     {
       "id": "Basic",

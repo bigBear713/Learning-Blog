@@ -1,0 +1,567 @@
+
+        <h2 id="package-json" class="docs-header-link">
+          <span header-link="package-json"></span>
+          package.json
+        </h2>
+      <ul>
+<li>基于node上的npm的项目的依赖文件</li>
+<li>主要包含<ol>
+<li>描述配置</li>
+<li>文件配置</li>
+<li>脚本配置</li>
+<li>依赖配置</li>
+<li>发布配置</li>
+<li>系统配置</li>
+<li>第三方配置</li>
+</ol>
+</li>
+</ul>
+<hr>
+
+        <h2 id="%E6%8F%8F%E8%BF%B0%E9%85%8D%E7%BD%AE" class="docs-header-link">
+          <span header-link="%E6%8F%8F%E8%BF%B0%E9%85%8D%E7%BD%AE"></span>
+          描述配置
+        </h2>
+      <ul>
+<li>主要是项目的基本信息，包括名称，版本，描述，仓库，作者等。如果发布成npm包，部分信息会展示在npmjs上</li>
+</ul>
+
+        <h3 id="name" class="docs-header-link">
+          <span header-link="name"></span>
+          name
+        </h3>
+      <ul>
+<li>项目名称。如果发布成npm包，可通过该名字被下载引用</li>
+<li>都是小写字母，支持 <code>-</code> 连接不同单词</li>
+<li>可使用<code>@xxx/</code>定义命名空间。同样<code>@xxx/</code>下的其它npm包会归属于同一个组织，通过<code>npm install</code>时，会下载在同一个文件夹中</li>
+</ul>
+
+        <h3 id="version" class="docs-header-link">
+          <span header-link="version"></span>
+          version
+        </h3>
+      <ul>
+<li>项目版本号，遵循semver语义化规范：<code>A.B.C-beta.1-meta</code><ol>
+<li><code>A</code> - Major(主版本)，一般在涉及重大功能更新，产生了破坏性变更时会更新此版本号</li>
+<li><code>B</code> - Minor(次版本)，一般在引入了新功能，但未产生破坏性变更，依然向下兼容时会更新此版本号</li>
+<li><code>C</code> - Patch(补丁版本)，一般在修复了一些问题，也未产生破坏性变更时会更新此版本号</li>
+<li><code>-beta.1-meta</code> - Pre-release(先行版本)，字符串由<strong>大小写</strong>的字母、数字、句点组成。三个常见的<strong>先行命名</strong>方式：<code>-alpha.1</code> - 内测的第一个版本，<code>-beta.1</code> - 灰度测试的第一个版本，<code>-rc.1</code> - 生产候选的第一个版本</li>
+</ol>
+</li>
+</ul>
+
+        <h3 id="repository" class="docs-header-link">
+          <span header-link="repository"></span>
+          repository
+        </h3>
+      <ul>
+<li>项目的仓库地址，以及描述信息</li>
+</ul>
+<pre class="language-json"><code class="language-json"><div><span class="token punctuation">{</span>
+  <span class="token property">"repository"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"git"</span><span class="token punctuation">,</span>
+    <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"https://github.com/angular/angular.git"</span><span class="token punctuation">,</span>
+    <span class="token property">"directory"</span><span class="token operator">:</span> <span class="token string">"packages/*"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></div></code></pre>
+
+        <h3 id="description" class="docs-header-link">
+          <span header-link="description"></span>
+          description
+        </h3>
+      <ul>
+<li>项目的描述，如果发布成npm包，会展示在 npm 官网，让别人能快速了解该项目。</li>
+</ul>
+
+        <h3 id="keywords" class="docs-header-link">
+          <span header-link="keywords"></span>
+          keywords
+        </h3>
+      <ul>
+<li>一组项目的技术关键词</li>
+<li>好的关键词可以帮助别人在 npm 官网上更好地检索到此项目，增加曝光率。</li>
+</ul>
+
+        <h3 id="homepage" class="docs-header-link">
+          <span header-link="homepage"></span>
+          homepage
+        </h3>
+      <ul>
+<li>项目主页的链接，通常是项目 github 链接，项目官网或文档首页。</li>
+</ul>
+
+        <h3 id="bugs" class="docs-header-link">
+          <span header-link="bugs"></span>
+          bugs
+        </h3>
+      <ul>
+<li>项目 bug 反馈地址，通常是 github issue 页面的链接。</li>
+</ul>
+
+        <h3 id="license" class="docs-header-link">
+          <span header-link="license"></span>
+          license
+        </h3>
+      <ul>
+<li>项目的开源许可证</li>
+<li>项目的版权拥有人可以使用开源许可证来限制源码的使用、复制、修改和再发布等行为</li>
+<li>常见的开源许可证有 BSD、MIT、Apache 等</li>
+</ul>
+
+        <h3 id="author" class="docs-header-link">
+          <span header-link="author"></span>
+          author
+        </h3>
+      <ul>
+<li>项目作者</li>
+</ul>
+<hr>
+
+        <h2 id="%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE" class="docs-header-link">
+          <span header-link="%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE"></span>
+          文件配置
+        </h2>
+      <ul>
+<li>包括项目所包含的文件，以及入口等信息。</li>
+</ul>
+
+        <h3 id="files" class="docs-header-link">
+          <span header-link="files"></span>
+          files
+        </h3>
+      <ul>
+<li>项目在进行 npm 发布时，可以通过 files 指定需要跟随一起发布的内容来控制 npm 包的大小，避免安装时间太长。</li>
+<li>发布时默认会包括 <code>package.json</code>，<code>license</code>，<code>README</code> 和<code>main</code> 字段里指定的文件。忽略 <code>node_modules</code>，<code>lockfile</code> 等文件。</li>
+<li>可以指定更多需要一起发布的内容。可以是单独的文件，整个文件夹，或者使用通配符匹配到的文件。</li>
+<li>一般情况下，files 里会指定构建出来的产物以及类型文件，而 src，test 等目录下的文件不需要跟随发布</li>
+</ul>
+<pre class="language-json"><code class="language-json"><div><span class="token property">"files"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+  <span class="token string">"filename.js"</span><span class="token punctuation">,</span>
+  <span class="token string">"directory/"</span><span class="token punctuation">,</span>
+  <span class="token string">"glob/*.{js,json}"</span>
+ <span class="token punctuation">]</span></div></code></pre>
+
+        <h3 id="type" class="docs-header-link">
+          <span header-link="type"></span>
+          type
+        </h3>
+      <ul>
+<li>在 node 支持 ES 模块后，要求  <strong>ES</strong> 模块采用 <code>.mjs</code> 后缀文件名。只要遇到 <code>.mjs</code> 文件，就认为它是 ES 模块</li>
+<li>如果不想修改文件后缀，就可以在 <code>package.json</code>文件中，指定 type 字段为 <code>module</code>。这样所有 <code>.js</code> 后缀的文件，node 都会用 <strong>ES</strong> 模块解释。</li>
+<li>如果还要使用 <code>CommonJS</code> 模块规范，那么需要将 <code>CommonJS</code> 脚本的后缀名都改成<code>.cjs</code></li>
+</ul>
+
+        <h3 id="main" class="docs-header-link">
+          <span header-link="main"></span>
+          main
+        </h3>
+      <ul>
+<li>项目发布时，默认会包括 <code>package.json</code>，<code>license</code>，<code>README</code> 和<code>main</code> 字段里指定的文件，因为 <code>main</code> 字段里指定的是项目的入口文件，在 <code>browser</code> 和 <code>Node</code> 环境中都可以使用。</li>
+<li>如果不设置 main 字段，那么入口文件就是根目录下的 index.js。</li>
+</ul>
+
+        <h3 id="browser" class="docs-header-link">
+          <span header-link="browser"></span>
+          browser
+        </h3>
+      <ul>
+<li><code>main</code> 字段里指定的入口文件在 <code>browser</code> 和 <code>Node</code> 环境中都可以使用</li>
+<li>如果只想在 <code>web</code> 端使用，不允许在 <code>server</code> 端使用，可以通过 <code>browser</code> 字段指定入口。</li>
+</ul>
+<pre class="language-json"><code class="language-json"><div><span class="token punctuation">{</span> <span class="token property">"browser"</span><span class="token operator">:</span> <span class="token string">"./browser/index.js"</span> <span class="token punctuation">}</span></div></code></pre>
+
+        <h3 id="module" class="docs-header-link">
+          <span header-link="module"></span>
+          module
+        </h3>
+      <ul>
+<li>项目也可以指定 <strong>ES</strong> 模块的入口文件，这就是 <code>module</code> 字段的作用</li>
+<li>当一个项目同时定义了 <code>main</code>，<code>browser</code> 和 <code>module</code>，像 <code>webpack</code>，<code>rollup</code> 等构建工具会感知这些字段，并会根据环境以及不同的模块规范来进行不同的入口文件查找。</li>
+</ul>
+<pre class="language-json"><code class="language-json"><div><span class="token punctuation">{</span>
+    <span class="token property">"main"</span><span class="token operator">:</span> <span class="token string">"./index.js"</span><span class="token punctuation">,</span> 
+    <span class="token property">"browser"</span><span class="token operator">:</span> <span class="token string">"./browser/index.js"</span><span class="token punctuation">,</span>
+    <span class="token property">"module"</span><span class="token operator">:</span> <span class="token string">"./index.mjs"</span>
+<span class="token punctuation">}</span></div></code></pre>
+<ul>
+<li>比如 webpack 构建项目时默认的 target 为 &#39;web&#39;，也就是 Web 构建。它的 resolve.mainFeilds 字段默认为 [&#39;browser&#39;, &#39;module&#39;, &#39;main&#39;]。</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 此时会按照 browser -> module -> main 的顺序来查找入口文件。</span>
+  resolve<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    mainFields<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'browser'</span><span class="token punctuation">,</span> <span class="token string">'module'</span><span class="token punctuation">,</span> <span class="token string">'main'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></div></code></pre>
+
+        <h3 id="exports" class="docs-header-link">
+          <span header-link="exports"></span>
+          exports
+        </h3>
+      <ul>
+<li>node 在 <code>14.13</code> 支持在 package.json 里定义 exports 字段，拥有了<strong>条件导出</strong>的功能。</li>
+<li>exports 字段可以配置<strong>不同环境</strong>对应的模块入口文件，并且当它存在时，它的优先级最高。</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token punctuation">{</span>
+  <span class="token string">"exports"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 使用 require 和 import 字段根据模块规范分别定义入口：</span>
+    <span class="token comment" spellcheck="true">// 这样的配置在使用 import 'xxx' 和 require('xxx') 时会从不同的入口引入文件</span>
+    <span class="token string">"require"</span><span class="token punctuation">:</span> <span class="token string">"./index.js"</span><span class="token punctuation">,</span>
+    <span class="token string">"import"</span><span class="token punctuation">:</span> <span class="token string">"./index.mjs"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></div></code></pre>
+<ul>
+<li>exports 也支持使用 browser 和 node 字段定义 browser 和 Node 环境中的入口。</li>
+<li>exports 除了支持配置包的默认导出，还支持配置包的子路径。</li>
+<li>exports 还限制了使用者不可以访问未在 &quot;exports&quot; 中定义的任何其他路径。</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token string">"exports"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token string">"./style"</span><span class="token punctuation">:</span> <span class="token string">"./dist/css/index.css"</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+<span class="token keyword">import</span> <span class="token template-string"><span class="token string">`packageA/dist/css/index.css`</span></span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 变成</span>
+<span class="token keyword">import</span> <span class="token template-string"><span class="token string">`packageA/style`</span></span><span class="token punctuation">;</span></div></code></pre>
+
+        <h3 id="workspaces" class="docs-header-link">
+          <span header-link="workspaces"></span>
+          workspaces
+        </h3>
+      <ul>
+<li>项目的工作区配置，用于在本地的根目录下管理多个子项目</li>
+<li>可以自动地在 npm install 时将 workspaces 下面的包，软链到根目录的 node_modules 中，不用手动执行 npm link 操作。</li>
+<li>接收一个数组，数组里可以是文件夹名称或者通配符</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token punctuation">{</span>
+    <span class="token string">"workspaces"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"workspace-a"</span> <span class="token comment" spellcheck="true">// 表示在 workspace-a 目录下还有一个项目，它也有自己的 package.json。</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 通常子项目都会平铺管理在 packages 目录下，所以根目录下 workspaces 通常配置为：</span>
+<span class="token punctuation">{</span>
+    <span class="token string">"workspaces"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"packages/*"</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></div></code></pre>
+<hr>
+
+        <h2 id="%E8%84%9A%E6%9C%AC%E9%85%8D%E7%BD%AE" class="docs-header-link">
+          <span header-link="%E8%84%9A%E6%9C%AC%E9%85%8D%E7%BD%AE"></span>
+          脚本配置
+        </h2>
+      
+        <h3 id="scripts" class="docs-header-link">
+          <span header-link="scripts"></span>
+          scripts
+        </h3>
+      <ul>
+<li>指定项目的一些内置脚本命令，这些命令可以通过 <code>npm run</code> 来执行。通常包含项目开发，构建 等 CI 命令</li>
+<li>除了指定基础命令，还可以配合 <code>pre</code> 和 <code>post</code> 完成命令的前置和后续操作</li>
+<li>但是这样的隐式逻辑很可能会造成执行工作流的混乱，所以 <code>pnpm</code> 和 <code>yarn2</code> 都已经<strong>废弃掉</strong>了这种 pre/post 自动执行的逻辑</li>
+<li>如果需要手动开启，<code>pnpm</code> 项目可以设置 <code>.npmrc enable-pre-post-scripts=true</code>。</li>
+</ul>
+<pre class="language-json"><code class="language-json"><div><span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"build"</span><span class="token operator">:</span> <span class="token string">"webpack"</span><span class="token punctuation">,</span>
+  <span class="token property">"prebuild"</span><span class="token operator">:</span> <span class="token string">"xxx"</span><span class="token punctuation">,</span> // build 执行之前的钩子
+  <span class="token property">"postbuild"</span><span class="token operator">:</span> <span class="token string">"xxx"</span> // build 执行之后的钩子
+  // 执行顺序 prebuild -> build -> postbuild
+<span class="token punctuation">}</span></div></code></pre>
+
+        <h3 id="config" class="docs-header-link">
+          <span header-link="config"></span>
+          config
+        </h3>
+      <ul>
+<li>config 用于设置 scripts 里的脚本在运行时的参数</li>
+</ul>
+<pre class="language-json"><code class="language-json"><div><span class="token property">"config"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"port"</span><span class="token operator">:</span> <span class="token string">"3001"</span> // 在执行脚本时，可以通过 npm_package_config_port 这个变量访问到 <span class="token number">3001</span>
+<span class="token punctuation">}</span></div></code></pre>
+<hr>
+
+        <h2 id="%E4%BE%9D%E8%B5%96%E9%85%8D%E7%BD%AE" class="docs-header-link">
+          <span header-link="%E4%BE%9D%E8%B5%96%E9%85%8D%E7%BD%AE"></span>
+          依赖配置
+        </h2>
+      <ul>
+<li>项目可能会依赖其他包，需要在 package.json 里配置这些依赖的信息。</li>
+</ul>
+
+        <h3 id="dependencies" class="docs-header-link">
+          <span header-link="dependencies"></span>
+          dependencies
+        </h3>
+      <ul>
+<li>运行依赖，也就是项目<strong>生产环境</strong>下需要用到的依赖</li>
+<li>使用 <code>npm install xxx</code> 或则 <code>npm install xxx --save</code> 时，会被自动插入到该字段中</li>
+</ul>
+
+        <h3 id="devdependencies" class="docs-header-link">
+          <span header-link="devdependencies"></span>
+          devDependencies
+        </h3>
+      <ul>
+<li>开发依赖，项目<strong>开发环境</strong>需要用到而运行时不需要的依赖，用于辅助开发，通常包括项目工程化工具比如 webpack，vite，eslint 等。</li>
+<li>使用 <code>npm install xxx -D</code> 或者 <code>npm install xxx --save-dev</code> 时，会被自动插入到该字段中。</li>
+</ul>
+
+        <h3 id="peerdependencies" class="docs-header-link">
+          <span header-link="peerdependencies"></span>
+          peerDependencies
+        </h3>
+      <ul>
+<li>同伴依赖，一种特殊的依赖，不会被自动安装，通常用于表示与另一个包的依赖与兼容性关系来警示使用者。</li>
+</ul>
+
+        <h3 id="optionaldependencies" class="docs-header-link">
+          <span header-link="optionaldependencies"></span>
+          optionalDependencies
+        </h3>
+      <ul>
+<li>可选依赖，顾名思义，表示依赖是可选的，它不会阻塞主功能的使用，安装或者引入失败也无妨</li>
+<li>这类依赖如果安装失败，那么 npm 的整个安装过程也是成功的。</li>
+<li>使用 <code>npm install xxx -O</code> 或者 <code>npm install xxx --save-optional</code> 时，依赖会被自动插入到该字段中。</li>
+</ul>
+
+        <h3 id="peerdependenciesmeta" class="docs-header-link">
+          <span header-link="peerdependenciesmeta"></span>
+          peerDependenciesMeta
+        </h3>
+      <ul>
+<li>同伴依赖也可以使用 <code>peerDependenciesMeta</code> 将其指定为<strong>可选</strong>的。</li>
+</ul>
+<pre class="language-json"><code class="language-json"><div><span class="token property">"peerDependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"colors"</span><span class="token operator">:</span> <span class="token string">"^1.4.0"</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token property">"peerDependenciesMeta"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"colors"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"optional"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span></div></code></pre>
+
+        <h3 id="bundledependencies" class="docs-header-link">
+          <span header-link="bundledependencies"></span>
+          bundleDependencies
+        </h3>
+      <ul>
+<li>打包依赖。它的值是一个数组，在<strong>发布</strong>包时，<code>bundleDependencies</code> 里面的依赖都会被一起打包。</li>
+<li>需要注意的是，这个字段数组中的值必须是在 <code>dependencies</code>，<code>devDependencies</code> 两个里面声明过的依赖才行。</li>
+<li>普通依赖通常从 <code>npm registry</code> 安装，但当你想用一个<strong>不在</strong> <code>npm registry</code> 里的包，或者一个<strong>被修改过</strong>的第三方包时，打包依赖会比普通依赖更好用。</li>
+</ul>
+
+        <h3 id="overrides" class="docs-header-link">
+          <span header-link="overrides"></span>
+          overrides
+        </h3>
+      <ul>
+<li>可以<strong>重写</strong>项目依赖的依赖，及其依赖树下某个依赖的<strong>版本号</strong>，进行包的替换。</li>
+<li>overrides 支持任意深度的嵌套</li>
+<li>如果在 <code>yarn</code> 里也想复写依赖版本号，需要使用 <code>resolution</code> 字段，而在 <code>pnpm</code> 里复写版本号需要使用 <code>pnpm.overrides</code> 字段。</li>
+</ul>
+<pre class="language-json"><code class="language-json"><div><span class="token property">"overrides"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"foo"</span><span class="token operator">:</span> <span class="token string">"1.1.0-patch"</span> // 使用 overrides 修改 foo 的版本号<span class="token punctuation">,</span> 这样会更改整个依赖树里的 foo
+<span class="token punctuation">}</span>
+
+<span class="token property">"overrides"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"A"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"foo"</span><span class="token operator">:</span> <span class="token string">"1.1.0-patch"</span><span class="token punctuation">,</span> // 使用 overrides 修改 foo 的版本号<span class="token punctuation">,</span> 且只对 A 下的 foo 进行版本号重写：
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></div></code></pre>
+
+        <h3 id="version" class="docs-header-link">
+          <span header-link="version"></span>
+          version
+        </h3>
+      <ul>
+<li>npm 工程们并不永远精准的确认自己依赖哪一个版本，因为这会给你的应用带来过高的体积负荷</li>
+<li>模糊匹配:<ol>
+<li><code>^1.0.1</code>、<code>1</code>、<code>1.x</code> 代表了可以命中<strong>主版本</strong>一致、但<strong>更新</strong>的版本号。</li>
+<li><code>~1.0.1</code>、<code>1.1</code>、<code>1.1.x</code> 代表了可以命中<strong>主版本</strong>、<strong>次版本</strong>一致、但<strong>更新</strong>的版本号。</li>
+<li><code>*</code> 和 <code>x</code> 可以命中<strong>一切新发布</strong>的版本号。</li>
+</ol>
+</li>
+<li>dist-tag: 别名标签，并将它们和某个版本号关联起来<ol>
+<li><code>beta</code> ： 灰度测试版本</li>
+<li><code>latest</code> ：最新正式版</li>
+<li><code>next</code> ： 下一代版本</li>
+<li><code>preview</code> ： 预览版</li>
+<li><code>csp</code>：内容安全版本</li>
+<li><code>legacy</code>：历史稳定版</li>
+</ol>
+</li>
+<li>当撰写自己的组件库时，可通过以下命令标注出该工程的 latest 版本</li>
+</ul>
+<pre class="language-bash"><code class="language-bash"><div><span class="token function">npm</span> dist-tag add i-love-chunge@1.0.0 latest</div></code></pre>
+<hr>
+
+        <h2 id="%E5%8F%91%E5%B8%83%E9%85%8D%E7%BD%AE" class="docs-header-link">
+          <span header-link="%E5%8F%91%E5%B8%83%E9%85%8D%E7%BD%AE"></span>
+          发布配置
+        </h2>
+      <ul>
+<li>主要是和项目发布相关的配置。</li>
+</ul>
+
+        <h3 id="private" class="docs-header-link">
+          <span header-link="private"></span>
+          private
+        </h3>
+      <ul>
+<li>如果是私有项目，不希望发布到公共 npm 仓库上，可以将 private 设为 true。</li>
+</ul>
+
+        <h3 id="publishconfig" class="docs-header-link">
+          <span header-link="publishconfig"></span>
+          publishConfig
+        </h3>
+      <ul>
+<li>npm 包发布时使用的配置</li>
+</ul>
+<pre class="language-json"><code class="language-json"><div><span class="token property">"publishConfig"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"registry"</span><span class="token operator">:</span> <span class="token string">"https://registry.npmjs.org/"</span> // 安装依赖时指定了 registry 为 taobao 镜像源，但发布时希望在公网发布，就可以指定 publishConfig.registry。
+<span class="token punctuation">}</span></div></code></pre>
+<hr>
+
+        <h2 id="%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE" class="docs-header-link">
+          <span header-link="%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE"></span>
+          系统配置
+        </h2>
+      <ul>
+<li>和项目关联的系统配置，比如 node 版本或操作系统兼容性之类</li>
+<li>这些要求只会起到<strong>提示警告</strong>的作用，即使用户的环境不符合要求，也<strong>不影响</strong>安装依赖包。</li>
+</ul>
+
+        <h3 id="engines" class="docs-header-link">
+          <span header-link="engines"></span>
+          engines
+        </h3>
+      <ul>
+<li>对 node 或者包管理器版本号进行限制</li>
+</ul>
+<pre class="language-json"><code class="language-json"><div><span class="token property">"engines"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"node"</span><span class="token operator">:</span> <span class="token string">">=14 &lt;16"</span><span class="token punctuation">,</span>
+  <span class="token property">"pnpm"</span><span class="token operator">:</span> <span class="token string">">7"</span>
+<span class="token punctuation">}</span></div></code></pre>
+
+        <h3 id="os" class="docs-header-link">
+          <span header-link="os"></span>
+          os
+        </h3>
+      <ul>
+<li>指定项目对操作系统的兼容性要求。</li>
+</ul>
+<pre class="language-json"><code class="language-json"><div><span class="token property">"os"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"darwin"</span><span class="token punctuation">,</span> <span class="token string">"linux"</span><span class="token punctuation">]</span></div></code></pre>
+
+        <h3 id="cpu" class="docs-header-link">
+          <span header-link="cpu"></span>
+          cpu
+        </h3>
+      <ul>
+<li>指定项目只能在特定的 CPU 体系上运行</li>
+</ul>
+<pre class="language-json"><code class="language-json"><div><span class="token property">"cpu"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"x64"</span><span class="token punctuation">,</span> <span class="token string">"ia32"</span><span class="token punctuation">]</span></div></code></pre>
+<hr>
+
+        <h2 id="%E7%AC%AC%E4%B8%89%E6%96%B9%E9%85%8D%E7%BD%AE" class="docs-header-link">
+          <span header-link="%E7%AC%AC%E4%B8%89%E6%96%B9%E9%85%8D%E7%BD%AE"></span>
+          第三方配置
+        </h2>
+      <ul>
+<li>一些第三方库或应用在进行某些内部处理时会依赖这些字段，使用它们时需要安装对应的第三方库。</li>
+</ul>
+
+        <h3 id="types-%E6%88%96%E8%80%85-typings" class="docs-header-link">
+          <span header-link="types-%E6%88%96%E8%80%85-typings"></span>
+          types 或者 typings
+        </h3>
+      <ul>
+<li>指定 TypeScript 的类型定义的入口文件</li>
+</ul>
+<pre class="language-json"><code class="language-json"><div><span class="token property">"types"</span><span class="token operator">:</span> <span class="token string">"./index.d.ts"</span><span class="token punctuation">,</span></div></code></pre>
+
+        <h3 id="unpkg" class="docs-header-link">
+          <span header-link="unpkg"></span>
+          unpkg
+        </h3>
+      <ul>
+<li>可以让 npm 上所有的文件都开启 CDN 服务。</li>
+</ul>
+<pre class="language-json"><code class="language-json"><div><span class="token property">"unpkg"</span><span class="token operator">:</span> <span class="token string">"dist/vue.global.js"</span><span class="token punctuation">,</span> // 想通过 CDN 的方式使用链接引入 vue 时。访问 unpkg.com/vue 会重定向到 unpkg.com/vue@<span class="token number">3.2</span>.<span class="token number">37</span>/… <span class="token number">3.2</span>.<span class="token number">27</span> 是 Vue 的最新版本。</div></code></pre>
+
+        <h3 id="jsdelivr" class="docs-header-link">
+          <span header-link="jsdelivr"></span>
+          jsdelivr
+        </h3>
+      <ul>
+<li>与 unpkg 类似</li>
+</ul>
+<pre class="language-json"><code class="language-json"><div><span class="token property">"jsdelivr"</span><span class="token operator">:</span> <span class="token string">"dist/vue.global.js"</span><span class="token punctuation">,</span> // 访问 cdn.jsdelivr.net/npm/vue 实际上获取到的是 jsdelivr 字段里配置的文件地址</div></code></pre>
+
+        <h3 id="browserslist" class="docs-header-link">
+          <span header-link="browserslist"></span>
+          browserslist
+        </h3>
+      <ul>
+<li>设置项目的浏览器兼容情况， babel 和 autoprefixer 等工具会使用该配置对代码进行转换</li>
+<li>当然也可以使用 <code>.browserslistrc</code> 单文件配置。</li>
+</ul>
+<pre class="language-json"><code class="language-json"><div><span class="token property">"browserslist"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+  <span class="token string">"> 1%"</span><span class="token punctuation">,</span>
+  <span class="token string">"last 2 versions"</span>
+<span class="token punctuation">]</span></div></code></pre>
+
+        <h3 id="sideeffects" class="docs-header-link">
+          <span header-link="sideeffects"></span>
+          sideEffects
+        </h3>
+      <ul>
+<li>显示设置某些模块具有副作用，用于 webpack 的 tree-shaking 优化。</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">import</span> <span class="token string">'antd/dist/antd.css'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 如果 Ant Design 的 package.json 里不设置 sideEffects，那么 webapck 构建打包时会认为这段代码只是引入了但并没有使用，可以 tree-shaking 剔除掉，最终导致产物缺少样式。</span>
+
+<span class="token punctuation">{</span>
+    <span class="token string">"sideEffects"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"dist/*"</span><span class="token punctuation">,</span>
+    <span class="token string">"es/**/style/*"</span><span class="token punctuation">,</span>
+    <span class="token string">"lib/**/style/*"</span><span class="token punctuation">,</span>
+    <span class="token string">"*.less"</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></div></code></pre>
+
+        <h3 id="lint-staged" class="docs-header-link">
+          <span header-link="lint-staged"></span>
+          lint-staged
+        </h3>
+      <ul>
+<li>用于对 git 的暂存区的文件进行操作的工具，比如可以在代码提交前执行 lint 校验，类型检查，图片优化等操作。</li>
+<li>lint-staged 通常配合 <code>husky</code> 这样的 <code>git-hooks</code> 工具一起使用</li>
+<li><code>git-hooks</code> 用来定义一个钩子，这些钩子方法会在 git 工作流程中比如 pre-commit，commit-msg 时触发，可以把 lint-staged 放到这些钩子方法中。</li>
+</ul>
+<pre class="language-json"><code class="language-json"><div><span class="token property">"lint-staged"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"src/**/*.{js,jsx,ts,tsx}"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"eslint --fix"</span><span class="token punctuation">,</span>
+    <span class="token string">"git add -A"</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></div></code></pre>
+<hr>
+
+        <h2 id="package-lock-json" class="docs-header-link">
+          <span header-link="package-lock-json"></span>
+          package-lock.json
+        </h2>
+      <ul>
+<li>package-lock.json 它会在 npm 更改 node_modules 目录树 或者 package.json 时自动生成的</li>
+<li>准确的描述了当前项目npm包的依赖树，并且在随后的安装中会根据 package-lock.json 来安装，保证是相同的一个依赖树，不考虑这个过程中是否有某个依赖有小版本的更新。</li>
+<li>它的产生就是来对整个依赖树进行版本固定的（锁死）</li>
+</ul>
+<hr>
+
+        <h2 id="%E5%8F%82%E8%80%83" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83"></span>
+          参考
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://juejin.cn/post/7122240572491825160">https://juejin.cn/post/7122240572491825160</a></li>
+<li><a target="_blank" href="https://juejin.cn/post/7161392772665540644">https://juejin.cn/post/7161392772665540644</a></li>
+<li><a target="_blank" href="https://juejin.cn/post/7078233610683170824">https://juejin.cn/post/7078233610683170824</a></li>
+</ul>

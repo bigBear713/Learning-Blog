@@ -65,7 +65,17 @@ console<span class="token punctuation">.</span><span class="token function">log<
           <span header-link="%E9%97%AD%E5%8C%85"></span>
           闭包
         </h2>
-      <ul>
+      <pre class="language-js"><code class="language-js"><div><span class="token keyword">function</span> <span class="token function">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> B <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    a<span class="token operator">+</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> B<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">let</span> funB <span class="token operator">=</span> <span class="token function">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">funB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+<ul>
 <li>因此父级作用域无法访问子级作用域的变量和方法函数，但是子级作用域可以访问父级作用域的变量和方法函数。所以如果在一个方法函数A内，再定义一个方法函数B，此时B可以访问A的变量和方法函数，因为A的函数作用域高于B的函数作用域。然后再将B方法函数作为A的返回值<code>return</code>出来，外部就可以访问A方法函数内的变量、方法函数，此时就形成了闭包。</li>
 <li>因为方法函数A内的变量、方法函数通过函数B被外部调用，所以无法及时释放资源，可能导致内存泄漏。在使用完后应及时置空释放掉。</li>
 </ul>
