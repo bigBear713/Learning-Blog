@@ -51,7 +51,7 @@ class MyPromise{
         const isOnFulfilledFn = typeof onFullfilled === 'function';
         const isOnRejectedFn = typeof onRejected === 'function';
 
-        const doFulfilledFn = ()=>{
+        const doFulfilledFn = (promise2,resolve,reject)=>{
             setTimeout(()=>{
                 if(!isOnFulfilledFn){
                     return resolve(this.PromiseResult);
@@ -65,7 +65,7 @@ class MyPromise{
                 }
             });
         };
-        const doRejectedFn = ()=>{
+        const doRejectedFn = (promise2,resolve,reject)=>{
             setTimeout(()=>{
                 if(!isOnRejectedFn){
                     return reject(this.PromiseResult);
@@ -89,15 +89,13 @@ class MyPromise{
                     doRejectedFn();
                     break;
                 case MyPromise.PENDING:
-                    this.onFulfilledCallbacks.push(() => doFulfilledFn());
-                    this.onRejectedCallbacks.push(() => doRejectedFn());
+                    this.onFulfilledCallbacks.push(() => doFulfilledFn(promise2,resolve,reject));
+                    this.onRejectedCallbacks.push(() => doRejectedFn(promise2,resolve,reject));
                     break;
             }
         });
         return promise2;
     }
-
-
 }
 
 function resolvePromise(promise2, x, resolve, reject){
@@ -116,29 +114,29 @@ function resolvePromise(promise2, x, resolve, reject){
             return reject(err);
         }
 
-        if(typeof then === 'function'){
-            let called = false;
-            try {
-                then.call(
-                    x,
-                    result=>{
-                        if(called) return;
+        if(typeof then !== 'function'){
+            resolve(x);
+            return;
+        } 
+        let called = false;
+        try {
+            then.call(
+                x,
+                result=>{
+                    if(called) return;
                         called = true;
                         resolvePromise(promise2,result,resolve,reject);
-                    },
-                    reason=>{
-                        if(called) return;
-                        called = true;
-                        reject(reason);
-                    }
-                );
-            } catch (err){
-                if(called) return;
-                called = true;
-                reject(err);
-            }
-        } else {
-            resolve(x);
+                },
+                reason=>{
+                    if(called) return;
+                    called = true;
+                    reject(reason);
+                }
+            );
+        } catch (err){
+            if(called) return;
+            called = true;
+            reject(err);
         }
     } else {
         resolve(x);
