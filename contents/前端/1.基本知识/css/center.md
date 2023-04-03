@@ -9,6 +9,8 @@
 }
 ```
 
+---
+
 ## absolute + auto margin
 ```css
 .father {
@@ -23,6 +25,8 @@
     margin: auto;
 }
 ```
+
+---
 
 ## absolute + transform
 ```css
