@@ -18,6 +18,7 @@
 - 当`position:absolute`时，位置相对于离它最近的且position为非`static`的父元素进行偏移，没有这样的父元素，则相对于`body`进行偏移
 - 当`position:fixed`时，位置相对于整个浏览器窗口进行偏移
 
+---
 
 ## BFC
 - BFC, Block Formatting Context，块级格式化上下文，是一个独立的容器。
@@ -59,6 +60,8 @@
 - FFC能做的GFC也能做，GFC能做的FFC也能做
 - FFC，GFC也是一个BFC，在遵循自己的规范的时候，向下兼容BFC规范
 
+---
+
 ## IFC
 - IFC, Inline Formatting Context, 行内格式化上下文
 
@@ -71,6 +74,7 @@
 - 行框内的元素遵循`text-align`和`vertical-align`
 - 在`IFC`中是不能存在块级元素的。如果将块级元素插入到`IFC`环境中，那么它会被破坏称为`BFC`.而块级元素前的元素或文本和块级元素后的元素或文本将会各自自动产生一个匿名块盒其包围。
 
+---
 
 ## 参考
 - https://juejin.cn/post/7147928538811727880

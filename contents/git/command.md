@@ -29,6 +29,8 @@ git add .
 git commit -m '[commit msg]'
 
 git commit -a -m '[commit msg]'
+
+git commit -am '[commit msg]'
 ```
 
 ### 从远程仓库拉取同步最新的记录
@@ -74,13 +76,20 @@ git checkout [branch name]
 git checkout -b [brand name]
 ```
 
-###  合并分支改动
+### 合并分支改动
 - 在另一个分支上改动后，可将其改动合并到当前的分支
 - 不能将当前分支合并到另一个分支，必须先切换成当前分支
 ```bash
 git merge [branch name]
 ```
 
+### rebase分支
+- `rebase`操作，和`merge`类似，区别是：
+  1. merge 是将另一个分支的改动合并到当前分支，commit 记录按时间顺序排列，同时新增一条 commit 记录。如果以图表展示，显示的是两个分支的合并
+  2. rebase 是将另一个分支的改动合并到当前分支，同时当前分支的改动排在合并过来的分支的**最前面**，而不是按照时间顺序来排列。如果以图表展示，显示的是只有一个分支
+```bash
+git rebase [branch name]
+```
 
 ### 同步远程仓库信息
 - 只同步本地存储的远程仓库的信息，比如最新记录，最新的分支等信息
