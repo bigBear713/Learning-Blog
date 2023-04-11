@@ -5,7 +5,7 @@
 - 在修改输入域的值时，AngularJS属性的值也将修改
 
 ### 数据状态
-- 可以为应用数据提供状态值（invalid,dirty,touched,error）
+- 可以为应用数据提供状态值（invalid(非法),dirty(填写过值),touched(触碰过),error(错误),pristine(原始状态，没有被填写过)）
 ```html
 <form ng-app="" name="myForm">
     Email:

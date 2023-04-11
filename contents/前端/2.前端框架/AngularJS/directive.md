@@ -1,3 +1,34 @@
+## 内置指令
+### ng-repeat 
+- 重复一个html元素片段，数据类型可以是 Array 和 Object，使用关键字`in`。
+- 在作用域内，可以使用`$index`获取索引
+- 在作用域内，可以使用`$even`和`$odd`获取当前项是否为奇数，或者偶数
+```html
+<table>
+  <tr ng-repeat="x in names">
+    <td>{{ $index + 1 }}</td>
+    <td>{{ x.Name }}</td>
+    <td>{{ x.Country }}</td>
+  </tr>
+</table>
+
+<table>
+  <tr ng-repeat="x in names">
+    <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.Name }}</td>
+    <td ng-if="$even">{{ x.Name }}</td>
+    <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.Country }}</td>
+    <td ng-if="$even">{{ x.Country }}</td>
+  </tr>
+</table>
+```
+
+### ng-if
+- 根据条件判断是否显示某个html片段
+```html
+<div ng-if="condition">test</div>
+```
+
+---
 
 ## 创建自定义指令
 - 使用 `.directive` 函数来添加自定义的指令
