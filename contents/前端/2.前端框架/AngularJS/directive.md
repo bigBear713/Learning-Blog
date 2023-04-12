@@ -105,6 +105,9 @@ app.directive("runoobDirective", function() {
 ### 定义输入属性
 - 独立作用域内的属性名也遵循驼峰命名规范，即如果在作用域中定义 '=bindProp' ，在模板中使用时，就应写成 '<div bind-prop="" />'
 - 如果想属性名和绑定的值的名字一样，可使用快捷语法 '='
+- 此外还能使用符号 `@`
+  1. `@` - 表示该属性值是一个字符串类型
+  2. `=` - 表示该属性值是一个数组或对象，且支持双向绑定
 ```html
 <!doctype html>
 <html ng-app="docsIsolateScopeDirective">
@@ -157,7 +160,10 @@ app.directive("runoobDirective", function() {
 ### 定义输出事件
 - 定义输入属性时，使用 **`=`+属性名**
 - 定义输出事件时，则使用 **`&`+事件名**
-
+- 还可以在controller中，通过`$scope`的`$emit()`和`$broadcast()`传递消息，接收处使用`$scope.$on(event,fn)`接收消息
+  1. `$scope.$emit(eventName,data)` 可以向父级传递消息，也只能向父级传递消息
+  2. `$scope.$broadcast(eventName,data)`可以向同级和子级传递消息
+  3. 它们都会触发angularjs的脏检查，过度使用会影响性能
 
 ```html
 <!doctype html>
@@ -203,9 +209,15 @@ app.directive("runoobDirective", function() {
   <a href class="close" ng-click="close()">&times;</a>
   <div ng-transclude></div>
 </div>
-
 ```
 
+### 生命周期
+- compile: 在DOM元素被链接到指令函数之前运行。用于转换DOM模板，返回一个链接函数(link)
+- link: 链接函数，用于将指令与作用域链接。接收3个参数：scope, element, attrs
+- controller: 指令控制器，用于管理指令的行为。可以使用该控制器来公开一些方法或属性，以供指令内部或外部调用
+- scope: 指定指令作用域。使用该属性来创建一个独立的作用域或继承父作用域
+- template/templateUrl: 指定指令的HTML模板或模板url
+- transclude: 指定指令是否包含一个`ng-transclude`元素
 
 ---
 
