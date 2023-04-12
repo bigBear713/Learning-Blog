@@ -7,6 +7,7 @@
   2. 只能在 React 的**函数组件**中调用 Hook。不要在其他 JavaScript 函数中调用。还有一个地方可以调用 Hook —— 就是自定义的 Hook 中
 - hook 的结构是**链表**结构，上述操作会打断这种结构，导致取指错误等问题
 - Hook 是一种复用状态逻辑的方式，它不复用 state 本身。事实上 Hook 的每次调用都有一个完全独立的 state —— 因此你可以在单个组件中多次调用同一个自定义 Hook。
+- hook是**逻辑**的复用，HOC是**视图和逻辑**的复用
 
 ---
 
@@ -35,6 +36,20 @@
     };
   });
 ```
+### useEffect和useLayoutEffect的区别
+- 对于React的函数组件来说，更新过程大致分为以下步骤
+  1. 因为某个事件，导致 state 发生变化
+  2. React 内部更新 state 变量
+  3. React 处理更新组件中 return 出来的DOM节点（进行一系列dom diff，调度等流程）
+  4. 将更新后的DOM数据绘制到浏览器中
+  5. 用户看到新的页面
+- useEffect 在第4步后执行，且是异步的，保证了不会阻塞浏览器进程。
+- useLayoutEffect 在第3步至第4步之间执行，且是同步的，所以会阻塞后面代码的执行
+
+### useEffect 依赖为空数组时，和 componentDidMount 的区别
+  1. 在 render 执行之后，componentDidMount 会执行，如果在这个生命周期中再一次 setState, 会导致再次 render, 返回新的值，浏览器只会渲染第二次 render 返回的值，这样可以避免闪屏
+  2. useEffect 是在真实的DOM渲染之后才执行，同样的情况下，会造成两次 render,有可能会闪屏
+  3. 实际上 useLayoutEffect 会更接近 componentDidMount 的表现，它们都同步执行且阻碍真实的DOM渲染
 
 ---
 
@@ -96,3 +111,5 @@ function MeasureExample() {
 ## 自定义Hook
 - 通过自定义 Hook，可以将组件逻辑提取到可重用的函数中
 - 自定义 Hook 是一个函数，其名称以 “`use`” 开头，函数内部可以调用其他的 Hook
+
+---
