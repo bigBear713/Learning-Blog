@@ -164,6 +164,7 @@ app.directive("runoobDirective", function() {
   1. `$scope.$emit(eventName,data)` 可以向父级传递消息，也只能向父级传递消息
   2. `$scope.$broadcast(eventName,data)`可以向同级和子级传递消息
   3. 它们都会触发angularjs的脏检查，过度使用会影响性能
+- 通过输出事件，向父组件传值时，在自定义组件内部，通过`$scope`调用相应的输出事件，传参；在父组件，通过使用同名的参数，获取传出的值。
 
 ```html
 <!doctype html>
@@ -174,7 +175,7 @@ app.directive("runoobDirective", function() {
   </head>
   <body>
     <div ng-controller="Ctrl">
-      <my-dialog ng-hide="dialogIsHidden" on-close="hideDialog()">
+      <my-dialog ng-hide="dialogIsHidden" on-close="hideDialog()" on-output="getValueFromComp(param1,param2)">
         Check out the contents, !
       </my-dialog>
     </div>
@@ -189,15 +190,25 @@ app.directive("runoobDirective", function() {
               $scope.dialogIsHidden = false;
             }, 2000);
           };
+
+          $scope.getValueFromComp = function(param1,param2){
+            console.log(param1,param2);
+          };
         })
         .directive('myDialog', function() {
           return {
             restrict: 'E',
             transclude: true,
             scope: {
-              'close': '&onClose'
+              'close': '&onClose',
+              'onOutput':'&',
             },
-            templateUrl: 'my-dialog-close.html'
+            templateUrl: 'my-dialog-close.html',
+            controller:function($scope){
+              // ...
+              // 通过output向外传参
+              $scope.onOutput({param1:1,param2:2});
+            }
           };
         });
     </script>
