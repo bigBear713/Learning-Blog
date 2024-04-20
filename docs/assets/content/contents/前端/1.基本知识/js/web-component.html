@@ -1,0 +1,243 @@
+
+        <h2 id="%E5%AE%9A%E4%B9%89" class="docs-header-link">
+          <span header-link="%E5%AE%9A%E4%B9%89"></span>
+          定义
+        </h2>
+      <ul>
+<li>webcomponent是一种不依赖于Angular等前端框架，使用原生API实现组件化的解决方案</li>
+</ul>
+<hr>
+
+        <h2 id="%E7%BB%84%E6%88%90" class="docs-header-link">
+          <span header-link="%E7%BB%84%E6%88%90"></span>
+          组成
+        </h2>
+      <ul>
+<li>HTML Template and Slots - 可复用的HTML标签，提供了和用户自定义标签相结合的接口</li>
+<li>Shadow DOM - 对标签和样式的一层DOM包装</li>
+<li>Custom Elements - 带有特定行为且用户自命名的HTML元素</li>
+</ul>
+<hr>
+
+        <h2 id="template%E5%92%8Cslots" class="docs-header-link">
+          <span header-link="template%E5%92%8Cslots"></span>
+          template和slots
+        </h2>
+      
+        <h3 id="template%E6%A8%A1%E6%9D%BF" class="docs-header-link">
+          <span header-link="template%E6%A8%A1%E6%9D%BF"></span>
+          template模板
+        </h3>
+      <ul>
+<li>支持度最高的特性，可以说是web component规范最直观的体现</li>
+<li>允许开发者定义一个直到被复制使用时才会进行渲染的HTML标签块</li>
+</ul>
+
+        <h3 id="slots%E6%8F%92%E6%A7%BD" class="docs-header-link">
+          <span header-link="slots%E6%8F%92%E6%A7%BD"></span>
+          slots插槽
+        </h3>
+      <ul>
+<li>允许开发者通过特定接入点，动态替换模板中的HTML内容。</li>
+<li>用<code>name</code>属性来作为唯一识别标志</li>
+</ul>
+<hr>
+
+        <h2 id="shadow-dom" class="docs-header-link">
+          <span header-link="shadow-dom"></span>
+          Shadow DOM
+        </h2>
+      <ul>
+<li>允许开发者将一些节点放到独立的子树上，实现隔离。</li>
+<li>根本上来说，Shadow DOM提供一种健壮的封装方式来在做到页面节点的隔离。这也是web component的核心优势</li>
+<li>Shadow DOM并不对css的类名做处理，而是直接作为原生特性来支持。将部分DOM节点隔离，使得网站和程序少了更多不可预知的变化，更稳定。</li>
+<li><code>attachShadow()</code>接收一个含<code>mode</code>的对象作为参数。<code>mode</code>的值可控制shadow dom的<code>打开</code>和<code>关闭</code>。<code>打开</code>时，使用<code>element.shadowRoot</code>可拿到DOM子树，反之如果<code>关闭</code>，则会拿到<code>null</code>。接着创建一个Shadow DOM就会创建一个shadow边界，在封装节点的同时，也封装样式。</li>
+<li>默认情况下，该节点内部的所有样式都会被限制在这个shadow树里生效。</li>
+<li>Shadow DOM通常可以跟HTML模板结合使用。</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token comment" spellcheck="true">//  将Shadow DOM附加到一个节点上</span>
+<span class="token keyword">const</span> shadowRoot <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">attachShadow</span><span class="token punctuation">(</span><span class="token punctuation">{</span>mode<span class="token punctuation">:</span><span class="token string">'open'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+shadowRoot<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>templateContent<span class="token punctuation">.</span><span class="token function">cloneNode</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+<hr>
+
+        <h2 id="%E9%80%9A%E8%BF%87custom-element%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%B0%81%E8%A3%85" class="docs-header-link">
+          <span header-link="%E9%80%9A%E8%BF%87custom-element%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%B0%81%E8%A3%85"></span>
+          通过custom element进一步封装
+        </h2>
+      <ul>
+<li>template和slot提供复用性和灵活性，Shadow DOM提供封装方法。</li>
+<li>Custom Element更进一步，将这些特性打包在一起成为有自己名字的，可反复使用的节点，让它可以像常规html节点一样用起来。</li>
+</ul>
+
+        <h3 id="%E5%AE%9A%E4%B9%89custom-element" class="docs-header-link">
+          <span header-link="%E5%AE%9A%E4%B9%89custom-element"></span>
+          定义Custom Element
+        </h3>
+      <ul>
+<li>依赖ES2015+的class特性，用class作为其声明模式，通常是从HTMLElement或它的子类继承而来。</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">class</span> <span class="token class-name">CustomElement</span> <span class="token keyword">extends</span> <span class="token class-name">HTMLElement</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// ...</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 将CustomElement注册，才可以在DOM中使用</span>
+customElements<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span><span class="token string">'custom-element'</span><span class="token punctuation">,</span>CustomElement<span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+
+        <h3 id="custom-element%E7%9A%84%E7%A7%8D%E7%B1%BB" class="docs-header-link">
+          <span header-link="custom-element%E7%9A%84%E7%A7%8D%E7%B1%BB"></span>
+          Custom Element的种类
+        </h3>
+      <ul>
+<li>Autonomous custom elements - 独立自定义元素。只要在页面定义，就可以像常规HTML节点那样使用，包括通过<code>document.createElement()</code>创建。</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>my-text</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>my-text</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<span class="token keyword">class</span> <span class="token class-name">MyText</span> <span class="token keyword">extends</span> <span class="token class-name">HTMLElement</span><span class="token punctuation">{</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'element content'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">connectedCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// ...</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+window<span class="token punctuation">.</span>customElements<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span><span class="token string">'my-text'</span><span class="token punctuation">,</span>MyText<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></div></code></pre>
+<ul>
+<li>Customized built-in elements - 内置自定义元素。当HTML定义节点时，传一个<code>is</code>属性到标准节点上，如<code>&lt;button is=&quot;special-button&quot;&gt;xxx&lt;/button&gt;</code>，又或者使用<code>document.createElement()</code>时，传一个<code>is</code>属性作为参数，比如<code>document.createElement(&quot;button&quot;, { is: &quot;special-button&quot; }</code>。custom element的名称必须包含一个<strong>短横线</strong></li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">is</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>color-p<span class="token punctuation">"</span></span> <span class="token attr-name">color</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>green<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<span class="token keyword">class</span> <span class="token class-name">ColorP</span> <span class="token keyword">extends</span> <span class="token class-name">HTMLParagraphElement</span> <span class="token punctuation">{</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>color <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'color'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">connectedCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// ...</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+window<span class="token punctuation">.</span>customElements<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span><span class="token string">'color-p'</span><span class="token punctuation">,</span>ColorP<span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token keyword">extends</span><span class="token punctuation">:</span><span class="token string">'p'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="custom-element%E7%9A%84%E5%A3%B0%E6%98%8E%E5%91%A8%E6%9C%9F" class="docs-header-link">
+          <span header-link="custom-element%E7%9A%84%E5%A3%B0%E6%98%8E%E5%91%A8%E6%9C%9F"></span>
+          Custom Element的声明周期
+        </h3>
+      <ul>
+<li>也有一系列声明周期，用于管理组件连接和脱离DOM<ol>
+<li><code>coonnectedCallback</code> - 连接到DOM。并不是一个一次性的初始化事件，每次将节点连接到DOM上时都会被调用。因此，在<code>constructor</code>这个API接口调用时做一次性初始化工作会更加合适。此外，还有一个<code>attributeChangedCallback</code>事件可以用来监听节点属性的变化，然后通过这个变化来更新内部状态。但要使用它，需先在节点类里面定义一个<code>observedAttributes</code>的getter</li>
+<li><code>disconnectedCallback</code> - 从DOM上脱离。</li>
+<li><code>adoptedCallback</code> - 跨文档移动</li>
+</ol>
+</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// ...</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">observedAttributes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">get</span> <span class="token function">observedAttributes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token string">'someAttributes'</span><span class="token punctuation">]</span> <span class="token punctuation">}</span>
+
+<span class="token function">attributeChangedCallback</span><span class="token punctuation">(</span>attributeName<span class="token punctuation">,</span> oldValue<span class="token punctuation">,</span> newValue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>attributeName<span class="token operator">===</span><span class="token string">"someAttribute"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>oldValue<span class="token punctuation">,</span> newValue<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">// 根据属性变化做一些事情</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></div></code></pre>
+<hr>
+
+        <h2 id="demo" class="docs-header-link">
+          <span header-link="demo"></span>
+          demo
+        </h2>
+      
+        <h3 id="template" class="docs-header-link">
+          <span header-link="template"></span>
+          template
+        </h3>
+      <pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+  <span class="token comment" spellcheck="true">&lt;!-- template --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tpl-product-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>img<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://misc.360buyimg.com/lib/skin/e/i/error-jd.gif<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>price<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>product-item</span>
+    <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>关东煮<span class="token punctuation">"</span></span>
+    <span class="token attr-name">img</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>//img10.360buyimg.com/seckillcms/s200x200_jfs/t1/121953/18/20515/175357/61e7dc79Ee0acbf20/4f4f56abd2ea2f75.jpg!cc_200x200.webp<span class="token punctuation">"</span></span>
+    <span class="token attr-name">price</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>49.8<span class="token punctuation">"</span></span>
+  <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>product-item</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+    <span class="token keyword">class</span> <span class="token class-name">ProductItem</span> <span class="token keyword">extends</span> <span class="token class-name">HTMLElement</span> <span class="token punctuation">{</span>
+      <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token function">connectedCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> content <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"tpl-product-item"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>content<span class="token punctuation">.</span><span class="token function">cloneNode</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 插入克隆的模板内容</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">".img"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"img"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">".name"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerText <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">".price"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerText <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"price"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    window<span class="token punctuation">.</span>customElements<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span><span class="token string">"product-item"</span><span class="token punctuation">,</span> ProductItem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="slot" class="docs-header-link">
+          <span header-link="slot"></span>
+          slot
+        </h3>
+      <pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tpl-test<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+      <span class="token selector"><span class="token class">.title</span> </span><span class="token punctuation">{</span>
+        <span class="token property">color</span><span class="token punctuation">:</span> green<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>title<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>标题<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>slot</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>slot-des<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>默认内容<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>slot</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>test-item</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>slot-des<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>不是默认内容<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>test-item</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+    <span class="token keyword">class</span> <span class="token class-name">TestItem</span> <span class="token keyword">extends</span> <span class="token class-name">HTMLElement</span> <span class="token punctuation">{</span>
+      <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token function">connectedCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> content <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"tpl-test"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>content<span class="token punctuation">.</span><span class="token function">cloneNode</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> shadow <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">attachShadow</span><span class="token punctuation">(</span><span class="token punctuation">{</span> mode<span class="token punctuation">:</span> <span class="token string">"open"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        shadow<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    window<span class="token punctuation">.</span>customElements<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span><span class="token string">"test-item"</span><span class="token punctuation">,</span> TestItem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></div></code></pre>
+<hr>
+
+        <h2 id="%E5%8F%82%E8%80%83" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83"></span>
+          参考
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://juejin.cn/post/6844903661403897870">https://juejin.cn/post/6844903661403897870</a></li>
+<li><a target="_blank" href="https://juejin.cn/post/7203351367313489957">https://juejin.cn/post/7203351367313489957</a></li>
+</ul>

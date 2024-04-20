@@ -1,0 +1,53 @@
+
+        <h2 id="%E6%A8%A1%E5%9E%8B" class="docs-header-link">
+          <span header-link="%E6%A8%A1%E5%9E%8B"></span>
+          模型
+        </h2>
+      <ul>
+<li>ng-model用于绑定应用程序数据到html控制器的值</li>
+</ul>
+
+        <h3 id="%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A" class="docs-header-link">
+          <span header-link="%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A"></span>
+          双向绑定
+        </h3>
+      <ul>
+<li>在修改输入域的值时，AngularJS属性的值也将修改</li>
+</ul>
+
+        <h3 id="%E6%95%B0%E6%8D%AE%E7%8A%B6%E6%80%81" class="docs-header-link">
+          <span header-link="%E6%95%B0%E6%8D%AE%E7%8A%B6%E6%80%81"></span>
+          数据状态
+        </h3>
+      <ul>
+<li>可以为应用数据提供状态值（invalid(非法),dirty(填写过值),touched(触碰过),error(错误),pristine(原始状态，没有被填写过)）</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">ng-app</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myForm<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    Email:
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myAddress<span class="token punctuation">"</span></span> <span class="token attr-name">ng-model</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">ng-show</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myForm.myAddress.$error.email<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>不是一个合法的邮箱地址<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>状态<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Valid: {{myForm.myAddress.$valid}} (如果输入的值是合法的则为 true)。<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Dirty: {{myForm.myAddress.$dirty}} (如果值改变则为 true)。<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Touched: {{myForm.myAddress.$touched}} (如果通过触屏点击则为 true)。<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="css%E7%B1%BB" class="docs-header-link">
+          <span header-link="css%E7%B1%BB"></span>
+          CSS类
+        </h3>
+      <ul>
+<li>能基于数据的状态，为html元素自动添加或移除相应的css类<ol>
+<li><code>.ng-empty</code></li>
+<li><code>.ng-not-empty</code></li>
+<li><code>.ng-touched</code></li>
+<li><code>.ng-untouched</code></li>
+<li><code>.ng-valid</code></li>
+<li><code>.ng-invalid</code></li>
+<li><code>.ng-dirty</code></li>
+<li><code>.ng-pending</code></li>
+<li><code>.ng-pristine</code></li>
+</ol>
+</li>
+</ul>

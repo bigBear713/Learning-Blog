@@ -45,7 +45,9 @@
 </ul>
 <pre class="language-bash"><code class="language-bash"><div><span class="token function">git</span> commit -m <span class="token string">'[commit msg]'</span>
 
-<span class="token function">git</span> commit -a -m <span class="token string">'[commit msg]'</span></div></code></pre>
+<span class="token function">git</span> commit -a -m <span class="token string">'[commit msg]'</span>
+
+<span class="token function">git</span> commit -am <span class="token string">'[commit msg]'</span></div></code></pre>
 
         <h3 id="%E4%BB%8E%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E6%8B%89%E5%8F%96%E5%90%8C%E6%AD%A5%E6%9C%80%E6%96%B0%E7%9A%84%E8%AE%B0%E5%BD%95" class="docs-header-link">
           <span header-link="%E4%BB%8E%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E6%8B%89%E5%8F%96%E5%90%8C%E6%AD%A5%E6%9C%80%E6%96%B0%E7%9A%84%E8%AE%B0%E5%BD%95"></span>
@@ -111,6 +113,19 @@
 <li>不能将当前分支合并到另一个分支，必须先切换成当前分支</li>
 </ul>
 <pre class="language-bash"><code class="language-bash"><div><span class="token function">git</span> merge <span class="token punctuation">[</span>branch name<span class="token punctuation">]</span></div></code></pre>
+
+        <h3 id="rebase%E5%88%86%E6%94%AF" class="docs-header-link">
+          <span header-link="rebase%E5%88%86%E6%94%AF"></span>
+          rebase分支
+        </h3>
+      <ul>
+<li><code>rebase</code>操作，和<code>merge</code>类似，区别是：<ol>
+<li>merge 是将另一个分支的改动合并到当前分支，commit 记录按时间顺序排列，同时新增一条 commit 记录。如果以图表展示，显示的是两个分支的合并</li>
+<li>rebase 是将另一个分支的改动合并到当前分支，同时当前分支的改动排在合并过来的分支的<strong>最前面</strong>，而不是按照时间顺序来排列。如果以图表展示，显示的是只有一个分支</li>
+</ol>
+</li>
+</ul>
+<pre class="language-bash"><code class="language-bash"><div><span class="token function">git</span> rebase <span class="token punctuation">[</span>branch name<span class="token punctuation">]</span></div></code></pre>
 
         <h3 id="%E5%90%8C%E6%AD%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%BF%A1%E6%81%AF" class="docs-header-link">
           <span header-link="%E5%90%8C%E6%AD%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%BF%A1%E6%81%AF"></span>

@@ -1,0 +1,46 @@
+
+        <h2 id="%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4" class="docs-header-link">
+          <span header-link="%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"></span>
+          常用指令
+        </h2>
+      <ul>
+<li>ng-app: 声明一个module，应用程序的所有者</li>
+<li>ng-controller: 声明一个controller</li>
+<li>ng-model: 将输入域的值绑定到应用程序变量上</li>
+<li>ng-bind: 将应用程序的变量，绑定到某个html的innerHTML上</li>
+<li>ng-init: 初始化应用程序的变量，比较少使用，一般通过controller来初始化变量</li>
+<li>ng-repeat: 重复一个html元素片段，数据类型可以是 Array 和 Object，使用关键字<code>in</code>。</li>
+</ul>
+
+        <h2 id="%E5%BA%94%E7%94%A8" class="docs-header-link">
+          <span header-link="%E5%BA%94%E7%94%A8"></span>
+          应用
+        </h2>
+      <ul>
+<li>应用也称为module</li>
+<li>会有多个controller。controller可以定义赋值一些变量，挂载在<code>$scope</code>上</li>
+<li>一个页面一般只有一个<code>ng-app</code>，用于定义应用程序的<strong>根元素</strong></li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">ng-app</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myApp<span class="token punctuation">"</span></span> <span class="token attr-name">ng-controller</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myCtrl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+名: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">ng-model</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>firstName<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>
+姓: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">ng-model</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>lastName<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>
+姓名: {{firstName + " " + lastName}}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+ 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<span class="token keyword">var</span> app <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'myApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'myCtrl'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    $scope<span class="token punctuation">.</span>firstName<span class="token operator">=</span> <span class="token string">"John"</span><span class="token punctuation">;</span>
+    $scope<span class="token punctuation">.</span>lastName<span class="token operator">=</span> <span class="token string">"Doe"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h2 id="%E8%A1%A8%E8%BE%BE%E5%BC%8F" class="docs-header-link">
+          <span header-link="%E8%A1%A8%E8%BE%BE%E5%BC%8F"></span>
+          表达式
+        </h2>
+      <ul>
+<li>使用<code>{{ expression }}</code></li>
+<li>和Angular中的插值表达式相同</li>
+</ul>

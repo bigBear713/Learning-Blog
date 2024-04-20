@@ -1,0 +1,57 @@
+
+        <h2 id="%E8%BF%87%E6%BB%A4%E5%99%A8" class="docs-header-link">
+          <span header-link="%E8%BF%87%E6%BB%A4%E5%99%A8"></span>
+          过滤器
+        </h2>
+      <ul>
+<li>可以使用一个管道字符（|）添加到表达式和指令中，和Angular中的管道使用方式一样</li>
+<li>过滤器可用于转换数据</li>
+<li>使用<code>:</code>添加更多参数</li>
+<li>使用<code>|</code>使用多个过滤器</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>过滤器</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>currency</td>
+<td>格式化数字为货币格式</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>从数组项中选择一个子集</td>
+</tr>
+<tr>
+<td>lowercase</td>
+<td>格式化字符串为小写</td>
+</tr>
+<tr>
+<td>orderBy</td>
+<td>根据某个表达式排列数组</td>
+</tr>
+<tr>
+<td>uppercase</td>
+<td>格式化字符串为大写</td>
+</tr>
+</tbody></table>
+<hr>
+
+        <h2 id="%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%87%E6%BB%A4%E5%99%A8" class="docs-header-link">
+          <span header-link="%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%87%E6%BB%A4%E5%99%A8"></span>
+          自定义过滤器
+        </h2>
+      <ul>
+<li>使用<code>.filter()</code>自定义过滤器，返回一个函数</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">var</span> app <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'myApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'myCtrl'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    $scope<span class="token punctuation">.</span>msg <span class="token operator">=</span> <span class="token string">"Runoob"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token string">'reverse'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//可以注入依赖</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> text<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>

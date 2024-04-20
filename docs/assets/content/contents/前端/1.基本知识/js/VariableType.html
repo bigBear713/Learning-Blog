@@ -157,13 +157,13 @@ Symbol<span class="token punctuation">.</span><span class="token keyword">for</s
       <ul>
 <li>数字计算时，先换算成<code>二进制</code>计算，然后再转成<code>十进制</code>。</li>
 <li>小数在转成二进制计算时发生精度丢失，导致转成十进制时结果也不准确</li>
-<li>js使用64位双精度浮点数编码，其中<code>符号位</code>占<code>1</code>位，<code>指数位</code>占<code>11</code>位，<code>尾数位</code>占<code>53</code>位。<ol>
+<li>js使用64位双精度浮点数编码，其中<code>符号位</code>占<code>1</code>位，<code>指数位</code>占<code>11</code>位，<code>尾数位</code>占<code>52</code>位。<ol>
 <li><code>符号位</code>：标识正负，1表示正，0表负</li>
 <li><code>指数位</code>：存储科学计数法的指数</li>
 <li><code>位数法</code>: 存储科学计数法后的有效数字</li>
 </ol>
 </li>
-<li>计算时，当结果超过53位时，超出部分无法存储，此时遵循的原则：如果第54位是<code>1</code>，就向前进<code>1</code>位，如果是<code>0</code>则舍弃。而<code>0.1+0.2</code>的结果就是一个超过53位的结果，遵循原则后导致结果不准确</li>
+<li>计算时，当结果超过53位时，超出部分无法存储，此时遵循的原则：如果第53位是<code>1</code>，就向前进<code>1</code>位，如果是<code>0</code>则舍弃。而<code>0.1+0.2</code>的结果就是一个超过52位的结果，遵循原则后导致结果不准确</li>
 </ul>
 <pre class="language-js"><code class="language-js"><div><span class="token comment" spellcheck="true">// 0.1的二进制</span>
 <span class="token number">0.0001100110011001100110011001100110011001100110011001101</span>

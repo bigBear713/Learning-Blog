@@ -1,0 +1,287 @@
+
+        <h2 id="%E5%86%85%E7%BD%AE%E6%8C%87%E4%BB%A4" class="docs-header-link">
+          <span header-link="%E5%86%85%E7%BD%AE%E6%8C%87%E4%BB%A4"></span>
+          内置指令
+        </h2>
+      
+        <h3 id="ng-repeat" class="docs-header-link">
+          <span header-link="ng-repeat"></span>
+          ng-repeat
+        </h3>
+      <ul>
+<li>重复一个html元素片段，数据类型可以是 Array 和 Object，使用关键字<code>in</code>。</li>
+<li>在作用域内，可以使用<code>$index</code>获取索引</li>
+<li>在作用域内，可以使用<code>$even</code>和<code>$odd</code>获取当前项是否为奇数，或者偶数</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span> <span class="token attr-name">ng-repeat</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>x in names<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>{{ $index + 1 }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>{{ x.Name }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>{{ x.Country }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span> <span class="token attr-name">ng-repeat</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>x in names<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span> <span class="token attr-name">ng-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>$odd<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">background-color</span><span class="token punctuation">:</span><span class="token hexcode">#f1f1f1</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{ x.Name }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span> <span class="token attr-name">ng-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>$even<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{ x.Name }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span> <span class="token attr-name">ng-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>$odd<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">background-color</span><span class="token punctuation">:</span><span class="token hexcode">#f1f1f1</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{ x.Country }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span> <span class="token attr-name">ng-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>$even<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{ x.Country }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="ng-if" class="docs-header-link">
+          <span header-link="ng-if"></span>
+          ng-if
+        </h3>
+      <ul>
+<li>根据条件判断是否显示某个html片段</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">ng-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>condition<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></div></code></pre>
+<hr>
+
+        <h2 id="%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4" class="docs-header-link">
+          <span header-link="%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4"></span>
+          创建自定义指令
+        </h2>
+      <ul>
+<li>使用 <code>.directive</code> 函数来添加自定义的指令</li>
+<li>使用<strong>驼峰法</strong>来命名一个指令，但在<strong>使用</strong>它时需要以 <code>-</code> 分割</li>
+<li>可以通过以下方式调用指令<ol>
+<li>元素名：<runoob-directive></runoob-directive></li>
+<li>属性：<div runoob-directive></div></li>
+<li>类名：<div class="runoob-directive"></div></li>
+<li>注释：<!-- directive: runoob-directive --></li>
+</ol>
+</li>
+<li>限定只能通过特定的方式来调用：添加 restrict 属性，属性值分以下几种，默认值为<code>EA</code><ol>
+<li>E:作为元素名使用</li>
+<li>A:作为属性使用</li>
+<li>C:作为类名使用</li>
+<li>M:作为注释使用</li>
+</ol>
+</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">var</span> app <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">"myApp"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">directive</span><span class="token punctuation">(</span><span class="token string">"runoobDirective"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        restrict <span class="token punctuation">:</span> <span class="token string">"A"</span><span class="token punctuation">,</span>
+        template <span class="token punctuation">:</span> <span class="token string">"&lt;h1>自定义指令!&lt;/h1>"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+<hr>
+
+        <h2 id="%E5%88%9B%E5%BB%BA%E7%8B%AC%E7%AB%8B%E4%BD%9C%E7%94%A8%E5%9F%9Fisolate-scope" class="docs-header-link">
+          <span header-link="%E5%88%9B%E5%BB%BA%E7%8B%AC%E7%AB%8B%E4%BD%9C%E7%94%A8%E5%9F%9Fisolate-scope"></span>
+          创建独立作用域isolate scope
+        </h2>
+      <ul>
+<li>自定义的指令，默认会从父级的controller得到scope，但这样会导致每次使用都需要创建一个controller，比较繁琐</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token doctype">&lt;!doctype html></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">ng-app</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>docsScopeProblemExample<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://code.angularjs.org/1.2.25/angular.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>script.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">ng-controller</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>NaomiCtrl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>my-customer</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>my-customer</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">ng-controller</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>IgorCtrl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>my-customer</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>my-customer</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+      angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'docsScopeProblemExample'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'NaomiCtrl'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        $scope<span class="token punctuation">.</span>customer <span class="token operator">=</span> <span class="token punctuation">{</span>
+          name<span class="token punctuation">:</span> <span class="token string">'Naomi'</span><span class="token punctuation">,</span>
+          address<span class="token punctuation">:</span> <span class="token string">'1600 Amphitheatre'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'IgorCtrl'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        $scope<span class="token punctuation">.</span>customer <span class="token operator">=</span> <span class="token punctuation">{</span>
+          name<span class="token punctuation">:</span> <span class="token string">'Igor'</span><span class="token punctuation">,</span>
+          address<span class="token punctuation">:</span> <span class="token string">'123 Somewhere'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">directive</span><span class="token punctuation">(</span><span class="token string">'myCustomer'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+          restrict<span class="token punctuation">:</span> <span class="token string">'E'</span><span class="token punctuation">,</span>
+          templateUrl<span class="token punctuation">:</span> <span class="token string">'my-customer.html'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></div></code></pre>
+<ul>
+<li>通过创建独立作用域(isolate scope)，把指令的作用域与外部的作用域隔离开来，然后映射外部的作用域到指令内部的作用域会比较好</li>
+<li>独立作用域可以绑定不同数据到指令内部的作用域</li>
+<li>指令的独立作用域能隔离除了添加到<code>scope:{}</code>中的数据模型之外的一切东西</li>
+<li>普通的作用域都使用原型方式继承自父作用域。但是独立作用域没有这样的继承关系</li>
+</ul>
+
+        <h3 id="%E5%AE%9A%E4%B9%89%E8%BE%93%E5%85%A5%E5%B1%9E%E6%80%A7" class="docs-header-link">
+          <span header-link="%E5%AE%9A%E4%B9%89%E8%BE%93%E5%85%A5%E5%B1%9E%E6%80%A7"></span>
+          定义输入属性
+        </h3>
+      <ul>
+<li>独立作用域内的属性名也遵循驼峰命名规范，即如果在作用域中定义 &#39;=bindProp&#39; ，在模板中使用时，就应写成 &#39;<div bind-prop="" />&#39;</li>
+<li>如果想属性名和绑定的值的名字一样，可使用快捷语法 &#39;=&#39;</li>
+<li>此外还能使用符号 <code>@</code><ol>
+<li><code>@</code> - 表示该属性值是一个字符串类型</li>
+<li><code>=</code> - 表示该属性值是一个数组或对象，且支持双向绑定</li>
+</ol>
+</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token doctype">&lt;!doctype html></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">ng-app</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>docsIsolateScopeDirective<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://code.angularjs.org/1.2.25/angular.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>script.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">ng-controller</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Ctrl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>my-customer</span> <span class="token attr-name">info</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>naomi<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>my-customer</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>my-customer</span> <span class="token attr-name">info</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>igor<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>my-customer</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+      angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'docsIsolateScopeDirective'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'Ctrl'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        $scope<span class="token punctuation">.</span>naomi <span class="token operator">=</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">'Naomi'</span><span class="token punctuation">,</span> address<span class="token punctuation">:</span> <span class="token string">'1600 Amphitheatre'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        $scope<span class="token punctuation">.</span>igor <span class="token operator">=</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">'Igor'</span><span class="token punctuation">,</span> address<span class="token punctuation">:</span> <span class="token string">'123 Somewhere'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">directive</span><span class="token punctuation">(</span><span class="token string">'myCustomer'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+          restrict<span class="token punctuation">:</span> <span class="token string">'E'</span><span class="token punctuation">,</span>
+          scope<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            customerInfo<span class="token punctuation">:</span> <span class="token string">'=info'</span><span class="token punctuation">,</span>
+            bindProp<span class="token punctuation">:</span><span class="token string">'='</span> <span class="token comment" spellcheck="true">// 等价于 bindProp:'bindProp'</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          template<span class="token punctuation">:</span> <span class="token string">'Name: {{customerInfo.name}} Address: {{customerInfo.address}}'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="%E6%93%8D%E4%BD%9Cdom" class="docs-header-link">
+          <span header-link="%E6%93%8D%E4%BD%9Cdom"></span>
+          操作DOM
+        </h3>
+      <ul>
+<li>指令修改 DOM 通常是在 <code>link</code> 选项中，<code>link</code> 选项接收一个函数：<code>function link(scope,element,attrs){}</code><ol>
+<li>scope: 是一个AngularJS的scope对象</li>
+<li>element: 匹配的jqLite封装的元素(angular内部实现的类jquery的库) </li>
+<li>attrs: 带有规范化后属性名字和相应值的对象</li>
+</ol>
+</li>
+<li>destroy事件：注册一个监听事件<code>element.on(&#39;$destroy&#39;,...)</code>，当一个被angularjs编译过的DOM元素被移除时，会触发一个destroy事件。</li>
+<li>同样的，当一个angular作用域被移除时，它会向下广播destroy事件到所有下级作用域，使用<code>scope.$on(&#39;$destroy&#39;, ...)</code></li>
+</ul>
+
+        <h3 id="%E5%88%9B%E5%BB%BA%E5%8C%85%E5%90%AB%E5%85%B6%E5%AE%83%E5%85%83%E7%B4%A0%E7%9A%84%E6%8C%87%E4%BB%A4" class="docs-header-link">
+          <span header-link="%E5%88%9B%E5%BB%BA%E5%8C%85%E5%90%AB%E5%85%B6%E5%AE%83%E5%85%83%E7%B4%A0%E7%9A%84%E6%8C%87%E4%BB%A4"></span>
+          创建包含其它元素的指令
+        </h3>
+      <ul>
+<li>有时需要传进整个模板，而不是字符串或者对象。此时需要使用<code>transclude</code>选项</li>
+<li><code>transclude</code>使带有这个选项的指令，所包裹的内容能够访问指令外部的作用域</li>
+<li>如果指令不创建自己的scope(就是说scope:false，或省略)，然后在link函数里执行对scope 属性的修改，会影响外部的scope对象，因此此时指令的scope是继承了外部的scope</li>
+<li>仅当你要创建一个包裹任意内容的指令的时候使用<code>transclude: true</code></li>
+</ul>
+
+        <h3 id="%E5%AE%9A%E4%B9%89%E8%BE%93%E5%87%BA%E4%BA%8B%E4%BB%B6" class="docs-header-link">
+          <span header-link="%E5%AE%9A%E4%B9%89%E8%BE%93%E5%87%BA%E4%BA%8B%E4%BB%B6"></span>
+          定义输出事件
+        </h3>
+      <ul>
+<li>定义输入属性时，使用 <strong><code>=</code>+属性名</strong></li>
+<li>定义输出事件时，则使用 <strong><code>&amp;</code>+事件名</strong></li>
+<li>还可以在controller中，通过<code>$scope</code>的<code>$emit()</code>和<code>$broadcast()</code>传递消息，接收处使用<code>$scope.$on(event,fn)</code>接收消息<ol>
+<li><code>$scope.$emit(eventName,data)</code> 可以向父级传递消息，也只能向父级传递消息</li>
+<li><code>$scope.$broadcast(eventName,data)</code>可以向同级和子级传递消息</li>
+<li>它们都会触发angularjs的脏检查，过度使用会影响性能</li>
+</ol>
+</li>
+<li>通过输出事件，向父组件传值时，在自定义组件内部，通过<code>$scope</code>调用相应的输出事件，传参；在父组件，通过使用同名的参数，获取传出的值。</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token doctype">&lt;!doctype html></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">ng-app</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>docsIsoFnBindExample<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://code.angularjs.org/1.2.25/angular.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>script.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">ng-controller</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Ctrl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>my-dialog</span> <span class="token attr-name">ng-hide</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dialogIsHidden<span class="token punctuation">"</span></span> <span class="token attr-name">on-close</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>hideDialog()<span class="token punctuation">"</span></span> <span class="token attr-name">on-output</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>getValueFromComp(param1,param2)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        Check out the contents, !
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>my-dialog</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+      angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'docsIsoFnBindExample'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'Ctrl'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">,</span> $timeout<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          $scope<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'Tobias'</span><span class="token punctuation">;</span>
+          $scope<span class="token punctuation">.</span>hideDialog <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            $scope<span class="token punctuation">.</span>dialogIsHidden <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token function">$timeout</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              $scope<span class="token punctuation">.</span>dialogIsHidden <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+          $scope<span class="token punctuation">.</span>getValueFromComp <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>param1<span class="token punctuation">,</span>param2<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>param1<span class="token punctuation">,</span>param2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">directive</span><span class="token punctuation">(</span><span class="token string">'myDialog'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token punctuation">{</span>
+            restrict<span class="token punctuation">:</span> <span class="token string">'E'</span><span class="token punctuation">,</span>
+            transclude<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            scope<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+              <span class="token string">'close'</span><span class="token punctuation">:</span> <span class="token string">'&amp;onClose'</span><span class="token punctuation">,</span>
+              <span class="token string">'onOutput'</span><span class="token punctuation">:</span><span class="token string">'&amp;'</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            templateUrl<span class="token punctuation">:</span> <span class="token string">'my-dialog-close.html'</span><span class="token punctuation">,</span>
+            controller<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">)</span><span class="token punctuation">{</span>
+              <span class="token comment" spellcheck="true">// ...</span>
+              <span class="token comment" spellcheck="true">// 通过output向外传参</span>
+              $scope<span class="token punctuation">.</span><span class="token function">onOutput</span><span class="token punctuation">(</span><span class="token punctuation">{</span>param1<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span>param2<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- my-dialog-close.html --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>alert<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>close<span class="token punctuation">"</span></span> <span class="token attr-name">ng-click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>close()<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token entity" title="&times;">&amp;times;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">ng-transclude</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h3 id="%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F" class="docs-header-link">
+          <span header-link="%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"></span>
+          生命周期
+        </h3>
+      <ul>
+<li>compile: 在DOM元素被链接到指令函数之前运行。用于转换DOM模板，返回一个链接函数(link)</li>
+<li>link: 链接函数，用于将指令与作用域链接。接收3个参数：scope, element, attrs</li>
+<li>controller: 指令控制器，用于管理指令的行为。可以使用该控制器来公开一些方法或属性，以供指令内部或外部调用</li>
+<li>scope: 指定指令作用域。使用该属性来创建一个独立的作用域或继承父作用域</li>
+<li>template/templateUrl: 指定指令的HTML模板或模板url</li>
+<li>transclude: 指定指令是否包含一个<code>ng-transclude</code>元素</li>
+</ul>
+<hr>
+
+        <h2 id="%E5%8F%82%E8%80%83" class="docs-header-link">
+          <span header-link="%E5%8F%82%E8%80%83"></span>
+          参考
+        </h2>
+      <ul>
+<li><a target="_blank" href="https://www.angularjs.net.cn/tutorial/5.html">https://www.angularjs.net.cn/tutorial/5.html</a></li>
+</ul>

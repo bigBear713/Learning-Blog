@@ -37,6 +37,7 @@
 <li>当<code>position:absolute</code>时，位置相对于离它最近的且position为非<code>static</code>的父元素进行偏移，没有这样的父元素，则相对于<code>body</code>进行偏移</li>
 <li>当<code>position:fixed</code>时，位置相对于整个浏览器窗口进行偏移</li>
 </ul>
+<hr>
 
         <h2 id="bfc" class="docs-header-link">
           <span header-link="bfc"></span>
@@ -57,7 +58,7 @@
       <ul>
 <li><code>BFC</code>容器就是一个块级元素，因此会在竖直方向上一个接一个排列</li>
 <li>属于同一个<code>BFC</code>容器的两个相邻元素，上下间距由<code>margin</code>决定。如果同时设置两个相邻元素的上下<code>margin</code>，会发生重叠，间距由最大的那个<code>margin</code>值决定</li>
-<li>计算<code>BFC</code>高度时，<code>float</code>元素等脱离文档流的元素也会参与计算</li>
+<li>计算<code>BFC</code>高度时，<code>float</code>、<code>position:absolute</code>等脱离文档流的元素也会参与计算</li>
 <li><code>BFC</code>容器不会与<code>float</code>元素发生重叠</li>
 </ul>
 
@@ -107,6 +108,7 @@
 <li>FFC能做的GFC也能做，GFC能做的FFC也能做</li>
 <li>FFC，GFC也是一个BFC，在遵循自己的规范的时候，向下兼容BFC规范</li>
 </ul>
+<hr>
 
         <h2 id="ifc" class="docs-header-link">
           <span header-link="ifc"></span>
@@ -129,6 +131,7 @@
 <li>行框内的元素遵循<code>text-align</code>和<code>vertical-align</code></li>
 <li>在<code>IFC</code>中是不能存在块级元素的。如果将块级元素插入到<code>IFC</code>环境中，那么它会被破坏称为<code>BFC</code>.而块级元素前的元素或文本和块级元素后的元素或文本将会各自自动产生一个匿名块盒其包围。</li>
 </ul>
+<hr>
 
         <h2 id="%E5%8F%82%E8%80%83" class="docs-header-link">
           <span header-link="%E5%8F%82%E8%80%83"></span>

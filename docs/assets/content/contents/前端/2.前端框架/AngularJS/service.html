@@ -1,0 +1,134 @@
+
+        <h2 id="service%E6%9C%8D%E5%8A%A1" class="docs-header-link">
+          <span header-link="service%E6%9C%8D%E5%8A%A1"></span>
+          service服务
+        </h2>
+      <ul>
+<li>服务是一个函数，或者对象，可在AngularJS应用中使用</li>
+</ul>
+<hr>
+
+        <h2 id="%E5%B8%B8%E8%A7%81%E6%9C%8D%E5%8A%A1" class="docs-header-link">
+          <span header-link="%E5%B8%B8%E8%A7%81%E6%9C%8D%E5%8A%A1"></span>
+          常见服务
+        </h2>
+      
+        <h3 id="$location" class="docs-header-link">
+          <span header-link="$location"></span>
+          $location
+        </h3>
+      <ul>
+<li>可以返回当前页面的URL</li>
+<li>在AngularJS中，使用$location比使用window.location好</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>window.location</th>
+<th>$location</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>目的</td>
+<td>允许对当前浏览器的位置进行读写操作</td>
+<td>同window.location</td>
+</tr>
+<tr>
+<td>API</td>
+<td>暴露一个能被读写的对象</td>
+<td>暴露jquery风格的读写器</td>
+</tr>
+<tr>
+<td>是否在AngularJS应用生命周期中，和应用整合</td>
+<td>否</td>
+<td>可获取到应用的生命周期的每一个阶段，并且和$watch整合</td>
+</tr>
+<tr>
+<td>是否和HTML5 API无缝整合</td>
+<td>否</td>
+<td>是（对低级浏览器优雅降级）</td>
+</tr>
+<tr>
+<td>和应用的上下文是否关联</td>
+<td>否</td>
+<td>是</td>
+</tr>
+</tbody></table>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">var</span> app <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'myApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'customersCtrl'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">,</span> $location<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    $scope<span class="token punctuation">.</span>myUrl <span class="token operator">=</span> $location<span class="token punctuation">.</span><span class="token function">absUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+
+        <h3 id="$http" class="docs-header-link">
+          <span header-link="$http"></span>
+          $http
+        </h3>
+      <ul>
+<li>向服务器发送http请求，并响应传过来的数据</li>
+<li>具体见http章节</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">var</span> app <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'myApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'myCtrl'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">,</span> $http<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    $http<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"welcome.htm"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>response<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        $scope<span class="token punctuation">.</span>myWelcome <span class="token operator">=</span> response<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+
+        <h3 id="$timeout" class="docs-header-link">
+          <span header-link="$timeout"></span>
+          $timeout
+        </h3>
+      <ul>
+<li>对应window.setTimeout</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">var</span> app <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'myApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'myCtrl'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">,</span> $timeout<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    $scope<span class="token punctuation">.</span>myHeader <span class="token operator">=</span> <span class="token string">"Hello World!"</span><span class="token punctuation">;</span>
+    <span class="token function">$timeout</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        $scope<span class="token punctuation">.</span>myHeader <span class="token operator">=</span> <span class="token string">"How are you today?"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+
+        <h3 id="$interval" class="docs-header-link">
+          <span header-link="$interval"></span>
+          $interval
+        </h3>
+      <ul>
+<li>对应window.setInterval函数</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">var</span> app <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'myApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'myCtrl'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">,</span> $interval<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    $scope<span class="token punctuation">.</span>theTime <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toLocaleTimeString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">$interval</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        $scope<span class="token punctuation">.</span>theTime <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toLocaleTimeString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+<hr>
+
+        <h2 id="%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9C%8D%E5%8A%A1" class="docs-header-link">
+          <span header-link="%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9C%8D%E5%8A%A1"></span>
+          自定义服务
+        </h2>
+      <ul>
+<li>使用<code>.service()</code>创建自定义服务</li>
+<li>使用自定义服务，需要在定义controller的时候，独立添加，设置依赖。</li>
+<li>还能在过滤器、指令或其它服务中使用</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token keyword">var</span> app <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'myApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">service</span><span class="token punctuation">(</span><span class="token string">'hexafy'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'hexafy'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>myFunc <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> x<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'myCtrl'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'hexafy'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">,</span> hexafy<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  $scope<span class="token punctuation">.</span>hex <span class="token operator">=</span> hexafy<span class="token punctuation">.</span><span class="token function">myFunc</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token string">'myFormat'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'hexafy'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>hexafy<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> hexafy<span class="token punctuation">.</span><span class="token function">myFunc</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>

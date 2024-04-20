@@ -1,0 +1,32 @@
+
+        <h2 id="scope%E4%BD%9C%E7%94%A8%E5%9F%9F" class="docs-header-link">
+          <span header-link="scope%E4%BD%9C%E7%94%A8%E5%9F%9F"></span>
+          scope作用域
+        </h2>
+      <ul>
+<li>scope是应用在 HTML view 和 JS controller之间的纽带</li>
+<li>是一个对象，有可用的属性和方法</li>
+<li>可应用在视图和控制器上</li>
+</ul>
+<hr>
+
+        <h2 id="%E4%BD%BF%E7%94%A8" class="docs-header-link">
+          <span header-link="%E4%BD%BF%E7%94%A8"></span>
+          使用
+        </h2>
+      <ul>
+<li>在创建controller时，传入<code>$scope</code>参数</li>
+<li>控制器中的属性名，和视图中的属性名一致</li>
+<li>视图中，不再需要添加<code>$scope</code>前缀</li>
+</ul>
+<hr>
+
+        <h2 id="%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4" class="docs-header-link">
+          <span header-link="%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4"></span>
+          作用范围
+        </h2>
+      <ul>
+<li>当使用<code>ng-repeat</code>时，每个重复项都访问当前的重复对象</li>
+<li>根作用域：所有应用都有一个<code>$rootScope</code>根作用域，可以作用在ng-app指令包含的所有HTML元素中。是各个controller中scope的桥梁，用<code>$rootScope</code>定义的属性和方法，可以在各个controller中使用</li>
+<li>创建控制器时，可将参数<code>$rootScope</code>传入</li>
+</ul>

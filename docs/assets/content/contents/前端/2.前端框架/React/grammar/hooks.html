@@ -14,6 +14,7 @@
 </li>
 <li>hook 的结构是<strong>链表</strong>结构，上述操作会打断这种结构，导致取指错误等问题</li>
 <li>Hook 是一种复用状态逻辑的方式，它不复用 state 本身。事实上 Hook 的每次调用都有一个完全独立的 state —— 因此你可以在单个组件中多次调用同一个自定义 Hook。</li>
+<li>hook是<strong>逻辑</strong>的复用，HOC是<strong>视图和逻辑</strong>的复用</li>
 </ul>
 <hr>
 
@@ -49,6 +50,33 @@
       ChatAPI<span class="token punctuation">.</span><span class="token function">unsubscribeFromFriendStatus</span><span class="token punctuation">(</span>props<span class="token punctuation">.</span>friend<span class="token punctuation">.</span>id<span class="token punctuation">,</span> handleStatusChange<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+
+        <h3 id="useeffect%E5%92%8Cuselayouteffect%E7%9A%84%E5%8C%BA%E5%88%AB" class="docs-header-link">
+          <span header-link="useeffect%E5%92%8Cuselayouteffect%E7%9A%84%E5%8C%BA%E5%88%AB"></span>
+          useEffect和useLayoutEffect的区别
+        </h3>
+      <ul>
+<li>对于React的函数组件来说，更新过程大致分为以下步骤<ol>
+<li>因为某个事件，导致 state 发生变化</li>
+<li>React 内部更新 state 变量</li>
+<li>React 处理更新组件中 return 出来的DOM节点（进行一系列dom diff，调度等流程）</li>
+<li>将更新后的DOM数据绘制到浏览器中</li>
+<li>用户看到新的页面</li>
+</ol>
+</li>
+<li>useEffect 在第4步后执行，且是异步的，保证了不会阻塞浏览器进程。</li>
+<li>useLayoutEffect 在第3步至第4步之间执行，且是同步的，所以会阻塞后面代码的执行</li>
+</ul>
+
+        <h3 id="useeffect-%E4%BE%9D%E8%B5%96%E4%B8%BA%E7%A9%BA%E6%95%B0%E7%BB%84%E6%97%B6%EF%BC%8C%E5%92%8C-componentdidmount-%E7%9A%84%E5%8C%BA%E5%88%AB" class="docs-header-link">
+          <span header-link="useeffect-%E4%BE%9D%E8%B5%96%E4%B8%BA%E7%A9%BA%E6%95%B0%E7%BB%84%E6%97%B6%EF%BC%8C%E5%92%8C-componentdidmount-%E7%9A%84%E5%8C%BA%E5%88%AB"></span>
+          useEffect 依赖为空数组时，和 componentDidMount 的区别
+        </h3>
+      <ol>
+<li>在 render 执行之后，componentDidMount 会执行，如果在这个生命周期中再一次 setState, 会导致再次 render, 返回新的值，浏览器只会渲染第二次 render 返回的值，这样可以避免闪屏</li>
+<li>useEffect 是在真实的DOM渲染之后才执行，同样的情况下，会造成两次 render,有可能会闪屏</li>
+<li>实际上 useLayoutEffect 会更接近 componentDidMount 的表现，它们都同步执行且阻碍真实的DOM渲染</li>
+</ol>
 <hr>
 
         <h2 id="usecontext" class="docs-header-link">
@@ -128,3 +156,4 @@
 <li>通过自定义 Hook，可以将组件逻辑提取到可重用的函数中</li>
 <li>自定义 Hook 是一个函数，其名称以 “<code>use</code>” 开头，函数内部可以调用其他的 Hook</li>
 </ul>
+<hr>

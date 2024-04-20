@@ -1,0 +1,106 @@
+
+        <h2 id="di%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5" class="docs-header-link">
+          <span header-link="di%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5"></span>
+          DI依赖注入
+        </h2>
+      <ul>
+<li>AngularJS提供很好的依赖注入机制，以下5个核心组件作为依赖注入<ol>
+<li>value</li>
+<li>factory</li>
+<li>service</li>
+<li>provider</li>
+<li>constant</li>
+</ol>
+</li>
+</ul>
+<hr>
+
+        <h2 id="value" class="docs-header-link">
+          <span header-link="value"></span>
+          value
+        </h2>
+      <ul>
+<li>是一个简单的js对象，用于向控制器传递值（配置阶段）</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token comment" spellcheck="true">// 定义一个模块</span>
+<span class="token keyword">var</span> mainApp <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">"mainApp"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 创建 value 对象 "defaultInput" 并传递数据</span>
+mainApp<span class="token punctuation">.</span><span class="token function">value</span><span class="token punctuation">(</span><span class="token string">"defaultInput"</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">...</span>
+
+<span class="token comment" spellcheck="true">// 将 "defaultInput" 注入到控制器</span>
+mainApp<span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'CalcController'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">,</span> CalcService<span class="token punctuation">,</span> defaultInput<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   $scope<span class="token punctuation">.</span>number <span class="token operator">=</span> defaultInput<span class="token punctuation">;</span>
+   $scope<span class="token punctuation">.</span>result <span class="token operator">=</span> CalcService<span class="token punctuation">.</span><span class="token function">square</span><span class="token punctuation">(</span>$scope<span class="token punctuation">.</span>number<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   
+   $scope<span class="token punctuation">.</span>square <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      $scope<span class="token punctuation">.</span>result <span class="token operator">=</span> CalcService<span class="token punctuation">.</span><span class="token function">square</span><span class="token punctuation">(</span>$scope<span class="token punctuation">.</span>number<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+<hr>
+
+        <h2 id="factory" class="docs-header-link">
+          <span header-link="factory"></span>
+          factory
+        </h2>
+      <ul>
+<li>是一个函数，用于返回值，在 service 和 controller 需要时创建</li>
+<li>通常使用factory函数来计算或返回值</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token comment" spellcheck="true">// 定义一个模块</span>
+<span class="token keyword">var</span> mainApp <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">"mainApp"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 创建 factory "MathService" 用于两数的乘积 provides a method multiply to return multiplication of two numbers</span>
+mainApp<span class="token punctuation">.</span><span class="token function">factory</span><span class="token punctuation">(</span><span class="token string">'MathService'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">var</span> factory <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+   
+   factory<span class="token punctuation">.</span>multiply <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> a <span class="token operator">*</span> b
+   <span class="token punctuation">}</span>
+   <span class="token keyword">return</span> factory<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token comment" spellcheck="true">// 在 service 中注入 factory "MathService"</span>
+mainApp<span class="token punctuation">.</span><span class="token function">service</span><span class="token punctuation">(</span><span class="token string">'CalcService'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>MathService<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   <span class="token keyword">this</span><span class="token punctuation">.</span>square <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> MathService<span class="token punctuation">.</span><span class="token function">multiply</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+<hr>
+
+        <h2 id="provider" class="docs-header-link">
+          <span header-link="provider"></span>
+          provider
+        </h2>
+      <ul>
+<li>通过 provider 创建一个 service 或 factory 等（配置阶段）</li>
+<li>provider 提供了一个 factory 方法 get(), 它用于返回 value/service/factory 等</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token comment" spellcheck="true">// 定义一个模块</span>
+<span class="token keyword">var</span> mainApp <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">"mainApp"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 使用 provider 创建 service 定义一个方法用于计算两数乘积</span>
+mainApp<span class="token punctuation">.</span><span class="token function">config</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>$provide<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   $provide<span class="token punctuation">.</span><span class="token function">provider</span><span class="token punctuation">(</span><span class="token string">'MathService'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>$<span class="token keyword">get</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         <span class="token keyword">var</span> factory <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>  
+         
+         factory<span class="token punctuation">.</span>multiply <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> a <span class="token operator">*</span> b<span class="token punctuation">;</span> 
+         <span class="token punctuation">}</span>
+         <span class="token keyword">return</span> factory<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+<hr>
+
+        <h2 id="constant" class="docs-header-link">
+          <span header-link="constant"></span>
+          constant
+        </h2>
+      <ul>
+<li>用来在配置阶段传递数值。</li>
+<li>注意这个值在配置阶段是不可用的</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div>mainApp<span class="token punctuation">.</span><span class="token function">constant</span><span class="token punctuation">(</span><span class="token string">"configParam"</span><span class="token punctuation">,</span> <span class="token string">"constant value"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>

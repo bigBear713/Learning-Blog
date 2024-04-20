@@ -1,0 +1,55 @@
+
+        <h2 id="select-%E9%80%89%E6%8B%A9%E6%A1%86" class="docs-header-link">
+          <span header-link="select-%E9%80%89%E6%8B%A9%E6%A1%86"></span>
+          select 选择框
+        </h2>
+      <ul>
+<li>AngularJS中，有针对select定义特殊的指令： ng-options</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">ng-app</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myApp<span class="token punctuation">"</span></span> <span class="token attr-name">ng-controller</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myCtrl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">ng-init</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>selectedName <span class="token punctuation">=</span> names[0]<span class="token punctuation">"</span></span> <span class="token attr-name">ng-model</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>selectedName<span class="token punctuation">"</span></span> <span class="token attr-name">ng-options</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>x for x in names<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+    
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+ 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+    <span class="token keyword">var</span> app <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'myApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    app<span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'myCtrl'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        $scope<span class="token punctuation">.</span>names <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Google"</span><span class="token punctuation">,</span> <span class="token string">"Runoob"</span><span class="token punctuation">,</span> <span class="token string">"Taobao"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></div></code></pre>
+<ul>
+<li>使用对象作为数据源, x 为键(key), y 为值(value)</li>
+<li>在下拉菜单也可以不使用 key-value 对中的 key , 直接使用对象的属性</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">ng-model</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>selectedSite<span class="token punctuation">"</span></span> <span class="token attr-name">ng-options</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>x for (x, y) in sites<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">ng-model</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>selectedCar<span class="token punctuation">"</span></span> <span class="token attr-name">ng-options</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>y.brand for (x, y) in cars<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>你选择的值是: {{selectedSite}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+    <span class="token keyword">var</span> app <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'myApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    app<span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'myCtrl'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        $scope<span class="token punctuation">.</span>sites <span class="token operator">=</span> <span class="token punctuation">{</span>
+            site01 <span class="token punctuation">:</span> <span class="token string">"Google"</span><span class="token punctuation">,</span>
+            site02 <span class="token punctuation">:</span> <span class="token string">"Runoob"</span><span class="token punctuation">,</span>
+            site03 <span class="token punctuation">:</span> <span class="token string">"Taobao"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+        $scope<span class="token punctuation">.</span>cars <span class="token operator">=</span> <span class="token punctuation">{</span>
+            car01 <span class="token punctuation">:</span> <span class="token punctuation">{</span>brand <span class="token punctuation">:</span> <span class="token string">"Ford"</span><span class="token punctuation">,</span> model <span class="token punctuation">:</span> <span class="token string">"Mustang"</span><span class="token punctuation">,</span> color <span class="token punctuation">:</span> <span class="token string">"red"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+            car02 <span class="token punctuation">:</span> <span class="token punctuation">{</span>brand <span class="token punctuation">:</span> <span class="token string">"Fiat"</span><span class="token punctuation">,</span> model <span class="token punctuation">:</span> <span class="token string">"500"</span><span class="token punctuation">,</span> color <span class="token punctuation">:</span> <span class="token string">"white"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+            car03 <span class="token punctuation">:</span> <span class="token punctuation">{</span>brand <span class="token punctuation">:</span> <span class="token string">"Volvo"</span><span class="token punctuation">,</span> model <span class="token punctuation">:</span> <span class="token string">"XC90"</span><span class="token punctuation">,</span> color <span class="token punctuation">:</span> <span class="token string">"black"</span><span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+</div></code></pre>
+
+        <h2 id="ng-options%E5%92%8Cng-repeat%E5%AF%B9%E6%AF%94" class="docs-header-link">
+          <span header-link="ng-options%E5%92%8Cng-repeat%E5%AF%B9%E6%AF%94"></span>
+          ng-options和ng-repeat对比
+        </h2>
+      <ul>
+<li>ng-repeat 的选项是一个字符串，有局限性</li>
+<li>ng-options 的选项是一个对象</li>
+<li>ng-options 指令更适合创建下拉列表</li>
+</ul>

@@ -1,0 +1,35 @@
+
+        <h2 id="http%E6%9C%8D%E5%8A%A1" class="docs-header-link">
+          <span header-link="http%E6%9C%8D%E5%8A%A1"></span>
+          http服务
+        </h2>
+      <ul>
+<li>AngularJS的一个核心服务，用于向远程服务器请求数据</li>
+</ul>
+<pre class="language-js"><code class="language-js"><div><span class="token comment" spellcheck="true">// 简单的 GET 请求，可以改为 POST</span>
+<span class="token function">$http</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    method<span class="token punctuation">:</span> <span class="token string">'GET'</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">:</span> <span class="token string">'/someUrl'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
+    <span class="token keyword">function</span> <span class="token function">successCallback</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 请求成功执行代码</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> 
+    <span class="token keyword">function</span> <span class="token function">errorCallback</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 请求失败执行代码</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 简写方法</span>
+$http<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'/someUrl'</span><span class="token punctuation">,</span> config<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>successCallback<span class="token punctuation">,</span> errorCallback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+$http<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/someUrl'</span><span class="token punctuation">,</span> data<span class="token punctuation">,</span> config<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>successCallback<span class="token punctuation">,</span> errorCallback<span class="token punctuation">)</span><span class="token punctuation">;</span></div></code></pre>
+<ul>
+<li>简写方法：<ol>
+<li>$http.get</li>
+<li>$http.head</li>
+<li>$http.post</li>
+<li>$http.put</li>
+<li>$http.delete</li>
+<li>$http.jsonp</li>
+<li>$http.patch</li>
+</ol>
+</li>
+</ul>
