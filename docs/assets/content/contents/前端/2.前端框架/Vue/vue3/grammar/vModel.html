@@ -1,0 +1,68 @@
+
+        <h2 id="v-model%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A" class="docs-header-link">
+          <span header-link="v-model%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A"></span>
+          v-model双向绑定
+        </h2>
+      
+        <h3 id="%E8%AF%AD%E6%B3%95" class="docs-header-link">
+          <span header-link="%E8%AF%AD%E6%B3%95"></span>
+          语法
+        </h3>
+      <ul>
+<li>第一种语法，只能绑定一个属性，即为<code>modelValue</code>属性</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token comment" spellcheck="true">&lt;!-- 父组件 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Child</span> <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>prop1<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
+<span class="token comment" spellcheck="true">&lt;!-- 子组件 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">setup</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<span class="token keyword">const</span> props <span class="token operator">=</span> <span class="token function">defineProps</span><span class="token punctuation">(</span><span class="token punctuation">{</span>modelValue<span class="token punctuation">:</span>string<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> emits <span class="token operator">=</span> <span class="token function">defindEmits</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'update:modelValue'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> changeModelValue <span class="token operator">=</span> <span class="token punctuation">(</span>val<span class="token punctuation">:</span>string<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+    <span class="token function">emits</span><span class="token punctuation">(</span><span class="token string">'update:modelValue'</span><span class="token punctuation">,</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></div></code></pre>
+<ul>
+<li>如果要绑定多个属性的话，直接 update 对应的属性名就行，而不是 update modelValue</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token comment" spellcheck="true">&lt;!-- 父组件 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Child</span> <span class="token attr-name"><span class="token namespace">v-model:</span>prop1</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>prop1<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">v-model:</span>prop2</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>prop2<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
+<span class="token comment" spellcheck="true">&lt;!-- 子组件 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">setup</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<span class="token keyword">const</span> props <span class="token operator">=</span> <span class="token function">defineProps</span><span class="token punctuation">(</span><span class="token punctuation">{</span>prop1<span class="token punctuation">:</span>string<span class="token punctuation">,</span>prop2<span class="token punctuation">:</span>string<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> emits <span class="token operator">=</span> <span class="token function">defindEmits</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'update:prop1'</span><span class="token punctuation">,</span><span class="token string">'update:prop2'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> changeProp1 <span class="token operator">=</span> <span class="token punctuation">(</span>val<span class="token punctuation">:</span>string<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+    <span class="token function">emits</span><span class="token punctuation">(</span><span class="token string">'update:prop1'</span><span class="token punctuation">,</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> changeProp2 <span class="token operator">=</span> <span class="token punctuation">(</span>val<span class="token punctuation">:</span>string<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+    <span class="token function">emits</span><span class="token punctuation">(</span><span class="token string">'update:prop2'</span><span class="token punctuation">,</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></div></code></pre>
+<ul>
+<li>使用专属的<code>defineModel</code></li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token comment" spellcheck="true">&lt;!-- 父组件 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Child</span> <span class="token attr-name"><span class="token namespace">v-model:</span>prop1</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>prop1<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">v-model:</span>prop2</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>prop2<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
+<span class="token comment" spellcheck="true">&lt;!-- 子组件 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+    {{prop1}}
+    {{prop2}}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">setup</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<span class="token keyword">const</span> prop1 <span class="token operator">=</span> <span class="token function">defineModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> prop2 <span class="token operator">=</span> <span class="token function">defineModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> changeProp1 <span class="token operator">=</span> <span class="token punctuation">(</span>val<span class="token punctuation">:</span>string<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+    prop1<span class="token punctuation">.</span>value <span class="token operator">=</span> value<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> changeProp2 <span class="token operator">=</span> <span class="token punctuation">(</span>val<span class="token punctuation">:</span>string<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+    prop2<span class="token punctuation">.</span>value <span class="token operator">=</span> value<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></div></code></pre>

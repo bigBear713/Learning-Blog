@@ -1,0 +1,65 @@
+
+        <h2 id="vite" class="docs-header-link">
+          <span header-link="vite"></span>
+          vite
+        </h2>
+      <ul>
+<li>一个新型的前端构建工具，能显著提升前端开发体验。</li>
+<li>主要由两部分组成：<ol>
+<li>一个开发服务器，基于原生ES模块提供丰富的内建功能。</li>
+<li>一套构建指令，使用Rollup打包代码，且是预配置的，可输出用于生产环境的高度优化过的静态资源。</li>
+</ol>
+</li>
+<li>旨在解决项目在开发环境下构建速度慢的问题，并且使用 ESM 模块方式来将其改进</li>
+</ul>
+
+        <h3 id="%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F" class="docs-header-link">
+          <span header-link="%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F"></span>
+          开发模式
+        </h3>
+      <ul>
+<li>开发环境下使用esbuild进行文件编译，它比webpack, rollup效率高很多</li>
+</ul>
+
+        <h3 id="%E7%94%9F%E4%BA%A7%E6%A8%A1%E5%BC%8F" class="docs-header-link">
+          <span header-link="%E7%94%9F%E4%BA%A7%E6%A8%A1%E5%BC%8F"></span>
+          生产模式
+        </h3>
+      <ul>
+<li>生产模式下使用rollup打包，此时相当于一个rollup</li>
+</ul>
+
+        <h3 id="rollup" class="docs-header-link">
+          <span header-link="rollup"></span>
+          rollup
+        </h3>
+      <ul>
+<li>是一个更专一的工具，只专注于build javascript, 而不关注平台</li>
+<li>对webpack来说，编译出来的代码会有很多webpack的工具函数，来帮我们加载模块。但rollup不会有其专有的函数在里面，只遵循ESM规范来build</li>
+</ul>
+
+        <h3 id="%E6%98%AF%E4%B8%80%E4%B8%AA%E7%BC%96%E8%AF%91%E7%9A%84%E5%B9%B3%E5%8F%B0" class="docs-header-link">
+          <span header-link="%E6%98%AF%E4%B8%80%E4%B8%AA%E7%BC%96%E8%AF%91%E7%9A%84%E5%B9%B3%E5%8F%B0"></span>
+          是一个编译的平台
+        </h3>
+      <ul>
+<li>vite是一个编译平台，本身并不具备编译代码资源的能力。</li>
+<li>vite的编译能力，是来自集成的 esbuild, rollup 等提供的。</li>
+<li>vite 通过集成的 esbuild, rollup，启动 dev-server，并在中间做并联和管理。</li>
+<li>vite 集成这些东西之后，提供一系列的指令，来帮助开发者提升前端开发体验</li>
+<li>vite 应该和集成了webpack的vue-cli, create-react-app, angular-cli等工具去比，而不是和webpack去比</li>
+</ul>
+
+        <h3 id="%E4%BC%98%E5%8A%BF" class="docs-header-link">
+          <span header-link="%E4%BC%98%E5%8A%BF"></span>
+          优势
+        </h3>
+      <ul>
+<li>简化配置，上手简单，社区成本低，天生兼容各类rollup插件。</li>
+<li>有自己的插件系统</li>
+<li>依赖构建，将amd，cmd，iife，commonjs等转成es module形式，对依赖进行强缓存</li>
+<li>提供基于ESM的HRM api，比传统的HRM过程更简单和高效</li>
+<li>使用esbuild转译ts,tsx,jsx，约是tsc的20~30倍</li>
+<li>内部构建了css预处理器，支持tsx,jsx,postcss,css module，让用户开箱即用</li>
+<li>不同于传统的打包方式，启动时不用先抓取整个应用并构建，然后才能提供服务。Vite直接请求源码，返回过程中解析转译源码，而模块划分工作由浏览器进行</li>
+</ul>
