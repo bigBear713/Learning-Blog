@@ -1,0 +1,43 @@
+
+        <h2 id="%E5%9C%BA%E6%99%AF" class="docs-header-link">
+          <span header-link="%E5%9C%BA%E6%99%AF"></span>
+          场景
+        </h2>
+      <ul>
+<li>子组件需要从父组件接收值。</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><div>@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>template<span class="token punctuation">:</span><span class="token template-string"><span class="token string">`&lt;child-component [title]="title" [desc]="description">&lt;/child-component>`</span></span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ParentComponent</span><span class="token punctuation">{</span>
+    title <span class="token operator">=</span> <span class="token string">'a title from the parent component'</span><span class="token punctuation">;</span>
+    description <span class="token operator">=</span> <span class="token string">'a description from the parent component'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    selector<span class="token punctuation">:</span><span class="token string">'child-component'</span><span class="token punctuation">,</span>
+    template<span class="token punctuation">:</span><span class="token template-string"><span class="token string">`
+    &lt;h2>{{title}}&lt;/h2>
+    &lt;p>{{description}}&lt;/p>
+    `</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ParentComponent</span><span class="token punctuation">{</span>
+    @<span class="token function">Input</span><span class="token punctuation">(</span><span class="token punctuation">)</span> title<span class="token punctuation">:</span><span class="token keyword">string</span> <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+    @<span class="token function">Input</span><span class="token punctuation">(</span><span class="token string">'desc'</span><span class="token punctuation">)</span> description<span class="token punctuation">:</span><span class="token keyword">string</span> <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></div></code></pre>
+<ul>
+<li>显示效果</li>
+</ul>
+<pre class="language-html"><code class="language-html"><div><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>child-component</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>a title from the parent component<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>a description from the parent component<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>child-component</span><span class="token punctuation">></span></span></div></code></pre>
+
+        <h2 id="%E8%AF%AD%E6%B3%95" class="docs-header-link">
+          <span header-link="%E8%AF%AD%E6%B3%95"></span>
+          语法
+        </h2>
+      <ul>
+<li>子组件中<code>public</code>属性的值来自父组件时，在该属性前加<code>@Input()</code>。</li>
+<li>暴露给父组件的属性名默认为子组件中的变量名。</li>
+<li>当想让暴露给父组件的属性名和子组件中的变量名不一致时，可在<code>@Input()</code>中传入想暴露给父组件的名字。</li>
+</ul>
